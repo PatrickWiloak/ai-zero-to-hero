@@ -246,6 +246,12 @@
           "status": "Retired"
         },
         {
+          "path": "azure/ai-901",
+          "code": "AI-901",
+          "level": "Foundational",
+          "status": "Ready"
+        },
+        {
           "path": "azure/ai-102",
           "code": "AI-102",
           "level": "Associate",

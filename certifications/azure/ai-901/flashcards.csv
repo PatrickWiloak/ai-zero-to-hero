@@ -1,0 +1,24 @@
+Question,Answer,Tags
+Which exam earns Microsoft Certified: Azure AI Fundamentals since AI-900 retired?,AI-901 (AI-900 retired 2026-06-30),exam-logistics
+What are the two AI-901 domains and their weights?,Identify AI concepts and capabilities (40-45%); Implement AI solutions by using Microsoft Foundry (55-60%),exam-logistics
+What is the AI-901 passing score?,700,exam-logistics
+Do Fundamentals certifications expire?,No - Microsoft states Fundamentals certifications do not expire,exam-logistics
+Name Microsoft's six responsible AI principles,"Fairness; reliability and safety; privacy and security; inclusiveness; transparency; accountability",responsible-ai
+A model approves one group less often than comparable people in another group. Which principle?,Fairness,responsible-ai
+Telling users they are talking to an AI supports which principle?,Transparency,responsible-ai
+A named owner and review board for AI systems supports which principle?,Accountability,responsible-ai
+Designing a voice app to work for people with speech impairments supports which principle?,Inclusiveness,responsible-ai
+Which parameter do you lower for more consistent answers?,Temperature,models
+What does max tokens control?,The maximum length of the model's response,models
+Which deployment type keeps processing within a geography such as the EU?,Data Zone,models
+What was Microsoft Foundry called before?,Azure AI Studio then Azure AI Foundry,foundry
+What are Foundry Tools?,The prebuilt AI capabilities formerly called Azure AI Services (Speech; Language; Vision; Content Understanding),foundry
+In Foundry SDK code what value goes in the model parameter?,The deployment name,foundry
+Which Python package is the Foundry SDK client in the quickstart?,azure-ai-projects (AIProjectClient),foundry
+What three things define a Foundry prompt agent?,A model; instructions; tools,agents
+What keeps multi-turn context for a Foundry agent client?,A conversation (openai.conversations.create),agents
+What markup controls pronunciation and pauses in text to speech?,SSML (Speech Synthesis Markup Language),speech
+Which text analysis technique links sentiment to specific aspects?,Opinion mining,text
+Object detection vs image classification?,Detection finds and locates each object (bounding boxes); classification labels the whole image,vision
+Which Foundry Tool extracts schema-defined fields from documents; images; audio and video?,Azure Content Understanding,extraction
+What do confidence scores and grounding give you in Content Understanding?,How sure each value is and where in the source it came from - enabling human review of low-confidence values,extraction

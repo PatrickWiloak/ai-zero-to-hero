@@ -4,11 +4,12 @@ Study guides for the Azure AI and machine learning certifications. Every provide
 
 <!-- BEGIN GENERATED: provider-certs - edit scripts/build_certs.py, not this block -->
 
-3 certifications and 1 self-directed study track on this site. Statuses are kept in [certs.json](../certs.json); every AI certification is listed on the [Certifications](../README.md) hub.
+4 certifications and 1 self-directed study track on this site. Statuses are kept in [certs.json](../certs.json); every AI certification is listed on the [Certifications](../README.md) hub.
 
 | Cert | Code | Level | Status | Notes |
 |------|------|-------|--------|------:|
 | [Microsoft Azure AI Fundamentals (AI-900)](ai-900/README.md) | AI-900 | Foundational | Retired | 3 |
+| [Microsoft Azure AI Fundamentals (AI-901)](ai-901/README.md) | AI-901 | Foundational | Ready | 4 |
 | [Microsoft Azure AI Engineer Associate (AI-102)](ai-102/README.md) | AI-102 | Associate | Retired | 5 |
 | [Microsoft Azure Data Scientist Associate (DP-100)](dp-100/README.md) | DP-100 | Associate | Retired | 3 |
 | [Azure Generative AI - Self-Directed Study Track](genai/README.md) | - | - | Study track | 3 |

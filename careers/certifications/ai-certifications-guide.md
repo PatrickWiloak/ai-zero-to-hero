@@ -96,7 +96,14 @@ Also here: a [Google Cloud generative AI study track](../../certifications/gcp/g
 
 ### Microsoft Azure
 
-Microsoft retired its main AI certifications in 2026 (see below). This site keeps an [Azure generative AI study track](../../certifications/azure/genai/README.md) for learning the platform. Check [Microsoft Learn credentials](https://learn.microsoft.com/en-us/credentials/) for any newer AI credentials before planning around Azure.
+Microsoft replaced its AI exams in 2026 (the old ones are in the retired list below). As of 2026-10-21, two successors are live on Microsoft Learn:
+
+| Certification | Level | Cost | Validity | Study guide |
+|---|---|---|---|---|
+| Microsoft Azure AI Fundamentals (AI-901), replaces AI-900 | Fundamentals | Varies by country | Does not expire | [Guide](../../certifications/azure/ai-901/README.md) |
+| Azure AI Apps and Agents Developer Associate (AI-103), replaces AI-102 | Associate | Varies by country | 1 year, free renewal | Not yet on this site; see [Microsoft's study guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ai-103) |
+
+This site also keeps an [Azure generative AI study track](../../certifications/azure/genai/README.md) for learning the platform.
 
 ## Retired: do not study for these
 
@@ -104,7 +111,7 @@ Microsoft retired its main AI certifications in 2026 (see below). This site keep
 |---|---|---|---|
 | AWS Machine Learning - Specialty (MLS-C01) | 15 April 2025 | Existing holders stay valid for three years from earning | [Guide](../../certifications/aws/specialty/machine-learning-mls-c01/README.md) |
 | AWS Machine Learning Engineer - Associate (MLA-C01) | 28 September 2026 | MLA-C02 in beta, general availability not announced as of 2026-10 | [Guide](../../certifications/aws/associate/ml-engineer-mla-c01/README.md) |
-| Microsoft Azure AI Fundamentals (AI-900) | 30 June 2026 | Can no longer be earned or renewed | [Guide](../../certifications/azure/ai-900/README.md) |
+| Microsoft Azure AI Fundamentals (AI-900) | 30 June 2026 | Replaced by AI-901, which earns the same certification | [Guide](../../certifications/azure/ai-900/README.md) |
 | Microsoft Azure AI Engineer Associate (AI-102) | 30 June 2026 | Can no longer be earned or renewed | [Guide](../../certifications/azure/ai-102/README.md) |
 | Microsoft Azure Data Scientist Associate (DP-100) | 1 June 2026 | Can no longer be earned or renewed | [Guide](../../certifications/azure/dp-100/README.md) |
 
@@ -143,6 +150,7 @@ Microsoft retired its main AI certifications in 2026 (see below). This site keep
 - AWS, Machine Learning Engineer - Associate (MLA-C01 retirement, MLA-C02 beta): https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/
 - AWS Certification, AI Practitioner: https://aws.amazon.com/certification/certified-ai-practitioner/
 - Microsoft Learn, retired certification exams (AI-900, AI-102, DP-100): https://learn.microsoft.com/en-us/credentials/support/retired-certification-exams
+- Microsoft Learn, Exam AI-901 and the Azure AI Apps and Agents Developer Associate (AI-103), read 2026-10-21: https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-901/ , https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-apps-and-agents-developer-associate/
 - Google Cloud, Generative AI Leader: https://cloud.google.com/learn/certification/generative-ai-leader
 - NVIDIA, certification program: https://www.nvidia.com/en-us/learn/certification/
 - Databricks, certifications: https://www.databricks.com/learn/certification

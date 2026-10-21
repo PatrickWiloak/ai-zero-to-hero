@@ -68,7 +68,7 @@ Underneath sits the research library: the **156 most influential papers** and la
 [![Papers](https://img.shields.io/badge/Papers-156-blue.svg)](./INDEX.md)
 [![Explainers](https://img.shields.io/badge/Explainers-31-purple.svg)](./EXPLAINERS.md)
 [![Guides](https://img.shields.io/badge/Guides-98-green.svg)](./learn/README.md)
-[![Certifications](https://img.shields.io/badge/Certifications-29-red.svg)](./certifications/README.md)
+[![Certifications](https://img.shields.io/badge/Certifications-30-red.svg)](./certifications/README.md)
 [![License](https://img.shields.io/badge/License-CC_BY_4.0-orange.svg)](./LICENSE)
 [![Updated](https://img.shields.io/badge/Updated-September_2026-green.svg)](./README.md)
 
