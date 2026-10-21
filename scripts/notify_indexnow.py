@@ -40,7 +40,7 @@ import urllib.request
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-SITE = "https://ai.patricklukewilson.com/"
+SITE = "https://ai.patrickwiloak.com/"
 HOST = "patrickwiloak.github.io"
 KEY = (REPO / ".github" / "site" / "indexnow-key.txt").read_text(encoding="utf-8").strip()
 ENDPOINT = "https://api.indexnow.org/indexnow"

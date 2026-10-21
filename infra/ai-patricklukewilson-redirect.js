@@ -1,4 +1,5 @@
-// ai.patrickwiloak.com -> ai.patricklukewilson.com (AI Zero to Hero), path and query kept.
+// ai.patricklukewilson.com -> ai.patrickwiloak.com (AI Zero to Hero), path and query kept.
+// Wiloak is the public name (Patrick, 2026-10-21); the lukewilson host only redirects.
 // Owned by the ai-zero-to-hero repo (see its CLAUDE.md). Created 2026-10-21.
 function handler(event) {
     var r = event.request;
@@ -9,6 +10,6 @@ function handler(event) {
     return {
         statusCode: 301,
         statusDescription: 'Moved Permanently',
-        headers: { location: { value: 'https://ai.patricklukewilson.com' + r.uri + (q ? '?' + q : '') } }
+        headers: { location: { value: 'https://ai.patrickwiloak.com' + r.uri + (q ? '?' + q : '') } }
     };
 }

@@ -64,9 +64,9 @@ Underneath sits the research library: the **156 most influential papers** and la
 
 <div align="center" markdown="1">
 
-[![Visit the website](https://img.shields.io/badge/Visit_the_website-ai.patricklukewilson.com-6f42c1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://ai.patricklukewilson.com/)
+[![Visit the website](https://img.shields.io/badge/Visit_the_website-ai.patrickwiloak.com-6f42c1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://ai.patrickwiloak.com/)
 
-**[→ ai.patricklukewilson.com](https://ai.patricklukewilson.com/)**
+**[→ ai.patrickwiloak.com](https://ai.patrickwiloak.com/)**
 
 Searchable, dark mode, no signup.
 
@@ -108,7 +108,7 @@ Searchable, dark mode, no signup.
 ### Data & Tooling
 - 🧾 **[papers.json](./papers.json)** / **[papers.csv](./papers.csv)** - machine-readable manifest of every paper
 - 🛠️ **[scripts/build_manifest.py](./scripts/build_manifest.py)** - regenerates frontmatter, the manifest, `INDEX.md`, and the site nav
-- 🌐 **Docs site** - read it all at **[ai.patricklukewilson.com](https://ai.patricklukewilson.com/)** - searchable, dark mode, no signup. See [CONTRIBUTING.md](./CONTRIBUTING.md#previewing-the-site-locally) to build it locally.
+- 🌐 **Docs site** - read it all at **[ai.patrickwiloak.com](https://ai.patrickwiloak.com/)** - searchable, dark mode, no signup. See [CONTRIBUTING.md](./CONTRIBUTING.md#previewing-the-site-locally) to build it locally.
 - 🤝 **[CONTRIBUTING.md](./CONTRIBUTING.md)** - how to add a paper, house style, and the build workflow
 
 ---
