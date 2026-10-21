@@ -31,6 +31,16 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [ ] Certs: some guides have no flashcard deck (hub shows "-"); no CSV generator here yet - port cloud-zero-to-hero `build-flashcards.py` if decks need adding.
 - [ ] 2027-04-19: re-review every guide page (180-day stale warning starts).
 
+## Certifications (moved in from the old cloud repo TODO, 2026-10-21)
+
+- [ ] Successors: AI-900 -> AI-901 (live, updated 2026-04-15) - build an AI-901 guide; AI-102 -> AI-103 (third-party; confirm on learn.microsoft.com).
+- [ ] 2026-11-01 judge rewrites: MLA-C02 (beta); NVIDIA codes NCP-NET -> NCP-AIN, NCP-USD -> NCP-OUSD, NCA-MMGA -> NCA-GENM [H].
+- [ ] Verify `certifications/anthropic/claude-prompt-engineering-specialist` (CPES absent from Anthropic's cert FAQ); Associate dir should read "Claude Certified Associate"; verify CCAO-F / CCAR-P domain weights.
+- [ ] New-guide candidates (verify codes): AWS AI Business Strategist (beta), NVIDIA NCA-ADS, NCP-ARI.
+- [ ] Rename sweep: "Vertex AI" -> Gemini Enterprise Agent Platform in `certifications/gcp/machine-learning-engineer` + GCP genai tracks.
+- [ ] 2026-10-31 spot-check retired-product replacements: LUIS (`certifications/azure/ai-102`), PaLM and AutoML (GCP ML notes).
+- [ ] Distribution: submit to awesome-llm-security.
+
 ## Open
 
 ### 🟠 Discoverability (added 2026-08-31)

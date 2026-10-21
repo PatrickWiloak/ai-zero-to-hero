@@ -78,3 +78,16 @@
   <script type="application/ld+json">{{ page.meta.jsonld }}</script>
   {% endif %}
 {% endblock %}
+
+{#- Zero to Hero family bar: the same four links on every sibling site (cloud, data,
+    security, ai .noblerworks.com). Edit all four repos together - see CLAUDE.md. -#}
+{% block announce %}
+<nav class="z2h-family" aria-label="Zero to Hero sites by Nobler Works">
+  <span class="z2h-family__brand">Zero to Hero</span>
+    <a href="https://cloud.noblerworks.com/" style="--fam:#16a34a">Cloud</a>
+    <a href="https://data.noblerworks.com/" style="--fam:#0891b2">Data</a>
+    <a href="https://security.noblerworks.com/" style="--fam:#d97706">Security</a>
+    <a href="https://ai.noblerworks.com/" style="--fam:#dc2626" aria-current="page">AI</a>
+  <a class="z2h-family__nw" href="https://noblerworks.com/">by Nobler Works</a>
+</nav>
+{% endblock %}
