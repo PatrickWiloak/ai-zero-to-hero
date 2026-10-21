@@ -180,37 +180,37 @@ This guide provides a comprehensive comparison of AI/ML services across AWS, Goo
 
 ## Generative AI & Large Language Models
 
-> **Snapshot, partly out of date (flagged 2026-10-21).** The model rows below reflect 2023-2024 catalogs. Since then PaLM 2 and Llama 2 have been superseded, CodeWhisperer became Amazon Q Developer, OpenAI's open-weight gpt-oss models appeared on Bedrock and Vertex, and Claude became available on Azure through Microsoft Foundry. Check each provider's model catalog before deciding; the [AI labs landscape explainer](../../explainers/ecosystem/labs-landscape.md) tracks who ships what.
+> **Refreshed 2026-10-21** from each vendor's documentation (sources below). Catalogs change monthly: new models arrive, old ones are retired, and the same model can have different regional availability per cloud. Confirm in the console before you design around a model. Google renamed Vertex AI to **Gemini Enterprise Agent Platform** on 2026-04-22, and Microsoft's Azure AI Foundry is now **Microsoft Foundry**, with Azure OpenAI delivered inside it. The [AI labs landscape explainer](../../explainers/ecosystem/labs-landscape.md) tracks who ships what.
 
-| Feature | AWS | GCP | Azure |
+| Feature | AWS | Google Cloud | Azure |
 |---------|-----|-----|-------|
-| **Service Name** | Amazon Bedrock | Agent Platform (Model Garden, Generative AI) | Azure OpenAI Service |
-| **Foundation Models** | Anthropic Claude, Meta Llama, Cohere, AI21, Stability AI | PaLM 2, Gemini, Llama 2, Claude | GPT-4, GPT-3.5, Codex, DALL-E |
-| **OpenAI Models** | No (but Claude alternative) | No (but Gemini/PaLM) | Yes (exclusive partnership) |
-| **Anthropic Claude** | Yes | Yes | No |
-| **Google Models** | No | Yes (Gemini, PaLM) | No |
-| **Open Source Models** | Llama 2, Falcon, Mistral | Llama 2, Open models | Llama 2 (limited) |
-| **Image Generation** | Stable Diffusion (Stability AI) | Imagen | DALL-E 2, DALL-E 3 |
-| **Code Generation** | CodeWhisperer (separate) | Codey, Gemini | GitHub Copilot (partner), GPT-4 |
-| **Chat Interface** | Amazon Q | N/A (Agent Studio) | Azure OpenAI Playground |
-| **Embeddings** | Titan Embeddings, Cohere | text-embedding-gecko | ada-002 embeddings |
-| **Fine-tuning** | Limited | Yes | Yes (GPT-3.5, Ada) |
-| **Prompt Management** | Prompt templates | Prompt design | Prompt engineering tools |
-| **Responsible AI** | Guardrails | Agent Platform safety filters | Content filtering, abuse monitoring |
-| **Vector Database Integration** | OpenSearch, RDS pgvector | Vector Search | Azure Cognitive Search |
-| **RAG Support** | Knowledge Bases for Bedrock | Agent Search, Grounding | Azure AI Search integration |
-| **Agents** | Bedrock Agents | Agent Builder on Agent Platform | Azure AI Agent Service (preview) |
-| **Model Deployment** | Managed inference | Managed endpoints | Managed deployments |
-| **Pricing** | Per token (input/output) | Per character/token | Per token (input/output) |
+| **Service name** | Amazon Bedrock | Gemini Enterprise Agent Platform (formerly Vertex AI); Model Garden | Microsoft Foundry (formerly Azure AI Foundry); Azure OpenAI in Foundry |
+| **Model catalog (examples)** | Amazon Nova and Nova 2; Anthropic Claude; Meta Llama 4 and 3.x; Mistral; Cohere; AI21 Jamba; DeepSeek; Qwen3; Moonshot Kimi; MiniMax; Z.AI GLM; NVIDIA Nemotron; Writer Palmyra; xAI Grok; Google Gemma; OpenAI GPT and gpt-oss | Gemini (4 Argon, 3.x Pro/Flash/Flash-Lite, 2.5); Gemma; partner models: Claude, Llama 4, Mistral, DeepSeek, Qwen3, gpt-oss, Kimi, GLM, MiniMax, Grok | Azure OpenAI (GPT-6, GPT-5.x families, gpt-oss); DeepSeek; Llama 4 and 3.3; Microsoft MAI models; Mistral; Kimi; Grok; Cohere; Black Forest Labs; Claude as a partner model; "more than 10,000 models" in the wider catalog |
+| **OpenAI models** | Yes (GPT-6 and GPT-5.x families, gpt-oss) | Open-weight gpt-oss only | Yes (the broadest set, sold directly by Azure) |
+| **Anthropic Claude** | Yes (Claude 5.x and 4.x families) | Yes (Model Garden partner models) | Yes (partner model via Azure Marketplace) |
+| **Google models** | Gemma (open weights) only | Gemini and Gemma | No Gemini |
+| **Own first-party models** | Amazon Nova, Titan embeddings | Gemini, Gemma, Nano Banana image models, Veo, Lyria | Microsoft MAI models, Phi |
+| **Image / video generation** | Nova Canvas, Nova Reel, Stability AI, Luma Ray2 | Nano Banana image models, Veo 3.1 | OpenAI image models, MAI-Image, Black Forest Labs |
+| **Coding assistant** | Kiro (successor to Amazon Q Developer, itself the successor to CodeWhisperer; Q Developer IDE plugins end support 2027-04-30) | Gemini Code Assist (Standard and Enterprise) | GitHub Copilot |
+| **Embeddings** | Titan, Nova Multimodal Embeddings, Cohere Embed v4 | Embedding models in Model Garden (check catalog) | Embedding models in the Foundry catalog, including Cohere |
+| **Safety filters** | Bedrock Guardrails | Built-in model safety filters (see each model's docs) | Azure AI Content Safety (Foundry model filters) |
+| **RAG / grounding** | Bedrock Knowledge Bases (managed knowledge base GA under AgentCore) | RAG Engine, Agent Search (formerly Vertex AI Search), Grounding with Google Search | Azure AI Search (agentic retrieval, Foundry IQ) |
+| **Agents** | Bedrock Agents; Bedrock AgentCore (Runtime, Memory, Gateway for MCP, Identity, Code Interpreter, Browser, Observability; works with LangGraph, CrewAI, Strands, ADK, OpenAI Agents SDK) | Agent Development Kit (ADK), Agent Runtime (formerly Agent Engine), Agent Studio, Agent Garden, Memory Bank, A2A | Foundry Agent Service (prompt, voice and hosted agents; Microsoft Agent Framework, LangGraph, Semantic Kernel) |
+| **Pricing model** | Per token, on-demand or provisioned; cross-region and in-region rates differ | Per token (Standard, Priority, Batch); global and regional endpoints differ | Per token; Global, Data Zone and regional deployments differ |
+
+**What actually differs now.** In 2023 the choice was simple: Claude on AWS, PaLM and Gemini on Google, GPT on Azure. By 2026 the catalogs overlap heavily: Claude is on all three, OpenAI models are on AWS and Azure, and most popular open-weight families are everywhere. The deciding factors are usually where your data and identity already live, which **first-party** models you want (Gemini only on Google, Nova only on AWS, the full OpenAI range plus MAI on Azure), regional availability and data residency, and the agent platform you prefer. See [GenAI platforms compared](genai-platforms.md) and [Which model for which job](../decisions/which-model-for-which-job.md).
 
 **Documentation:**
-- **[📖 AWS Bedrock Documentation](https://docs.aws.amazon.com/bedrock/)** - Foundation models
-- **[📖 AWS Bedrock Agents Documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html)** - AI agents
-- **[📖 AWS CodeWhisperer Documentation](https://docs.aws.amazon.com/codewhisperer/)** - AI code assistant
-- **[📖 GCP Agent Platform Generative AI Documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/learn/overview)** - Generative AI overview
-- **[📖 GCP Gemini Documentation](https://cloud.google.com/vertex-ai/docs/generative-ai/model-reference/gemini)** - Google's multimodal AI
-- **[📖 Azure OpenAI Service Documentation](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/)** - OpenAI integration
-- **[📖 Azure OpenAI Models Documentation](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/models)** - Available models
+- **[📖 Amazon Bedrock models at a glance](https://docs.aws.amazon.com/bedrock/latest/userguide/model-cards.html)** - current catalog
+- **[📖 Amazon Bedrock AgentCore](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html)** - agent platform
+- **[📖 Amazon Bedrock Guardrails](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-use.html)** - safety filters
+- **[📖 Amazon Q Developer IDE end of support / Kiro](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/q-developer-ide-end-of-support.html)** - coding assistant
+- **[📖 Introducing Gemini Enterprise Agent Platform](https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform)** - the 2026-04-22 rename
+- **[📖 Vertex AI name changes](https://docs.cloud.google.com/gemini-enterprise-agent-platform/vertex-ai-name-changes)** - old name to new name map
+- **[📖 Agent Platform models](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models)** and **[📖 agents](https://docs.cloud.google.com/gemini-enterprise-agent-platform/agents)**
+- **[📖 What is Microsoft Foundry?](https://learn.microsoft.com/en-us/azure/foundry/what-is-foundry)** - naming history and Agent Service
+- **[📖 Models sold directly by Azure](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure)** - Azure OpenAI and other direct models
+- **[📖 Claude in Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-claude)**
 
 ---
 
@@ -450,17 +450,26 @@ This guide provides a comprehensive comparison of AI/ML services across AWS, Goo
 | **Text-to-Speech** | $4.00/1M chars (Polly) | $4.00/1M chars | $4.00/1M chars |
 | **Translation** | $15.00/1M chars | $20.00/1M chars | $10.00/1M chars |
 
-### Generative AI (per 1K tokens)
+### Generative AI (per 1M tokens, as of 2026-10-21)
+
+Standard on-demand prices, US regions, short prompts. AWS figures are from the AWS Price List API for us-east-1 (Global cross-region inference where listed, which is about 10% below in-region); Google figures from the Agent Platform pricing page (Global endpoint, prompts up to 200K tokens); Azure figures from the Azure Retail Prices API (East US 2, Global Standard). The pricing pages render with JavaScript, so check them before you budget.
 
 | Provider | Model | Input | Output |
 |----------|-------|-------|--------|
-| **AWS Bedrock** | Claude 3 Sonnet | $0.003 | $0.015 |
-| **AWS Bedrock** | Claude 3 Opus | $0.015 | $0.075 |
-| **AWS Bedrock** | Llama 2 70B | $0.00195 | $0.00256 |
-| **GCP Agent Platform** | Gemini Pro | $0.000125 | $0.000375 |
-| **GCP Agent Platform** | PaLM 2 | $0.001 | $0.001 |
-| **Azure OpenAI** | GPT-4 | $0.03 | $0.06 |
-| **Azure OpenAI** | GPT-3.5 Turbo | $0.0005 | $0.0015 |
+| **AWS Bedrock** | Claude Sonnet 5.5 (global) | $2.00 | $10.00 |
+| **AWS Bedrock** | Claude Haiku 5.5 (global) | $0.10 | $0.50 |
+| **AWS Bedrock** | Amazon Nova 2 Lite (global) | $0.30 | $2.50 |
+| **AWS Bedrock** | Llama 4 Maverick 17B | $0.24 | $0.97 |
+| **AWS Bedrock** | gpt-oss-120b | $0.15 | $0.60 |
+| **Google Agent Platform** | Gemini 3.1 Pro (preview) | $2.00 | $12.00 |
+| **Google Agent Platform** | Gemini 3.5 Flash-Lite | $0.30 | $2.50 |
+| **Google Agent Platform** | Claude Sonnet 5.5 | $2.00 | $10.00 |
+| **Google Agent Platform** | gpt-oss-120b | $0.09 | $0.36 |
+| **Azure (Foundry)** | GPT-5.6 Sol | $4.00 | $20.00 |
+| **Azure (Foundry)** | GPT-5.6 Luna | $0.20 | $1.20 |
+| **Azure (Foundry)** | gpt-oss-120b | $0.15 | $0.60 |
+
+Promotional prices are excluded (Gemini 4 Argon and Gemini 3.8 Flash are at introductory prices until 2026-11-30 and 2026-12-31 respectively). Batch processing is typically half price on all three. Turning these into a monthly bill: [AI cost basics](../../learn/concepts/ai-cost-basics.md).
 
 *Note: Prices vary by region and are subject to change. Always use official pricing calculators.*
 
@@ -674,49 +683,48 @@ result = speech_recognizer.recognize_once()
 
 ### Generative AI (LLM)
 
-**AWS Bedrock:**
+Model IDs change often and differ per cloud, so the samples use placeholders: copy the exact ID from each catalog page above.
+
+**Amazon Bedrock (Converse API, works the same across model providers):**
 ```python
 import boto3
-import json
 
-bedrock = boto3.client('bedrock-runtime')
+bedrock = boto3.client("bedrock-runtime", region_name="us-east-1")
 
-response = bedrock.invoke_model(
-    modelId='anthropic.claude-3-sonnet-20240229-v1:0',
-    body=json.dumps({
-        'anthropic_version': 'bedrock-2023-05-31',
-        'max_tokens': 1000,
-        'messages': [
-            {'role': 'user', 'content': 'Explain quantum computing'}
-        ]
-    })
+response = bedrock.converse(
+    modelId="<model-id-or-inference-profile-from-the-Bedrock-catalog>",
+    messages=[{"role": "user", "content": [{"text": "Explain quantum computing"}]}],
+    inferenceConfig={"maxTokens": 1000},
 )
+print(response["output"]["message"]["content"][0]["text"])
 ```
 
-**GCP Agent Platform (Gemini):**
+**Google Gemini Enterprise Agent Platform (Google Gen AI SDK):**
 ```python
-from vertexai.preview.generative_models import GenerativeModel
+from google import genai
 
-model = GenerativeModel('gemini-pro')
-response = model.generate_content('Explain quantum computing')
+client = genai.Client(vertexai=True, project="your-project", location="global")
+response = client.models.generate_content(
+    model="<gemini-model-id-from-Model-Garden>",
+    contents="Explain quantum computing",
+)
 print(response.text)
 ```
 
-**Azure OpenAI:**
+**Azure OpenAI in Microsoft Foundry (OpenAI SDK against the v1 endpoint):**
 ```python
-import openai
+import os
+from openai import OpenAI
 
-openai.api_type = 'azure'
-openai.api_key = 'your-key'
-openai.api_base = 'https://your-resource.openai.azure.com/'
-openai.api_version = '2023-05-15'
-
-response = openai.ChatCompletion.create(
-    engine='gpt-4',
-    messages=[
-        {'role': 'user', 'content': 'Explain quantum computing'}
-    ]
+client = OpenAI(
+    base_url="https://your-resource.openai.azure.com/openai/v1/",
+    api_key=os.environ["AZURE_OPENAI_API_KEY"],
 )
+response = client.chat.completions.create(
+    model="<your-deployment-name>",
+    messages=[{"role": "user", "content": "Explain quantum computing"}],
+)
+print(response.choices[0].message.content)
 ```
 
 ---
@@ -733,7 +741,7 @@ response = openai.ChatCompletion.create(
 - ✅ Require extensive built-in algorithms
 
 **Use GCP Agent Platform if:**
-- ✅ Want Google's advanced AI research (Gemini, PaLM)
+- ✅ Want Google's Gemini models alongside the ML platform
 - ✅ Need TPU support for training
 - ✅ Prefer integrated BigQuery and GCP data services
 - ✅ Want simplified unified ML platform
@@ -749,11 +757,11 @@ response = openai.ChatCompletion.create(
 ### Generative AI Platform Selection
 
 **Use AWS Bedrock if:**
-- ✅ Want access to Anthropic Claude models
+- ✅ Want Amazon Nova or the widest third-party catalog (Claude, OpenAI, Llama, Mistral, DeepSeek, Qwen and more)
 - ✅ Need multiple foundation model options
 - ✅ Prefer serverless, pay-per-use pricing
 - ✅ Want managed RAG with Knowledge Bases
-- ✅ Need AI agents and guardrails
+- ✅ Need AI agents (AgentCore) and Bedrock Guardrails
 
 **Use GCP Agent Platform if:**
 - ✅ Want Google's Gemini models
@@ -762,8 +770,8 @@ response = openai.ChatCompletion.create(
 - ✅ Want integrated search and grounding
 - ✅ Need tighter BigQuery integration
 
-**Use Azure OpenAI if:**
-- ✅ Need GPT-4 and OpenAI models
+**Use Microsoft Foundry (Azure OpenAI) if:**
+- ✅ Want the full range of OpenAI models sold directly by Azure
 - ✅ Require enterprise-grade OpenAI with SLAs
 - ✅ Want Azure enterprise security and compliance
 - ✅ Need integration with Microsoft ecosystem
@@ -842,16 +850,16 @@ response = openai.ChatCompletion.create(
 - ✅ Strong document intelligence (Textract)
 
 ### GCP AI/ML Strengths
-- ✅ Best AI research foundation (Gemini, PaLM)
+- ✅ Gemini models, available only on Google Cloud
 - ✅ TPU support for high-performance training
 - ✅ Superior AutoML capabilities
-- ✅ Unified Agent Platform platform
+- ✅ Unified Gemini Enterprise Agent Platform
 - ✅ Best BigQuery ML integration
 - ✅ Strong document AI capabilities
 - ✅ Advanced explainable AI
 
 ### Azure AI/ML Strengths
-- ✅ Exclusive OpenAI partnership (GPT-4, DALL-E)
+- ✅ Broadest OpenAI model range, sold directly by Azure (OpenAI models are no longer Azure-exclusive)
 - ✅ Best Microsoft ecosystem integration
 - ✅ Strong MLOps and DevOps integration
 - ✅ Comprehensive cognitive services
@@ -943,7 +951,24 @@ In the research library:
 
 ## Sources
 
-- Amazon Bedrock, supported models: https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html
+Generative AI section refreshed 2026-10-21 from these pages (read that day):
+
+- Amazon Bedrock, models at a glance: https://docs.aws.amazon.com/bedrock/latest/userguide/model-cards.html
+- Amazon Bedrock AgentCore, overview and release notes: https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html , https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/release-notes.html
+- Amazon Q Developer IDE end of support and upgrade to Kiro: https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/q-developer-ide-end-of-support.html , https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/upgrade-to-kiro.html
+- AWS Price List API, Amazon Bedrock (us-east-1): https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockFoundationModels/current/us-east-1/index.json
+- Google Cloud, "Introducing Gemini Enterprise Agent Platform" (2026-04-22): https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform
+- Google Cloud, Vertex AI name changes: https://docs.cloud.google.com/gemini-enterprise-agent-platform/vertex-ai-name-changes
+- Google Cloud, Agent Platform models and agents: https://docs.cloud.google.com/gemini-enterprise-agent-platform/models , https://docs.cloud.google.com/gemini-enterprise-agent-platform/agents
+- Google Cloud, generative AI pricing on Agent Platform: https://cloud.google.com/gemini-enterprise-agent-platform/generative-ai/pricing
+- Gemini Code Assist overview: https://developers.google.com/gemini-code-assist/docs/overview
+- Microsoft Learn, "What is Microsoft Foundry?": https://learn.microsoft.com/en-us/azure/foundry/what-is-foundry
+- Microsoft Learn, models sold directly by Azure: https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure
+- Microsoft Learn, Claude in Foundry: https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-claude
+- Microsoft Learn, Azure AI Search overview: https://learn.microsoft.com/en-us/azure/search/search-what-is-azure-search
+- Azure Retail Prices API: https://prices.azure.com/api/retail/prices
+- Microsoft Learn, Azure OpenAI v1 API (OpenAI client with `base_url`): https://learn.microsoft.com/en-us/azure/foundry/openai/api-version-lifecycle
+- AWS, Bedrock Converse API: https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference.html
 - OpenAI, "Introducing gpt-oss" (August 2025): https://openai.com/index/introducing-gpt-oss/
-- Amazon Q Developer (successor to CodeWhisperer): https://aws.amazon.com/q/developer/
-- Microsoft Foundry model catalog: https://ai.azure.com/catalog
+
+The other sections (ML platforms, vision, speech, pricing for classic services) predate this refresh and have not been re-verified; check vendor pages before relying on them.
