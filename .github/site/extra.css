@@ -640,6 +640,21 @@
 }
 
 /* ------------------------------------------------------------------ */
+/* Site identity colour (Patrick, 2026-10-21: each Zero to Hero site    */
+/* gets its own primary). Header bar = deep red-800 #991b1b, white text   */
+/* 8.3:1. Siblings: cloud green, data cyan, security amber, ai red. */
+/* ------------------------------------------------------------------ */
+:root,
+[data-md-color-scheme="default"],
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color:        #991b1b;
+  --md-primary-fg-color--light: #b91c1c;
+  --md-primary-fg-color--dark:  #7f1d1d;
+}
+.md-header, .md-tabs { background-color: #991b1b; }
+/* end site identity */
+
+/* ------------------------------------------------------------------ */
 /* Zero to Hero family bar (announce block in site-overrides/main.html) */
 /* Identical in cloud / data / security / ai zero-to-hero - edit all four. */
 /* ------------------------------------------------------------------ */
