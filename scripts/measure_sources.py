@@ -51,7 +51,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CACHE = ROOT / "source_lengths.json"
 
-UA = "genai-research-papers-summarized/1.0 (+https://github.com/PatrickWiloak/genai-research-papers-summarized)"
+UA = "ai-zero-to-hero/1.0 (+https://github.com/PatrickWiloak/ai-zero-to-hero)"
 DELAY_SECONDS = 3.0  # be a polite citizen of arxiv.org
 
 # Slugs whose linked source is another paper that is already measured under its

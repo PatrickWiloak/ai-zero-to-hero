@@ -64,9 +64,9 @@ Underneath sits the research library: the **156 most influential papers** and la
 
 <div align="center" markdown="1">
 
-[![Visit the website](https://img.shields.io/badge/Visit_the_website-patrickwiloak.github.io%2Fgenai--research--papers--summarized-6f42c1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://patrickwiloak.github.io/genai-research-papers-summarized/)
+[![Visit the website](https://img.shields.io/badge/Visit_the_website-ai.patricklukewilson.com-6f42c1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://ai.patricklukewilson.com/)
 
-**[→ patrickwiloak.github.io/genai-research-papers-summarized](https://patrickwiloak.github.io/genai-research-papers-summarized/)**
+**[→ ai.patricklukewilson.com](https://ai.patricklukewilson.com/)**
 
 Searchable, dark mode, no signup.
 
@@ -108,7 +108,7 @@ Searchable, dark mode, no signup.
 ### Data & Tooling
 - 🧾 **[papers.json](./papers.json)** / **[papers.csv](./papers.csv)** - machine-readable manifest of every paper
 - 🛠️ **[scripts/build_manifest.py](./scripts/build_manifest.py)** - regenerates frontmatter, the manifest, `INDEX.md`, and the site nav
-- 🌐 **Docs site** - read it all at **[patrickwiloak.github.io/genai-research-papers-summarized](https://patrickwiloak.github.io/genai-research-papers-summarized/)** - searchable, dark mode, no signup. See [CONTRIBUTING.md](./CONTRIBUTING.md#previewing-the-site-locally) to build it locally.
+- 🌐 **Docs site** - read it all at **[ai.patricklukewilson.com](https://ai.patricklukewilson.com/)** - searchable, dark mode, no signup. See [CONTRIBUTING.md](./CONTRIBUTING.md#previewing-the-site-locally) to build it locally.
 - 🤝 **[CONTRIBUTING.md](./CONTRIBUTING.md)** - how to add a paper, house style, and the build workflow
 
 ---
@@ -116,7 +116,7 @@ Searchable, dark mode, no signup.
 ## 📁 Repository Structure
 
 ```
-genai-research-papers-summarized/
+ai-zero-to-hero/
 ├── README.md                          # You are here
 ├── INDEX.md / BROWSE.md / TAGS.md     # Generated indexes (category, grid, topic tag)
 ├── papers.json / papers.csv           # Generated machine-readable manifest
@@ -799,7 +799,7 @@ If you use these summaries in your work:
   title={AI Zero to Hero: Guides, Papers, Essays and Explainers},
   author={Wiloak, Patrick},
   year={2026},
-  url={https://github.com/PatrickWiloak/genai-research-papers-summarized}
+  url={https://github.com/PatrickWiloak/ai-zero-to-hero}
 }
 ```
 
@@ -838,7 +838,7 @@ Gratitude to the researchers who created these foundational works:
 **Explainers:** 31, each with its own review date
 **Total Content:** 350,000+ words of summaries, explainers and guides (see Quick Stats above)
 **Includes:** Roots (Word2Vec, Seq2Seq, VAE, PPO) through the latest breakthroughs of early 2026 (GPT-5, Claude 4, Llama 4, GRPO, RLVR, and more)
-**Repository:** [github.com/PatrickWiloak/genai-research-papers-summarized](https://github.com/PatrickWiloak/genai-research-papers-summarized)
+**Repository:** [github.com/PatrickWiloak/ai-zero-to-hero](https://github.com/PatrickWiloak/ai-zero-to-hero)
 
 <!-- nobler-footer:start - shared block, kept in sync across Nobler Works public repos -->
 

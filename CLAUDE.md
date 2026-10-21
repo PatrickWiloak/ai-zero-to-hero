@@ -1,4 +1,4 @@
-# GenAI Research Papers Summarized
+# AI Zero to Hero (repo: ai-zero-to-hero, formerly genai-research-papers-summarized)
 
 ## Overview
 "AI Zero to Hero" (renamed 2026-10-21 from "Everything AI, Summarized"): six guide pillars
@@ -6,8 +6,9 @@
 sibling cloud-data-ai-security-zero-to-hero) on top of a curated collection of foundational AI papers and landmark
 essays with comprehensive summaries (count: see `papers.json`), plus unnumbered explainers
 on model families, benchmarks, compute, policy, ecosystem and open questions. Broadened from
-papers-only on 2026-09-30; the repo name and Pages URL were deliberately kept (a rename
-would break the Pages URL with no redirect). Docs-only educational resource (no application
+papers-only on 2026-09-30. On 2026-10-21 the repo was renamed `ai-zero-to-hero` and the site moved to
+the custom domain `ai.patricklukewilson.com` (Route 53 CNAME in the NW account -> `patrickwiloak.github.io`);
+`ai.patrickwiloak.com` 301s to it. The old github.io/genai-research-papers-summarized URL is dead (never indexed). Docs-only educational resource (no application
 code) - markdown plus a stdlib Python regeneration pipeline that builds the index,
 manifests, and an MkDocs Material site.
 
@@ -46,7 +47,7 @@ manifests, and an MkDocs Material site.
 ## Purpose / Usage
 - Educational resource - no code, just documentation. Start with `docs/ROADMAP.md` for the learning path.
 - `INDEX.md` is the category-grouped entry point in the repo; on the site, `.github/site/home.md` is the landing page and `README.md` stays the GitHub front page.
-- The MkDocs Material site auto-deploys via `.github/workflows/pages.yml` to <https://patrickwiloak.github.io/genai-research-papers-summarized/>. It shares its near-black look with the sibling `cloud-data-ai-security-zero-to-hero` site; the red accent is this repo's own.
+- The MkDocs Material site auto-deploys via `.github/workflows/pages.yml` to <https://ai.patricklukewilson.com/>. It shares its near-black look with the sibling `cloud-data-ai-security-zero-to-hero` site; the red accent is this repo's own.
 
 ## House style / conventions
 - After adding or editing any `papers/**/summary.md`, run the regeneration pipeline and commit the result:

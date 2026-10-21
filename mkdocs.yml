@@ -16,10 +16,10 @@ site_description: >-
   hired - plus plain-language summaries of the research papers that built
   modern AI. No signup.
 site_author: Patrick Wiloak
-site_url: https://patrickwiloak.github.io/genai-research-papers-summarized/
+site_url: https://ai.patricklukewilson.com/
 
-repo_url: https://github.com/PatrickWiloak/genai-research-papers-summarized
-repo_name: genai-research-papers-summarized
+repo_url: https://github.com/PatrickWiloak/ai-zero-to-hero
+repo_name: ai-zero-to-hero
 edit_uri: edit/main/
 
 copyright: >-
@@ -172,7 +172,7 @@ extra:
   google_site_verification: "IiZNJDxVVPECZMC0xTbmls7EdKJm0Bs5wgq7k3HEwPc"
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/PatrickWiloak/genai-research-papers-summarized
+      link: https://github.com/PatrickWiloak/ai-zero-to-hero
       name: This repository on GitHub
     - icon: fontawesome/solid/graduation-cap
       link: https://gitgood.dev

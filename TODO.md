@@ -1,6 +1,6 @@
 # TODO
 
-Working task list for **genai-research-papers-summarized**. Read this at the start of a work session and keep it current as work completes - check items off with a date, add follow-ups as they surface. Stale TODOs are worse than none. Security debt (if any) is tracked separately in `SECURITY-DEBT.md`.
+Working task list for **ai-zero-to-hero**. Read this at the start of a work session and keep it current as work completes - check items off with a date, add follow-ups as they surface. Stale TODOs are worse than none. Security debt (if any) is tracked separately in `SECURITY-DEBT.md`.
 
 ---
 
@@ -20,7 +20,9 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 ## AI Zero to Hero (2026-10-21)
 
 - [x] 2026-10-21 Six guide pillars shipped (98 pages: learn, work, build, tools, safety, careers); site renamed "AI Zero to Hero". Plan: `~/.cache/ai-z2h/PLAN.md`.
-- [ ] **Patrick: decide** repo rename (e.g. `ai-zero-to-hero`) + custom domain together - cheapest now, Google has indexed nothing yet. Rename breaks the github.io URL.
+- [x] 2026-10-21 Repo renamed `ai-zero-to-hero`; site on `ai.patricklukewilson.com` (Route 53 CNAME, NW) + robots.txt; `ai.patrickwiloak.com` 301s to it.
+- [ ] 2026-10-28 Patrick: Search Console `sc-domain:patricklukewilson.com` -> submit `https://ai.patricklukewilson.com/sitemap.xml`, Request indexing on `/`. Replaces the old URL-prefix steps below.
+- [ ] 2027-06-01 decide: renew patrickwiloak.com (lapses 2027-07-08) or let `ai.patrickwiloak.com` die with it.
 - [ ] Patrick: upload `assets/brand/social-preview-1280x640.png` (re-rendered 2026-10-21) in Settings -> Social preview.
 - [ ] 2026-11-01: verify secondary-sourced facts - ChatGPT/M365 Copilot prices, Cursor-SpaceX and OpenAI-Promptfoo deals (`grep -rln 'Cursor\|Promptfoo\|Copilot' work tools`).
 - [ ] 2026-11-08: run the untested code in `build/projects/{chatbot-in-an-afternoon,structured-extraction-pipeline,voice-agent,prompt-injection-red-team}.md`.
@@ -53,13 +55,13 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] ~~Per-page descriptions and search titles, Open Graph/Twitter cards, JSON-LD, noindex on
       templates, IndexNow on deploy, Search Console URL-prefix property + sitemap~~ ✅ done 2026-09-30
       (ported from zero-to-hero). Baseline to judge against: GitHub referrers for this repo on 2026-09-30
-      (`gh api repos/PatrickWiloak/genai-research-papers-summarized/traffic/popular/referrers`):
+      (`gh api repos/PatrickWiloak/ai-zero-to-hero/traffic/popular/referrers`):
       Google 5 referrals / 5 uniques in 14 days, no other search engine; repo views 43 / 42 uniques.
 - [x] ~~IndexNow first submission~~ ✅ done 2026-09-30: the deploy step's first run was accepted
       (HTTP 202, all 189 URLs). If a later run 403s, check `<site>/<key>.txt` is served
       (key in `.github/site/indexnow-key.txt`) and rerun `python3 scripts/notify_indexnow.py --all`.
 - [ ] **2026-11-01 check** (re-dated 2026-10-15 after the FAIL below; was 2026-10-14): Search Console -> Sitemaps shows `sitemap.xml` as read with ~190 URLs and
-      Pages -> Indexed above zero (property `https://patrickwiloak.github.io/genai-research-papers-summarized/`,
+      Pages -> Indexed above zero (property `https://ai.patricklukewilson.com/`,
       owners pat@noblerworks.com and the `nobler-reporting` service account).
       ✏️ 2026-10-15 judged: 🔴 FAIL - the sitemap (submitted 2026-09-30) is still `isPending: true`, never
       downloaded, 0 errors; URL Inspection says the home page and `/INDEX/` are "URL is unknown to Google"; 0
@@ -162,7 +164,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] ~~Give `39-rlvr` a source link (DeepSeek-R1) so the build no longer warns, and exclude it from
       the source-word measurement via `SHARED_SOURCE` so that PDF is not counted twice~~ ✅ done 2026-08-20
 
-- [x] ~~Ship the site rebuild and the 88-107 salvage to `main` (`a559e1e`). CI and the Docs site workflow both green; verified live at <https://patrickwiloak.github.io/genai-research-papers-summarized/> - amber palette, new landing page, 107 papers, and the salvaged summaries all serving 200~~ ✅ done 2026-08-19
+- [x] ~~Ship the site rebuild and the 88-107 salvage to `main` (`a559e1e`). CI and the Docs site workflow both green; verified live at <https://ai.patricklukewilson.com/> - amber palette, new landing page, 107 papers, and the salvaged summaries all serving 200~~ ✅ done 2026-08-19
 - [x] ~~Delete `claude/expand-paper-collection-Rif7n` after confirming all 20 salvaged summaries are on `origin/main`; recovery SHA `592be71` if ever needed~~ ✅ done 2026-08-19
 - [x] ~~Delete the `claude/content-gaps-ads-ylbmrr` remote branch - fully merged into `main` (zero commits ahead, zero diff); recovery SHA `aa97fa8` if ever needed~~ ✅ done 2026-08-19
 - [x] ~~Set the repo homepage to the Pages URL so GitHub links the site from the repo header~~ ✅ done 2026-08-19

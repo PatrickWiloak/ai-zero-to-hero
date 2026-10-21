@@ -525,6 +525,14 @@ def build_site_tree(papers: list[dict], explainers: list[dict] | None = None,
         key = key_src.read_text(encoding="utf-8").strip()
         (site / f"{key}.txt").write_text(key + "\n", encoding="utf-8")
 
+    # robots.txt at the domain root. Only possible since the move to the
+    # ai.patricklukewilson.com custom domain (2026-10-21) - a github.io/<repo>
+    # project page has no root of its own. Sitemap URL follows site_url.
+    site_url = re.search(r"^site_url:\s*(\S+)", (ROOT / "mkdocs.yml").read_text(encoding="utf-8"), re.MULTILINE)
+    if site_url:
+        base = site_url.group(1).rstrip("/") + "/"
+        (site / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {base}sitemap.xml\n", encoding="utf-8")
+
     home_src = ROOT / ".github" / "site" / "home.md"
     if home_src.exists():
         (site / "README.md").write_text(render_home(papers, explainers or [], pillars or []), encoding="utf-8")
