@@ -10,8 +10,8 @@
    skip its built-in colour palettes and emit no colour rules of its own. Every
    value below is therefore the single source of truth for the site's colour.
 
-   Structure is shared with cloud-data-ai-security-zero-to-hero so the two sites
-   read as siblings: pure #000000 page in dark mode, slate-on-white in light,
+   Structure is shared with the other Zero to Hero sites (cloud, data, security)
+   so the four read as siblings: pure #000000 page in dark mode, slate-on-white in light,
    cards that sit on the page colour and separate with a 1px border, and a
    hover of accent border + accent-tinted shadow + 2px lift at 200ms.
 

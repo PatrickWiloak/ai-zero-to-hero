@@ -39,7 +39,7 @@ A photocopy of a photocopy loses detail each round, because copying only removes
 
 Hinton, Vinyals and Dean's [Distilling the Knowledge in a Neural Network](../../papers/techniques/134-knowledge-distillation/summary.md) (2015) showed a small "student" model can learn more from a large "teacher's" full output probabilities than from hard labels alone. The modern LLM version trains a small model on text a large model generates.
 
-A prominent example: DeepSeek released six distilled reasoning models (Qwen2.5-based at 1.5B, 7B, 14B and 32B parameters; Llama-based at 8B and 70B), fine-tuned on 800,000 samples curated with [DeepSeek-R1](../../papers/language-models/26-deepseek-r1/summary.md). DeepSeek reported that the distilled 32B Qwen model outperformed OpenAI's o1-mini on several benchmarks. Information flows downhill from a stronger model, so there is no collapse; the ceiling is the teacher. See [Quantization and distillation](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/quantization-and-distillation.md) in the sibling repo.
+A prominent example: DeepSeek released six distilled reasoning models (Qwen2.5-based at 1.5B, 7B, 14B and 32B parameters; Llama-based at 8B and 70B), fine-tuned on 800,000 samples curated with [DeepSeek-R1](../../papers/language-models/26-deepseek-r1/summary.md). DeepSeek reported that the distilled 32B Qwen model outperformed OpenAI's o1-mini on several benchmarks. Information flows downhill from a stronger model, so there is no collapse; the ceiling is the teacher. See [Quantization and distillation](../../learn/concepts/quantization-and-distillation.md).
 
 ### Self-instruct: bootstrapping instruction data
 

@@ -103,7 +103,7 @@ The most testable decision on the exam.
 
 ## Related repo material
 
-- [Notes](./notes/) - three notes, one per area
+- [Notes](README.md#notes) - three notes, one per area
 - [Practice plan](practice-plan.md) - 5-week schedule
 - [Scenarios](scenarios.md)
 - [Strategy](strategy.md)

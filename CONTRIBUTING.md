@@ -55,8 +55,7 @@ economics of compute, a policy, an open debate. They live in
    `check_counts.py` fails CI without them; `build_manifest.py` lists the page in the
    generated [`EXPLAINERS.md`](./EXPLAINERS.md) and the site nav from them.
 3. **Link down, do not re-summarise.** Point at the paper summaries for detail, and at the
-   sibling [Zero to Hero](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero)
-   concept pages for hands-on material.
+   [Learn](./learn/README.md) concept pages and [Build](./build/README.md) projects for hands-on material.
 4. **Date every moving fact** ("as of September 2026") and source it. When you re-check a
    page, bump its `Last reviewed` date. The build prints a warning for any explainer not
    reviewed in 180 days.

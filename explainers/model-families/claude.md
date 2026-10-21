@@ -75,7 +75,7 @@ The capability story since late 2024 is about doing, not answering:
 
 - **Computer use** (October 2024): the model sees screenshots and issues mouse and keyboard actions. See [OSWorld](../../papers/techniques/139-osworld/summary.md) for how this is measured.
 - **Extended thinking** (February 2025), replaced by **adaptive thinking** (from Opus 4.6, February 2026), where the model picks how much to reason, steered by an `effort` setting. On the current Opus and Fable models thinking is always on. Background: [reasoning models](../concepts/reasoning-models.md).
-- **Tools and protocols**: Anthropic introduced the [Model Context Protocol](../../papers/techniques/59-model-context-protocol/summary.md) in November 2024 as an open standard for connecting models to tools and data. See the [agent protocols explainer](../ecosystem/agent-protocols.md) and the hands-on [MCP page](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/mcp-explained.md).
+- **Tools and protocols**: Anthropic introduced the [Model Context Protocol](../../papers/techniques/59-model-context-protocol/summary.md) in November 2024 as an open standard for connecting models to tools and data. See the [agent protocols explainer](../ecosystem/agent-protocols.md) and the hands-on [MCP page](../../learn/concepts/mcp-explained.md).
 - **Long context and compaction**: context grew from 100K (Claude 2) to 200K (Claude 2.1) to 1M tokens on the current Fable, Opus and Sonnet models, with compaction letting a model summarise its own history to keep working. See [context windows](../concepts/context-windows.md).
 
 Anthropic's essay [Building Effective Agents](../../papers/essays/115-building-effective-agents/summary.md) is the plain-language statement of the design philosophy behind this shift.
@@ -127,7 +127,7 @@ Source: Anthropic's models overview page. Anthropic's own guidance at this date 
 - Essays: [Machines of Loving Grace](../../papers/essays/114-machines-of-loving-grace/summary.md), [Building Effective Agents](../../papers/essays/115-building-effective-agents/summary.md)
 - Other families: [GPT and o-series](gpt.md), [Gemini](gemini.md), [Llama](llama.md)
 - Explainers: [Frontier safety frameworks](../policy/frontier-safety-frameworks.md), [Agents and computer use benchmarks](../benchmarks/agents-and-computer-use.md), [Reasoning models](../concepts/reasoning-models.md), [Labs landscape](../ecosystem/labs-landscape.md)
-- Hands-on: [Prompt caching](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/prompt-caching.md), [Tool use and function calling](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/tool-use-and-function-calling.md), [Guardrails and safety](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/guardrails-and-safety.md)
+- Hands-on: [Prompt caching](../../learn/concepts/prompt-caching.md), [Tool use and function calling](../../learn/concepts/tool-use-and-function-calling.md), [Guardrails and safety](../../learn/concepts/guardrails-and-safety.md)
 - Anthropic research: [Circuit Tracing](../../papers/techniques/151-circuit-tracing/summary.md), [Reasoning Models Don't Always Say What They Think](../../papers/techniques/152-reasoning-models-dont-say-what-they-think/summary.md)
 
 ## Sources

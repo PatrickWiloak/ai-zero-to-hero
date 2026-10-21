@@ -94,7 +94,7 @@ You do not need to buy a GPU. Free notebook tiers ([Notebooks and Colab](../day-
 - [AI careers map](../../careers/roles/ai-careers-map.md)
 - [Researcher path](researcher-path.md) if you want to go further toward the frontier
 - The paper-first "ML student/researcher" route in [docs/ROADMAP.md](../../docs/ROADMAP.md)
-- NVIDIA certification study guides on the sibling site: [NVIDIA tracks](../../certifications/nvidia/README.md)
+- NVIDIA certification study guides on this site: [NVIDIA tracks](../../certifications/nvidia/README.md)
 
 ## Sources
 

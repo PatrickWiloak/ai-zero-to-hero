@@ -120,7 +120,7 @@ Launch-table reading tips are collected in [Knowledge and Reasoning](knowledge-a
 
 - [SWE-bench](../../papers/techniques/84-swe-bench/summary.md), [Codex](../../papers/language-models/56-codex/summary.md), [RLVR](../../papers/techniques/39-rlvr/summary.md), [rStar-Math](../../papers/techniques/35-rstar-math/summary.md), [Process Reward Models](../../papers/techniques/51-process-reward-models/summary.md)
 - Explainers: [Agents and Computer Use](agents-and-computer-use.md), [Contamination and Saturation](contamination-and-saturation.md), [Reasoning Models](../concepts/reasoning-models.md)
-- Sibling repo: [Evals for LLMs](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/evals-for-llms.md)
+- Hands-on: [Evals for LLMs](../../learn/concepts/evals-for-llms.md)
 
 ## Sources
 

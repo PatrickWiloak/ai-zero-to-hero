@@ -98,7 +98,7 @@ In short: the small and medium Qwen models are about as open as models get, whil
 - [Mixture of Experts](../../papers/architectures/37-mixture-of-experts/summary.md), [Grouped-Query Attention](../../papers/architectures/75-grouped-query-attention/summary.md), [YaRN context extension](../../papers/techniques/130-yarn-context-extension/summary.md)
 - [DeepSeek-R1](../../papers/language-models/26-deepseek-r1/summary.md) (its distilled models were partly built on Qwen bases)
 - Explainers: [DeepSeek](deepseek.md), [Mistral](mistral.md), [Llama](llama.md), [labs landscape](../ecosystem/labs-landscape.md), [open-source stack](../ecosystem/open-source-stack.md)
-- Hands-on: [Fine-tuning vs RAG](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/fine-tuning-vs-rag.md), [Quantization and distillation](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/quantization-and-distillation.md)
+- Hands-on: [Fine-tuning vs RAG](../../learn/concepts/fine-tuning-vs-rag.md), [Quantization and distillation](../../learn/concepts/quantization-and-distillation.md)
 
 ## Sources
 

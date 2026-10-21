@@ -115,7 +115,7 @@ Attackers adapted too, producing more fluent automated jailbreaks that evade per
 
 ## Real-World Impact
 
-- **Security framing for LLMs.** Jailbreaks and prompt injection became standard categories in AI security and red-teaming practice. The sibling repo covers the practitioner side in [AI threat modelling](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/ai-threat-modeling.md) and [guardrails and safety](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/guardrails-and-safety.md).
+- **Security framing for LLMs.** Jailbreaks and prompt injection became standard categories in AI security and red-teaming practice. The practitioner side is covered in [AI threat modelling](../../../safety/security/ai-threat-modeling.md) and [guardrails and safety](../../../learn/concepts/guardrails-and-safety.md).
 - **AdvBench** became a common evaluation set for attacks and defences.
 - **Defence in depth** - model training plus classifiers plus monitoring - became the norm for production deployments.
 

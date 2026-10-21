@@ -121,7 +121,7 @@ Open weights do not mean open everything. DeepSeek publishes weights, inference 
 - [GRPO](../../papers/techniques/38-grpo/summary.md) and [Muon](../../papers/techniques/144-muon/summary.md)
 - [Mixture of Experts](../../papers/architectures/37-mixture-of-experts/summary.md) and [Knowledge Distillation](../../papers/techniques/134-knowledge-distillation/summary.md)
 - Explainers: [Qwen](qwen.md), [Mistral](mistral.md), [Llama](llama.md), [labs landscape](../ecosystem/labs-landscape.md), [KV cache](../concepts/kv-cache.md), [reasoning models](../concepts/reasoning-models.md)
-- Hands-on: [Quantization and distillation](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/quantization-and-distillation.md), [Inference servers](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/inference-servers.md)
+- Hands-on: [Quantization and distillation](../../learn/concepts/quantization-and-distillation.md), [Inference servers](../../learn/concepts/inference-servers.md)
 
 ## Sources
 

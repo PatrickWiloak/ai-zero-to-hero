@@ -111,7 +111,7 @@ The Chinese labs that matter most for this repo share three traits: they release
 - Ecosystem: [open-source stack](open-source-stack.md), [agent protocols](agent-protocols.md)
 - History: [timeline of AI](../history/timeline-of-ai.md)
 - Essays that shaped how labs think: [The Bitter Lesson](../../papers/essays/111-bitter-lesson/summary.md), [The Scaling Hypothesis](../../papers/essays/112-scaling-hypothesis/summary.md), [Machines of Loving Grace](../../papers/essays/114-machines-of-loving-grace/summary.md), [Situational Awareness](../../papers/essays/113-situational-awareness/summary.md)
-- Hands-on: [LLM basics](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/llm-basics.md)
+- Hands-on: [LLM basics](../../learn/concepts/llm-basics.md)
 
 ## Sources
 

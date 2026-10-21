@@ -89,7 +89,7 @@ Gemini 1.5 Pro's 1M-token context (February 2024) was the first time a major mod
    each: sparse mixture-of-experts -> only some "experts" run per token
 ```
 
-Sparse MoE lets Google grow total capacity without growing per-token cost in proportion. The tier structure leans on [knowledge distillation](../../papers/techniques/134-knowledge-distillation/summary.md), where a smaller model is trained to imitate a larger one. See [mixture of experts](../../papers/architectures/37-mixture-of-experts/summary.md) for the architecture, and the sibling repo's [quantization and distillation](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/quantization-and-distillation.md) page.
+Sparse MoE lets Google grow total capacity without growing per-token cost in proportion. The tier structure leans on [knowledge distillation](../../papers/techniques/134-knowledge-distillation/summary.md), where a smaller model is trained to imitate a larger one. See [mixture of experts](../../papers/architectures/37-mixture-of-experts/summary.md) for the architecture, and the hands-on [quantization and distillation](../../learn/concepts/quantization-and-distillation.md) page.
 
 ### 5. Thinking and agents
 
@@ -138,7 +138,7 @@ Gemini  3.8   Flash   (-Lite / Cyber / Live / Image ...)
 - Paper summaries: [PaLM](../../papers/language-models/94-palm/summary.md), [Gemini 2.5](../../papers/multimodal/29-gemini-2.5/summary.md), [Gemini 3](../../papers/multimodal/47-gemini3/summary.md), [T5](../../papers/language-models/65-t5/summary.md), [FLAN](../../papers/techniques/80-flan/summary.md), [Chinchilla](../../papers/techniques/18-chinchilla/summary.md), [Switch Transformer](../../papers/architectures/67-switch-transformer/summary.md), [Imagen](../../papers/image-generation/91-imagen/summary.md), [RT-2](../../papers/robotics/123-rt2/summary.md), [AlphaFold 3](../../papers/techniques/101-alphafold3/summary.md)
 - Other families: [GPT and o-series](gpt.md), [Claude](claude.md), [Llama](llama.md)
 - Explainers: [Context windows](../concepts/context-windows.md), [Open vs closed weights](../concepts/open-vs-closed-weights.md), [AI hardware landscape](../compute/ai-hardware-landscape.md) (Google trains Gemini on its own TPUs), [Labs landscape](../ecosystem/labs-landscape.md)
-- Hands-on: [Transformer architecture](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/transformer-architecture.md), [GPUs for AI](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/gpus-for-ai.md)
+- Hands-on: [Transformer architecture](../../learn/concepts/transformer-architecture.md), [GPUs for AI](../../learn/concepts/gpus-for-ai.md)
 
 ## Sources
 

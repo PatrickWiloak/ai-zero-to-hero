@@ -123,7 +123,7 @@ Answers that jump straight to fine-tuning or a custom model, when a lower rung w
 
 ## Related repo material
 
-- [Notes](./notes/) - four notes, one per area
+- [Notes](README.md#notes) - four notes, one per area
 - [Practice plan](practice-plan.md) - 3-week schedule
 - [Strategy](strategy.md)
 - [GCP Cloud Digital Leader](https://cloud.noblerworks.com/exams/gcp/cloud-digital-leader/) - the closest sibling, cloud rather than AI

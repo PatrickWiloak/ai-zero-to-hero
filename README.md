@@ -42,9 +42,18 @@ Built for **every kind of technologist**, across 21 role-targeted learning paths
 
 ---
 
-### 📚 Also from Nobler Works
+### 📚 The Zero to Hero family
 
-**[Cloud, Data, AI & Security - Zero to Hero](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero)** - the practitioner companion to this repo. 148 certification study guides across 27 providers, hands-on builds (RAG, MCP agents, vLLM, evals, LoRA), and plain-English concept pages. These summaries explain *why* the techniques work; that repo walks you through *building* with them.
+Four free sites, one per subject. This is the AI one.
+
+| Site | What it covers | Repo | Website |
+|---|---|---|---|
+| 🧠 **AI Zero to Hero** (this repo) | Learn, use, build and govern AI; AI certifications; research papers in plain language | [GitHub](https://github.com/PatrickWiloak/ai-zero-to-hero) | [ai.noblerworks.com](https://ai.noblerworks.com/) |
+| ☁️ **Cloud Zero to Hero** | Cloud architecture, DevOps and networking, hands-on builds and the cloud certifications | [GitHub](https://github.com/PatrickWiloak/cloud-zero-to-hero) | [cloud.noblerworks.com](https://cloud.noblerworks.com/) |
+| 📊 **Data Zero to Hero** | Data engineering, analytics and databases, and the data certifications | [GitHub](https://github.com/PatrickWiloak/data-zero-to-hero) | [data.noblerworks.com](https://data.noblerworks.com/) |
+| 🛡️ **Security Zero to Hero** | Cloud and application security and the security certifications | [GitHub](https://github.com/PatrickWiloak/security-zero-to-hero) | [security.noblerworks.com](https://security.noblerworks.com/) |
+
+All four are free, by Nobler Works.
 
 </div>
 
@@ -52,13 +61,14 @@ Built for **every kind of technologist**, across 21 role-targeted learning paths
 
 # AI Zero to Hero
 
-**Everything AI in one place, free.** Six guide pillars take you from zero to hero - **[Learn](./learn/README.md)** (paths by audience, day-one basics, core concepts), **[AI at Work](./work/README.md)** (playbooks by role, use cases, rolling AI out to a team), **[Build](./build/README.md)** (hands-on projects and patterns), **[Tools](./tools/README.md)** (what to pick), **[Safety & Governance](./safety/README.md)** and **[Careers](./careers/README.md)**.
+**Everything AI in one place, free.** Six guide pillars take you from zero to hero - **[Learn](./learn/README.md)** (paths by audience, day-one basics, core concepts), **[AI at Work](./work/README.md)** (playbooks by role, use cases, rolling AI out to a team), **[Build](./build/README.md)** (hands-on projects and patterns), **[Tools](./tools/README.md)** (what to pick), **[Safety & Governance](./safety/README.md)** and **[Careers](./careers/README.md)** - plus **[certification study guides](./certifications/README.md)** for the AI and machine learning exams from Anthropic, NVIDIA, AWS, Azure, Google Cloud, Databricks, GitHub and Oracle.
 
 Underneath sits the research library: the **156 most influential papers** and landmark essays that shaped modern AI, summarized in plain language, plus **[explainers](./EXPLAINERS.md)** on how the model families evolved, what the benchmarks measure, what training and inference cost, the rules being written, and the questions still open.
 
 [![Papers](https://img.shields.io/badge/Papers-156-blue.svg)](./INDEX.md)
 [![Explainers](https://img.shields.io/badge/Explainers-31-purple.svg)](./EXPLAINERS.md)
 [![Guides](https://img.shields.io/badge/Guides-98-green.svg)](./learn/README.md)
+[![Certifications](https://img.shields.io/badge/Certifications-29-red.svg)](./certifications/README.md)
 [![License](https://img.shields.io/badge/License-CC_BY_4.0-orange.svg)](./LICENSE)
 [![Updated](https://img.shields.io/badge/Updated-September_2026-green.svg)](./README.md)
 
@@ -89,6 +99,7 @@ Searchable, dark mode, no signup.
 **Building something?** Read [Comparisons](./docs/COMPARISONS.md) for decision guides
 **Confused by terms?** Browse the [Glossary](./docs/GLOSSARY.md)
 **Wondering what is missing?** See [Coverage & Gaps](./docs/GAPS.md) - what this collection covers and what is queued next
+**Studying for an AI certification?** See the [Certifications hub](./certifications/README.md) - study guides, flashcards and practice questions
 
 ---
 
@@ -104,6 +115,10 @@ Searchable, dark mode, no signup.
 - 🧭 **[Coverage & Gaps](./docs/GAPS.md)** - what the collection covers, and the papers queued to be added next
 - 🗂️ **[Paper Index](./INDEX.md)** - Complete category-grouped list (generated)
 - 🏷️ **[Browse by Topic](./TAGS.md)** - Tag-filtered index across 68 topics (generated)
+
+### 🎓 Certifications
+
+Study guides for the AI and machine learning certifications, one folder per exam under [`certifications/`](./certifications/README.md): an overview, a fact sheet with the exam logistics, study notes, a practice plan, and for most an exam strategy, scenarios, an importable flashcard deck (`flashcards.csv`, Anki or Quizlet) and a [practice question bank](./certifications/practice-questions/). Providers: [Anthropic](./certifications/anthropic/README.md), [NVIDIA](./certifications/nvidia/README.md), [AWS](./certifications/aws/README.md), [Azure](./certifications/azure/README.md), [Google Cloud](./certifications/gcp/README.md), [Databricks](./certifications/databricks/README.md), [GitHub](./certifications/github/README.md) and [Oracle](./certifications/oracle/README.md). Which ones are worth taking: the [AI certifications guide](./careers/certifications/ai-certifications-guide.md). Cloud, data and security certifications are on the sibling sites in the table above.
 
 ### Data & Tooling
 - 🧾 **[papers.json](./papers.json)** / **[papers.csv](./papers.csv)** - machine-readable manifest of every paper
@@ -135,6 +150,9 @@ ai-zero-to-hero/
 │   └── check_links.py                 # Relative-link validation (CI gate)
 ├── .github/site/                      # Site-only chrome (landing page + stylesheet)
 ├── assets/brand/                      # Banner images used by this README
+├── certifications/                    # AI/ML cert study guides: <provider>/<cert>/ (aws/<level>/<cert>/)
+│   ├── README.md                      # Generated hub; certs.json is the hand-kept index
+│   └── practice-questions/            # One practice question bank per cert
 ├── EXPLAINERS.md                      # Generated hub for the explainers
 ├── explainers/                        # Unnumbered pages on what no single paper covers
 │   ├── history/  model-families/  benchmarks/  concepts/
@@ -857,7 +875,9 @@ Free, open-source projects from the [Nobler Works](https://noblerworks.com/) tea
 | 🛰️ **[IRONSIGHT](https://github.com/NoblerWorks-HQ/IRONSIGHT)** | Real-time OSINT command center - 50+ live intel feeds, no API keys | **[Website →](https://ironsight.noblerworks.com/)** |
 | 🌍 **[War Games](https://github.com/NoblerWorks-HQ/WarGames)** | NATO, Russia, and China on one map, each commanded by an LLM | **[Website →](https://wargames.noblerworks.com/)** |
 | ⛏️ **[Minecraft Agentic Builder](https://github.com/NoblerWorks-HQ/minecraft-agentic)** | A crew of AI agents builds Minecraft worlds live in your browser | [Repo →](https://github.com/NoblerWorks-HQ/minecraft-agentic) |
-| ☁️ **[Cloud, Data, AI & Security: Zero to Hero](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero)** | 149 cert study guides across 27 providers, plus hands-on builds | **[Website →](https://cloud.noblerworks.com/)** |
+| ☁️ **[Cloud Zero to Hero](https://github.com/PatrickWiloak/cloud-zero-to-hero)** | Cloud architecture, DevOps and the cloud certifications, plus hands-on builds | **[Website →](https://cloud.noblerworks.com/)** |
+| 📊 **[Data Zero to Hero](https://github.com/PatrickWiloak/data-zero-to-hero)** | Data engineering, analytics and the data certifications | **[Website →](https://data.noblerworks.com/)** |
+| 🛡️ **[Security Zero to Hero](https://github.com/PatrickWiloak/security-zero-to-hero)** | Cloud and application security and the security certifications | **[Website →](https://security.noblerworks.com/)** |
 | 🧠 **[Bedrock RAG with S3 Vectors](https://github.com/PatrickWiloak/bedrock-rag-s3-vectors-tutorial)** | Deploy document Q&A on AWS Bedrock in under 10 minutes (CDK or Terraform) | [Repo →](https://github.com/PatrickWiloak/bedrock-rag-s3-vectors-tutorial) |
 | 🏃 **[Proper Training for Distance Running](https://github.com/PatrickWiloak/proper-distance-running-training-guidance)** | Evidence-based running guide with twelve 5K-to-marathon plans | **[Read online →](https://achilles.fit/guides)** |
 

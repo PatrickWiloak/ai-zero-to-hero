@@ -73,7 +73,7 @@ Google also charges an hourly storage fee for explicitly cached content. Source:
 ### Reading these tables
 
 - **Output is 5x input** across the flagship rows above (Anthropic and OpenAI) and 6x for Gemini 3.1 Pro. That ratio reflects the prefill/decode asymmetry.
-- **Cached input is 90% or more off** normal input (between 90% and 97.5% off in the tables above and Anthropic's full list). For an agent or chatbot that resends the same long system prompt and history every turn, caching is usually the single largest saving. The sibling repo's [Prompt Caching](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/prompt-caching.md) page covers how to use it.
+- **Cached input is 90% or more off** normal input (between 90% and 97.5% off in the tables above and Anthropic's full list). For an agent or chatbot that resends the same long system prompt and history every turn, caching is usually the single largest saving. The hands-on [Prompt Caching](../../learn/concepts/prompt-caching.md) page covers how to use it.
 - **Tokens are not the same size across vendors or even model versions.** Anthropic notes that its tokenizer for Claude 4.7 and later produces about 30% more tokens for the same text than the earlier one. A lower price per token can be partly offset by more tokens per page. See [Tokenization](../concepts/tokenization.md).
 - **Within one family, prices drop between generations.** Claude's top tier went from $15/$75 (Opus 4.1) to $5/$25 (Opus 4.5 through Opus 5) to $4/$20 (Opus 5.5), per Anthropic's price list.
 
@@ -159,7 +159,7 @@ Caching more than halves the bill, and output becomes three-quarters of what is 
 - [GPTQ and AWQ](../../papers/techniques/86-gptq-awq-quantization/summary.md) - quantization for inference
 - [KV Cache](../concepts/kv-cache.md), [Context Windows](../concepts/context-windows.md), [Reasoning Models](../concepts/reasoning-models.md)
 - [The Cost of Training](cost-of-training.md) and [The AI Hardware Landscape](ai-hardware-landscape.md)
-- Sibling repo: [Inference Servers](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/inference-servers.md), [Prompt Caching](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/prompt-caching.md), [Quantization and Distillation](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/quantization-and-distillation.md)
+- Hands-on: [Inference Servers](../../learn/concepts/inference-servers.md), [Prompt Caching](../../learn/concepts/prompt-caching.md), [Quantization and Distillation](../../learn/concepts/quantization-and-distillation.md)
 
 ## Sources
 

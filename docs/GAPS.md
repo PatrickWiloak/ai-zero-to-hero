@@ -134,8 +134,8 @@ further from generative AI, so they stay optional rather than assumed.
 - **Concepts:** mixture-of-experts routing in practice, multimodal tokenization (how images and
   audio become tokens), embeddings beyond retrieval.
 - **Applications:** AI for code (the coding-assistant landscape), AI in science, AI search.
-- **Safety:** jailbreaks and prompt injection as a threat class (linking the sibling repo's
-  [AI threat modelling](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/ai-threat-modeling.md)).
+- **Safety:** jailbreaks and prompt injection as a threat class (linking
+  [AI threat modelling](../safety/security/ai-threat-modeling.md)).
 - **Concepts:** hallucination (pairs with [149](../papers/techniques/149-why-language-models-hallucinate/summary.md)) and multilingual / non-English models.
 - **Society:** AI and jobs, copyright and training data litigation, energy use.
 
@@ -147,8 +147,8 @@ further from generative AI, so they stay optional rather than assumed.
   into the [model-family explainers](../EXPLAINERS.md) instead.
 - **Incremental version bumps** where the previous entry already covers the technique.
 - **Papers with no public write-up** - if there is nothing citable to link, there is nothing to summarize.
-- **Hands-on build guides and certification prep** - that is the sibling
-  [Zero to Hero](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero) repo.
+- **Hands-on build guides and certification prep** - those are the site's [Build](../build/README.md)
+  pillar and [certification guides](../certifications/README.md), not paper summaries.
 - **Anything the summary would have to invent details about.** Every entry here is written from the
   published record; where a number is uncertain the summary says so rather than guessing.
 

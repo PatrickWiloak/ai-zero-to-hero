@@ -27,8 +27,8 @@ jobs:
           python3 scripts/add_cross_links.py
           python3 scripts/build_manifest.py
           if ! git diff --quiet; then
-            echo "::error::Generated content is stale. Run scripts/build_manifest.py + scripts/add_cross_links.py + scripts/build_manifest.py and commit the result."
+            echo "::error::Generated content is stale (manifest, indexes, pillar hubs, certifications/README.md or a provider cert table). Run scripts/build_manifest.py + scripts/add_cross_links.py + scripts/build_manifest.py and commit the result."
             git --no-pager diff --stat
             exit 1
           fi
-          echo "Manifest, INDEX.md, TAGS.md, frontmatter, and cross-links are in sync."
+          echo "Manifest, INDEX.md, TAGS.md, frontmatter, cross-links and the certification hub are in sync."

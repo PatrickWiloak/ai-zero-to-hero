@@ -153,7 +153,7 @@ Ten weeks is not long to go from zero to building evaluated, tool-using AI appli
 
 ## Sources
 
-- This path is adapted and expanded from the [AI From Scratch](zero-to-hero-path.md) path on the sibling Cloud, Data, AI and Security Zero to Hero site.
+- This path is adapted and expanded from the AI From Scratch path on the original combined Zero to Hero site, before it split into the four subject sites on 2026-10-21.
 - Vaswani et al., "Attention Is All You Need" (2017): https://arxiv.org/abs/1706.03762
 - Lewis et al., "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" (2020): https://arxiv.org/abs/2005.11401
 - Yao et al., "ReAct: Synergizing Reasoning and Acting in Language Models" (2022): https://arxiv.org/abs/2210.03629

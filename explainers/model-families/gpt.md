@@ -59,7 +59,7 @@ It is easiest to read OpenAI's history as four bets, each one layered on the las
                                  (o1 -> o3 -> GPT-5 -> GPT-6)
 ```
 
-**Bet 1, scale.** GPT-1 established the recipe (pretrain on raw text, then adapt). GPT-2 and GPT-3 were the same recipe with roughly ten and a hundred times more parameters, and the surprise was that new abilities, like following a few examples in the prompt, appeared without being trained for. OpenAI's own [scaling laws](../../papers/techniques/12-scaling-laws/summary.md) work gave this bet its justification. For background on the architecture, see the sibling repo's [transformer architecture](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/transformer-architecture.md) page.
+**Bet 1, scale.** GPT-1 established the recipe (pretrain on raw text, then adapt). GPT-2 and GPT-3 were the same recipe with roughly ten and a hundred times more parameters, and the surprise was that new abilities, like following a few examples in the prompt, appeared without being trained for. OpenAI's own [scaling laws](../../papers/techniques/12-scaling-laws/summary.md) work gave this bet its justification. For background on the architecture, see the hands-on [transformer architecture](../../learn/concepts/transformer-architecture.md) page.
 
 **Bet 2, alignment through feedback.** A raw GPT-3 continues text; it does not answer questions. [InstructGPT](../../papers/language-models/05-instructgpt-rlhf/summary.md) showed that fine-tuning on human demonstrations and then optimising against a reward model of human preferences (RLHF, using [PPO](../../papers/techniques/63-ppo/summary.md)) made a 1.3B model preferred over the 175B base model. ChatGPT was this recipe with a chat interface, and it is what turned a research line into a product.
 
@@ -125,7 +125,7 @@ GPT-6 Astra's API page lists a 1,050,000-token context window, 128,000 maximum o
 - Background: [Scaling laws](../../papers/techniques/12-scaling-laws/summary.md), [Chain-of-thought prompting](../../papers/techniques/09-chain-of-thought/summary.md), [Whisper](../../papers/multimodal/49-whisper/summary.md), [DALL-E 3](../../papers/image-generation/48-dalle3/summary.md), [Weak-to-strong generalization](../../papers/techniques/128-weak-to-strong/summary.md)
 - Other families: [Claude](claude.md), [Gemini](gemini.md), [Llama](llama.md), [DeepSeek](deepseek.md)
 - Explainers: [Reasoning models](../concepts/reasoning-models.md), [Open vs closed weights](../concepts/open-vs-closed-weights.md), [Frontier safety frameworks](../policy/frontier-safety-frameworks.md), [Labs landscape](../ecosystem/labs-landscape.md), [Timeline of AI](../history/timeline-of-ai.md)
-- Hands-on: [LLM basics](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/llm-basics.md)
+- Hands-on: [LLM basics](../../learn/concepts/llm-basics.md)
 
 ## Sources
 

@@ -17,6 +17,12 @@ Checked:
   - docs/GLOSSARY.md   - the term count, against the actual number of entries
   - explainers/        - every page has a title, an "In one line" pitch and a
                          valid "Last reviewed" date, and sits in a known section
+  - certifications/    - certs.json and the tree agree (every guide indexed, every
+                         entry present, a README and fact sheet per guide, every
+                         practice bank tied to a guide), and README's
+                         Certifications badge states the real count. Cert pages
+                         are study guides, not explainers: they do not need the
+                         three-line header
 
 Run it directly, or let CI run it:
 
@@ -221,6 +227,59 @@ def check_sectioned(folder: str, sections: set[str], errors: list[str]) -> None:
                 fail(errors, f"{rel} Last reviewed '{m.group(1)}' is not YYYY-MM-DD")
 
 
+def check_certifications(errors: list[str]) -> None:
+    """certifications/certs.json is hand-maintained; the tree is the truth."""
+    base = ROOT / "certifications"
+    index = base / "certs.json"
+    if not base.exists():
+        return
+    if not index.exists():
+        fail(errors, "certifications/ exists but certifications/certs.json does not")
+        return
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import build_certs  # noqa: E402
+    data = json.loads(index.read_text(encoding="utf-8"))
+    indexed = {c["path"] for p in data["providers"] for c in p["certs"]}
+    providers = {p["id"] for p in data["providers"]}
+    statuses = {"Ready", "Retired", "Anticipated", build_certs.STUDY_TRACK}
+
+    # A guide is any folder holding a fact sheet (study tracks have one too).
+    on_disk = {str(f.parent.relative_to(base)).replace("\\", "/") for f in base.rglob("fact-sheet.md")}
+    for path in sorted(on_disk - indexed):
+        fail(errors, f"certifications/{path} is a guide but is not in certifications/certs.json")
+    for path in sorted(indexed - on_disk):
+        fail(errors, f"certifications/certs.json lists {path}, which has no fact-sheet.md")
+    for p in data["providers"]:
+        if not (base / p["id"] / "README.md").exists():
+            fail(errors, f"certifications/{p['id']}/README.md is missing")
+        for c in p["certs"]:
+            if not c["path"].startswith(p["id"] + "/"):
+                fail(errors, f"certs.json: {c['path']} is listed under provider {p['id']}")
+            if not (base / c["path"] / "README.md").exists():
+                fail(errors, f"certifications/{c['path']}/README.md is missing")
+            if c.get("status") not in statuses:
+                fail(errors, f"certs.json: {c['path']} status {c.get('status')!r} is not one of {sorted(statuses)}")
+    stray = sorted(d.name for d in base.iterdir() if d.is_dir() and d.name not in providers | {"practice-questions"})
+    if stray:
+        fail(errors, f"certifications/ has folders not in certs.json: {', '.join(stray)}")
+
+    banks = sorted((base / "practice-questions").glob("*.md")) if (base / "practice-questions").exists() else []
+    for bank in banks:
+        m = build_certs.CERT_PAGE_RE.search(bank.read_text(encoding="utf-8"))
+        if not m:
+            fail(errors, f"{bank.relative_to(ROOT)} has no '**Cert page:** [..](../<guide>/README.md)' line")
+        elif m.group(1) not in indexed:
+            fail(errors, f"{bank.relative_to(ROOT)} points at {m.group(1)}, which is not in certs.json")
+
+    count = sum(1 for p in data["providers"] for c in p["certs"] if c.get("status") != build_certs.STUDY_TRACK)
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    m = re.search(r"badge/Certifications-(\d+)-", readme)
+    if not m:
+        fail(errors, "README.md has no Certifications badge")
+    elif int(m.group(1)) != count:
+        fail(errors, f"README.md Certifications badge says {m.group(1)}, certs.json has {count}")
+
+
 def check_simple_total(rel: str, papers: list[dict], errors: list[str]) -> None:
     """Every '<n> papers'-style number in the doc must be the real total."""
     path = ROOT / rel
@@ -245,6 +304,7 @@ def main() -> int:
     check_glossary(errors)
     check_gaps_coverage(papers, errors)
     check_explainers(errors)
+    check_certifications(errors)
     check_simple_total("README.md", papers, errors)
     check_simple_total("docs/GAPS.md", papers, errors)
     check_simple_total("CLAUDE.md", papers, errors)

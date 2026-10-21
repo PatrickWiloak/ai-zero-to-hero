@@ -126,7 +126,7 @@ The most testable content on the exam.
 
 ## Related repo material
 
-- [Notes](./notes/) - four notes
+- [Notes](README.md#notes) - four notes
 - [Practice plan](practice-plan.md) - 3-week schedule
 - [Strategy](strategy.md)
 - [OCI Generative AI Professional](../oci-generative-ai-professional/README.md) - the next step

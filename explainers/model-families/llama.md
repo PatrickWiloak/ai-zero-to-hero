@@ -66,7 +66,7 @@ Llama 4 broke with the conservative recipe in three ways: [mixture-of-experts](.
 
 ### 4. Safety as a toolkit, not only a model
 
-Because anyone could fine-tune the weights, Meta could not rely on the model alone to behave. It released separate safety components: [Llama Guard](../../papers/language-models/96-llama-guard/summary.md) (an input and output classifier), and an acceptable use policy attached to the licence. This "ship the guardrails alongside the model" approach is now common in open-weight deployments; see the sibling repo's [guardrails and safety](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/guardrails-and-safety.md) page.
+Because anyone could fine-tune the weights, Meta could not rely on the model alone to behave. It released separate safety components: [Llama Guard](../../papers/language-models/96-llama-guard/summary.md) (an input and output classifier), and an acceptable use policy attached to the licence. This "ship the guardrails alongside the model" approach is now common in open-weight deployments; see the hands-on [guardrails and safety](../../learn/concepts/guardrails-and-safety.md) page.
 
 ### 5. The 2026 pivot
 
@@ -109,7 +109,7 @@ The Open Source Initiative does not consider the Llama licences open source, bec
 - Paper summaries: [LLaMA](../../papers/language-models/15-llama/summary.md), [Llama 2](../../papers/language-models/17-llama2/summary.md), [Llama 3.3](../../papers/language-models/33-llama3.3/summary.md), [Llama 4](../../papers/language-models/41-llama4/summary.md), [Llama Guard](../../papers/language-models/96-llama-guard/summary.md), [Chinchilla](../../papers/techniques/18-chinchilla/summary.md), [Grouped-query attention](../../papers/architectures/75-grouped-query-attention/summary.md), [RoPE](../../papers/techniques/54-rope-rotary-position-embedding/summary.md), [YaRN](../../papers/techniques/130-yarn-context-extension/summary.md)
 - Other families: [GPT and o-series](gpt.md), [Claude](claude.md), [Gemini](gemini.md), [DeepSeek](deepseek.md), [Qwen](qwen.md), [Mistral](mistral.md)
 - Explainers: [Open vs closed weights](../concepts/open-vs-closed-weights.md), [Open-source stack](../ecosystem/open-source-stack.md), [Labs landscape](../ecosystem/labs-landscape.md)
-- Hands-on: [Fine-tuning vs RAG](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/fine-tuning-vs-rag.md), [Quantization and distillation](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/quantization-and-distillation.md), [Inference servers](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/inference-servers.md)
+- Hands-on: [Fine-tuning vs RAG](../../learn/concepts/fine-tuning-vs-rag.md), [Quantization and distillation](../../learn/concepts/quantization-and-distillation.md), [Inference servers](../../learn/concepts/inference-servers.md)
 
 ## Sources
 

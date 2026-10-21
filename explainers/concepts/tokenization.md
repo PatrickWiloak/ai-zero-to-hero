@@ -46,7 +46,7 @@ Frequent strings end up as single tokens; rare ones stay split. The vocabulary s
 
 Modern tokenizers such as OpenAI's `tiktoken` run BPE over **bytes** rather than characters. That guarantees two useful properties the `tiktoken` README spells out: tokenization is reversible and lossless, and it works on any text, including text in scripts the tokenizer never saw in training. Some other model families use related algorithms (WordPiece in [BERT](../../papers/language-models/03-bert/summary.md), SentencePiece in [T5](../../papers/language-models/65-t5/summary.md) and early Llama), but the idea is the same: learn a vocabulary of frequent pieces from data.
 
-For how tokens then become vectors the model computes with, see the hands-on [LLM basics](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/llm-basics.md) and [embeddings](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/embeddings-and-vector-search.md) pages in the sibling repo.
+For how tokens then become vectors the model computes with, see the hands-on [LLM basics](../../learn/concepts/llm-basics.md) and [embeddings](../../learn/concepts/embeddings-and-vector-search.md) pages.
 
 ## Why tokens are the unit of cost
 
@@ -112,7 +112,7 @@ As of September 2026 these remain research directions rather than the production
 - [BERT](../../papers/language-models/03-bert/summary.md) and [T5](../../papers/language-models/65-t5/summary.md) - WordPiece and SentencePiece in practice
 - [Word2Vec](../../papers/techniques/53-word2vec/summary.md) - what happens to tokens after tokenization: embeddings
 - [Context windows](context-windows.md), [KV cache](kv-cache.md), [Sampling and decoding](sampling-and-decoding.md)
-- Hands-on: [LLM basics](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/llm-basics.md), [Prompt caching](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/prompt-caching.md)
+- Hands-on: [LLM basics](../../learn/concepts/llm-basics.md), [Prompt caching](../../learn/concepts/prompt-caching.md)
 
 ## Sources
 

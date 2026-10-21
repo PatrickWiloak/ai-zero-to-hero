@@ -15,9 +15,9 @@
 > An explainer covers something that is not one paper: a lineage, a benchmark
 > family, a debate, a policy, an economic picture. Link down into the paper
 > summaries (`../../papers/<category>/<NN-slug>/summary.md`) for the detail,
-> rather than re-summarising them here. Where the sibling repo
-> [Cloud, Data, AI & Security - Zero to Hero](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero)
-> already has a hands-on page on the topic, link to it instead of duplicating it.
+> rather than re-summarising them here. Where the guide pillars
+> (`learn/`, `build/`, `safety/` and so on) already have a hands-on page on the topic,
+> link to it instead of duplicating it.
 >
 > House style is the same as the summaries: plain language for a motivated
 > beginner, no em dashes. Anything that changes month to month (model versions,

@@ -1,10 +1,10 @@
 # Anthropic Claude certifications
 
-Study guides for Anthropic's official Claude certification program (launched March 2026, expanded to four exams in July 2026). Exams are delivered by Pearson VUE and registered through the [Anthropic Partner Academy](https://anthropic-partners.skilljar.com/page/partner-certifications); free [Claude Partner Network](https://claude.com/partners) membership is required. For the full picture across every provider, see [STUDY-HUB.md](https://cloud.noblerworks.com/STUDY-HUB/).
+Study guides for Anthropic's official Claude certification program (launched March 2026, expanded to four exams in July 2026). Exams are delivered by Pearson VUE and registered through the [Anthropic Partner Academy](https://anthropic-partners.skilljar.com/page/partner-certifications); free [Claude Partner Network](https://claude.com/partners) membership is required. Every provider is on the [Certifications](../README.md) hub.
 
-<!-- BEGIN GENERATED: provider-certs - edit .github/scripts/build-provider-indexes.py, not this block -->
+<!-- BEGIN GENERATED: provider-certs - edit scripts/build_certs.py, not this block -->
 
-4 certifications and 1 self-directed study track in this repo. Counts and statuses are generated from [docs/certs.json](https://cloud.noblerworks.com/docs/certs.json).
+4 certifications and 1 self-directed study track on this site. Statuses are kept in [certs.json](../certs.json); every AI certification is listed on the [Certifications](../README.md) hub.
 
 | Cert | Code | Level | Status | Notes |
 |------|------|-------|--------|------:|

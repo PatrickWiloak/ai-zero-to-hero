@@ -30,7 +30,7 @@ softmax -> probabilities:
 decoding rule -> pick one -> append -> repeat
 ```
 
-The same probabilities can yield very different text depending on the rule. That is why the same model can feel crisp in one app and rambling in another, and why API parameters like `temperature` and `top_p` exist at all. For the model side of this picture, see the sibling repo's [LLM basics](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/llm-basics.md); for what counts as a "token", see [tokenization](tokenization.md).
+The same probabilities can yield very different text depending on the rule. That is why the same model can feel crisp in one app and rambling in another, and why API parameters like `temperature` and `top_p` exist at all. For the model side of this picture, see the hands-on [LLM basics](../../learn/concepts/llm-basics.md); for what counts as a "token", see [tokenization](tokenization.md).
 
 ## Greedy decoding
 
@@ -113,7 +113,7 @@ Generated so far:  {"name": "Ada", "age":
 Allowed next tokens:  digits, whitespace, "-"      (no letters, no quotes)
 ```
 
-Willard and Louf (2023) showed this can be done efficiently by compiling a regular expression or grammar into a finite-state machine and pre-indexing which vocabulary tokens are valid in each state. Their open-source library, **Outlines**, and similar grammar features in other engines brought this to local models. On the API side, OpenAI launched **Structured Outputs** in August 2024, combining a model trained to follow schemas with constrained decoding, and reported 100% schema adherence on its complex-schema evaluation versus under 40% for an older model without it. Other providers followed; Anthropic, for example, documents structured outputs that use constrained sampling with compiled grammars to guarantee schema-valid JSON. See also the sibling repo's [tool use and function calling](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/tool-use-and-function-calling.md).
+Willard and Louf (2023) showed this can be done efficiently by compiling a regular expression or grammar into a finite-state machine and pre-indexing which vocabulary tokens are valid in each state. Their open-source library, **Outlines**, and similar grammar features in other engines brought this to local models. On the API side, OpenAI launched **Structured Outputs** in August 2024, combining a model trained to follow schemas with constrained decoding, and reported 100% schema adherence on its complex-schema evaluation versus under 40% for an older model without it. Other providers followed; Anthropic, for example, documents structured outputs that use constrained sampling with compiled grammars to guarantee schema-valid JSON. See also the hands-on [tool use and function calling](../../learn/concepts/tool-use-and-function-calling.md).
 
 The trade-off: a valid format is not a correct answer, and constraints can hurt reasoning. Tam et al. (2024), in "Let Me Speak Freely?", found that forcing formats like JSON during generation measurably reduced reasoning performance on some tasks compared with free-form answers. A common pattern is to let the model reason freely first and constrain only the final answer.
 
@@ -142,7 +142,7 @@ A modified accept/reject rule guarantees that the output follows exactly the sam
 
 Reasoning and "thinking" models increasingly take these knobs away. As of September 2026, Anthropic's API returns an error for any non-default `temperature`, `top_p` or `top_k` on its newest Claude models, and on older models restricts them whenever thinking is on. The provider tunes decoding for the long internal chain and you steer with an effort setting instead (see [reasoning models](reasoning-models.md)).
 
-These are starting points, not rules. Measure on your own task; the hands-on [evals for LLMs](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/evals-for-llms.md) page covers how.
+These are starting points, not rules. Measure on your own task; the hands-on [evals for LLMs](../../learn/concepts/evals-for-llms.md) page covers how.
 
 ## What to watch
 
@@ -156,7 +156,7 @@ These are starting points, not rules. Measure on your own task; the hands-on [ev
 - [Self-Consistency](../../papers/techniques/77-self-consistency/summary.md) and [Tree of Thoughts](../../papers/techniques/25-tree-of-thoughts/summary.md) - spending decoding compute on search
 - [GPT-2](../../papers/language-models/64-gpt2/summary.md) - open-ended generation where sampling choices first became visible to the public
 - [Tokenization](tokenization.md), [KV cache](kv-cache.md), [Reasoning models](reasoning-models.md)
-- Hands-on: [Prompt engineering](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/prompt-engineering.md), [Tool use and function calling](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/tool-use-and-function-calling.md)
+- Hands-on: [Prompt engineering](../../learn/concepts/prompt-engineering.md), [Tool use and function calling](../../learn/concepts/tool-use-and-function-calling.md)
 
 ## Sources
 

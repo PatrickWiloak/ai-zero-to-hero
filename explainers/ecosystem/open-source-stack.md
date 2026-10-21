@@ -83,7 +83,7 @@ Most people do not train models from scratch; they adapt an existing open model.
 - **Unsloth** focuses on doing the same work faster and in less GPU memory, which makes single-GPU and free-notebook fine-tuning practical. It can export straight to GGUF for local use.
 - **Axolotl** wraps the same Hugging Face components behind a single YAML config file, which suits reproducible and multi-GPU runs.
 
-The choice is mostly ergonomic: TRL for flexibility and new methods, Unsloth for small hardware, Axolotl for config-driven pipelines. The sibling repo's [Fine-tuning vs RAG](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/fine-tuning-vs-rag.md) covers when to fine-tune at all.
+The choice is mostly ergonomic: TRL for flexibility and new methods, Unsloth for small hardware, Axolotl for config-driven pipelines. The hands-on [Fine-tuning vs RAG](../../learn/concepts/fine-tuning-vs-rag.md) covers when to fine-tune at all.
 
 ### 3. Serving: vLLM, SGLang, TensorRT-LLM
 
@@ -95,7 +95,7 @@ Serving engines exist because naive inference wastes most of the GPU (see [Infer
 
 On top of single-node engines sits a newer **cluster layer**. NVIDIA **Dynamo** (announced March 2025 as the successor to its Triton server) and **llm-d** (launched by Red Hat and partners in May 2025, now a CNCF sandbox project) both split prefill and decode onto separate GPU pools and route requests to wherever the relevant KV cache already sits.
 
-vLLM and SGLang expose an OpenAI-compatible API, and `transformers` v5 added a `transformers serve` command that does too. The sibling repo's [Inference Servers](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/inference-servers.md) page is the hands-on companion.
+vLLM and SGLang expose an OpenAI-compatible API, and `transformers` v5 added a `transformers serve` command that does too. The hands-on [Inference Servers](../../learn/concepts/inference-servers.md) page is the hands-on companion.
 
 ### 4. Local: llama.cpp, GGUF, Ollama, LM Studio, MLX
 
@@ -112,7 +112,7 @@ Running a model on your own machine is a different problem: one user, limited me
 These libraries do not run models; they call them (local or hosted) and connect them to everything else.
 
 - **LangChain and LangGraph** reached 1.0 in October 2025. LangGraph is the low-level runtime for stateful, long-running agents; LangChain is now a higher-level API on top of it, centred on a `create_agent` helper.
-- **LlamaIndex** specialises in the data side: parsing documents, building indexes and retrieval for [RAG](../../papers/techniques/13-rag/summary.md). The sibling repo's [RAG Explained](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/rag-explained.md) is the hands-on version.
+- **LlamaIndex** specialises in the data side: parsing documents, building indexes and retrieval for [RAG](../../papers/techniques/13-rag/summary.md). The hands-on [RAG Explained](../../learn/concepts/rag-explained.md) is the hands-on version.
 - Many others fill the same layer, including Hugging Face's smolagents, CrewAI, Pydantic AI and the agent SDKs from OpenAI, Anthropic and Google. They change quickly; pick on fit rather than popularity.
 
 An honest caveat: for simple applications, many teams skip frameworks and call the model API directly, because an extra abstraction layer can make debugging harder. Anthropic's [Building Effective Agents](../../papers/essays/115-building-effective-agents/summary.md) makes this argument explicitly.
@@ -139,7 +139,7 @@ Three conventions make this stack interchangeable:
 - [Agent Protocols](agent-protocols.md) and [Labs Landscape](labs-landscape.md)
 - [Inference Economics](../compute/inference-economics.md) and [The AI Hardware Landscape](../compute/ai-hardware-landscape.md)
 - [Open vs Closed Weights](../concepts/open-vs-closed-weights.md), [Llama](../model-families/llama.md), [Qwen](../model-families/qwen.md), [Mistral](../model-families/mistral.md)
-- Sibling repo: [Inference Servers](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/inference-servers.md), [Quantization and Distillation](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/quantization-and-distillation.md), [Fine-tuning vs RAG](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/fine-tuning-vs-rag.md)
+- Hands-on: [Inference Servers](../../learn/concepts/inference-servers.md), [Quantization and Distillation](../../learn/concepts/quantization-and-distillation.md), [Fine-tuning vs RAG](../../learn/concepts/fine-tuning-vs-rag.md)
 - Open post-training recipes: [Tulu 3](../../papers/language-models/148-tulu-3/summary.md), [DAPO](../../papers/techniques/155-dapo/summary.md)
 
 ## Sources

@@ -105,7 +105,7 @@ The modified MIT licence is worth reading carefully: it is permissive for indivi
 - [Mixtral of Experts](../../papers/architectures/37-mixture-of-experts/summary.md)
 - [Grouped-Query Attention](../../papers/architectures/75-grouped-query-attention/summary.md), [Longformer / sliding-window attention](../../papers/architectures/131-longformer/summary.md)
 - Explainers: [Llama](llama.md), [DeepSeek](deepseek.md), [Qwen](qwen.md), [labs landscape](../ecosystem/labs-landscape.md), [EU AI Act](../policy/eu-ai-act.md)
-- Hands-on: [Inference servers](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/inference-servers.md), [GPUs for AI](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/gpus-for-ai.md)
+- Hands-on: [Inference servers](../../learn/concepts/inference-servers.md), [GPUs for AI](../../learn/concepts/gpus-for-ai.md)
 
 ## Sources
 

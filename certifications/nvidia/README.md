@@ -1,10 +1,10 @@
 # NVIDIA certifications
 
-Study guides for NVIDIA in this repo. For the full picture across every provider, see [STUDY-HUB.md](https://cloud.noblerworks.com/STUDY-HUB/).
+Study guides for the NVIDIA AI and machine learning certifications. Every provider is on the [Certifications](../README.md) hub.
 
-<!-- BEGIN GENERATED: provider-certs - edit .github/scripts/build-provider-indexes.py, not this block -->
+<!-- BEGIN GENERATED: provider-certs - edit scripts/build_certs.py, not this block -->
 
-10 certifications in this repo. Counts and statuses are generated from [docs/certs.json](https://cloud.noblerworks.com/docs/certs.json).
+10 certifications on this site. Statuses are kept in [certs.json](../certs.json); every AI certification is listed on the [Certifications](../README.md) hub.
 
 | Cert | Code | Level | Status | Notes |
 |------|------|-------|--------|------:|

@@ -87,7 +87,7 @@ Newer models show a weaker effect on simple retrieval, but the practical advice 
 
 ## Long context versus RAG
 
-**Retrieval-augmented generation** fetches the handful of passages most relevant to the question from an index and puts only those in the context (see the [RAG summary](../../papers/techniques/13-rag/summary.md) and the hands-on [RAG explained](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/rag-explained.md)). Long context instead puts the whole corpus in.
+**Retrieval-augmented generation** fetches the handful of passages most relevant to the question from an index and puts only those in the context (see the [RAG summary](../../papers/techniques/13-rag/summary.md) and the hands-on [RAG explained](../../learn/concepts/rag-explained.md)). Long context instead puts the whole corpus in.
 
 | | Long context ("just paste it all") | RAG |
 |---|---|---|
@@ -99,7 +99,7 @@ Newer models show a weaker effect on simple retrieval, but the practical advice 
 | Freshness and access control | Rebuild the prompt | Update the index; filter by user permissions |
 | Failure mode | Dilution, lost in the middle, context rot | Retrieval errors, bad chunk boundaries |
 
-The practical pattern is to **retrieve generously, then let a long-context model read**: use search to narrow millions of documents to a few hundred thousand tokens, then rely on the model to reason across them. [Prompt caching](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/prompt-caching.md) makes the long-context half cheaper when the same material is reused. The sibling repo's [fine-tuning vs RAG](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/fine-tuning-vs-rag.md) page covers the third option, baking knowledge into weights.
+The practical pattern is to **retrieve generously, then let a long-context model read**: use search to narrow millions of documents to a few hundred thousand tokens, then rely on the model to reason across them. [Prompt caching](../../learn/concepts/prompt-caching.md) makes the long-context half cheaper when the same material is reused. The hands-on [fine-tuning vs RAG](../../learn/concepts/fine-tuning-vs-rag.md) page covers the third option, baking knowledge into weights.
 
 For agents that run for hours, the question becomes **context management**: summarising or dropping old tool results, keeping notes outside the window and re-reading them. This has become a design discipline of its own, often called context engineering.
 
@@ -130,7 +130,7 @@ These are maximums. What a given deployment allows, and what it charges above ce
 - [RAG](../../papers/techniques/13-rag/summary.md), [Dense retrieval](../../papers/techniques/87-dense-retrieval/summary.md), [GraphRAG](../../papers/techniques/60-graph-rag/summary.md)
 - [FlashAttention](../../papers/techniques/16-flash-attention/summary.md)
 - [KV cache](kv-cache.md), [Tokenization](tokenization.md), [Reasoning models](reasoning-models.md)
-- Hands-on: [RAG explained](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/rag-explained.md), [Embeddings and vector search](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/embeddings-and-vector-search.md)
+- Hands-on: [RAG explained](../../learn/concepts/rag-explained.md), [Embeddings and vector search](../../learn/concepts/embeddings-and-vector-search.md)
 
 ## Sources
 

@@ -14,7 +14,7 @@
 - **Arithmetic is not the bottleneck.** High-bandwidth memory (HBM) and the links between chips decide how fast a model actually runs, and HBM supply is sold out well ahead.
 - **Export controls shape who gets what.** US rules have restricted advanced AI chips to China since 2022; the policy has shifted several times since, most recently in January 2026.
 
-This page is the industry picture. For the practitioner view (which GPU to rent, how much memory a model needs), see the sibling repo's [GPUs for AI](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/gpus-for-ai.md).
+This page is the industry picture. For the practitioner view (which GPU to rent, how much memory a model needs), see the hands-on [GPUs for AI](../../learn/concepts/gpus-for-ai.md).
 
 ## The mental model: a factory, a warehouse and the roads between them
 
@@ -149,7 +149,7 @@ The effect on the research picture is visible in the paper record: [DeepSeek-V3]
 - [DeepSeek-V3](../../papers/language-models/27-deepseek-v3/summary.md) - frontier training on export-restricted hardware
 - [KV Cache](../concepts/kv-cache.md) - why inference memory grows with context
 - [Labs Landscape](../ecosystem/labs-landscape.md) - who owns which compute
-- Sibling repo: [GPUs for AI](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/gpus-for-ai.md) and [Inference Servers](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/inference-servers.md)
+- Hands-on: [GPUs for AI](../../learn/concepts/gpus-for-ai.md) and [Inference Servers](../../learn/concepts/inference-servers.md)
 
 ## Sources
 

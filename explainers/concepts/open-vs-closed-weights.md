@@ -84,12 +84,12 @@ Licence reading tips:
 | **Data control and privacy** | Data goes to the provider under their terms | Can run entirely on your own hardware or network |
 | **Customisation** | Prompting, plus provider fine-tuning where offered | Full fine-tuning, [LoRA](../../papers/techniques/10-lora/summary.md), quantization, architecture changes |
 | **Cost shape** | Pay per token; no fixed cost | Pay for hardware or hosting; cheaper at high steady volume, more expensive when idle |
-| **Operations** | None | You own serving, scaling, updates and security (see [inference servers](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/inference-servers.md)) |
+| **Operations** | None | You own serving, scaling, updates and security (see [inference servers](../../learn/concepts/inference-servers.md)) |
 | **Stability** | Models retired on the provider's schedule | A version you downloaded never changes or disappears |
-| **Safety layers** | Provider runs filters and monitoring | Your responsibility (for example [Llama Guard](../../papers/language-models/96-llama-guard/summary.md)); see [guardrails](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/guardrails-and-safety.md) |
+| **Safety layers** | Provider runs filters and monitoring | Your responsibility (for example [Llama Guard](../../papers/language-models/96-llama-guard/summary.md)); see [guardrails](../../learn/concepts/guardrails-and-safety.md) |
 | **Research access** | Behaviour only | Weights, activations, internals (for example [sparse autoencoders](../../papers/techniques/82-sparse-autoencoders/summary.md)) |
 
-The sibling repo's [fine-tuning vs RAG](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/fine-tuning-vs-rag.md), [quantization and distillation](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/quantization-and-distillation.md) and [GPUs for AI](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/gpus-for-ai.md) pages cover the hands-on side of running open models, and [AI threat modeling](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/ai-threat-modeling.md) covers securing them. Cost comparisons are in [inference economics](../compute/inference-economics.md).
+The hands-on [fine-tuning vs RAG](../../learn/concepts/fine-tuning-vs-rag.md), [quantization and distillation](../../learn/concepts/quantization-and-distillation.md) and [GPUs for AI](../../learn/concepts/gpus-for-ai.md) pages cover the hands-on side of running open models, and [AI threat modeling](../../safety/security/ai-threat-modeling.md) covers securing them. Cost comparisons are in [inference economics](../compute/inference-economics.md).
 
 ## The policy debate
 

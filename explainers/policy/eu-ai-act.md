@@ -161,7 +161,7 @@ Critics argued that the delay postpones protections for people affected by hirin
 - [Open vs closed weights](../concepts/open-vs-closed-weights.md) - relevant to the Act's open-source exemptions
 - [Cost of training](../compute/cost-of-training.md) - context for what a 10^25 FLOP run means
 - [Llama Guard](../../papers/language-models/96-llama-guard/summary.md) - an example of the kind of safeguard tooling providers deploy
-- [Guardrails and safety](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/guardrails-and-safety.md) (sibling repo, hands-on)
+- [Guardrails and safety](../../learn/concepts/guardrails-and-safety.md) (hands-on)
 
 ## Sources
 

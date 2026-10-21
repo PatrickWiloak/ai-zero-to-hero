@@ -11,6 +11,7 @@ and (re)generates:
   - INDEX.md       human browse index, grouped by category
   - mkdocs.generated.yml  hand-maintained mkdocs.yml + auto-generated nav
   - site-build/    the staged docs_dir the site is built from
+  - certifications/README.md and the provider tables (via build_certs.py)
 
 Run from anywhere:  python3 scripts/build_manifest.py
 No third-party dependencies (standard library only).
@@ -23,9 +24,12 @@ import datetime as dt
 import json
 import re
 import shutil
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import build_certs  # noqa: E402  certification guides: hub, provider tables, nav, flashcard pages
 PAPERS_DIR = ROOT / "papers"
 
 # Display order + pretty names for categories.
@@ -477,7 +481,7 @@ def write_tags(papers: list[dict]) -> None:
 
 
 def build_site_tree(papers: list[dict], explainers: list[dict] | None = None,
-                    pillars: list[dict] | None = None) -> None:
+                    pillars: list[dict] | None = None, certs: dict | None = None) -> None:
     """Assemble the curated docs_dir the site is built from.
 
     MkDocs needs every page under one docs_dir, but our content lives at the
@@ -535,7 +539,7 @@ def build_site_tree(papers: list[dict], explainers: list[dict] | None = None,
 
     home_src = ROOT / ".github" / "site" / "home.md"
     if home_src.exists():
-        (site / "README.md").write_text(render_home(papers, explainers or [], pillars or []), encoding="utf-8")
+        (site / "README.md").write_text(render_home(papers, explainers or [], pillars or [], certs), encoding="utf-8")
 
     template = PAPERS_DIR / "_TEMPLATE.md"
     if template.exists():
@@ -556,6 +560,12 @@ def build_site_tree(papers: list[dict], explainers: list[dict] | None = None,
         dest = site / item["path"]
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(ROOT / item["path"], dest)
+
+    # Certification guides: the whole certifications/ tree (pages, decks,
+    # certs.json), plus a generated flashcards.md page next to each deck.
+    if certs and certs.get("certs"):
+        shutil.copytree(build_certs.CERTS_DIR, site / "certifications", dirs_exist_ok=True)
+        build_certs.render_flashcard_pages(certs, site)
 
 
 BY_YEAR_START = "<!-- byyear:start -->"
@@ -598,7 +608,7 @@ def write_by_year(papers: list[dict]) -> bool:
 
 
 def render_home(papers: list[dict], explainers: list[dict] | None = None,
-                pillars: list[dict] | None = None) -> str:
+                pillars: list[dict] | None = None, certs: dict | None = None) -> str:
     """Fill the landing page's count tokens from the parsed paper list.
 
     Every number on .github/site/home.md is a {{token}} rather than a typed
@@ -672,6 +682,10 @@ def render_home(papers: list[dict], explainers: list[dict] | None = None,
         "guides_total": f"{len(pillars or [])}",
         **{f"pillar_{key.replace('-', '_')}": f"{sum(1 for p in (pillars or []) if p['pillar'] == key)}"
            for key, *_ in PILLARS},
+        "certs": f"{(certs or {}).get('count', 0)}",
+        "cert_tracks": f"{(certs or {}).get('tracks', 0)}",
+        "cert_providers": f"{len((certs or {}).get('providers', []))}",
+        "cert_banks": f"{len((certs or {}).get('banks', {}))}",
         "category_chips": "\n".join(chips),
         "recent_papers": "\n".join(
             f'- [{re.sub(r"\s*\([^()]*\)\s*$", "", p["title"])}]({p["path"]}) ({p["year"]})'
@@ -799,7 +813,7 @@ def write_pillar_hubs(pages: list[dict]) -> None:
 
 
 def write_mkdocs(papers: list[dict], explainers: list[dict] | None = None,
-                 pillars: list[dict] | None = None) -> None:
+                 pillars: list[dict] | None = None, certs: dict | None = None) -> None:
     nav = []
     nav.append("nav:")
     nav.append("  - Home: README.md")
@@ -817,6 +831,8 @@ def write_mkdocs(papers: list[dict], explainers: list[dict] | None = None,
             for p in sgroup:
                 label = p["title"].replace('"', "'")
                 nav.append(f'          - "{label}": {p["path"]}')
+    if certs and certs.get("certs"):
+        nav += build_certs.nav_lines(certs)
     nav.append("  - Research Library:")
     nav.append("      - Browse: BROWSE.md")
     nav.append("      - Index: INDEX.md")
@@ -873,6 +889,7 @@ def main() -> None:
 
     explainers = parse_explainers()
     pillars = parse_pillars()
+    certs = build_certs.build()
 
     changed = write_frontmatter(papers)
     write_json(papers)
@@ -881,11 +898,12 @@ def main() -> None:
     write_tags(papers)
     write_explainers_hub(explainers)
     write_pillar_hubs(pillars)
-    write_mkdocs(papers, explainers, pillars)
+    write_mkdocs(papers, explainers, pillars, certs)
     write_by_year(papers)
-    build_site_tree(papers, explainers, pillars)
+    build_site_tree(papers, explainers, pillars, certs)
 
-    print(f"Parsed {len(papers)} summaries, {len(explainers)} explainers and {len(pillars)} guide pages.")
+    print(f"Parsed {len(papers)} summaries, {len(explainers)} explainers, {len(pillars)} guide pages "
+          f"and {len(certs['certs'])} certification guides.")
     today = dt.date.today()
     stale = [e["path"] for e in explainers + pillars if e["reviewed"]
              and (today - dt.date.fromisoformat(e["reviewed"])).days > STALE_AFTER_DAYS]
@@ -898,7 +916,8 @@ def main() -> None:
         print(f"WARN no source URL parsed: {', '.join(missing_url)}")
     if missing_year:
         print(f"WARN no year parsed: {', '.join(missing_year)}")
-    print("Wrote papers.json, papers.csv, INDEX.md, TAGS.md, EXPLAINERS.md, mkdocs.generated.yml, site-build/")
+    print("Wrote papers.json, papers.csv, INDEX.md, TAGS.md, EXPLAINERS.md, certifications/README.md, "
+          "mkdocs.generated.yml, site-build/")
 
 
 if __name__ == "__main__":

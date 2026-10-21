@@ -42,13 +42,14 @@
 - **{{guides_total}}** guides
 - **{{papers}}** papers
 - **{{explainers}}** explainers
+- **{{certs}}** certifications
 - **{{source_words}}** words of research read
 - **{{compression}}x** shorter
 - **$0** to read
 
 </div>
 
-<p class="stat-note">Research figure measured, not estimated: every word <code>pdftotext</code> extracts from {{measured_papers}} of the {{papers}} papers. The other {{unmeasured}} sit behind journal paywalls or are published as web pages with no PDF, so they are excluded - the real total is higher. <a href="https://github.com/PatrickWiloak/genai-research-papers-summarized/blob/main/scripts/measure_sources.py">See the script</a>.</p>
+<p class="stat-note">Research figure measured, not estimated: every word <code>pdftotext</code> extracts from {{measured_papers}} of the {{papers}} papers. The other {{unmeasured}} sit behind journal paywalls or are published as web pages with no PDF, so they are excluded - the real total is higher. <a href="https://github.com/PatrickWiloak/ai-zero-to-hero/blob/main/scripts/measure_sources.py">See the script</a>.</p>
 
 </div>
 
@@ -105,6 +106,40 @@
     The AI roles and how to get there, interview prep with real questions, and which certifications are worth it. {{pillar_careers}} pages.
 
     [:octicons-arrow-right-24: Careers](careers/README.md)
+
+</div>
+
+<p class="home-kicker">Get certified</p>
+
+## AI certifications
+
+Free study guides for {{certs}} AI and machine learning certifications from {{cert_providers}} providers, plus {{cert_tracks}} self-directed study tracks: Anthropic's Claude certifications, NVIDIA, AWS, Azure, Google Cloud, Databricks, GitHub Copilot and Oracle. Each has a fact sheet, study notes and a practice plan; most add an exam strategy, scenarios, flashcards and a practice question bank.
+
+<div class="grid cards" markdown>
+
+-   :material-certificate-outline:{ .lg .middle } **Every AI certification**
+
+    ---
+
+    Provider, level and status for each exam, with links to its notes, flashcards and practice questions.
+
+    [:octicons-arrow-right-24: Certifications hub](certifications/README.md)
+
+-   :material-head-question-outline:{ .lg .middle } **Practice questions**
+
+    ---
+
+    {{cert_banks}} banks of scenario-style questions, one per exam, with the answer and the reasoning behind it.
+
+    [:octicons-arrow-right-24: Start with AI Practitioner](certifications/practice-questions/aws-ai-practitioner.md)
+
+-   :material-compass-outline:{ .lg .middle } **Which one should I take?**
+
+    ---
+
+    What each certification proves, who it is for, and which are worth the money.
+
+    [:octicons-arrow-right-24: AI certifications guide](careers/certifications/ai-certifications-guide.md)
 
 </div>
 
@@ -223,9 +258,7 @@ Summaries are not a substitute for the paper. Every one links to the original, a
 ## Who made this
 
 Built by **[Patrick Wiloak](https://patricklukewilson.com)** - ex-AWS Solutions Architect, 10 years in tech, multi-cloud certified.
-[YouTube](https://youtube.com/@patrickwiloak) · [LinkedIn](https://www.linkedin.com/in/patricklukewilson/) · [Source on GitHub](https://github.com/PatrickWiloak/genai-research-papers-summarized)
-
-Learning the cloud, data, and security side too? **[Cloud, Data, AI and Security - Zero to Hero](https://cloud.noblerworks.com/)** is the sibling site: concepts, hands-on builds, and the most comprehensive certification library on GitHub.
+[YouTube](https://youtube.com/@patrickwiloak) · [LinkedIn](https://www.linkedin.com/in/patricklukewilson/) · [Source on GitHub](https://github.com/PatrickWiloak/ai-zero-to-hero)
 
 We build custom software and products at **[Nobler Works](https://noblerworks.com/)**. Open-source training like this is how we give back - we are nothing without the community that supports us. If you need software built, [get in touch](https://noblerworks.com/).
 
@@ -236,6 +269,40 @@ We build custom software and products at **[Nobler Works](https://noblerworks.co
     This site gives you the material. **[gitGood](https://gitgood.dev)** gives you the reps, and tells you whether you actually know it - including ML and AI practice paths built for exactly the material on this site.
 
     A 7-day free trial, then $8/month or $64/year. The free tier needs no card.
+
+<p class="home-kicker">The family</p>
+
+## More Zero to Hero
+
+<div class="grid cards" markdown>
+
+-   :material-cloud-outline:{ .lg .middle } **Cloud Zero to Hero**
+
+    ---
+
+    Cloud architecture, DevOps and networking from zero, hands-on builds, and study guides for the AWS, Azure and Google Cloud certifications.
+
+    [:octicons-arrow-right-24: cloud.noblerworks.com](https://cloud.noblerworks.com/)
+
+-   :material-database-outline:{ .lg .middle } **Data Zero to Hero**
+
+    ---
+
+    Data engineering, analytics and databases: pipelines, warehouses and lakehouses, and the data certifications.
+
+    [:octicons-arrow-right-24: data.noblerworks.com](https://data.noblerworks.com/)
+
+-   :material-shield-check-outline:{ .lg .middle } **Security Zero to Hero**
+
+    ---
+
+    Cloud and application security, threat modelling and the security certifications, from first principles.
+
+    [:octicons-arrow-right-24: security.noblerworks.com](https://security.noblerworks.com/)
+
+</div>
+
+All four are free, by Nobler Works.
 
 ## Fine print
 

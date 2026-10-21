@@ -21,4 +21,4 @@ The roles, the roadmaps, the interviews and the certifications. **6** pages. Gen
 
 | Page | In one line | Reviewed |
 |------|-------------|----------|
-| [AI Certifications Guide](certifications/ai-certifications-guide.md) | An index of the AI and machine learning certifications that are still available as of 2026-10 (Anthropic, AWS, Google Cloud, NVIDIA, Databricks, Oracle, GitHub), which ones fit which role, which were retired in 2026, and links to a free study guide for each on the sibling Zero to Hero site. | 2026-10-21 |
+| [AI Certifications Guide](certifications/ai-certifications-guide.md) | An index of the AI and machine learning certifications that are still available as of 2026-10 (Anthropic, AWS, Google Cloud, NVIDIA, Databricks, Oracle, GitHub), which ones fit which role, which were retired in 2026, and links to the free study guide for each on this site. | 2026-10-21 |

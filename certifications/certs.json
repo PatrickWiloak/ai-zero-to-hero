@@ -1,0 +1,672 @@
+{
+  "_comment": "Hand-maintained index of the certification guides under certifications/. scripts/build_certs.py reads it to generate certifications/README.md, the table in each provider README and the site nav; scripts/check_counts.py fails CI when it and the tree disagree. 'elsewhere' lists the same provider's certs that live on the sibling Zero to Hero sites.",
+  "providers": [
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "certs": [
+        {
+          "path": "anthropic/claude-certified-architect-foundations",
+          "code": "CCAR-F",
+          "level": "Foundational",
+          "status": "Ready"
+        },
+        {
+          "path": "anthropic/claude-certified-associate-foundations",
+          "code": "CCAO-F",
+          "level": "Foundational",
+          "status": "Ready"
+        },
+        {
+          "path": "anthropic/claude-certified-developer-foundations",
+          "code": "CCDV-F",
+          "level": "Foundational",
+          "status": "Ready"
+        },
+        {
+          "path": "anthropic/claude-certified-architect-professional",
+          "code": "CCAR-P",
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "path": "anthropic/claude-prompt-engineering-specialist",
+          "code": "CPES",
+          "level": "Specialty",
+          "status": "Study track"
+        }
+      ],
+      "elsewhere": []
+    },
+    {
+      "id": "nvidia",
+      "name": "NVIDIA",
+      "certs": [
+        {
+          "path": "nvidia/ai-infrastructure-operations-associate",
+          "code": "NCA-AIIO",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "path": "nvidia/genai-llms-associate",
+          "code": "NCA-GENL",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "path": "nvidia/multimodal-genai-associate",
+          "code": "NCA-MMGA",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "path": "nvidia/accelerated-data-science-professional",
+          "code": "NCP-ADS",
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "path": "nvidia/agentic-ai-professional",
+          "code": "NCP-AAI",
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "path": "nvidia/ai-infrastructure-professional",
+          "code": "NCP-AII",
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "path": "nvidia/ai-operations-professional",
+          "code": "NCP-AIO",
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "path": "nvidia/genai-llms-professional",
+          "code": "NCP-GENL",
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "path": "nvidia/networking-professional",
+          "code": "NCP-NET",
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "path": "nvidia/openusd-professional",
+          "code": "NCP-USD",
+          "level": "Professional",
+          "status": "Ready"
+        }
+      ],
+      "elsewhere": []
+    },
+    {
+      "id": "aws",
+      "name": "AWS",
+      "certs": [
+        {
+          "path": "aws/foundational/ai-practitioner-aif-c01",
+          "code": "AIF-C01",
+          "level": "Foundational",
+          "status": "Ready"
+        },
+        {
+          "path": "aws/associate/ml-engineer-mla-c01",
+          "code": "MLA-C01",
+          "level": "Associate",
+          "status": "Retired"
+        },
+        {
+          "path": "aws/professional/genai-developer-aip-c01",
+          "code": "AIP-C01",
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "path": "aws/specialty/machine-learning-mls-c01",
+          "code": "MLS-C01",
+          "level": "Specialty",
+          "status": "Retired"
+        }
+      ],
+      "elsewhere": [
+        {
+          "name": "AWS Cloud Practitioner (CLF-C02)",
+          "url": "https://cloud.noblerworks.com/exams/aws/foundational/cloud-practitioner-clf-c02/",
+          "code": "CLF-C02",
+          "level": "Foundational",
+          "status": "Ready"
+        },
+        {
+          "name": "AWS Certified CloudOps Engineer - Associate (SOA-C03)",
+          "url": "https://cloud.noblerworks.com/exams/aws/associate/cloudops-engineer-soa-c03/",
+          "code": "SOA-C03",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "AWS Certified Data Engineer - Associate (DEA-C01)",
+          "url": "https://data.noblerworks.com/exams/aws/associate/data-engineer-dea-c01/",
+          "code": "DEA-C01",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "AWS Certified Developer - Associate (DVA-C02)",
+          "url": "https://cloud.noblerworks.com/exams/aws/associate/developer-dva-c02/",
+          "code": "DVA-C02",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "AWS Certified Solutions Architect - Associate (SAA-C03)",
+          "url": "https://cloud.noblerworks.com/exams/aws/associate/solutions-architect-saa-c03/",
+          "code": "SAA-C03",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "AWS Certified SysOps Administrator - Associate (SOA-C02)",
+          "url": "https://cloud.noblerworks.com/exams/aws/associate/sysops-administrator-soa-c02/",
+          "code": "SOA-C02",
+          "level": "Associate",
+          "status": "Retired"
+        },
+        {
+          "name": "AWS Certified DevOps Engineer - Professional (DOP-C02)",
+          "url": "https://cloud.noblerworks.com/exams/aws/professional/devops-engineer-pro-dop-c02/",
+          "code": "DOP-C02",
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "name": "AWS Certified Solutions Architect - Professional (SAP-C02)",
+          "url": "https://cloud.noblerworks.com/exams/aws/professional/solutions-architect-pro-sap-c02/",
+          "code": "SAP-C02",
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "name": "AWS Certified Advanced Networking - Specialty (ANS-C01)",
+          "url": "https://cloud.noblerworks.com/exams/aws/specialty/advanced-networking-ans-c01/",
+          "code": "ANS-C01",
+          "level": "Specialty",
+          "status": "Ready"
+        },
+        {
+          "name": "AWS Certified Data Analytics - Specialty (DAS-C01)",
+          "url": "https://data.noblerworks.com/exams/aws/specialty/data-analytics-das-c01/",
+          "code": "DAS-C01",
+          "level": "Specialty",
+          "status": "Retired"
+        },
+        {
+          "name": "AWS Certified Database - Specialty (DBS-C01)",
+          "url": "https://data.noblerworks.com/exams/aws/specialty/database-dbs-c01/",
+          "code": "DBS-C01",
+          "level": "Specialty",
+          "status": "Retired"
+        },
+        {
+          "name": "AWS Certified SAP on AWS - Specialty (PAS-C01)",
+          "url": "https://cloud.noblerworks.com/exams/aws/specialty/sap-on-aws-pas-c01/",
+          "code": "PAS-C01",
+          "level": "Specialty",
+          "status": "Ready"
+        },
+        {
+          "name": "AWS Certified Security - Specialty (SCS-C02)",
+          "url": "https://security.noblerworks.com/exams/aws/specialty/security-scs-c02/",
+          "code": "SCS-C02",
+          "level": "Specialty",
+          "status": "Retired"
+        },
+        {
+          "name": "AWS Quantum Practitioner (QPC-C01) - Anticipated Study Track",
+          "url": "https://cloud.noblerworks.com/exams/aws/specialty/quantum-practitioner-qpc-c01/",
+          "code": "QPC-C01",
+          "level": "Specialty",
+          "status": "Anticipated"
+        }
+      ]
+    },
+    {
+      "id": "azure",
+      "name": "Microsoft Azure",
+      "certs": [
+        {
+          "path": "azure/ai-900",
+          "code": "AI-900",
+          "level": "Foundational",
+          "status": "Retired"
+        },
+        {
+          "path": "azure/ai-102",
+          "code": "AI-102",
+          "level": "Associate",
+          "status": "Retired"
+        },
+        {
+          "path": "azure/dp-100",
+          "code": "DP-100",
+          "level": "Associate",
+          "status": "Retired"
+        },
+        {
+          "path": "azure/genai",
+          "code": null,
+          "level": null,
+          "status": "Study track"
+        }
+      ],
+      "elsewhere": [
+        {
+          "name": "Microsoft Azure Data Fundamentals (DP-900)",
+          "url": "https://data.noblerworks.com/exams/azure/dp-900/",
+          "code": "DP-900",
+          "level": "Foundational",
+          "status": "Ready"
+        },
+        {
+          "name": "Microsoft Azure Fundamentals (AZ-900)",
+          "url": "https://cloud.noblerworks.com/exams/azure/az-900/",
+          "code": "AZ-900",
+          "level": "Foundational",
+          "status": "Ready"
+        },
+        {
+          "name": "Microsoft Certified: Microsoft 365 Fundamentals (MS-900)",
+          "url": "https://cloud.noblerworks.com/exams/azure/ms-900/",
+          "code": "MS-900",
+          "level": "Foundational",
+          "status": "Retired"
+        },
+        {
+          "name": "Microsoft Power Platform Fundamentals (PL-900)",
+          "url": "https://cloud.noblerworks.com/exams/azure/pl-900/",
+          "code": "PL-900",
+          "level": "Foundational",
+          "status": "Ready"
+        },
+        {
+          "name": "Microsoft Security, Compliance, and Identity Fundamentals (SC-900)",
+          "url": "https://security.noblerworks.com/exams/azure/sc-900/",
+          "code": "SC-900",
+          "level": "Foundational",
+          "status": "Ready"
+        },
+        {
+          "name": "Microsoft Azure Data Engineer Associate (DP-203)",
+          "url": "https://data.noblerworks.com/exams/azure/dp-203/",
+          "code": "DP-203",
+          "level": "Associate",
+          "status": "Retired"
+        },
+        {
+          "name": "Microsoft Azure Database Administrator Associate (DP-300)",
+          "url": "https://data.noblerworks.com/exams/azure/dp-300/",
+          "code": "DP-300",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "Microsoft Azure Developer Associate (AZ-204)",
+          "url": "https://cloud.noblerworks.com/exams/azure/az-204/",
+          "code": "AZ-204",
+          "level": "Associate",
+          "status": "Retired"
+        },
+        {
+          "name": "Microsoft Azure Security Engineer Associate (AZ-500)",
+          "url": "https://security.noblerworks.com/exams/azure/az-500/",
+          "code": "AZ-500",
+          "level": "Associate",
+          "status": "Retired"
+        },
+        {
+          "name": "Microsoft Certified: Azure Network Engineer Associate (AZ-700)",
+          "url": "https://cloud.noblerworks.com/exams/azure/az-700/",
+          "code": "AZ-700",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "Microsoft Certified: Fabric Data Engineer Associate (DP-700)",
+          "url": "https://data.noblerworks.com/exams/azure/dp-700/",
+          "code": "DP-700",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "Microsoft Fabric Analytics Engineer Associate (DP-600)",
+          "url": "https://data.noblerworks.com/exams/azure/dp-600/",
+          "code": "DP-600",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "Microsoft Identity and Access Administrator (SC-300)",
+          "url": "https://security.noblerworks.com/exams/azure/sc-300/",
+          "code": "SC-300",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "Microsoft Information Security Administrator (SC-401)",
+          "url": "https://security.noblerworks.com/exams/azure/sc-401/",
+          "code": "SC-401",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "Microsoft Power BI Data Analyst (PL-300)",
+          "url": "https://data.noblerworks.com/exams/azure/pl-300/",
+          "code": "PL-300",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "Microsoft Power Platform App Maker Associate (PL-100)",
+          "url": "https://cloud.noblerworks.com/exams/azure/pl-100/",
+          "code": "PL-100",
+          "level": "Associate",
+          "status": "Retired"
+        },
+        {
+          "name": "Microsoft Power Platform Functional Consultant Associate (PL-200)",
+          "url": "https://cloud.noblerworks.com/exams/azure/pl-200/",
+          "code": "PL-200",
+          "level": "Associate",
+          "status": "Retired"
+        },
+        {
+          "name": "Microsoft Security Operations Analyst Associate (SC-200)",
+          "url": "https://security.noblerworks.com/exams/azure/sc-200/",
+          "code": "SC-200",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "Microsoft Azure Cosmos DB Developer Specialty (DP-420)",
+          "url": "https://data.noblerworks.com/exams/azure/dp-420/",
+          "code": "DP-420",
+          "level": "Specialty",
+          "status": "Ready"
+        },
+        {
+          "name": "Microsoft Cybersecurity Architect (SC-100)",
+          "url": "https://security.noblerworks.com/exams/azure/sc-100/",
+          "code": "SC-100",
+          "level": "Expert",
+          "status": "Ready"
+        },
+        {
+          "name": "Microsoft DevOps Engineer Expert (AZ-400)",
+          "url": "https://cloud.noblerworks.com/exams/azure/az-400/",
+          "code": "AZ-400",
+          "level": "Expert",
+          "status": "Ready"
+        },
+        {
+          "name": "Azure AZ-305: Designing Microsoft Azure Infrastructure Solutions",
+          "url": "https://cloud.noblerworks.com/exams/azure/az-305/",
+          "code": "AZ-305",
+          "level": null,
+          "status": "Ready"
+        },
+        {
+          "name": "Microsoft Azure Administrator (AZ-104)",
+          "url": "https://cloud.noblerworks.com/exams/azure/az-104/",
+          "code": "AZ-104",
+          "level": null,
+          "status": "Ready"
+        }
+      ]
+    },
+    {
+      "id": "gcp",
+      "name": "Google Cloud",
+      "certs": [
+        {
+          "path": "gcp/generative-ai-leader",
+          "code": null,
+          "level": "Foundational",
+          "status": "Ready"
+        },
+        {
+          "path": "gcp/machine-learning-engineer",
+          "code": "Professional Machine Learning Engineer",
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "path": "gcp/genai",
+          "code": null,
+          "level": null,
+          "status": "Study track"
+        }
+      ],
+      "elsewhere": [
+        {
+          "name": "Google Cloud Digital Leader Certification",
+          "url": "https://cloud.noblerworks.com/exams/gcp/cloud-digital-leader/",
+          "code": null,
+          "level": "Foundational",
+          "status": "Ready"
+        },
+        {
+          "name": "Google Cloud Associate Cloud Engineer Certification",
+          "url": "https://cloud.noblerworks.com/exams/gcp/cloud-engineer/",
+          "code": "Associate Cloud Engineer",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "Google Cloud Associate Google Workspace Administrator Certification",
+          "url": "https://cloud.noblerworks.com/exams/gcp/workspace-administrator/",
+          "code": "Associate Google Workspace Administrator",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "Google Cloud Professional Cloud Architect Certification",
+          "url": "https://cloud.noblerworks.com/exams/gcp/cloud-architect/",
+          "code": "Professional Cloud Architect",
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "name": "Google Cloud Professional Cloud Developer Certification",
+          "url": "https://cloud.noblerworks.com/exams/gcp/cloud-developer/",
+          "code": null,
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "name": "Google Cloud Professional Cloud DevOps Engineer Certification",
+          "url": "https://cloud.noblerworks.com/exams/gcp/cloud-devops-engineer/",
+          "code": null,
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "name": "Google Cloud Professional Cloud Network Engineer Certification",
+          "url": "https://cloud.noblerworks.com/exams/gcp/cloud-network-engineer/",
+          "code": null,
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "name": "Google Cloud Professional Cloud Security Engineer Certification",
+          "url": "https://security.noblerworks.com/exams/gcp/cloud-security-engineer/",
+          "code": null,
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "name": "Google Cloud Professional Data Engineer Certification",
+          "url": "https://data.noblerworks.com/exams/gcp/data-engineer/",
+          "code": "Professional Data Engineer",
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "name": "Google Cloud Professional Cloud Database Engineer (Specialty) Certification",
+          "url": "https://data.noblerworks.com/exams/gcp/cloud-database-engineer/",
+          "code": "Professional Cloud Database Engineer",
+          "level": "Specialty",
+          "status": "Ready"
+        }
+      ]
+    },
+    {
+      "id": "databricks",
+      "name": "Databricks",
+      "certs": [
+        {
+          "path": "databricks/genai-engineer-associate",
+          "code": null,
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "path": "databricks/ml-associate",
+          "code": null,
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "path": "databricks/ml-professional",
+          "code": null,
+          "level": "Professional",
+          "status": "Ready"
+        }
+      ],
+      "elsewhere": [
+        {
+          "name": "Databricks Certified Data Engineer Associate",
+          "url": "https://data.noblerworks.com/exams/databricks/data-engineer-associate/",
+          "code": null,
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "Databricks Certified Data Engineer Professional",
+          "url": "https://data.noblerworks.com/exams/databricks/data-engineer-professional/",
+          "code": null,
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "name": "Databricks Certified Lakehouse Platform Administrator",
+          "url": "https://data.noblerworks.com/exams/databricks/lakehouse-platform-administrator/",
+          "code": null,
+          "level": null,
+          "status": "Ready"
+        }
+      ]
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "certs": [
+        {
+          "path": "github/copilot",
+          "code": null,
+          "level": null,
+          "status": "Ready"
+        }
+      ],
+      "elsewhere": [
+        {
+          "name": "GitHub Foundations",
+          "url": "https://cloud.noblerworks.com/exams/github/foundations/",
+          "code": null,
+          "level": "Foundational",
+          "status": "Ready"
+        },
+        {
+          "name": "GitHub Advanced Security (GHAS)",
+          "url": "https://security.noblerworks.com/exams/github/advanced-security/",
+          "code": null,
+          "level": "Professional",
+          "status": "Ready"
+        },
+        {
+          "name": "GitHub Actions Certification",
+          "url": "https://cloud.noblerworks.com/exams/github/actions/",
+          "code": null,
+          "level": null,
+          "status": "Ready"
+        },
+        {
+          "name": "GitHub Administration Certification",
+          "url": "https://cloud.noblerworks.com/exams/github/administration/",
+          "code": null,
+          "level": null,
+          "status": "Ready"
+        }
+      ]
+    },
+    {
+      "id": "oracle",
+      "name": "Oracle",
+      "certs": [
+        {
+          "path": "oracle/oci-ai-foundations",
+          "code": "1Z0-1122-25",
+          "level": "Foundational",
+          "status": "Ready"
+        },
+        {
+          "path": "oracle/oci-generative-ai-professional",
+          "code": "1Z0-1127-25",
+          "level": "Professional",
+          "status": "Ready"
+        }
+      ],
+      "elsewhere": [
+        {
+          "name": "Oracle Cloud Infrastructure Foundations (1Z0-1085-24)",
+          "url": "https://cloud.noblerworks.com/exams/oracle/oci-foundations/",
+          "code": "1Z0-1085-24",
+          "level": "Foundational",
+          "status": "Ready"
+        },
+        {
+          "name": "Oracle Cloud Infrastructure Architect Associate (1Z0-1072-24)",
+          "url": "https://cloud.noblerworks.com/exams/oracle/oci-architect-associate/",
+          "code": "1Z0-1072-24",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "Oracle Cloud Infrastructure Developer Associate (1Z0-1084-24)",
+          "url": "https://cloud.noblerworks.com/exams/oracle/oci-developer-associate/",
+          "code": "1Z0-1084-24 (Latest version)",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "Oracle Cloud Infrastructure Operations Associate (1Z0-1067-24)",
+          "url": "https://cloud.noblerworks.com/exams/oracle/oci-operations-associate/",
+          "code": "1Z0-1067-24 (Latest version)",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
+          "name": "Oracle Cloud Infrastructure Architect Professional (1Z0-997-24)",
+          "url": "https://cloud.noblerworks.com/exams/oracle/oci-architect-professional/",
+          "code": "1Z0-997-24",
+          "level": "Professional",
+          "status": "Ready"
+        }
+      ]
+    }
+  ]
+}

@@ -137,7 +137,7 @@ The general checklist is in [Knowledge and Reasoning](knowledge-and-reasoning.md
 - [InstructGPT / RLHF](../../papers/language-models/05-instructgpt-rlhf/summary.md) and [DPO](../../papers/language-models/19-dpo/summary.md): human preferences as a training signal, not just an evaluation
 - [Llama 4](../../papers/language-models/41-llama4/summary.md)
 - Explainers: [Contamination and Saturation](contamination-and-saturation.md), [Llama](../model-families/llama.md), [Labs Landscape](../ecosystem/labs-landscape.md)
-- Sibling repo: [Evals for LLMs](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/evals-for-llms.md)
+- Hands-on: [Evals for LLMs](../../learn/concepts/evals-for-llms.md)
 
 ## Sources
 

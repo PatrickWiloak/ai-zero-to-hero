@@ -98,7 +98,7 @@ The reasoning boom has its own critics, and their argument is more specific than
 - [OpenAI o1](../../papers/language-models/31-openai-o1/summary.md), [DeepSeek-R1](../../papers/language-models/26-deepseek-r1/summary.md), [RLVR](../../papers/techniques/39-rlvr/summary.md)
 - [Reasoning models](../concepts/reasoning-models.md), [Cost of training](../compute/cost-of-training.md), [Inference economics](../compute/inference-economics.md)
 - [Do LLMs reason?](./do-llms-reason.md), [Synthetic data and model collapse](./synthetic-data-and-model-collapse.md)
-- [LLM basics](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/llm-basics.md) (sibling repo)
+- [LLM basics](../../learn/concepts/llm-basics.md) (hands-on)
 - [Measuring AI Ability to Complete Long Tasks](../../papers/techniques/145-metr-time-horizons/summary.md), [s1: Simple Test-Time Scaling](../../papers/techniques/154-s1-simple-test-time-scaling/summary.md), [On the Dangers of Stochastic Parrots (the critical side)](../../papers/essays/150-stochastic-parrots/summary.md)
 
 ## Sources

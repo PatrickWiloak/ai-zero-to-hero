@@ -26,8 +26,9 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [ ] 2026-11-01: verify secondary-sourced facts - ChatGPT/M365 Copilot prices, Cursor-SpaceX and OpenAI-Promptfoo deals (`grep -rln 'Cursor\|Promptfoo\|Copilot' work tools`).
 - [ ] 2026-11-08: run the untested code in `build/projects/{chatbot-in-an-afternoon,structured-extraction-pipeline,voice-agent,prompt-injection-red-team}.md`.
 - [ ] Refresh `tools/comparisons/cloud-ai-ml-services.md` gen-AI table (PaLM 2 / Llama 2 era; flagged stale).
-- [ ] zero-to-hero: point its AI concept/build/security pages at the canonical copies here (dedupe), once the domain is settled.
-- [ ] Next pillar pages: AI news digest + RSS, paper lineage graph, AI/ML cert guides moving here or staying in z2h (decide).
+- [ ] Next pillar pages: AI news digest + RSS, paper lineage graph.
+- [x] 2026-10-21 Split from cloud-data-ai-security-zero-to-hero on 2026-10-21; AI cert guides wired in as `certifications/` (index `certs.json`, generated hub + nav, flashcard pages).
+- [ ] Certs: some guides have no flashcard deck (hub shows "-"); no CSV generator here yet - port cloud-zero-to-hero `build-flashcards.py` if decks need adding.
 - [ ] 2027-04-19: re-review every guide page (180-day stale warning starts).
 
 ## Open

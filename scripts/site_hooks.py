@@ -2,7 +2,7 @@
 
 Loaded through `hooks:` in mkdocs.yml. Site-only: it sets keys on `page.meta`
 at build time and never writes to the markdown. Ported from the sibling
-cloud-data-ai-security-zero-to-hero site (2026-09-28) and adapted to papers and
+Zero to Hero site, now cloud-zero-to-hero (2026-09-28) and adapted to papers and
 explainers.
 
 Why this exists. Until 2026-09-30 every page shipped the same
@@ -20,6 +20,11 @@ repeated description as boilerplate and writes its own snippet. So:
 - `jsonld`: schema.org BreadcrumbList for every page; WebSite on the home
   page; for papers, an Article that names the original work in `isBasedOn`.
 - `robots`: noindex on the two authoring templates.
+- Certification guides (certifications/) have no three-line header, so their
+  description is a lead naming the cert and the page ("AWS Certified AI
+  Practitioner study notes: Amazon Bedrock") plus the page's first prose
+  paragraph, and their title names the exam code. Cert names, codes and the
+  page kinds come from certifications/certs.json via build_certs.py.
 """
 
 from __future__ import annotations
@@ -31,6 +36,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from add_cross_links import ALIASES  # noqa: E402  curated short names per slug
+import build_certs  # noqa: E402  cert names and codes (import now: sys.path is restored after loading)
 
 SITE_SHORT = "AI Zero to Hero"
 DESC_MAX = 160
@@ -39,6 +45,32 @@ NOINDEX = ("papers/_TEMPLATE.md", "explainers/_TEMPLATE.md")
 # Guide pillars (see PILLARS in build_manifest.py) carry the explainer header,
 # so their meta description comes from the same "In one line" pitch.
 PILLAR_PREFIXES = ("learn/", "work/", "build/", "tools/", "safety/", "careers/")
+CERT_PREFIX = "certifications/"
+# Page kinds inside a cert guide: (description phrase, title suffix).
+CERT_PAGES = {
+    "README.md": ("study guide", "Study Guide"),
+    "fact-sheet.md": ("exam fact sheet", "Exam Fact Sheet"),
+    "strategy.md": ("exam strategy", "Exam Strategy"),
+    "practice-plan.md": ("study plan", "Study Plan"),
+    "scenarios.md": ("exam scenarios", "Exam Scenarios"),
+    "flashcards.md": ("flashcards", "Flashcards"),
+}
+_CERTS: dict | None = None
+
+
+def _cert_for(src: str) -> dict | None:
+    """The cert (name, code) a certifications/ page belongs to, or None."""
+    global _CERTS
+    if _CERTS is None:
+        try:
+            _CERTS = {c["path"]: {"name": c["name"], "code": c["code"]} for c in build_certs.load()["certs"]}
+        except Exception:  # noqa: BLE001 - metadata is best effort, never fail the build
+            _CERTS = {}
+    rel = src[len(CERT_PREFIX):]
+    for path, cert in _CERTS.items():
+        if rel.startswith(path + "/"):
+            return cert
+    return None
 
 _EMOJI_RE = re.compile("[\U0001F000-\U0001FAFF☀-➿⬀-⯿️‍←-⇿⌀-⏿]")
 _IMAGE_RE = re.compile(r"!\[[^\]]*\]\([^)]*\)")
@@ -156,6 +188,8 @@ def _title_text(title: str | None) -> str:
 
 
 def _kind(src: str) -> str:
+    if src.startswith(CERT_PREFIX):
+        return "cert"
     if src.startswith("papers/essays/"):
         return "essay"
     if src.startswith("papers/") and src.endswith("/summary.md"):
@@ -195,9 +229,17 @@ def on_page_markdown(markdown, page, config, files, **kwargs):
         elif ALIASES.get(slug):
             short = ALIASES[slug][0].rstrip(":. ")
     year = meta.get("year")
+    cert = _cert_for(src) if kind == "cert" else None
+    fname = src.rsplit("/", 1)[-1]
+    in_notes = "/notes/" in src
 
     if not meta.get("description") and not page.is_homepage:
         desc = ""
+        if cert:
+            phrase = f"study notes on {h1}" if in_notes else CERT_PAGES.get(fname, ("guide",))[0]
+            body = description_from_body(markdown)
+            lead = f"{cert['name']} {phrase}"
+            desc = f"{lead}: {body}" if body else f"Free {lead}."
         if kind == "explainer":
             m = _ONE_LINE_RE.search(markdown)
             desc = _plain(m.group(1)) if m else ""
@@ -219,6 +261,15 @@ def on_page_markdown(markdown, page, config, files, **kwargs):
 
     if page.is_homepage:
         meta["seo_title"] = f"{config.site_name}: Learn, Use and Build with AI - Free"
+    elif cert and h1:
+        short = cert["code"] if cert["code"] and len(cert["code"]) <= 14 else cert["name"]
+        if in_notes:
+            seo = f"{h1} - {short} Study Notes"
+        elif fname == "README.md":
+            seo = f"{cert['name']} Study Guide"
+        else:
+            seo = f"{short} {CERT_PAGES.get(fname, ('', h1))[1]}"
+        meta["seo_title"] = f"{seo} | {SITE_SHORT}" if len(seo) <= 46 else seo
     elif h1:
         if kind in ("paper", "essay") and short and (len(h1) > 50 or slug in SEO_SHORT):
             label = "Essay Summary" if kind == "essay" else "Paper Summary"

@@ -1,6 +1,6 @@
 # AI Certifications Guide
 
-**In one line:** An index of the AI and machine learning certifications that are still available as of 2026-10 (Anthropic, AWS, Google Cloud, NVIDIA, Databricks, Oracle, GitHub), which ones fit which role, which were retired in 2026, and links to a free study guide for each on the sibling Zero to Hero site.
+**In one line:** An index of the AI and machine learning certifications that are still available as of 2026-10 (Anthropic, AWS, Google Cloud, NVIDIA, Databricks, Oracle, GitHub), which ones fit which role, which were retired in 2026, and links to the free study guide for each on this site.
 **Last reviewed:** 2026-10-21
 
 ---
@@ -10,8 +10,8 @@
 - Certifications are most useful when you **work with a specific vendor or cloud**, sell or advise on it (solutions, consulting, pre-sales), or need structure for self-study. For hands-on AI engineering roles, **projects matter more**; see the [AI engineer roadmap](../roles/ai-engineer-roadmap.md).
 - **Start with one foundational exam** that matches your stack, then one associate or professional exam aligned with your target role. Two well-chosen certifications beat six random ones.
 - **Several popular AI exams were retired in 2026**: AWS Machine Learning Engineer - Associate (MLA-C01) and Microsoft's AI-900, AI-102 and DP-100. Older roadmaps still recommend them. Check the retired list below before you study.
-- Every certification below links to a free study guide (notes, practice plans, flashcards) on [Cloud, Data, AI and Security Zero to Hero](https://cloud.noblerworks.com/), this site's sibling.
-- Prices and formats change. Figures here come from the Zero to Hero guides, which were last updated between May and October 2026; confirm on the vendor's page before booking.
+- Every certification below links to a free study guide on this site (fact sheet, notes, practice plan, and for most flashcards and practice questions). All of them are on the [Certifications hub](../../certifications/README.md).
+- Prices and formats change. Figures here come from the study guides on this site, which were last updated between May and October 2026; confirm on the vendor's page before booking.
 
 ## Which certification for which goal
 
@@ -31,7 +31,7 @@
 
 ### Anthropic (Claude)
 
-Anthropic launched its certification program in March 2026 and expanded it to four exams in July 2026. Exams are delivered by Pearson VUE and registered through the Anthropic Partner Academy; the Zero to Hero guides note that free Claude Partner Network membership is required.
+Anthropic launched its certification program in March 2026 and expanded it to four exams in July 2026. Exams are delivered by Pearson VUE and registered through the Anthropic Partner Academy; the study guides note that free Claude Partner Network membership is required.
 
 | Certification | Level | Cost | Validity | Study guide |
 |---|---|---|---|---|
@@ -40,7 +40,7 @@ Anthropic launched its certification program in March 2026 and expanded it to fo
 | Claude Certified Architect - Foundations (CCAR-F) | Foundational, architecture | $125 | 12 months | [Guide](../../certifications/anthropic/claude-certified-architect-foundations/README.md) |
 | Claude Certified Architect - Professional (CCAR-P) | Professional | $175 | 12 months | [Guide](../../certifications/anthropic/claude-certified-architect-professional/README.md) |
 
-Also on Zero to Hero: a [Claude prompt engineering study track](../../certifications/anthropic/claude-prompt-engineering-specialist/README.md) (self-directed study, not an official certification).
+Also here: a [Claude prompt engineering study track](../../certifications/anthropic/claude-prompt-engineering-specialist/README.md) (self-directed study, not an official certification).
 
 ### AWS
 
@@ -58,7 +58,7 @@ AWS's associate-level ML exam is between versions: MLA-C01 retired in September 
 | Generative AI Leader | Foundational, business | $99 plus tax | 3 years | [Guide](../../certifications/gcp/generative-ai-leader/README.md) |
 | Professional Machine Learning Engineer | Professional | $200 | 2 years | [Guide](../../certifications/gcp/machine-learning-engineer/README.md) |
 
-Also on Zero to Hero: a [Google Cloud generative AI study track](../../certifications/gcp/genai/README.md) that spans several exams.
+Also here: a [Google Cloud generative AI study track](../../certifications/gcp/genai/README.md) that spans several exams.
 
 ### NVIDIA
 
@@ -96,7 +96,7 @@ Also on Zero to Hero: a [Google Cloud generative AI study track](../../certifica
 
 ### Microsoft Azure
 
-Microsoft retired its main AI certifications in 2026 (see below). Zero to Hero keeps an [Azure generative AI study track](../../certifications/azure/genai/README.md) for learning the platform. Check [Microsoft Learn credentials](https://learn.microsoft.com/en-us/credentials/) for any newer AI credentials before planning around Azure.
+Microsoft retired its main AI certifications in 2026 (see below). This site keeps an [Azure generative AI study track](../../certifications/azure/genai/README.md) for learning the platform. Check [Microsoft Learn credentials](https://learn.microsoft.com/en-us/credentials/) for any newer AI credentials before planning around Azure.
 
 ## Retired: do not study for these
 
@@ -132,11 +132,13 @@ Microsoft retired its main AI certifications in 2026 (see below). Zero to Hero k
 ## Next steps
 
 - [AI engineer roadmap](../roles/ai-engineer-roadmap.md) and [AI careers map](../roles/ai-careers-map.md)
-- All provider guides on Zero to Hero: [Anthropic](../../certifications/anthropic/README.md), [AWS](https://cloud.noblerworks.com/exams/aws/), [Google Cloud](https://cloud.noblerworks.com/exams/gcp/), [NVIDIA](../../certifications/nvidia/README.md), [Databricks](https://data.noblerworks.com/exams/databricks/), [Azure](https://cloud.noblerworks.com/exams/azure/)
+- All AI certification guides on this site: the [Certifications hub](../../certifications/README.md), or by provider: [Anthropic](../../certifications/anthropic/README.md), [AWS](../../certifications/aws/README.md), [Google Cloud](../../certifications/gcp/README.md), [NVIDIA](../../certifications/nvidia/README.md), [Databricks](../../certifications/databricks/README.md), [Azure](../../certifications/azure/README.md), [Oracle](../../certifications/oracle/README.md), [GitHub](../../certifications/github/README.md)
+- Practice questions: every exam has a bank, linked from its row on the [Certifications hub](../../certifications/README.md)
+- Cloud, data and security certifications: [Cloud Zero to Hero](https://cloud.noblerworks.com/), [Data Zero to Hero](https://data.noblerworks.com/) and [Security Zero to Hero](https://security.noblerworks.com/)
 
 ## Sources
 
-- Zero to Hero certification guides and catalogue (costs, validity, levels, statuses; last updated May to October 2026): https://cloud.noblerworks.com/
+- This site's certification guides and [certs.json](../../certifications/certs.json) (costs, validity, levels, statuses; last updated May to October 2026)
 - Anthropic Partner Academy, partner certifications: https://anthropic-partners.skilljar.com/page/partner-certifications
 - AWS, Machine Learning Engineer - Associate (MLA-C01 retirement, MLA-C02 beta): https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/
 - AWS Certification, AI Practitioner: https://aws.amazon.com/certification/certified-ai-practitioner/

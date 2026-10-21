@@ -280,4 +280,4 @@ D. OCI Generative AI, which hosts and fine-tunes foundation models and serves th
 
 - **13-15 correct (85%+):** Ready. The pass mark is 65%, so this puts you well clear.
 - **10-12 correct (65-80%):** Drill the service selection table in the [fact sheet](../oracle/oci-ai-foundations/fact-sheet.md#the-service-selection-table); those are the fastest marks on the paper.
-- **Below 10:** Work through the free Oracle University learning path and the [domain notes](../oracle/oci-ai-foundations/notes/).
+- **Below 10:** Work through the free Oracle University learning path and the [domain notes](../oracle/oci-ai-foundations/README.md#notes).

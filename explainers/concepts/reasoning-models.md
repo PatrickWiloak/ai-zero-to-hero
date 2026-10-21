@@ -89,7 +89,7 @@ Things that follow from this:
 - **One model, two modes.** Many current models are "hybrid": the same weights can answer instantly or think first, controlled per request. [Qwen3](../../papers/language-models/28-qwen3/summary.md) exposed thinking and non-thinking modes in one open model, and the major APIs now let the model decide or let you set the level.
 - **Multi-turn and tools.** In agent loops the model may think between tool calls. APIs pass the (possibly encrypted) reasoning back across turns so the model keeps its train of thought.
 
-A rough rule for builders: default to a low or medium effort, raise it for maths, complex code, planning and multi-step analysis, and measure whether the gain is worth the latency and cost on your task. The sibling repo's [prompt engineering](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/prompt-engineering.md) and [evals](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/evals-for-llms.md) pages cover the practical side.
+A rough rule for builders: default to a low or medium effort, raise it for maths, complex code, planning and multi-step analysis, and measure whether the gain is worth the latency and cost on your task. The hands-on [prompt engineering](../../learn/concepts/prompt-engineering.md) and [evals](../../learn/concepts/evals-for-llms.md) pages cover the practical side.
 
 ## Hidden versus visible chains of thought
 

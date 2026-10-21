@@ -1,17 +1,22 @@
 # GitHub certifications
 
-Study guides for GitHub in this repo. For the full picture across every provider, see [STUDY-HUB.md](https://cloud.noblerworks.com/STUDY-HUB/).
+Study guides for the GitHub AI and machine learning certifications. Every provider is on the [Certifications](../README.md) hub.
 
-<!-- BEGIN GENERATED: provider-certs - edit .github/scripts/build-provider-indexes.py, not this block -->
+<!-- BEGIN GENERATED: provider-certs - edit scripts/build_certs.py, not this block -->
 
-5 certifications in this repo. Counts and statuses are generated from [docs/certs.json](https://cloud.noblerworks.com/docs/certs.json).
+1 certification on this site. Statuses are kept in [certs.json](../certs.json); every AI certification is listed on the [Certifications](../README.md) hub.
 
 | Cert | Code | Level | Status | Notes |
 |------|------|-------|--------|------:|
-| [GitHub Foundations](https://cloud.noblerworks.com/exams/github/foundations/) | - | Foundational | Ready | 5 |
-| [GitHub Advanced Security (GHAS)](https://security.noblerworks.com/exams/github/advanced-security/) | - | Professional | Ready | 6 |
-| [GitHub Actions Certification](https://cloud.noblerworks.com/exams/github/actions/) | - | - | Ready | 5 |
-| [GitHub Administration Certification](https://cloud.noblerworks.com/exams/github/administration/) | - | - | Ready | 5 |
-| [GitHub Copilot](copilot/README.md) | - | - | Ready | 6 |
+| [GitHub Copilot Certification Exam Guide](copilot/README.md) | - | - | Ready | 6 |
+
+Other GitHub certifications are covered on the sibling Zero to Hero sites:
+
+| Cert | Code | Level | Status |
+|------|------|-------|--------|
+| [GitHub Foundations](https://cloud.noblerworks.com/exams/github/foundations/) | - | Foundational | Ready |
+| [GitHub Advanced Security (GHAS)](https://security.noblerworks.com/exams/github/advanced-security/) | - | Professional | Ready |
+| [GitHub Actions Certification](https://cloud.noblerworks.com/exams/github/actions/) | - | - | Ready |
+| [GitHub Administration Certification](https://cloud.noblerworks.com/exams/github/administration/) | - | - | Ready |
 
 <!-- END GENERATED: provider-certs -->

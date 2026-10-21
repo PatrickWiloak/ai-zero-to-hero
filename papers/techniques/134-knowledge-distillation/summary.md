@@ -111,7 +111,7 @@ The paper also proposes training **specialist** networks that each focus on a co
 2. **Tune the temperature.** Too low and the soft signal vanishes; too high and everything looks equally likely. Values between 2 and 10 are common starting points.
 3. **Distillation inherits flaws.** The student copies the teacher's mistakes and biases, and cannot exceed it on what it imitates.
 4. **Check the licence.** Many model licences and API terms restrict training other models on their outputs.
-5. For the hands-on side, the sibling repo covers [quantisation and distillation](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/quantization-and-distillation.md).
+5. For the hands-on side, see [quantisation and distillation](../../../learn/concepts/quantization-and-distillation.md).
 
 ---
 

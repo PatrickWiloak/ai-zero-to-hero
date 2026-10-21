@@ -113,7 +113,7 @@ ARC-AGI-2             68.8%     --        52.9%     <- check cost per task
 6. **Is the difference bigger than the noise?** With a 198-question test, two points is four questions. Look for confidence intervals; if there are none, assume a few points are within noise.
 7. **Is there an independent replication?** Evaluators such as Epoch AI, Artificial Analysis and the benchmark maintainers' own leaderboards rerun models under fixed settings. Their numbers are often lower than launch numbers and more comparable across labs.
 
-For the practical side of running your own evals, see the sibling repo's [Evals for LLMs](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/evals-for-llms.md).
+For the practical side of running your own evals, see the hands-on [Evals for LLMs](../../learn/concepts/evals-for-llms.md).
 
 ## What to watch
 

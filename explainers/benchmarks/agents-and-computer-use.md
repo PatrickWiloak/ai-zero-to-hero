@@ -30,7 +30,7 @@ A chat benchmark asks one question and grades one answer. An agent benchmark run
    -> success / fail  (or partial credit per checkpoint)
 ```
 
-This is closer to real work, but it adds moving parts that ordinary benchmarks do not have: a **step budget**, a **harness** (the prompts, tools and memory tricks around the model), a live environment that can crash or change, and a checker script that has to anticipate every valid way to succeed. Each is a source of noise or gaming. For the design side of building agents, see [Building Effective Agents](../../papers/essays/115-building-effective-agents/summary.md) and [ReAct](../../papers/techniques/21-react/summary.md); for tool calling basics, the sibling repo's [Tool Use and Function Calling](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/tool-use-and-function-calling.md).
+This is closer to real work, but it adds moving parts that ordinary benchmarks do not have: a **step budget**, a **harness** (the prompts, tools and memory tricks around the model), a live environment that can crash or change, and a checker script that has to anticipate every valid way to succeed. Each is a source of noise or gaming. For the design side of building agents, see [Building Effective Agents](../../papers/essays/115-building-effective-agents/summary.md) and [ReAct](../../papers/techniques/21-react/summary.md); for tool calling basics, the hands-on [Tool Use and Function Calling](../../learn/concepts/tool-use-and-function-calling.md).
 
 ## The benchmarks
 
@@ -130,7 +130,7 @@ The general checklist is in [Knowledge and Reasoning](knowledge-and-reasoning.md
 
 - [OSWorld](../../papers/techniques/139-osworld/summary.md), [ReAct](../../papers/techniques/21-react/summary.md), [Toolformer](../../papers/techniques/24-toolformer/summary.md), [Voyager](../../papers/techniques/100-voyager/summary.md), [Building Effective Agents](../../papers/essays/115-building-effective-agents/summary.md), [SWE-bench](../../papers/techniques/84-swe-bench/summary.md)
 - Explainers: [Math and Code](math-and-code.md), [Agent Protocols](../ecosystem/agent-protocols.md), [Scaling Limits](../open-questions/scaling-limits.md), [Contamination and Saturation](contamination-and-saturation.md)
-- Sibling repo: [Tool Use and Function Calling](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/tool-use-and-function-calling.md), [MCP Explained](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/mcp-explained.md)
+- Hands-on: [Tool Use and Function Calling](../../learn/concepts/tool-use-and-function-calling.md), [MCP Explained](../../learn/concepts/mcp-explained.md)
 - [Measuring AI Ability to Complete Long Tasks](../../papers/techniques/145-metr-time-horizons/summary.md) (METR's time-horizon paper)
 
 ## Sources

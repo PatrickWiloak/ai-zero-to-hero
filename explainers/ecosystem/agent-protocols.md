@@ -48,7 +48,7 @@ OpenAI's Chat Completions API (`POST /v1/chat/completions`, with a list of `mess
 
 The practical benefit is portability: you can swap providers by changing a base URL and model name. The cost is lowest-common-denominator features. Provider-specific capabilities (Anthropic's prompt caching controls, extended thinking, citations; Google's grounding) usually require the native API.
 
-How tool calling works inside these APIs, in general terms, is covered by the sibling repo's [Tool Use and Function Calling](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/tool-use-and-function-calling.md).
+How tool calling works inside these APIs, in general terms, is covered by the hands-on [Tool Use and Function Calling](../../learn/concepts/tool-use-and-function-calling.md).
 
 ### The Responses API and Open Responses
 
@@ -79,9 +79,9 @@ The July 2026 revision is the largest change since launch:
 - **Deprecations** under a new twelve-month deprecation policy: the Roots, Sampling and Logging features, and OAuth Dynamic Client Registration in favour of Client ID Metadata Documents.
 - **Long-running tasks** moved from the core protocol to an official extension.
 
-The sibling repo's [MCP Explained](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/mcp-explained.md) is the hands-on companion, including how to build and connect a server.
+The hands-on [MCP Explained](../../learn/concepts/mcp-explained.md) is the hands-on companion, including how to build and connect a server.
 
-**The main criticism of MCP** is security. An MCP server's tool descriptions and outputs flow straight into the model's context, which makes prompt injection and over-broad permissions real risks, and early versions shipped before authorisation was fully specified. The spec has added OAuth-based authorisation and tightened it in each revision, but the risk of connecting an agent to an untrusted server is inherent. See [Guardrails and Safety](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/guardrails-and-safety.md) and [AI Threat Modeling](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/ai-threat-modeling.md) in the sibling repo.
+**The main criticism of MCP** is security. An MCP server's tool descriptions and outputs flow straight into the model's context, which makes prompt injection and over-broad permissions real risks, and early versions shipped before authorisation was fully specified. The spec has added OAuth-based authorisation and tightened it in each revision, but the risk of connecting an agent to an untrusted server is inherent. See [Guardrails and Safety](../../learn/concepts/guardrails-and-safety.md) and [AI Threat Modeling](../../safety/security/ai-threat-modeling.md).
 
 ## 3. A2A: connecting agents to other agents
 
@@ -166,7 +166,7 @@ For the design question of whether you need an agent at all, see [Building Effec
 - [Toolformer](../../papers/techniques/24-toolformer/summary.md) and [ReAct](../../papers/techniques/21-react/summary.md) - the research roots of tool-using agents
 - [Building Effective Agents](../../papers/essays/115-building-effective-agents/summary.md)
 - [Open-Source Stack](open-source-stack.md) and [Labs Landscape](labs-landscape.md)
-- Sibling repo: [MCP Explained](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/mcp-explained.md) and [Tool Use and Function Calling](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/tool-use-and-function-calling.md)
+- Hands-on: [MCP Explained](../../learn/concepts/mcp-explained.md) and [Tool Use and Function Calling](../../learn/concepts/tool-use-and-function-calling.md)
 
 ## Sources
 

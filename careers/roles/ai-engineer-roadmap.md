@@ -159,7 +159,7 @@ For each project: a public repository, a README with the problem, architecture d
 - [AI careers map](ai-careers-map.md) if you are still choosing a role
 - [AI engineer path](../../learn/start-here/ai-engineer-path.md) for the learning sequence in more detail
 - [AI certifications guide](../certifications/ai-certifications-guide.md)
-- Sibling site's full roadmap (with cloud certification detail): [AI/ML engineer roadmap on Zero to Hero](ai-engineer-roadmap.md)
+- Study guides for the AI certifications: the [Certifications hub](../../certifications/README.md)
 
 ## Sources
 

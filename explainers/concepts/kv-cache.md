@@ -15,7 +15,7 @@
 
 ## What the cache is
 
-In a Transformer's attention layer, every token is turned into three vectors: a **query** ("what am I looking for?"), a **key** ("what do I contain?") and a **value** ("what do I pass on if selected?"). A token attends to earlier tokens by comparing its query with their keys, then taking a weighted mix of their values. The hands-on [Transformer architecture](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/transformer-architecture.md) page walks through this; the original design is in [Attention Is All You Need](../../papers/architectures/01-attention-is-all-you-need/summary.md).
+In a Transformer's attention layer, every token is turned into three vectors: a **query** ("what am I looking for?"), a **key** ("what do I contain?") and a **value** ("what do I pass on if selected?"). A token attends to earlier tokens by comparing its query with their keys, then taking a weighted mix of their values. The hands-on [Transformer architecture](../../learn/concepts/transformer-architecture.md) page walks through this; the original design is in [Attention Is All You Need](../../papers/architectures/01-attention-is-all-you-need/summary.md).
 
 During generation, the keys and values of past tokens never change. So instead of recomputing them at every step, the model computes them once and stores them:
 
@@ -98,15 +98,15 @@ That is under a quarter of Llama 3.3 70B's 320 KiB per token, for a model with f
 
 ### Stop wasting memory: PagedAttention
 
-Early serving systems reserved one contiguous block of memory per request, sized for the maximum possible output. Most of it sat empty, and gaps between blocks could not be reused. The vLLM authors measured 60-80% of KV cache memory being wasted this way. **PagedAttention** (Kwon et al., 2023) borrows virtual memory from operating systems: the cache is stored in small fixed-size blocks that can live anywhere in memory, with a table mapping each request's logical positions to physical blocks. Waste drops to under 4%, more requests fit in the same GPU, and throughput rises accordingly. See the [PagedAttention summary](../../papers/techniques/52-pagedattention-vllm/summary.md) and the hands-on [inference servers](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/inference-servers.md) page.
+Early serving systems reserved one contiguous block of memory per request, sized for the maximum possible output. Most of it sat empty, and gaps between blocks could not be reused. The vLLM authors measured 60-80% of KV cache memory being wasted this way. **PagedAttention** (Kwon et al., 2023) borrows virtual memory from operating systems: the cache is stored in small fixed-size blocks that can live anywhere in memory, with a table mapping each request's logical positions to physical blocks. Waste drops to under 4%, more requests fit in the same GPU, and throughput rises accordingly. See the [PagedAttention summary](../../papers/techniques/52-pagedattention-vllm/summary.md) and the hands-on [inference servers](../../learn/concepts/inference-servers.md) page.
 
-Paging also makes **sharing** easy. If many requests start with the same system prompt or document, their cache blocks can be computed once and reused. vLLM's automatic prefix caching does this by hashing each block together with everything before it. The API-level version of the same idea is **prompt caching**, which providers sell at a discount for repeated prefixes; see the sibling repo's [prompt caching](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/prompt-caching.md) page.
+Paging also makes **sharing** easy. If many requests start with the same system prompt or document, their cache blocks can be computed once and reused. vLLM's automatic prefix caching does this by hashing each block together with everything before it. The API-level version of the same idea is **prompt caching**, which providers sell at a discount for repeated prefixes; see the hands-on [prompt caching](../../learn/concepts/prompt-caching.md) page.
 
 ### Other levers
 
 | Technique | What it does to the cache | Trade-off |
 |---|---|---|
-| **KV cache quantization** (for example FP8) | Stores keys and values in fewer bits, fitting more tokens in memory; vLLM supports this directly | Small accuracy risk; see [quantization](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/quantization-and-distillation.md) |
+| **KV cache quantization** (for example FP8) | Stores keys and values in fewer bits, fitting more tokens in memory; vLLM supports this directly | Small accuracy risk; see [quantization](../../learn/concepts/quantization-and-distillation.md) |
 | **Sliding-window attention** | Each layer only attends to the last W tokens, so the cache stops growing past W | Distant tokens are only reachable indirectly; see [Longformer](../../papers/architectures/131-longformer/summary.md) and [Mistral 7B](../../papers/language-models/95-mistral-7b/summary.md) |
 | **Recurrent / state-space layers** | Replace the growing cache with a fixed-size state | Weaker exact recall of long contexts; see [Mamba](../../papers/architectures/20-mamba/summary.md) |
 | **Efficient attention kernels** | Do not shrink the cache but read it faster | Engineering only; see [FlashAttention](../../papers/techniques/16-flash-attention/summary.md) |
@@ -132,7 +132,7 @@ Paging also makes **sharing** easy. If many requests start with the same system 
 - [Speculative Decoding](../../papers/techniques/45-speculative-decoding/summary.md)
 - [FlashAttention](../../papers/techniques/16-flash-attention/summary.md)
 - [Context windows](context-windows.md), [Sampling and decoding](sampling-and-decoding.md), [Inference economics](../compute/inference-economics.md), [AI hardware landscape](../compute/ai-hardware-landscape.md)
-- Hands-on: [GPUs for AI](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/gpus-for-ai.md), [Inference servers](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero/blob/main/learn/concepts/inference-servers.md)
+- Hands-on: [GPUs for AI](../../learn/concepts/gpus-for-ai.md), [Inference servers](../../learn/concepts/inference-servers.md)
 
 ## Sources
 

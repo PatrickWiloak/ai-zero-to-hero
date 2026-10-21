@@ -133,6 +133,6 @@ reading-time: 8 min
 
 - [Practice plan](practice-plan.md)
 - [Strategy](strategy.md)
-- [Notes](./notes/)
+- [Notes](README.md#notes)
 - [AI security](../../../safety/README.md) - the engineering-depth treatment of scenario 6
 - [Practice questions](../../practice-questions/oracle-oci-generative-ai-professional.md)
