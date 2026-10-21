@@ -151,7 +151,7 @@ The expensive part is when you don't think about chunking strategy and end up re
 - **[RAG explained](rag-explained.md)** - the most common use of embeddings
 - **[LLM basics](llm-basics.md)** - what's downstream of retrieval
 - **[Service comparison: AI/ML](../../tools/comparisons/cloud-ai-ml-services.md)** - vector DB options across clouds
-- **[Glossary: Embedding, Vector DB, ANN](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/learn/glossary/)**
+- **[Glossary: Embedding, Vector DB, ANN](https://cloud.noblerworks.com/learn/glossary/)**
 
 In the research library:
 

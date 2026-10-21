@@ -42,7 +42,7 @@ Model names in this table are examples from when it was scored (2025); newer gen
 | **OpenAI** | 5 | 4 | 5 (GPT-4 / o-series) | 5 | 4 | 2 (OpenAI only) | 3 (Azure OpenAI for stricter privacy) |
 | **AWS Bedrock** | 4 | 4 | 5 (Claude + Llama + Mistral + Titan) | 5 | 4 | 5 (multi-model) | 5 (AWS native, HIPAA, BAA) |
 | **Azure OpenAI** | 4 | 4 | 5 | 5 | 4 | 2 (OpenAI only) | 5 (Azure native) |
-| [**Agent Platform (formerly Vertex AI)**](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/learn/glossary/#term-vertex-ai) | 4 | 4 | 4 (Gemini + partners) | 5 | 4 | 4 (multi-model) | 5 (GCP native) |
+| [**Agent Platform (formerly Vertex AI)**](https://cloud.noblerworks.com/learn/glossary/#term-vertex-ai) | 4 | 4 | 4 (Gemini + partners) | 5 | 4 | 4 (multi-model) | 5 (GCP native) |
 | **Together / Fireworks / Groq** | 5 | 5 (Groq is wildly fast) | 3-4 (open models) | 5 | 3 | 4 | 3 |
 
 ## Recommendations by scenario

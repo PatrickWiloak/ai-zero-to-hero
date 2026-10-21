@@ -193,7 +193,7 @@ Findings that are model-behavior only, with no data or action consequence, are u
 - **[Agent and tool security](agent-security.md)** - tool boundary controls
 - **[OWASP Top 10 for LLM Applications](owasp-llm-top-10.md)** - risk taxonomy to structure findings against
 - **[AI threat modeling](ai-threat-modeling.md)** - the scoping step, in more detail
-- **[OSCP (PEN-200)](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/offensive-security/oscp-pen-200/)** - the closest certification for offensive method generally
+- **[OSCP (PEN-200)](https://cloud.noblerworks.com/exams/offensive-security/oscp-pen-200/)** - the closest certification for offensive method generally
 
 **[📖 MITRE ATLAS](https://atlas.mitre.org/)** - adversarial tactics and techniques for AI, with case studies
 **[📖 OWASP GenAI red teaming guidance](https://genai.owasp.org/resources/)** - working group publications

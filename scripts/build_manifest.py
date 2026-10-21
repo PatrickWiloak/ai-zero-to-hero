@@ -526,7 +526,7 @@ def build_site_tree(papers: list[dict], explainers: list[dict] | None = None,
         (site / f"{key}.txt").write_text(key + "\n", encoding="utf-8")
 
     # robots.txt at the domain root. Only possible since the move to the
-    # ai.patrickwiloak.com custom domain (2026-10-21) - a github.io/<repo>
+    # ai.noblerworks.com custom domain (2026-10-21) - a github.io/<repo>
     # project page has no root of its own. Sitemap URL follows site_url.
     site_url = re.search(r"^site_url:\s*(\S+)", (ROOT / "mkdocs.yml").read_text(encoding="utf-8"), re.MULTILINE)
     if site_url:

@@ -156,7 +156,7 @@ A prompt that worked perfectly on `gpt-4` from March may behave differently on `
 - **[LLM basics](llm-basics.md)** - what's underneath your prompt
 - **[RAG explained](rag-explained.md)** - when prompting alone isn't enough
 - **[AI agents explained](agents-explained.md)** - prompts that drive multi-step behavior
-- **[Anthropic Prompt Engineering Specialist track](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/anthropic/claude-prompt-engineering-specialist/)** - the guided study path
+- **[Anthropic Prompt Engineering Specialist track](https://cloud.noblerworks.com/exams/anthropic/claude-prompt-engineering-specialist/)** - the guided study path
 
 In the research library:
 

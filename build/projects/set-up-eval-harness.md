@@ -294,9 +294,9 @@ You know it works when:
 ## Next steps
 
 - **Concepts**: [Evals for LLMs](../../learn/concepts/evals-for-llms.md), [Structured outputs](../../learn/concepts/structured-outputs.md), [Guardrails and safety](../../learn/concepts/guardrails-and-safety.md)
-- **Topic**: [LLMs and GenAI](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/topics/llms-and-genai/), [Observability](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/topics/observability/)
+- **Topic**: [LLMs and GenAI](https://cloud.noblerworks.com/topics/llms-and-genai/), [Observability](https://cloud.noblerworks.com/topics/observability/)
 - **Comparisons**: [LLM observability](../../tools/comparisons/llm-observability.md)
-- **Certs**: [Anthropic Claude Developer Foundations](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/anthropic/claude-certified-developer-foundations/), [NVIDIA AI Operations Professional](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/nvidia/ai-operations-professional/)
+- **Certs**: [Anthropic Claude Developer Foundations](https://cloud.noblerworks.com/exams/anthropic/claude-certified-developer-foundations/), [NVIDIA AI Operations Professional](https://cloud.noblerworks.com/exams/nvidia/ai-operations-professional/)
 
 In the research library:
 

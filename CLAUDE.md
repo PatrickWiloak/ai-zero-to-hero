@@ -7,10 +7,8 @@ sibling cloud-data-ai-security-zero-to-hero) on top of a curated collection of f
 essays with comprehensive summaries (count: see `papers.json`), plus unnumbered explainers
 on model families, benchmarks, compute, policy, ecosystem and open questions. Broadened from
 papers-only on 2026-09-30. On 2026-10-21 the repo was renamed `ai-zero-to-hero` and the site moved to
-the custom domain `ai.patrickwiloak.com` (Wiloak is the public name, Patrick 2026-10-21; Route 53 CNAME in the NW
-account -> `patrickwiloak.github.io`). `ai.patricklukewilson.com` 301s to it via CloudFront `E2IBVK41UK88T1` + function
-`ai-patricklukewilson-redirect` (source `infra/ai-patricklukewilson-redirect.js`, ACM cert in us-east-1, Route 53 alias;
-hand-built, no IaC). A host CNAMEd to github.io cannot get an ACM cert (github.io CAA excludes Amazon). The old github.io/genai-research-papers-summarized URL is dead (never indexed). Docs-only educational resource (no application
+`ai.noblerworks.com` (Route 53 CNAME in the NW account -> `patrickwiloak.github.io`). All the open-source
+sites live on noblerworks.com subdomains (Patrick, 2026-10-21); no redirects from older names (never indexed). The old github.io/genai-research-papers-summarized URL is dead (never indexed). Docs-only educational resource (no application
 code) - markdown plus a stdlib Python regeneration pipeline that builds the index,
 manifests, and an MkDocs Material site.
 
@@ -49,7 +47,7 @@ manifests, and an MkDocs Material site.
 ## Purpose / Usage
 - Educational resource - no code, just documentation. Start with `docs/ROADMAP.md` for the learning path.
 - `INDEX.md` is the category-grouped entry point in the repo; on the site, `.github/site/home.md` is the landing page and `README.md` stays the GitHub front page.
-- The MkDocs Material site auto-deploys via `.github/workflows/pages.yml` to <https://ai.patrickwiloak.com/>. It shares its near-black look with the sibling `cloud-data-ai-security-zero-to-hero` site; the red accent is this repo's own.
+- The MkDocs Material site auto-deploys via `.github/workflows/pages.yml` to <https://ai.noblerworks.com/>. It shares its near-black look with the sibling `cloud-data-ai-security-zero-to-hero` site; the red accent is this repo's own.
 
 ## House style / conventions
 - After adding or editing any `papers/**/summary.md`, run the regeneration pipeline and commit the result:

@@ -231,7 +231,7 @@ The model ID `claude-haiku-5-5` is Anthropic's smallest current model as of 2026
 - [Notebooks and Colab](notebooks-and-colab.md)
 - [API keys and environment variables](api-keys-and-env-vars.md)
 - [Your first LLM API call](first-llm-api-call.md)
-- The command-line, Git and HTTP basics on the sibling site's [Day One](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/learn/day-one/) section
+- The command-line, Git and HTTP basics on the sibling site's [Day One](https://cloud.noblerworks.com/learn/day-one/) section
 
 ## Sources
 

@@ -119,7 +119,7 @@ By now you have the shared foundation. Where you go next depends on what you wan
 | Understand the research frontier | [Researcher path](researcher-path.md) | [docs/ROADMAP.md](../../docs/ROADMAP.md) |
 | Roll AI out across a team | [AI adoption playbook](../../work/enablement/ai-adoption-playbook.md) | [Measuring AI ROI](../../work/enablement/measuring-ai-roi.md) |
 | Lead or govern AI in an organisation | [AI for leaders](ai-for-leaders.md) | [AI governance program](../../safety/governance/ai-governance-program.md) |
-| Get certified | [AI certifications guide](../../careers/certifications/ai-certifications-guide.md) | [Anthropic certification guides](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/anthropic/) or [NVIDIA tracks](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/nvidia/) |
+| Get certified | [AI certifications guide](../../careers/certifications/ai-certifications-guide.md) | [Anthropic certification guides](https://cloud.noblerworks.com/exams/anthropic/) or [NVIDIA tracks](https://cloud.noblerworks.com/exams/nvidia/) |
 
 ## A realistic schedule
 
@@ -153,7 +153,7 @@ Ten weeks is not long to go from zero to building evaluated, tool-using AI appli
 
 ## Sources
 
-- This path is adapted and expanded from the [AI From Scratch](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/learn/ai-from-scratch/) path on the sibling Cloud, Data, AI and Security Zero to Hero site.
+- This path is adapted and expanded from the [AI From Scratch](https://cloud.noblerworks.com/learn/ai-from-scratch/) path on the sibling Cloud, Data, AI and Security Zero to Hero site.
 - Vaswani et al., "Attention Is All You Need" (2017): https://arxiv.org/abs/1706.03762
 - Lewis et al., "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" (2020): https://arxiv.org/abs/2005.11401
 - Yao et al., "ReAct: Synergizing Reasoning and Acting in Language Models" (2022): https://arxiv.org/abs/2210.03629

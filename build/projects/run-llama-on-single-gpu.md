@@ -151,9 +151,9 @@ When you're ready to deploy this somewhere real:
 - **`--gpu-memory-utilization`** - cap memory used. Drop to 0.85 if the GPU is shared.
 - **`--tensor-parallel-size`** - split across N GPUs. Only worth it for big models.
 - **`--enable-prefix-caching`** - cache attention state for repeated prompt prefixes (e.g. system prompts). Big win.
-- [**Authentication**](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/learn/glossary/#term-authentication-authn): vLLM has no auth by default. Put it behind nginx, an API gateway, or a tiny reverse proxy that validates a header.
+- [**Authentication**](https://cloud.noblerworks.com/learn/glossary/#term-authentication-authn): vLLM has no auth by default. Put it behind nginx, an API gateway, or a tiny reverse proxy that validates a header.
 - **Health endpoint**: `/health`. Wire to your load balancer.
-- [**Container**](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/learn/glossary/#term-container): `vllm/vllm-openai:latest` Docker image is the standard production deploy.
+- [**Container**](https://cloud.noblerworks.com/learn/glossary/#term-container): `vllm/vllm-openai:latest` Docker image is the standard production deploy.
 
 ## Verification
 
@@ -178,9 +178,9 @@ If you rented a GPU, **shut it down** when finished. Idle GPUs are the most comm
 ## Next steps
 
 - **Concepts**: [Inference servers](../../learn/concepts/inference-servers.md), [Quantization and distillation](../../learn/concepts/quantization-and-distillation.md), [LLM basics](../../learn/concepts/llm-basics.md)
-- **Topic**: [LLMs and GenAI](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/topics/llms-and-genai/)
+- **Topic**: [LLMs and GenAI](https://cloud.noblerworks.com/topics/llms-and-genai/)
 - **Comparisons**: [GenAI platforms](../../tools/comparisons/genai-platforms.md)
-- **Certs**: [NVIDIA AI Infrastructure Professional](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/nvidia/ai-infrastructure-professional/), [NVIDIA AI Operations Professional](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/nvidia/ai-operations-professional/)
+- **Certs**: [NVIDIA AI Infrastructure Professional](https://cloud.noblerworks.com/exams/nvidia/ai-infrastructure-professional/), [NVIDIA AI Operations Professional](https://cloud.noblerworks.com/exams/nvidia/ai-operations-professional/)
 
 In the research library:
 

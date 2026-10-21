@@ -20,9 +20,8 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 ## AI Zero to Hero (2026-10-21)
 
 - [x] 2026-10-21 Six guide pillars shipped (98 pages: learn, work, build, tools, safety, careers); site renamed "AI Zero to Hero". Plan: `~/.cache/ai-z2h/PLAN.md`.
-- [x] 2026-10-21 Repo renamed `ai-zero-to-hero`; site on `ai.patrickwiloak.com` (Route 53 CNAME, NW) + robots.txt; `ai.patricklukewilson.com` 301s to it.
-- [ ] 2026-10-28 Patrick: Search Console `sc-domain:patrickwiloak.com` (add it if missing) -> submit `https://ai.patrickwiloak.com/sitemap.xml`, Request indexing on `/`. Replaces the old URL-prefix steps below.
-- [ ] Patrick: turn ON auto-renew for patrickwiloak.com at Namecheap (expires 2027-07-08) - it now hosts this site.
+- [x] 2026-10-21 Repo renamed `ai-zero-to-hero`; site on `ai.noblerworks.com` (Route 53 CNAME, NW) + robots.txt; no redirects from older names.
+- [ ] 2026-10-28 Patrick: Search Console `sc-domain:noblerworks.com` (add if missing) -> submit `https://ai.noblerworks.com/sitemap.xml`, Request indexing on `/`. Replaces the old URL-prefix steps below.
 - [ ] Patrick: upload `assets/brand/social-preview-1280x640.png` (re-rendered 2026-10-21) in Settings -> Social preview.
 - [ ] 2026-11-01: verify secondary-sourced facts - ChatGPT/M365 Copilot prices, Cursor-SpaceX and OpenAI-Promptfoo deals (`grep -rln 'Cursor\|Promptfoo\|Copilot' work tools`).
 - [ ] 2026-11-08: run the untested code in `build/projects/{chatbot-in-an-afternoon,structured-extraction-pipeline,voice-agent,prompt-injection-red-team}.md`.
@@ -61,7 +60,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
       (HTTP 202, all 189 URLs). If a later run 403s, check `<site>/<key>.txt` is served
       (key in `.github/site/indexnow-key.txt`) and rerun `python3 scripts/notify_indexnow.py --all`.
 - [ ] **2026-11-01 check** (re-dated 2026-10-15 after the FAIL below; was 2026-10-14): Search Console -> Sitemaps shows `sitemap.xml` as read with ~190 URLs and
-      Pages -> Indexed above zero (property `https://patrickwiloak.github.io/genai-research-papers-summarized/`, retired,
+      Pages -> Indexed above zero (old URL-prefix property for the github.io URL, retired,
       owners pat@noblerworks.com and the `nobler-reporting` service account).
       ✏️ 2026-10-15 judged: 🔴 FAIL - the sitemap (submitted 2026-09-30) is still `isPending: true`, never
       downloaded, 0 errors; URL Inspection says the home page and `/INDEX/` are "URL is unknown to Google"; 0
@@ -72,7 +71,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
       2026-09-30 baseline, and search queries appearing in Search Console -> Performance.
 - [ ] **Patrick: Bing Webmaster Tools** -> Import from Google Search Console (IndexNow already pings Bing;
       Webmaster Tools shows what it did with them).
-- [x] 2026-10-21 Custom domain decided: `ai.patrickwiloak.com`. Open for zero-to-hero: same move to e.g. `cloud.patrickwiloak.com`.
+- [x] 2026-10-21 Custom domain decided: `ai.noblerworks.com`; zero-to-hero moved to `cloud.noblerworks.com` the same day.
 
 ### Content
 - [x] 2026-10-16 SEO internal-link pass: home page now links 12 classic papers plus a generated "Recently added"
@@ -161,7 +160,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] ~~Give `39-rlvr` a source link (DeepSeek-R1) so the build no longer warns, and exclude it from
       the source-word measurement via `SHARED_SOURCE` so that PDF is not counted twice~~ ✅ done 2026-08-20
 
-- [x] ~~Ship the site rebuild and the 88-107 salvage to `main` (`a559e1e`). CI and the Docs site workflow both green; verified live at <https://patrickwiloak.github.io/genai-research-papers-summarized/> - amber palette, new landing page, 107 papers, and the salvaged summaries all serving 200~~ ✅ done 2026-08-19
+- [x] ~~Ship the site rebuild and the 88-107 salvage to `main` (`a559e1e`). CI and the Docs site workflow both green; verified live on the old github.io URL - amber palette, new landing page, 107 papers, and the salvaged summaries all serving 200~~ ✅ done 2026-08-19
 - [x] ~~Delete `claude/expand-paper-collection-Rif7n` after confirming all 20 salvaged summaries are on `origin/main`; recovery SHA `592be71` if ever needed~~ ✅ done 2026-08-19
 - [x] ~~Delete the `claude/content-gaps-ads-ylbmrr` remote branch - fully merged into `main` (zero commits ahead, zero diff); recovery SHA `aa97fa8` if ever needed~~ ✅ done 2026-08-19
 - [x] ~~Set the repo homepage to the Pages URL so GitHub links the site from the repo header~~ ✅ done 2026-08-19

@@ -227,7 +227,7 @@ Use this before shipping an agent.
 - **[LLM red teaming](llm-red-teaming.md)** - how to test the controls above
 - **[Agentic loops](../../learn/concepts/agentic-loops.md)** - how the loop works
 - **[Tool use and function calling](../../learn/concepts/tool-use-and-function-calling.md)** - the mechanism
-- **[Zero trust architecture](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/resources/architecture-patterns/zero-trust-architecture/)** - the identity model agents belong inside
+- **[Zero trust architecture](https://cloud.noblerworks.com/resources/architecture-patterns/zero-trust-architecture/)** - the identity model agents belong inside
 
 **[📖 OWASP LLM06: Excessive Agency](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)** - canonical entry
 **[📖 OWASP Agentic AI threats and mitigations](https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/)** - agent-specific taxonomy

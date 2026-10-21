@@ -73,7 +73,7 @@ Single API to many models including Anthropic Claude, Meta Llama, Mistral, AI21,
 - **Models**: Claude (full Anthropic family on Bedrock with slight version lag), Llama 3/4, Mistral, Cohere Command, AI21 Jamba, Amazon Titan/Nova.
 - **Tool use**: native; per-model availability varies.
 - **Prompt caching**: yes for supported models (Claude family).
-- **Knowledge Bases**: managed RAG (see [vector DB comparison](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/resources/service-comparison-vector-databases/)).
+- **Knowledge Bases**: managed RAG (see [vector DB comparison](https://cloud.noblerworks.com/resources/service-comparison-vector-databases/)).
 - **Agents for Bedrock**: managed agentic loop with tool/action groups.
 - **Guardrails**: configurable input/output filters, PII detection.
 - **Privacy**: VPC endpoints, PrivateLink, customer-managed KMS, HIPAA BAA, no data used for training.
@@ -216,9 +216,9 @@ Numbers move; this is for relative ordering only. Several sample models below ha
 ## Next steps
 
 - **Concepts**: [LLM basics](../../learn/concepts/llm-basics.md), [Tool use](../../learn/concepts/tool-use-and-function-calling.md), [Prompt caching](../../learn/concepts/prompt-caching.md), [Inference servers](../../learn/concepts/inference-servers.md)
-- **Topic**: [LLMs and GenAI](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/topics/llms-and-genai/)
-- **Related comparisons**: [Vector databases](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/resources/service-comparison-vector-databases/), [Agent frameworks](agent-frameworks.md), [LLM observability](llm-observability.md)
-- **Certs**: [Anthropic Architect Foundations](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/anthropic/claude-certified-architect-foundations/), [AWS AI Practitioner](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/aws/foundational/ai-practitioner-aif-c01/), [Azure AI-102](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/azure/ai-102/), [Databricks GenAI Engineer](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/databricks/genai-engineer-associate/)
+- **Topic**: [LLMs and GenAI](https://cloud.noblerworks.com/topics/llms-and-genai/)
+- **Related comparisons**: [Vector databases](https://cloud.noblerworks.com/resources/service-comparison-vector-databases/), [Agent frameworks](agent-frameworks.md), [LLM observability](llm-observability.md)
+- **Certs**: [Anthropic Architect Foundations](https://cloud.noblerworks.com/exams/anthropic/claude-certified-architect-foundations/), [AWS AI Practitioner](https://cloud.noblerworks.com/exams/aws/foundational/ai-practitioner-aif-c01/), [Azure AI-102](https://cloud.noblerworks.com/exams/azure/ai-102/), [Databricks GenAI Engineer](https://cloud.noblerworks.com/exams/databricks/genai-engineer-associate/)
 
 In the research library:
 

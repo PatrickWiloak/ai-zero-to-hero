@@ -301,9 +301,9 @@ rm -rf ./lora-out ./merged
 ## Next steps
 
 - **Concepts**: [Fine-tuning vs RAG](../../learn/concepts/fine-tuning-vs-rag.md), [Quantization and distillation](../../learn/concepts/quantization-and-distillation.md), [Inference servers](../../learn/concepts/inference-servers.md)
-- **Topic**: [LLMs and GenAI](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/topics/llms-and-genai/)
+- **Topic**: [LLMs and GenAI](https://cloud.noblerworks.com/topics/llms-and-genai/)
 - **Related builds**: [Run Llama on a single GPU](run-llama-on-single-gpu.md), [Set up an eval harness](set-up-eval-harness.md), [Build a RAG pipeline](build-rag-pipeline.md)
-- **Certs**: [NVIDIA AI Infrastructure Professional](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/nvidia/ai-infrastructure-professional/), [Databricks ML Professional](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/databricks/ml-professional/)
+- **Certs**: [NVIDIA AI Infrastructure Professional](https://cloud.noblerworks.com/exams/nvidia/ai-infrastructure-professional/), [Databricks ML Professional](https://cloud.noblerworks.com/exams/databricks/ml-professional/)
 
 In the research library:
 

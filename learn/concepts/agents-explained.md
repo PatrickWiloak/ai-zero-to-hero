@@ -116,7 +116,7 @@ There are real cases - parallel exploration, separation of concerns where contex
 | **Hallucinated tool calls** | Model invents tool names that don't exist | Strict schema validation; reject and re-prompt with the valid tool list |
 | **Wrong arguments** | Calls a real tool with garbage args | Validate args; surface error back to model so it can correct |
 | **Misinterpretation of tool output** | Tool returns "0 results"; model says "Found 1 result" | Stronger formatting in tool responses; explicit "if result is empty, X" instructions |
-| [**Drift**](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/learn/glossary/#term-drift) | After 8 steps the model has forgotten the original goal | Periodic re-injection of original request; summarize-and-restart |
+| [**Drift**](https://cloud.noblerworks.com/learn/glossary/#term-drift) | After 8 steps the model has forgotten the original goal | Periodic re-injection of original request; summarize-and-restart |
 | **Permission escalation** | User says "summarize my emails," agent decides to also delete some | Whitelist allowed actions; require human-in-the-loop for irreversible actions |
 
 ## Real-world agent design rules
@@ -145,7 +145,7 @@ If you're building tools you'd reuse across LLM applications, MCP is the way.
 - **[Prompt engineering](prompt-engineering.md)** - how to write tool-aware prompts
 - **[RAG explained](rag-explained.md)** - retrieval as a tool inside an agent
 - **[Evals for LLMs](evals-for-llms.md)** - testing agent behavior
-- **[Anthropic Claude Developer Foundations cert](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/anthropic/claude-certified-developer-foundations/)** - guided study path for building agents
+- **[Anthropic Claude Developer Foundations cert](https://cloud.noblerworks.com/exams/anthropic/claude-certified-developer-foundations/)** - guided study path for building agents
 
 In the research library:
 

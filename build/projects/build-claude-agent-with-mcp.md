@@ -265,9 +265,9 @@ You know it worked when:
 ## Next steps
 
 - **Concepts**: [Agentic loops](../../learn/concepts/agentic-loops.md), [MCP explained](../../learn/concepts/mcp-explained.md), [Tool use](../../learn/concepts/tool-use-and-function-calling.md), [Structured outputs](../../learn/concepts/structured-outputs.md)
-- **Topic**: [LLMs and GenAI](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/topics/llms-and-genai/)
+- **Topic**: [LLMs and GenAI](https://cloud.noblerworks.com/topics/llms-and-genai/)
 - **Comparisons**: [Agent frameworks](../../tools/comparisons/agent-frameworks.md), [GenAI platforms](../../tools/comparisons/genai-platforms.md)
-- **Anthropic certs**: [Architect Foundations](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/anthropic/claude-certified-architect-foundations/), [Developer Foundations](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/anthropic/claude-certified-developer-foundations/)
+- **Anthropic certs**: [Architect Foundations](https://cloud.noblerworks.com/exams/anthropic/claude-certified-architect-foundations/), [Developer Foundations](https://cloud.noblerworks.com/exams/anthropic/claude-certified-developer-foundations/)
 
 In the research library:
 

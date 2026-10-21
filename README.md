@@ -64,9 +64,9 @@ Underneath sits the research library: the **156 most influential papers** and la
 
 <div align="center" markdown="1">
 
-[![Visit the website](https://img.shields.io/badge/Visit_the_website-ai.patrickwiloak.com-6f42c1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://ai.patrickwiloak.com/)
+[![Visit the website](https://img.shields.io/badge/Visit_the_website-ai.noblerworks.com-6f42c1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://ai.noblerworks.com/)
 
-**[→ ai.patrickwiloak.com](https://ai.patrickwiloak.com/)**
+**[→ ai.noblerworks.com](https://ai.noblerworks.com/)**
 
 Searchable, dark mode, no signup.
 
@@ -108,7 +108,7 @@ Searchable, dark mode, no signup.
 ### Data & Tooling
 - 🧾 **[papers.json](./papers.json)** / **[papers.csv](./papers.csv)** - machine-readable manifest of every paper
 - 🛠️ **[scripts/build_manifest.py](./scripts/build_manifest.py)** - regenerates frontmatter, the manifest, `INDEX.md`, and the site nav
-- 🌐 **Docs site** - read it all at **[ai.patrickwiloak.com](https://ai.patrickwiloak.com/)** - searchable, dark mode, no signup. See [CONTRIBUTING.md](./CONTRIBUTING.md#previewing-the-site-locally) to build it locally.
+- 🌐 **Docs site** - read it all at **[ai.noblerworks.com](https://ai.noblerworks.com/)** - searchable, dark mode, no signup. See [CONTRIBUTING.md](./CONTRIBUTING.md#previewing-the-site-locally) to build it locally.
 - 🤝 **[CONTRIBUTING.md](./CONTRIBUTING.md)** - how to add a paper, house style, and the build workflow
 
 ---
@@ -854,10 +854,10 @@ Free, open-source projects from the [Nobler Works](https://noblerworks.com/) tea
 
 | Project | What it is | |
 |---|---|---|
-| 🛰️ **[IRONSIGHT](https://github.com/NoblerWorks-HQ/IRONSIGHT)** | Real-time OSINT command center - 50+ live intel feeds, no API keys | **[Website →](https://noblerworks-hq.github.io/IRONSIGHT/)** |
-| 🌍 **[War Games](https://github.com/NoblerWorks-HQ/WarGames)** | NATO, Russia, and China on one map, each commanded by an LLM | **[Website →](https://noblerworks-hq.github.io/WarGames/)** |
+| 🛰️ **[IRONSIGHT](https://github.com/NoblerWorks-HQ/IRONSIGHT)** | Real-time OSINT command center - 50+ live intel feeds, no API keys | **[Website →](https://ironsight.noblerworks.com/)** |
+| 🌍 **[War Games](https://github.com/NoblerWorks-HQ/WarGames)** | NATO, Russia, and China on one map, each commanded by an LLM | **[Website →](https://wargames.noblerworks.com/)** |
 | ⛏️ **[Minecraft Agentic Builder](https://github.com/NoblerWorks-HQ/minecraft-agentic)** | A crew of AI agents builds Minecraft worlds live in your browser | [Repo →](https://github.com/NoblerWorks-HQ/minecraft-agentic) |
-| ☁️ **[Cloud, Data, AI & Security: Zero to Hero](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero)** | 149 cert study guides across 27 providers, plus hands-on builds | **[Website →](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/)** |
+| ☁️ **[Cloud, Data, AI & Security: Zero to Hero](https://github.com/PatrickWiloak/cloud-data-ai-security-zero-to-hero)** | 149 cert study guides across 27 providers, plus hands-on builds | **[Website →](https://cloud.noblerworks.com/)** |
 | 🧠 **[Bedrock RAG with S3 Vectors](https://github.com/PatrickWiloak/bedrock-rag-s3-vectors-tutorial)** | Deploy document Q&A on AWS Bedrock in under 10 minutes (CDK or Terraform) | [Repo →](https://github.com/PatrickWiloak/bedrock-rag-s3-vectors-tutorial) |
 | 🏃 **[Proper Training for Distance Running](https://github.com/PatrickWiloak/proper-distance-running-training-guidance)** | Evidence-based running guide with twelve 5K-to-marathon plans | **[Read online →](https://achilles.fit/guides)** |
 

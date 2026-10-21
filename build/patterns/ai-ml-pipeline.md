@@ -164,7 +164,7 @@ flowchart LR
 | **ML Platform** | Amazon SageMaker | End-to-end ML platform |
 | **Feature Store** | SageMaker Feature Store | Online and offline feature storage |
 | **Experiment Tracking** | SageMaker Experiments | Track training runs and metrics |
-| [**Training**](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/learn/glossary/#term-training) | SageMaker Training Jobs | Managed training infrastructure |
+| [**Training**](https://cloud.noblerworks.com/learn/glossary/#term-training) | SageMaker Training Jobs | Managed training infrastructure |
 | **Tuning** | SageMaker Hyperparameter Tuning | Automated hyperparameter optimization |
 | **Model Registry** | SageMaker Model Registry | Model versioning and approval |
 | **Serving** | SageMaker Endpoints | Real-time and serverless inference |
@@ -336,7 +336,7 @@ def pipeline():
 
 | Aspect | Online Store | Offline Store |
 |--------|-------------|---------------|
-| [**Latency**](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/learn/glossary/#term-latency) | Milliseconds | Seconds to minutes |
+| [**Latency**](https://cloud.noblerworks.com/learn/glossary/#term-latency) | Milliseconds | Seconds to minutes |
 | **Use Case** | Real-time inference | Training, batch inference |
 | **Storage** | Key-value (DynamoDB, Bigtable) | Data lake (S3, GCS) |
 | **Freshness** | Near real-time | Batch updated |
@@ -378,7 +378,7 @@ def pipeline():
 1. **Baseline**: Capture statistics from training data as the baseline
 2. **Capture**: Log all inference inputs and outputs
 3. **Analyze**: Compare current data against baseline periodically
-4. [**Alert**](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/learn/glossary/#term-alert): Notify when drift exceeds thresholds
+4. [**Alert**](https://cloud.noblerworks.com/learn/glossary/#term-alert): Notify when drift exceeds thresholds
 5. **Investigate**: Root cause analysis of drift
 6. **Retrain**: Trigger automated or manual retraining
 
@@ -479,8 +479,8 @@ def pipeline():
 ---
 
 **Related Guides:**
-- [Data Pipeline ETL Architecture](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/resources/architecture-patterns/data-pipeline-etl/)
-- [Lakehouse Architecture](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/resources/architecture-patterns/lakehouse-architecture/)
+- [Data Pipeline ETL Architecture](https://cloud.noblerworks.com/resources/architecture-patterns/data-pipeline-etl/)
+- [Lakehouse Architecture](https://cloud.noblerworks.com/resources/architecture-patterns/lakehouse-architecture/)
 - [Service Comparison - AI/ML](../../tools/comparisons/cloud-ai-ml-services.md)
 
 ## Next steps

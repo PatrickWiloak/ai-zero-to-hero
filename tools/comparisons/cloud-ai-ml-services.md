@@ -910,10 +910,10 @@ response = openai.ChatCompletion.create(
 
 ## Next steps
 
-- [Compute Service Comparison](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/resources/service-comparison-compute/)
-- [Storage Service Comparison](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/resources/service-comparison-storage/)
-- [Database Service Comparison](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/resources/service-comparison-databases/)
-- [Networking Service Comparison](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/resources/service-comparison-networking/)
+- [Compute Service Comparison](https://cloud.noblerworks.com/resources/service-comparison-compute/)
+- [Storage Service Comparison](https://cloud.noblerworks.com/resources/service-comparison-storage/)
+- [Database Service Comparison](https://cloud.noblerworks.com/resources/service-comparison-databases/)
+- [Networking Service Comparison](https://cloud.noblerworks.com/resources/service-comparison-networking/)
 
 ---
 
@@ -930,7 +930,7 @@ response = openai.ChatCompletion.create(
 **Related Guides:**
 - [GenAI Platforms Comparison](genai-platforms.md)
 - [LLM Observability Comparison](llm-observability.md)
-- [Vector Databases Comparison](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/resources/service-comparison-vector-databases/)
+- [Vector Databases Comparison](https://cloud.noblerworks.com/resources/service-comparison-vector-databases/)
 - [Agent Frameworks Comparison](agent-frameworks.md)
 - [LLM Serving Decision Matrix](../decisions/llm-serving.md)
 

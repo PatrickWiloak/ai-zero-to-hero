@@ -4,9 +4,9 @@
 **Last reviewed:** 2026-10-21
 
 ---
-Tracing, evaluating, debugging, and managing prompts in LLM apps. Different category from generic [observability tools](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/resources/service-comparison-observability-monitoring/) - these are tuned for the model-call-and-trace shape that agents and RAG produce.
+Tracing, evaluating, debugging, and managing prompts in LLM apps. Different category from generic [observability tools](https://cloud.noblerworks.com/resources/service-comparison-observability-monitoring/) - these are tuned for the model-call-and-trace shape that agents and RAG produce.
 
-For the underlying mental model see **[Observability basics](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/learn/concepts/observability-basics/)** and **[Evals for LLMs](../../learn/concepts/evals-for-llms.md)**.
+For the underlying mental model see **[Observability basics](https://cloud.noblerworks.com/learn/concepts/observability-basics/)** and **[Evals for LLMs](../../learn/concepts/evals-for-llms.md)**.
 
 ## Decision matrix
 
@@ -171,11 +171,11 @@ flowchart TD
 
 ## Next steps
 
-- **Concepts**: [Observability basics](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/learn/concepts/observability-basics/), [Evals for LLMs](../../learn/concepts/evals-for-llms.md), [Agentic loops](../../learn/concepts/agentic-loops.md)
-- **Topic**: [LLMs and GenAI](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/topics/llms-and-genai/), [Observability](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/topics/observability/)
-- **Related comparisons**: [Observability and monitoring](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/resources/service-comparison-observability-monitoring/), [GenAI platforms](genai-platforms.md), [Agent frameworks](agent-frameworks.md)
+- **Concepts**: [Observability basics](https://cloud.noblerworks.com/learn/concepts/observability-basics/), [Evals for LLMs](../../learn/concepts/evals-for-llms.md), [Agentic loops](../../learn/concepts/agentic-loops.md)
+- **Topic**: [LLMs and GenAI](https://cloud.noblerworks.com/topics/llms-and-genai/), [Observability](https://cloud.noblerworks.com/topics/observability/)
+- **Related comparisons**: [Observability and monitoring](https://cloud.noblerworks.com/resources/service-comparison-observability-monitoring/), [GenAI platforms](genai-platforms.md), [Agent frameworks](agent-frameworks.md)
 - **Build**: [Set up an eval harness](../../build/projects/set-up-eval-harness.md)
-- **Certs**: [NVIDIA AI Operations Professional](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/nvidia/ai-operations-professional/), [Anthropic Claude Developer Foundations](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/anthropic/claude-certified-developer-foundations/)
+- **Certs**: [NVIDIA AI Operations Professional](https://cloud.noblerworks.com/exams/nvidia/ai-operations-professional/), [Anthropic Claude Developer Foundations](https://cloud.noblerworks.com/exams/anthropic/claude-certified-developer-foundations/)
 
 In the research library:
 

@@ -225,7 +225,7 @@ Summaries are not a substitute for the paper. Every one links to the original, a
 Built by **[Patrick Wiloak](https://patricklukewilson.com)** - ex-AWS Solutions Architect, 10 years in tech, multi-cloud certified.
 [YouTube](https://youtube.com/@patrickwiloak) · [LinkedIn](https://www.linkedin.com/in/patricklukewilson/) · [Source on GitHub](https://github.com/PatrickWiloak/genai-research-papers-summarized)
 
-Learning the cloud, data, and security side too? **[Cloud, Data, AI and Security - Zero to Hero](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/)** is the sibling site: concepts, hands-on builds, and the most comprehensive certification library on GitHub.
+Learning the cloud, data, and security side too? **[Cloud, Data, AI and Security - Zero to Hero](https://cloud.noblerworks.com/)** is the sibling site: concepts, hands-on builds, and the most comprehensive certification library on GitHub.
 
 We build custom software and products at **[Nobler Works](https://noblerworks.com/)**. Open-source training like this is how we give back - we are nothing without the community that supports us. If you need software built, [get in touch](https://noblerworks.com/).
 

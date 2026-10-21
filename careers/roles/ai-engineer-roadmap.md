@@ -43,7 +43,7 @@ flowchart LR
 - Enough maths to read diagrams and papers: vectors, dot products, probability basics. You do not need calculus to start building.
 - Cloud basics on one provider.
 
-**Optional certification:** a cloud fundamentals exam if you are new to cloud, for example [AWS Cloud Practitioner](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/aws/foundational/cloud-practitioner-clf-c02/) or [Google Cloud Digital Leader](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/gcp/cloud-digital-leader/).
+**Optional certification:** a cloud fundamentals exam if you are new to cloud, for example [AWS Cloud Practitioner](https://cloud.noblerworks.com/exams/aws/foundational/cloud-practitioner-clf-c02/) or [Google Cloud Digital Leader](https://cloud.noblerworks.com/exams/gcp/cloud-digital-leader/).
 
 **Build:** a small web API that stores and returns data, deployed somewhere public.
 
@@ -57,7 +57,7 @@ flowchart LR
 - [Prompt engineering](../../learn/concepts/prompt-engineering.md) and [hallucinations](../../learn/concepts/hallucinations.md).
 - Running a model locally: [run a model locally](../../learn/day-one/run-a-model-locally.md).
 
-**Optional certification:** [NVIDIA Generative AI LLMs Associate (NCA-GENL)](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/nvidia/genai-llms-associate/) or [AWS AI Practitioner (AIF-C01)](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/aws/foundational/ai-practitioner-aif-c01/) to structure your study. Both are foundational.
+**Optional certification:** [NVIDIA Generative AI LLMs Associate (NCA-GENL)](https://cloud.noblerworks.com/exams/nvidia/genai-llms-associate/) or [AWS AI Practitioner (AIF-C01)](https://cloud.noblerworks.com/exams/aws/foundational/ai-practitioner-aif-c01/) to structure your study. Both are foundational.
 
 **Build:** [chatbot in an afternoon](../../build/projects/chatbot-in-an-afternoon.md).
 
@@ -88,9 +88,9 @@ This phase is what separates demo builders from people companies trust with prod
 **Build:** [set up an eval harness](../../build/projects/set-up-eval-harness.md) wired into CI for your phase 2 project, and the [prompt injection red team](../../build/projects/prompt-injection-red-team.md) against it. Write up the results.
 
 **Certifications worth considering here (pick by your stack):**
-- Claude: [Claude Certified Developer - Foundations (CCDV-F)](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/anthropic/claude-certified-developer-foundations/) or [Claude Certified Architect - Foundations (CCAR-F)](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/anthropic/claude-certified-architect-foundations/).
-- Databricks: [Generative AI Engineer Associate](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/databricks/genai-engineer-associate/).
-- Oracle: [OCI Generative AI Professional](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/oracle/oci-generative-ai-professional/).
+- Claude: [Claude Certified Developer - Foundations (CCDV-F)](https://cloud.noblerworks.com/exams/anthropic/claude-certified-developer-foundations/) or [Claude Certified Architect - Foundations (CCAR-F)](https://cloud.noblerworks.com/exams/anthropic/claude-certified-architect-foundations/).
+- Databricks: [Generative AI Engineer Associate](https://cloud.noblerworks.com/exams/databricks/genai-engineer-associate/).
+- Oracle: [OCI Generative AI Professional](https://cloud.noblerworks.com/exams/oracle/oci-generative-ai-professional/).
 
 ## Phase 4: depth (2-3 months)
 
@@ -103,10 +103,10 @@ This phase is what separates demo builders from people companies trust with prod
 **Build:** [build a Claude agent with MCP](../../build/projects/build-claude-agent-with-mcp.md), [fine-tune with LoRA](../../build/projects/fine-tune-with-lora.md), [run Llama on a single GPU](../../build/projects/run-llama-on-single-gpu.md).
 
 **Certifications worth considering here:**
-- AWS: [Generative AI Developer - Professional (AIP-C01)](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/aws/professional/genai-developer-aip-c01/).
-- NVIDIA: [Agentic AI Professional (NCP-AAI)](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/nvidia/agentic-ai-professional/) or [Generative AI LLMs Professional (NCP-GENL)](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/nvidia/genai-llms-professional/).
-- Google Cloud: [Professional Machine Learning Engineer](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/gcp/machine-learning-engineer/).
-- Claude: [Claude Certified Architect - Professional (CCAR-P)](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/anthropic/claude-certified-architect-professional/).
+- AWS: [Generative AI Developer - Professional (AIP-C01)](https://cloud.noblerworks.com/exams/aws/professional/genai-developer-aip-c01/).
+- NVIDIA: [Agentic AI Professional (NCP-AAI)](https://cloud.noblerworks.com/exams/nvidia/agentic-ai-professional/) or [Generative AI LLMs Professional (NCP-GENL)](https://cloud.noblerworks.com/exams/nvidia/genai-llms-professional/).
+- Google Cloud: [Professional Machine Learning Engineer](https://cloud.noblerworks.com/exams/gcp/machine-learning-engineer/).
+- Claude: [Claude Certified Architect - Professional (CCAR-P)](https://cloud.noblerworks.com/exams/anthropic/claude-certified-architect-professional/).
 
 ## Phase 5: specialise (ongoing)
 
@@ -159,11 +159,11 @@ For each project: a public repository, a README with the problem, architecture d
 - [AI careers map](ai-careers-map.md) if you are still choosing a role
 - [AI engineer path](../../learn/start-here/ai-engineer-path.md) for the learning sequence in more detail
 - [AI certifications guide](../certifications/ai-certifications-guide.md)
-- Sibling site's full roadmap (with cloud certification detail): [AI/ML engineer roadmap on Zero to Hero](https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/resources/certification-roadmap-ai-ml-engineer/)
+- Sibling site's full roadmap (with cloud certification detail): [AI/ML engineer roadmap on Zero to Hero](https://cloud.noblerworks.com/resources/certification-roadmap-ai-ml-engineer/)
 
 ## Sources
 
-- Zero to Hero, AI/ML Engineer Roadmap (phases, role definition, skills; used as raw material): https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/resources/certification-roadmap-ai-ml-engineer/
+- Zero to Hero, AI/ML Engineer Roadmap (phases, role definition, skills; used as raw material): https://cloud.noblerworks.com/resources/certification-roadmap-ai-ml-engineer/
 - AWS, Machine Learning Engineer - Associate (MLA-C01 retirement, MLA-C02 beta): https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/
 - Microsoft Learn, retired certification exams (AI-900, AI-102, DP-100): https://learn.microsoft.com/en-us/credentials/support/retired-certification-exams
-- Anthropic certification program (via the Zero to Hero Anthropic index; Pearson VUE delivery, launched March 2026): https://patrickwiloak.github.io/cloud-data-ai-security-zero-to-hero/exams/anthropic/
+- Anthropic certification program (via the Zero to Hero Anthropic index; Pearson VUE delivery, launched March 2026): https://cloud.noblerworks.com/exams/anthropic/
