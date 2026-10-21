@@ -137,7 +137,7 @@ A realistic sequence for an organization starting from nothing.
 |---|---|
 | **[ISO/IEC 42001](iso-42001.md)** | 42001 is the certifiable management system; AI RMF is the risk method you can run inside it. They map cleanly and are commonly used together |
 | **[EU AI Act](eu-ai-act-compliance.md)** | AI RMF is voluntary and US-origin; the Act is binding law. Running AI RMF produces much of the evidence Articles 9 to 15 require, but is not itself conformity |
-| **[SOC 2](https://cloud.noblerworks.com/resources/compliance-guides/soc2/)** | SOC 2 covers the service controls around the system. AI-specific risks are largely out of scope, so enterprise buyers increasingly ask for both |
+| **[SOC 2](https://security.noblerworks.com/resources/compliance-guides/soc2/)** | SOC 2 covers the service controls around the system. AI-specific risks are largely out of scope, so enterprise buyers increasingly ask for both |
 | **NIST CSF 2.0** | Same structural style (Govern plus functions). If you already run CSF, AI RMF will feel familiar and can share governance plumbing |
 | **NIST SP 800-53** | Control catalog for the underlying cloud and application controls the AI system inherits |
 

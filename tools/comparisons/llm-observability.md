@@ -172,10 +172,10 @@ flowchart TD
 ## Next steps
 
 - **Concepts**: [Observability basics](https://cloud.noblerworks.com/learn/concepts/observability-basics/), [Evals for LLMs](../../learn/concepts/evals-for-llms.md), [Agentic loops](../../learn/concepts/agentic-loops.md)
-- **Topic**: [LLMs and GenAI](https://cloud.noblerworks.com/topics/llms-and-genai/), [Observability](https://cloud.noblerworks.com/topics/observability/)
+- **Topic**: [LLMs and GenAI](../../learn/README.md), [Observability](https://cloud.noblerworks.com/topics/observability/)
 - **Related comparisons**: [Observability and monitoring](https://cloud.noblerworks.com/resources/service-comparison-observability-monitoring/), [GenAI platforms](genai-platforms.md), [Agent frameworks](agent-frameworks.md)
 - **Build**: [Set up an eval harness](../../build/projects/set-up-eval-harness.md)
-- **Certs**: [NVIDIA AI Operations Professional](https://cloud.noblerworks.com/exams/nvidia/ai-operations-professional/), [Anthropic Claude Developer Foundations](https://cloud.noblerworks.com/exams/anthropic/claude-certified-developer-foundations/)
+- **Certs**: [NVIDIA AI Operations Professional](../../certifications/nvidia/ai-operations-professional/README.md), [Anthropic Claude Developer Foundations](../../certifications/anthropic/claude-certified-developer-foundations/README.md)
 
 In the research library:
 

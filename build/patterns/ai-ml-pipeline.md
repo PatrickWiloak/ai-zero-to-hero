@@ -479,8 +479,8 @@ def pipeline():
 ---
 
 **Related Guides:**
-- [Data Pipeline ETL Architecture](https://cloud.noblerworks.com/resources/architecture-patterns/data-pipeline-etl/)
-- [Lakehouse Architecture](https://cloud.noblerworks.com/resources/architecture-patterns/lakehouse-architecture/)
+- [Data Pipeline ETL Architecture](https://data.noblerworks.com/resources/architecture-patterns/data-pipeline-etl/)
+- [Lakehouse Architecture](https://data.noblerworks.com/resources/architecture-patterns/lakehouse-architecture/)
 - [Service Comparison - AI/ML](../../tools/comparisons/cloud-ai-ml-services.md)
 
 ## Next steps

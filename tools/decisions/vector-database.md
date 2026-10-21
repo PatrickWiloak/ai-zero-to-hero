@@ -4,7 +4,7 @@
 **Last reviewed:** 2026-10-21
 
 ---
-You have a RAG / semantic search workload. You need to pick a vector database. This page scores the major options against criteria that actually decide the choice in production. For a deeper write-up of each product, see [service-comparison-vector-databases.md](https://cloud.noblerworks.com/resources/service-comparison-vector-databases/).
+You have a RAG / semantic search workload. You need to pick a vector database. This page scores the major options against criteria that actually decide the choice in production. For a deeper write-up of each product, see [service-comparison-vector-databases.md](vector-database.md).
 
 ## Criteria
 
@@ -58,7 +58,7 @@ Scale: 1 (poor) → 5 (excellent).
 
 - [Embeddings and vector search](../../learn/concepts/embeddings-and-vector-search.md) - the underlying concept
 - [RAG explained](../../learn/concepts/rag-explained.md) - the most common use case
-- [service-comparison-vector-databases.md](https://cloud.noblerworks.com/resources/service-comparison-vector-databases/) - per-product detail
+- [service-comparison-vector-databases.md](vector-database.md) - per-product detail
 - [Build a RAG pipeline](../../build/projects/build-rag-pipeline.md) - hands-on with pgvector
 
 In the research library:

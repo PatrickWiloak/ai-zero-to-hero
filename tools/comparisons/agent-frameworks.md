@@ -185,10 +185,10 @@ flowchart TD
 ## Next steps
 
 - **Concepts**: [Agentic loops](../../learn/concepts/agentic-loops.md), [Tool use](../../learn/concepts/tool-use-and-function-calling.md), [MCP explained](../../learn/concepts/mcp-explained.md)
-- **Topic**: [LLMs and GenAI](https://cloud.noblerworks.com/topics/llms-and-genai/)
+- **Topic**: [LLMs and GenAI](../../learn/README.md)
 - **Related comparisons**: [GenAI platforms](genai-platforms.md), [LLM observability](llm-observability.md)
 - **Build**: [Build a Claude agent with MCP](../../build/projects/build-claude-agent-with-mcp.md)
-- **Certs**: [Anthropic Architect Foundations + Advanced](https://cloud.noblerworks.com/exams/anthropic/claude-certified-architect-foundations/), [NVIDIA Agentic AI Professional](https://cloud.noblerworks.com/exams/nvidia/agentic-ai-professional/)
+- **Certs**: [Anthropic Architect Foundations + Advanced](../../certifications/anthropic/claude-certified-architect-foundations/README.md), [NVIDIA Agentic AI Professional](../../certifications/nvidia/agentic-ai-professional/README.md)
 
 In the research library:
 

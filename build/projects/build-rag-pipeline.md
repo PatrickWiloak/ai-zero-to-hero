@@ -260,7 +260,7 @@ docker stop rag-pg && docker rm rag-pg
 
 ## Extensions
 
-- Replace pgvector with **[Pinecone, Weaviate, or Qdrant](https://cloud.noblerworks.com/resources/service-comparison-vector-databases/)** as scale grows
+- Replace pgvector with **[Pinecone, Weaviate, or Qdrant](../../tools/decisions/vector-database.md)** as scale grows
 - Add **[LLM observability](../../tools/comparisons/llm-observability.md)** to trace queries in production
 - Wrap as an MCP server so a Claude agent can use this RAG ([Build a Claude agent with MCP](build-claude-agent-with-mcp.md))
 - Move embedding from local model to a hosted embedding API (Voyage, OpenAI, Cohere) when latency matters
@@ -268,8 +268,8 @@ docker stop rag-pg && docker rm rag-pg
 ## Next steps
 
 - **Concepts**: [RAG explained](../../learn/concepts/rag-explained.md), [Embeddings](../../learn/concepts/embeddings-and-vector-search.md), [Context windows](../../learn/concepts/context-windows-and-management.md)
-- **Topic**: [LLMs and GenAI](https://cloud.noblerworks.com/topics/llms-and-genai/)
-- **Comparisons**: [Vector databases](https://cloud.noblerworks.com/resources/service-comparison-vector-databases/), [GenAI platforms](../../tools/comparisons/genai-platforms.md)
+- **Topic**: [LLMs and GenAI](../../learn/README.md)
+- **Comparisons**: [Vector databases](../../tools/decisions/vector-database.md), [GenAI platforms](../../tools/comparisons/genai-platforms.md)
 - **Architecture pattern**: [AI/ML pipeline](../patterns/ai-ml-pipeline.md)
 
 In the research library:

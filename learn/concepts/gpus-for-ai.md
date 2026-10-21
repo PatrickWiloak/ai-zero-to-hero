@@ -108,7 +108,7 @@ The most common mistake is buying capacity for a workload that a hosted API woul
 - **[Inference servers](inference-servers.md)** - getting throughput out of the GPU you have
 - **[Context windows and management](context-windows-and-management.md)** - why the KV cache grows
 - **[Run Llama on a single GPU](../../build/projects/run-llama-on-single-gpu.md)** - a worked build
-- **[NVIDIA certifications](https://cloud.noblerworks.com/exams/nvidia/)** - the vendor track covering this material in depth
+- **[NVIDIA certifications](../../certifications/nvidia/README.md)** - the vendor track covering this material in depth
 
 In the research library:
 

@@ -35,19 +35,19 @@ Anthropic launched its certification program in March 2026 and expanded it to fo
 
 | Certification | Level | Cost | Validity | Study guide |
 |---|---|---|---|---|
-| Claude Certified Associate - Foundations (CCAO-F) | Foundational, non-coding | $99 | 12 months | [Guide](https://cloud.noblerworks.com/exams/anthropic/claude-certified-associate-foundations/) |
-| Claude Certified Developer - Foundations (CCDV-F) | Foundational, developer | $125 | 12 months | [Guide](https://cloud.noblerworks.com/exams/anthropic/claude-certified-developer-foundations/) |
-| Claude Certified Architect - Foundations (CCAR-F) | Foundational, architecture | $125 | 12 months | [Guide](https://cloud.noblerworks.com/exams/anthropic/claude-certified-architect-foundations/) |
-| Claude Certified Architect - Professional (CCAR-P) | Professional | $175 | 12 months | [Guide](https://cloud.noblerworks.com/exams/anthropic/claude-certified-architect-professional/) |
+| Claude Certified Associate - Foundations (CCAO-F) | Foundational, non-coding | $99 | 12 months | [Guide](../../certifications/anthropic/claude-certified-associate-foundations/README.md) |
+| Claude Certified Developer - Foundations (CCDV-F) | Foundational, developer | $125 | 12 months | [Guide](../../certifications/anthropic/claude-certified-developer-foundations/README.md) |
+| Claude Certified Architect - Foundations (CCAR-F) | Foundational, architecture | $125 | 12 months | [Guide](../../certifications/anthropic/claude-certified-architect-foundations/README.md) |
+| Claude Certified Architect - Professional (CCAR-P) | Professional | $175 | 12 months | [Guide](../../certifications/anthropic/claude-certified-architect-professional/README.md) |
 
-Also on Zero to Hero: a [Claude prompt engineering study track](https://cloud.noblerworks.com/exams/anthropic/claude-prompt-engineering-specialist/) (self-directed study, not an official certification).
+Also on Zero to Hero: a [Claude prompt engineering study track](../../certifications/anthropic/claude-prompt-engineering-specialist/README.md) (self-directed study, not an official certification).
 
 ### AWS
 
 | Certification | Level | Cost | Validity | Study guide |
 |---|---|---|---|---|
-| AWS Certified AI Practitioner (AIF-C01) | Foundational | $150 (discount for existing AWS certification holders) | 3 years | [Guide](https://cloud.noblerworks.com/exams/aws/foundational/ai-practitioner-aif-c01/) |
-| AWS Certified Generative AI Developer - Professional (AIP-C01) | Professional | $300 (discount for existing holders) | 3 years | [Guide](https://cloud.noblerworks.com/exams/aws/professional/genai-developer-aip-c01/) |
+| AWS Certified AI Practitioner (AIF-C01) | Foundational | $150 (discount for existing AWS certification holders) | 3 years | [Guide](../../certifications/aws/foundational/ai-practitioner-aif-c01/README.md) |
+| AWS Certified Generative AI Developer - Professional (AIP-C01) | Professional | $300 (discount for existing holders) | 3 years | [Guide](../../certifications/aws/professional/genai-developer-aip-c01/README.md) |
 
 AWS's associate-level ML exam is between versions: MLA-C01 retired in September 2026 and MLA-C02 was in beta (see the retired list).
 
@@ -55,58 +55,58 @@ AWS's associate-level ML exam is between versions: MLA-C01 retired in September 
 
 | Certification | Level | Cost | Validity | Study guide |
 |---|---|---|---|---|
-| Generative AI Leader | Foundational, business | $99 plus tax | 3 years | [Guide](https://cloud.noblerworks.com/exams/gcp/generative-ai-leader/) |
-| Professional Machine Learning Engineer | Professional | $200 | 2 years | [Guide](https://cloud.noblerworks.com/exams/gcp/machine-learning-engineer/) |
+| Generative AI Leader | Foundational, business | $99 plus tax | 3 years | [Guide](../../certifications/gcp/generative-ai-leader/README.md) |
+| Professional Machine Learning Engineer | Professional | $200 | 2 years | [Guide](../../certifications/gcp/machine-learning-engineer/README.md) |
 
-Also on Zero to Hero: a [Google Cloud generative AI study track](https://cloud.noblerworks.com/exams/gcp/genai/) that spans several exams.
+Also on Zero to Hero: a [Google Cloud generative AI study track](../../certifications/gcp/genai/README.md) that spans several exams.
 
 ### NVIDIA
 
 | Certification | Level | Cost | Validity | Study guide |
 |---|---|---|---|---|
-| Generative AI and LLMs Associate (NCA-GENL) | Associate | $125 | 2 years | [Guide](https://cloud.noblerworks.com/exams/nvidia/genai-llms-associate/) |
-| Multimodal Generative AI Associate (NCA-MMGA) | Associate | $135 | 2 years | [Guide](https://cloud.noblerworks.com/exams/nvidia/multimodal-genai-associate/) |
-| AI Infrastructure and Operations Associate (NCA-AIIO) | Associate | $135 | 2 years | [Guide](https://cloud.noblerworks.com/exams/nvidia/ai-infrastructure-operations-associate/) |
-| Generative AI and LLMs Professional (NCP-GENL) | Professional | $200 | 2 years | [Guide](https://cloud.noblerworks.com/exams/nvidia/genai-llms-professional/) |
-| Agentic AI Professional (NCP-AAI) | Professional | $200 | 2 years | [Guide](https://cloud.noblerworks.com/exams/nvidia/agentic-ai-professional/) |
-| AI Infrastructure Professional (NCP-AII) | Professional | $200 | 2 years | [Guide](https://cloud.noblerworks.com/exams/nvidia/ai-infrastructure-professional/) |
-| AI Operations Professional (NCP-AIO) | Professional | $200 | 2 years | [Guide](https://cloud.noblerworks.com/exams/nvidia/ai-operations-professional/) |
-| Accelerated Data Science Professional (NCP-ADS) | Professional | $200 | 2 years | [Guide](https://cloud.noblerworks.com/exams/nvidia/accelerated-data-science-professional/) |
+| Generative AI and LLMs Associate (NCA-GENL) | Associate | $125 | 2 years | [Guide](../../certifications/nvidia/genai-llms-associate/README.md) |
+| Multimodal Generative AI Associate (NCA-MMGA) | Associate | $135 | 2 years | [Guide](../../certifications/nvidia/multimodal-genai-associate/README.md) |
+| AI Infrastructure and Operations Associate (NCA-AIIO) | Associate | $135 | 2 years | [Guide](../../certifications/nvidia/ai-infrastructure-operations-associate/README.md) |
+| Generative AI and LLMs Professional (NCP-GENL) | Professional | $200 | 2 years | [Guide](../../certifications/nvidia/genai-llms-professional/README.md) |
+| Agentic AI Professional (NCP-AAI) | Professional | $200 | 2 years | [Guide](../../certifications/nvidia/agentic-ai-professional/README.md) |
+| AI Infrastructure Professional (NCP-AII) | Professional | $200 | 2 years | [Guide](../../certifications/nvidia/ai-infrastructure-professional/README.md) |
+| AI Operations Professional (NCP-AIO) | Professional | $200 | 2 years | [Guide](../../certifications/nvidia/ai-operations-professional/README.md) |
+| Accelerated Data Science Professional (NCP-ADS) | Professional | $200 | 2 years | [Guide](../../certifications/nvidia/accelerated-data-science-professional/README.md) |
 
 ### Databricks
 
 | Certification | Level | Cost | Validity | Study guide |
 |---|---|---|---|---|
-| Generative AI Engineer Associate | Associate | $200 | 2 years | [Guide](https://cloud.noblerworks.com/exams/databricks/genai-engineer-associate/) |
-| Machine Learning Associate | Associate | $200 | 2 years | [Guide](https://cloud.noblerworks.com/exams/databricks/ml-associate/) |
-| Machine Learning Professional | Professional | $300 | 2 years | [Guide](https://cloud.noblerworks.com/exams/databricks/ml-professional/) |
+| Generative AI Engineer Associate | Associate | $200 | 2 years | [Guide](../../certifications/databricks/genai-engineer-associate/README.md) |
+| Machine Learning Associate | Associate | $200 | 2 years | [Guide](../../certifications/databricks/ml-associate/README.md) |
+| Machine Learning Professional | Professional | $300 | 2 years | [Guide](../../certifications/databricks/ml-professional/README.md) |
 
 ### Oracle Cloud (OCI)
 
 | Certification | Level | Cost | Validity | Study guide |
 |---|---|---|---|---|
-| OCI AI Foundations Associate | Foundational | $245 list; Oracle often runs free exam periods | Re-versioned yearly | [Guide](https://cloud.noblerworks.com/exams/oracle/oci-ai-foundations/) |
-| OCI Generative AI Professional | Professional | $245 list; periodic free windows | Re-versioned yearly | [Guide](https://cloud.noblerworks.com/exams/oracle/oci-generative-ai-professional/) |
+| OCI AI Foundations Associate | Foundational | $245 list; Oracle often runs free exam periods | Re-versioned yearly | [Guide](../../certifications/oracle/oci-ai-foundations/README.md) |
+| OCI Generative AI Professional | Professional | $245 list; periodic free windows | Re-versioned yearly | [Guide](../../certifications/oracle/oci-generative-ai-professional/README.md) |
 
 ### GitHub
 
 | Certification | Level | Cost | Validity | Study guide |
 |---|---|---|---|---|
-| GitHub Copilot | Practitioner | $99 | 2 years | [Guide](https://cloud.noblerworks.com/exams/github/copilot/) |
+| GitHub Copilot | Practitioner | $99 | 2 years | [Guide](../../certifications/github/copilot/README.md) |
 
 ### Microsoft Azure
 
-Microsoft retired its main AI certifications in 2026 (see below). Zero to Hero keeps an [Azure generative AI study track](https://cloud.noblerworks.com/exams/azure/genai/) for learning the platform. Check [Microsoft Learn credentials](https://learn.microsoft.com/en-us/credentials/) for any newer AI credentials before planning around Azure.
+Microsoft retired its main AI certifications in 2026 (see below). Zero to Hero keeps an [Azure generative AI study track](../../certifications/azure/genai/README.md) for learning the platform. Check [Microsoft Learn credentials](https://learn.microsoft.com/en-us/credentials/) for any newer AI credentials before planning around Azure.
 
 ## Retired: do not study for these
 
 | Certification | Retired | Notes | Historical guide |
 |---|---|---|---|
-| AWS Machine Learning - Specialty (MLS-C01) | 15 April 2025 | Existing holders stay valid for three years from earning | [Guide](https://cloud.noblerworks.com/exams/aws/specialty/machine-learning-mls-c01/) |
-| AWS Machine Learning Engineer - Associate (MLA-C01) | 28 September 2026 | MLA-C02 in beta, general availability not announced as of 2026-10 | [Guide](https://cloud.noblerworks.com/exams/aws/associate/ml-engineer-mla-c01/) |
-| Microsoft Azure AI Fundamentals (AI-900) | 30 June 2026 | Can no longer be earned or renewed | [Guide](https://cloud.noblerworks.com/exams/azure/ai-900/) |
-| Microsoft Azure AI Engineer Associate (AI-102) | 30 June 2026 | Can no longer be earned or renewed | [Guide](https://cloud.noblerworks.com/exams/azure/ai-102/) |
-| Microsoft Azure Data Scientist Associate (DP-100) | 1 June 2026 | Can no longer be earned or renewed | [Guide](https://cloud.noblerworks.com/exams/azure/dp-100/) |
+| AWS Machine Learning - Specialty (MLS-C01) | 15 April 2025 | Existing holders stay valid for three years from earning | [Guide](../../certifications/aws/specialty/machine-learning-mls-c01/README.md) |
+| AWS Machine Learning Engineer - Associate (MLA-C01) | 28 September 2026 | MLA-C02 in beta, general availability not announced as of 2026-10 | [Guide](../../certifications/aws/associate/ml-engineer-mla-c01/README.md) |
+| Microsoft Azure AI Fundamentals (AI-900) | 30 June 2026 | Can no longer be earned or renewed | [Guide](../../certifications/azure/ai-900/README.md) |
+| Microsoft Azure AI Engineer Associate (AI-102) | 30 June 2026 | Can no longer be earned or renewed | [Guide](../../certifications/azure/ai-102/README.md) |
+| Microsoft Azure Data Scientist Associate (DP-100) | 1 June 2026 | Can no longer be earned or renewed | [Guide](../../certifications/azure/dp-100/README.md) |
 
 ## How to prepare efficiently
 
@@ -132,7 +132,7 @@ Microsoft retired its main AI certifications in 2026 (see below). Zero to Hero k
 ## Next steps
 
 - [AI engineer roadmap](../roles/ai-engineer-roadmap.md) and [AI careers map](../roles/ai-careers-map.md)
-- All provider guides on Zero to Hero: [Anthropic](https://cloud.noblerworks.com/exams/anthropic/), [AWS](https://cloud.noblerworks.com/exams/aws/), [Google Cloud](https://cloud.noblerworks.com/exams/gcp/), [NVIDIA](https://cloud.noblerworks.com/exams/nvidia/), [Databricks](https://cloud.noblerworks.com/exams/databricks/), [Azure](https://cloud.noblerworks.com/exams/azure/)
+- All provider guides on Zero to Hero: [Anthropic](../../certifications/anthropic/README.md), [AWS](https://cloud.noblerworks.com/exams/aws/), [Google Cloud](https://cloud.noblerworks.com/exams/gcp/), [NVIDIA](../../certifications/nvidia/README.md), [Databricks](https://data.noblerworks.com/exams/databricks/), [Azure](https://cloud.noblerworks.com/exams/azure/)
 
 ## Sources
 

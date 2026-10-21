@@ -912,7 +912,7 @@ response = openai.ChatCompletion.create(
 
 - [Compute Service Comparison](https://cloud.noblerworks.com/resources/service-comparison-compute/)
 - [Storage Service Comparison](https://cloud.noblerworks.com/resources/service-comparison-storage/)
-- [Database Service Comparison](https://cloud.noblerworks.com/resources/service-comparison-databases/)
+- [Database Service Comparison](https://data.noblerworks.com/resources/service-comparison-databases/)
 - [Networking Service Comparison](https://cloud.noblerworks.com/resources/service-comparison-networking/)
 
 ---
@@ -930,7 +930,7 @@ response = openai.ChatCompletion.create(
 **Related Guides:**
 - [GenAI Platforms Comparison](genai-platforms.md)
 - [LLM Observability Comparison](llm-observability.md)
-- [Vector Databases Comparison](https://cloud.noblerworks.com/resources/service-comparison-vector-databases/)
+- [Vector Databases Comparison](../decisions/vector-database.md)
 - [Agent Frameworks Comparison](agent-frameworks.md)
 - [LLM Serving Decision Matrix](../decisions/llm-serving.md)
 

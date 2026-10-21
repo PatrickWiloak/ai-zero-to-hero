@@ -294,9 +294,9 @@ You know it works when:
 ## Next steps
 
 - **Concepts**: [Evals for LLMs](../../learn/concepts/evals-for-llms.md), [Structured outputs](../../learn/concepts/structured-outputs.md), [Guardrails and safety](../../learn/concepts/guardrails-and-safety.md)
-- **Topic**: [LLMs and GenAI](https://cloud.noblerworks.com/topics/llms-and-genai/), [Observability](https://cloud.noblerworks.com/topics/observability/)
+- **Topic**: [LLMs and GenAI](../../learn/README.md), [Observability](https://cloud.noblerworks.com/topics/observability/)
 - **Comparisons**: [LLM observability](../../tools/comparisons/llm-observability.md)
-- **Certs**: [Anthropic Claude Developer Foundations](https://cloud.noblerworks.com/exams/anthropic/claude-certified-developer-foundations/), [NVIDIA AI Operations Professional](https://cloud.noblerworks.com/exams/nvidia/ai-operations-professional/)
+- **Certs**: [Anthropic Claude Developer Foundations](../../certifications/anthropic/claude-certified-developer-foundations/README.md), [NVIDIA AI Operations Professional](../../certifications/nvidia/ai-operations-professional/README.md)
 
 In the research library:
 

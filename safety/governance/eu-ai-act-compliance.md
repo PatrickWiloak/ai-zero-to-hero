@@ -90,7 +90,7 @@ Everything else: spam filters, recommendation engines, most productivity tooling
 | 72 | Post-market monitoring | Active, documented, with a plan |
 | 73 | Serious incident reporting | To the market surveillance authority, with deadlines as short as 2 days for widespread infringement |
 
-Article 15's cybersecurity clause is where the [AI security](https://cloud.noblerworks.com/resources/ai-security/) material becomes a legal obligation rather than a good practice: resistance to data poisoning, model poisoning, adversarial examples, and confidentiality attacks is explicitly named.
+Article 15's cybersecurity clause is where the [AI security](../README.md) material becomes a legal obligation rather than a good practice: resistance to data poisoning, model poisoning, adversarial examples, and confidentiality attacks is explicitly named.
 
 ---
 
@@ -161,7 +161,7 @@ No provider makes you compliant. They supply evidence and controls you assemble 
 
 ## How it interacts with other obligations
 
-- **GDPR** applies in full and independently. A lawful basis, a DPIA where required, and data subject rights are separate obligations from the AI Act. See [GDPR](https://cloud.noblerworks.com/resources/compliance-guides/gdpr/).
+- **GDPR** applies in full and independently. A lawful basis, a DPIA where required, and data subject rights are separate obligations from the AI Act. See [GDPR](https://security.noblerworks.com/resources/compliance-guides/gdpr/).
 - **NIS2 and DORA** may impose overlapping incident reporting for critical entities and financial services.
 - **ISO/IEC 42001** certification is not conformity with the Act, but a certified AI management system covers much of Articles 9 and 17. See [ISO/IEC 42001](iso-42001.md).
 - **Harmonized standards** under development will give a presumption of conformity once cited in the Official Journal. Track them, because building against a standard is cheaper than building against a legal text.

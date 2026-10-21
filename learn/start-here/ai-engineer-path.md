@@ -77,7 +77,7 @@ AI engineer job descriptions vary, but most ask for some version of the same cor
 
 For portfolio projects, write a short README for each that states the problem, the design, the eval set, the score, and what you would do next. That README is what a hiring manager reads.
 
-If you want certifications, the [AI certifications guide](../../careers/certifications/ai-certifications-guide.md) lists them, and the sibling site has study guides for the [Anthropic Claude certifications](https://cloud.noblerworks.com/exams/anthropic/) and [NVIDIA tracks](https://cloud.noblerworks.com/exams/nvidia/).
+If you want certifications, the [AI certifications guide](../../careers/certifications/ai-certifications-guide.md) lists them, and the sibling site has study guides for the [Anthropic Claude certifications](../../certifications/anthropic/README.md) and [NVIDIA tracks](../../certifications/nvidia/README.md).
 
 ## Common mistakes
 

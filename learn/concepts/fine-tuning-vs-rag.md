@@ -103,7 +103,7 @@ Example: a support bot fine-tuned to always follow the company's reply template,
 - **[RAG explained](rag-explained.md)** - the deep dive on the more common path
 - **[LLM basics](llm-basics.md)** - context for both approaches
 - **[Evals for LLMs](evals-for-llms.md)** - you need these regardless of which path you choose
-- **[NVIDIA AI Operations cert](https://cloud.noblerworks.com/exams/nvidia/)** - covers production fine-tuning and serving
+- **[NVIDIA AI Operations cert](../../certifications/nvidia/README.md)** - covers production fine-tuning and serving
 
 In the research library:
 

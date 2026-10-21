@@ -145,7 +145,7 @@ If you're building tools you'd reuse across LLM applications, MCP is the way.
 - **[Prompt engineering](prompt-engineering.md)** - how to write tool-aware prompts
 - **[RAG explained](rag-explained.md)** - retrieval as a tool inside an agent
 - **[Evals for LLMs](evals-for-llms.md)** - testing agent behavior
-- **[Anthropic Claude Developer Foundations cert](https://cloud.noblerworks.com/exams/anthropic/claude-certified-developer-foundations/)** - guided study path for building agents
+- **[Anthropic Claude Developer Foundations cert](../../certifications/anthropic/claude-certified-developer-foundations/README.md)** - guided study path for building agents
 
 In the research library:
 

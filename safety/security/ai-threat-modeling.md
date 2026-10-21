@@ -139,10 +139,10 @@ A model upgrade is a threat model change. The new model may be more capable at e
 - **[Prompt injection explained](prompt-injection-explained.md)** - the attack this defends against
 - **[Guardrails and safety](../../learn/concepts/guardrails-and-safety.md)** - the control layer
 - **[Agentic loops](../../learn/concepts/agentic-loops.md)** - where autonomy multiplies blast radius
-- **[Shared responsibility model](https://cloud.noblerworks.com/learn/concepts/shared-responsibility-model/)** - what your provider covers and what you own
+- **[Shared responsibility model](https://security.noblerworks.com/learn/concepts/shared-responsibility-model/)** - what your provider covers and what you own
 - **[Agent and tool security](agent-security.md)** - the engineering-depth controls
 - **[LLM red teaming](llm-red-teaming.md)** - how to test the model you just built
-- **[Zero trust architecture](https://cloud.noblerworks.com/resources/architecture-patterns/zero-trust-architecture/)** - the identity model that makes step 3 workable
+- **[Zero trust architecture](https://security.noblerworks.com/resources/architecture-patterns/zero-trust-architecture/)** - the identity model that makes step 3 workable
 
 In the research library:
 

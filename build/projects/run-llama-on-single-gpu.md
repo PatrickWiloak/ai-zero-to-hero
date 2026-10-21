@@ -178,9 +178,9 @@ If you rented a GPU, **shut it down** when finished. Idle GPUs are the most comm
 ## Next steps
 
 - **Concepts**: [Inference servers](../../learn/concepts/inference-servers.md), [Quantization and distillation](../../learn/concepts/quantization-and-distillation.md), [LLM basics](../../learn/concepts/llm-basics.md)
-- **Topic**: [LLMs and GenAI](https://cloud.noblerworks.com/topics/llms-and-genai/)
+- **Topic**: [LLMs and GenAI](../../learn/README.md)
 - **Comparisons**: [GenAI platforms](../../tools/comparisons/genai-platforms.md)
-- **Certs**: [NVIDIA AI Infrastructure Professional](https://cloud.noblerworks.com/exams/nvidia/ai-infrastructure-professional/), [NVIDIA AI Operations Professional](https://cloud.noblerworks.com/exams/nvidia/ai-operations-professional/)
+- **Certs**: [NVIDIA AI Infrastructure Professional](../../certifications/nvidia/ai-infrastructure-professional/README.md), [NVIDIA AI Operations Professional](../../certifications/nvidia/ai-operations-professional/README.md)
 
 In the research library:
 
