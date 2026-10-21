@@ -8,7 +8,7 @@ essays with comprehensive summaries (count: see `papers.json`), plus unnumbered 
 on model families, benchmarks, compute, policy, ecosystem and open questions. Broadened from
 papers-only on 2026-09-30. On 2026-10-21 the repo was renamed `ai-zero-to-hero` and the site moved to
 the custom domain `ai.patricklukewilson.com` (Route 53 CNAME in the NW account -> `patrickwiloak.github.io`);
-`ai.patrickwiloak.com` 301s to it. The old github.io/genai-research-papers-summarized URL is dead (never indexed). Docs-only educational resource (no application
+`ai.patrickwiloak.com` 301s to it via CloudFront `E2IBVK41UK88T1` + function `ai-patrickwiloak-redirect` (source `infra/ai-patrickwiloak-redirect.js`, ACM cert in us-east-1, Route 53 alias in the patrickwiloak.com zone; hand-built, no IaC). The old github.io/genai-research-papers-summarized URL is dead (never indexed). Docs-only educational resource (no application
 code) - markdown plus a stdlib Python regeneration pipeline that builds the index,
 manifests, and an MkDocs Material site.
 
