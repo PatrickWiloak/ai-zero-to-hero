@@ -17,6 +17,18 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] 2026-10-02 🟢 low - README Nobler banner hotlinked from `Noblerworks/IRONSIGHT`: vendored to `assets/brand/nobler-works-banner.jpg`.
 - [ ] 🟢 low - No site analytics and no plan for it (`mkdocs.yml` extra): reuse the zero-to-hero GA4-behind-consent + Cloudflare beacon plan once Patrick unblocks it there, so one set of steps covers both. The 2026-10-30 judge relies on GitHub referrers only until then.
 
+## AI Zero to Hero (2026-10-21)
+
+- [x] 2026-10-21 Six guide pillars shipped (98 pages: learn, work, build, tools, safety, careers); site renamed "AI Zero to Hero". Plan: `~/.cache/ai-z2h/PLAN.md`.
+- [ ] **Patrick: decide** repo rename (e.g. `ai-zero-to-hero`) + custom domain together - cheapest now, Google has indexed nothing yet. Rename breaks the github.io URL.
+- [ ] Patrick: upload `assets/brand/social-preview-1280x640.png` (re-rendered 2026-10-21) in Settings -> Social preview.
+- [ ] 2026-11-01: verify secondary-sourced facts - ChatGPT/M365 Copilot prices, Cursor-SpaceX and OpenAI-Promptfoo deals (`grep -rln 'Cursor\|Promptfoo\|Copilot' work tools`).
+- [ ] 2026-11-08: run the untested code in `build/projects/{chatbot-in-an-afternoon,structured-extraction-pipeline,voice-agent,prompt-injection-red-team}.md`.
+- [ ] Refresh `tools/comparisons/cloud-ai-ml-services.md` gen-AI table (PaLM 2 / Llama 2 era; flagged stale).
+- [ ] zero-to-hero: point its AI concept/build/security pages at the canonical copies here (dedupe), once the domain is settled.
+- [ ] Next pillar pages: AI news digest + RSS, paper lineage graph, AI/ML cert guides moving here or staying in z2h (decide).
+- [ ] 2027-04-19: re-review every guide page (180-day stale warning starts).
+
 ## Open
 
 ### 🟠 Discoverability (added 2026-08-31)

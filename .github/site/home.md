@@ -26,36 +26,93 @@
 
 <div class="home-hero" markdown>
 
-# Everything AI, from the papers up { .home-title }
+# AI, from zero to hero { .home-title }
 
-<p class="home-intro">{{source_words}} words of research - Transformers to diffusion, RLHF to reasoning models - read in full and rewritten as {{summary_words}} words. <strong>About {{compression}}x shorter</strong>, and written to be finished. Then {{explainers}} explainers on everything a paper does not cover: the model families, the benchmarks, what it all costs, the rules being written, and the questions still open.</p>
+<p class="home-intro">Everything AI in one place, free. Start from nothing and learn what a model is, use AI well in your job, roll it out to a team, build real systems, pick the right tools, secure and govern them, and get hired - {{guides_total}} guides in all. Then go as deep as you like: {{papers}} research papers rewritten in plain language and {{explainers}} explainers on the models, the benchmarks, the money and the rules.</p>
 
 <p class="home-sub">No maths degree assumed, no paywall, no signup. Press <kbd>/</kbd> to search all {{words}} words.</p>
 
-[Start the roadmap](docs/ROADMAP.md){ .md-button .md-button--primary }
-[Browse all {{papers}} papers](INDEX.md){ .md-button }
-[Read the explainers](EXPLAINERS.md){ .md-button }
-[Look up a term](docs/GLOSSARY.md){ .md-button }
+[Start from zero](learn/start-here/zero-to-hero-path.md){ .md-button .md-button--primary }
+[AI for your job](work/README.md){ .md-button }
+[Build something](build/README.md){ .md-button }
+[Read the research](INDEX.md){ .md-button }
 
 <div class="stat-strip" markdown>
 
-- **{{source_words}}** words in
-- **{{summary_words}}** words out
-- **{{compression}}x** shorter
+- **{{guides_total}}** guides
 - **{{papers}}** papers
 - **{{explainers}}** explainers
-- **{{years}}** years covered
+- **{{source_words}}** words of research read
+- **{{compression}}x** shorter
 - **$0** to read
 
 </div>
 
-<p class="stat-note">Source figure measured, not estimated: every word <code>pdftotext</code> extracts from {{measured_papers}} of the {{papers}} papers. The other {{unmeasured}} sit behind journal paywalls or are published as web pages with no PDF, so they are excluded - the real total is higher. <a href="https://github.com/PatrickWiloak/genai-research-papers-summarized/blob/main/scripts/measure_sources.py">See the script</a>.</p>
+<p class="stat-note">Research figure measured, not estimated: every word <code>pdftotext</code> extracts from {{measured_papers}} of the {{papers}} papers. The other {{unmeasured}} sit behind journal paywalls or are published as web pages with no PDF, so they are excluded - the real total is higher. <a href="https://github.com/PatrickWiloak/genai-research-papers-summarized/blob/main/scripts/measure_sources.py">See the script</a>.</p>
 
 </div>
 
-<p class="home-kicker">Six ways in</p>
+<p class="home-kicker">Pick your way in</p>
 
-## Pick your entry point
+## Where are you starting?
+
+<div class="grid cards" markdown>
+
+-   :material-school-outline:{ .lg .middle } **Learn - from absolute zero**
+
+    ---
+
+    Paths by audience (everyone, leaders, engineers, researchers), the day-one basics - your first API call, running a model on your laptop - and the core ideas in plain English. {{pillar_learn}} pages.
+
+    [:octicons-arrow-right-24: Start here](learn/README.md)
+
+-   :material-briefcase-outline:{ .lg .middle } **AI at Work - use it, then roll it out**
+
+    ---
+
+    Playbooks by role, real use cases, and the team-enablement kit: adoption plan, acceptable-use policy, training, measuring ROI. {{pillar_work}} pages.
+
+    [:octicons-arrow-right-24: AI at work](work/README.md)
+
+-   :material-hammer-wrench:{ .lg .middle } **Build - hands-on projects**
+
+    ---
+
+    Chatbots, RAG, agents with MCP, evals, fine-tuning, voice - step by step with runnable code, plus the architecture patterns behind production systems. {{pillar_build}} pages.
+
+    [:octicons-arrow-right-24: Build](build/README.md)
+
+-   :material-scale-balance:{ .lg .middle } **Tools - what to pick**
+
+    ---
+
+    Chat assistants, coding assistants, agent frameworks, vector stores, serving stacks, and which model for which job. Comparisons with dates on them. {{pillar_tools}} pages.
+
+    [:octicons-arrow-right-24: Tools](tools/README.md)
+
+-   :material-shield-lock-outline:{ .lg .middle } **Safety & Governance**
+
+    ---
+
+    Prompt injection, the OWASP LLM Top 10, agent security, red teaming - and the governance side: NIST AI RMF, ISO 42001, the EU AI Act, risk assessment. {{pillar_safety}} pages.
+
+    [:octicons-arrow-right-24: Safety & governance](safety/README.md)
+
+-   :material-account-tie-outline:{ .lg .middle } **Careers**
+
+    ---
+
+    The AI roles and how to get there, interview prep with real questions, and which certifications are worth it. {{pillar_careers}} pages.
+
+    [:octicons-arrow-right-24: Careers](careers/README.md)
+
+</div>
+
+<p class="home-kicker">Go deeper</p>
+
+## The research library
+
+Every major paper from the Transformer to today's reasoning models, read in full and rewritten to be finished: {{source_words}} words of research in, {{summary_words}} words out. Plus {{explainers}} dated explainers on everything a single paper does not cover.
 
 <div class="grid cards" markdown>
 
@@ -63,7 +120,7 @@
 
     ---
 
-    Seventy-five years of AI in one page, from Turing's imitation game to today's reasoning models and agents, with every milestone linked to its summary.
+    Seventy-five years of AI in one page, every milestone linked to its summary.
 
     [:octicons-arrow-right-24: Timeline of AI](explainers/history/timeline-of-ai.md)
 
@@ -71,41 +128,17 @@
 
     ---
 
-    Who builds what, what the benchmarks really measure, what training and inference cost, and where the law stands - {{explainers}} pages, each dated.
+    Model families, benchmarks, compute and cost, policy, open questions.
 
     [:octicons-arrow-right-24: All explainers](EXPLAINERS.md)
 
--   :material-map-marker-path:{ .lg .middle } **Follow a path**
+-   :material-map-marker-path:{ .lg .middle } **Read in order**
 
     ---
 
-    A staged reading order that assumes nothing, from Word2Vec through to today's reasoning models. Start here if the field is new to you.
+    A staged reading order from Word2Vec to reasoning models.
 
-    [:octicons-arrow-right-24: Learning roadmap](docs/ROADMAP.md)
-
--   :material-book-open-page-variant:{ .lg .middle } **Browse the library**
-
-    ---
-
-    All {{papers}} summaries grouped by category, or filtered down to the {{topics}} topic tags - retrieval, alignment, efficiency, agents, scaling.
-
-    [:octicons-arrow-right-24: Paper index](INDEX.md)
-
--   :material-scale-balance:{ .lg .middle } **Compare approaches**
-
-    ---
-
-    LoRA or full fine-tuning, RAG or long context, DPO or PPO. Decision guides for the choices you actually face when building.
-
-    [:octicons-arrow-right-24: Comparisons](docs/COMPARISONS.md)
-
--   :material-clock-fast:{ .lg .middle } **Get the gist fast**
-
-    ---
-
-    One-line takeaways for every paper, plus which ones still matter in production and which are history you can safely skim.
-
-    [:octicons-arrow-right-24: Quick reference](docs/QUICK_REFERENCE.md)
+    [:octicons-arrow-right-24: Research roadmap](docs/ROADMAP.md)
 
 </div>
 

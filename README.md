@@ -50,13 +50,15 @@ Built for **every kind of technologist**, across 21 role-targeted learning paths
 
 ---
 
-# Everything AI, Summarized
+# AI Zero to Hero
 
-A curated collection of the **156 most influential papers** and landmark essays that shaped modern AI, with comprehensive summaries designed to make cutting-edge research accessible to everyone - plus **[explainers](./EXPLAINERS.md)** on everything a single paper does not cover: how the model families evolved, what the benchmarks measure, what training and inference cost, the rules being written, and the questions still open.
+**Everything AI in one place, free.** Six guide pillars take you from zero to hero - **[Learn](./learn/README.md)** (paths by audience, day-one basics, core concepts), **[AI at Work](./work/README.md)** (playbooks by role, use cases, rolling AI out to a team), **[Build](./build/README.md)** (hands-on projects and patterns), **[Tools](./tools/README.md)** (what to pick), **[Safety & Governance](./safety/README.md)** and **[Careers](./careers/README.md)**.
+
+Underneath sits the research library: the **156 most influential papers** and landmark essays that shaped modern AI, summarized in plain language, plus **[explainers](./EXPLAINERS.md)** on how the model families evolved, what the benchmarks measure, what training and inference cost, the rules being written, and the questions still open.
 
 [![Papers](https://img.shields.io/badge/Papers-156-blue.svg)](./INDEX.md)
 [![Explainers](https://img.shields.io/badge/Explainers-31-purple.svg)](./EXPLAINERS.md)
-[![Guides](https://img.shields.io/badge/Guides-6-green.svg)](./docs/ROADMAP.md)
+[![Guides](https://img.shields.io/badge/Guides-98-green.svg)](./learn/README.md)
 [![License](https://img.shields.io/badge/License-CC_BY_4.0-orange.svg)](./LICENSE)
 [![Updated](https://img.shields.io/badge/Updated-September_2026-green.svg)](./README.md)
 
@@ -74,7 +76,10 @@ Searchable, dark mode, no signup.
 
 ## 🚀 Quick Start
 
-**New to AI?** Start with the [Learning Roadmap](./docs/ROADMAP.md), or the [Timeline of AI](./explainers/history/timeline-of-ai.md) for the whole story in one page
+**Starting from zero?** Follow the [Zero to Hero path](./learn/start-here/zero-to-hero-path.md), or pick a path for [everyone](./learn/start-here/ai-for-everyone.md), [leaders](./learn/start-here/ai-for-leaders.md) or [engineers](./learn/start-here/ai-engineer-path.md)
+**Using AI at work or rolling it out?** See [AI at Work](./work/README.md) - playbooks by role and the team-enablement kit
+**Want to build?** Pick a [project](./build/README.md) - chatbot, RAG, agents with MCP, evals, fine-tuning, voice
+**Reading the research?** Start with the [Learning Roadmap](./docs/ROADMAP.md), or the [Timeline of AI](./explainers/history/timeline-of-ai.md) for the whole story in one page
 **Want the big picture?** Read the [Explainers](./EXPLAINERS.md) - model families, benchmarks, compute, policy and open questions
 **Want the full list?** See the [Paper Index](./INDEX.md) - all 156 papers grouped by category
 **Exploring a topic?** Browse [by topic tag](./TAGS.md) (reasoning, RLHF, efficiency, agents, multimodal, ...)
@@ -791,7 +796,7 @@ If you use these summaries in your work:
 
 ```bibtex
 @misc{genai-papers-summarized-2025,
-  title={Everything AI, Summarized: Papers, Essays and Explainers},
+  title={AI Zero to Hero: Guides, Papers, Essays and Explainers},
   author={Wiloak, Patrick},
   year={2026},
   url={https://github.com/PatrickWiloak/genai-research-papers-summarized}

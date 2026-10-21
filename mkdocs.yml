@@ -9,12 +9,12 @@
 # Everything else in this file is hand-maintained. Build with:
 #   python3 scripts/build_manifest.py && mkdocs build -f mkdocs.generated.yml
 
-site_name: Everything AI, Summarized
+site_name: AI Zero to Hero
 site_description: >-
-  Plain-language summaries of the papers and essays that built modern AI -
-  Transformers to diffusion, RLHF to reasoning models - plus explainers on
-  model families, benchmarks, compute, policy and the open questions. Free,
-  no signup.
+  Everything AI in one place, free: learn from zero, use AI at work and roll it
+  out to a team, build real projects, pick tools, secure and govern AI, and get
+  hired - plus plain-language summaries of the research papers that built
+  modern AI. No signup.
 site_author: Patrick Wiloak
 site_url: https://patrickwiloak.github.io/genai-research-papers-summarized/
 

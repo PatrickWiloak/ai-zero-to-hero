@@ -183,21 +183,27 @@ def check_gaps_coverage(papers: list[dict], errors: list[str]) -> None:
 
 
 def check_explainers(errors: list[str]) -> None:
-    """Explainers are parsed from their header lines; a missing one would drop
-    the page's pitch or review date from EXPLAINERS.md without an error."""
-    import datetime as dt
+    """Explainers and guide-pillar pages are parsed from their header lines; a
+    missing one would drop the page's pitch or review date from its generated
+    hub (EXPLAINERS.md, <pillar>/README.md) without an error."""
     sys.path.insert(0, str(ROOT / "scripts"))
-    from build_manifest import EXPLAINER_SECTIONS  # noqa: E402
-    sections = {key for key, _ in EXPLAINER_SECTIONS}
-    base = ROOT / "explainers"
+    from build_manifest import EXPLAINER_SECTIONS, PILLARS  # noqa: E402
+    check_sectioned("explainers", {key for key, _ in EXPLAINER_SECTIONS}, errors)
+    for key, _title, _pitch, sections in PILLARS:
+        check_sectioned(key, {s for s, _ in sections}, errors)
+
+
+def check_sectioned(folder: str, sections: set[str], errors: list[str]) -> None:
+    import datetime as dt
+    base = ROOT / folder
     if not base.exists():
         return
     for path in sorted(base.rglob("*.md")):
         rel = path.relative_to(ROOT)
-        if path.name.startswith("_") and path.parent == base:
+        if path.parent == base and (path.name.startswith("_") or path.name == "README.md"):
             continue
         if path.parent.parent != base or path.parent.name not in sections:
-            fail(errors, f"{rel} is not in a known explainers/<section>/ folder "
+            fail(errors, f"{rel} is not in a known {folder}/<section>/ folder "
                          f"({', '.join(sorted(sections))})")
             continue
         text = path.read_text(encoding="utf-8")

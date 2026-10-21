@@ -1,7 +1,9 @@
 # GenAI Research Papers Summarized
 
 ## Overview
-"Everything AI, Summarized": a curated collection of foundational AI papers and landmark
+"AI Zero to Hero" (renamed 2026-10-21 from "Everything AI, Summarized"): six guide pillars
+(`learn/`, `work/`, `build/`, `tools/`, `safety/`, `careers/` - the one-stop "zero to hero" for AI, mirroring the
+sibling cloud-data-ai-security-zero-to-hero) on top of a curated collection of foundational AI papers and landmark
 essays with comprehensive summaries (count: see `papers.json`), plus unnumbered explainers
 on model families, benchmarks, compute, policy, ecosystem and open questions. Broadened from
 papers-only on 2026-09-30; the repo name and Pages URL were deliberately kept (a rename
@@ -12,6 +14,7 @@ manifests, and an MkDocs Material site.
 ## Structure
 - `papers/` - Paper summaries grouped into category subfolders (`architectures/`, `language-models/`, `image-generation/`, `multimodal/`, `robotics/`, `techniques/`, `essays/`); each summary is a `summary.md`
 - `explainers/<section>/<slug>.md` - Unnumbered explainer pages (sections in `EXPLAINER_SECTIONS` in `build_manifest.py`). Each needs `# Title`, `**In one line:**` and `**Last reviewed:** YYYY-MM-DD`; `check_counts.py` enforces them and the build warns after 180 days. Template: `explainers/_TEMPLATE.md`
+- `<pillar>/<section>/<slug>.md` - Guide pages in six pillars (`PILLARS` in `build_manifest.py`); same three header lines as explainers, template `templates/guide.md`, enforced by `check_counts.py`. `<pillar>/README.md` is a generated hub - never hand-edit. AI pages ported from zero-to-hero on 2026-10-21 are canonical here
 - `EXPLAINERS.md` - Generated hub listing every explainer
 - `papers/_TEMPLATE.md` - Template for new summaries
 - `INDEX.md` - Generated category-grouped index of every paper

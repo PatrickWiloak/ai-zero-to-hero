@@ -32,10 +32,13 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from add_cross_links import ALIASES  # noqa: E402  curated short names per slug
 
-SITE_SHORT = "Everything AI"
+SITE_SHORT = "AI Zero to Hero"
 DESC_MAX = 160
 DESC_MIN = 50
 NOINDEX = ("papers/_TEMPLATE.md", "explainers/_TEMPLATE.md")
+# Guide pillars (see PILLARS in build_manifest.py) carry the explainer header,
+# so their meta description comes from the same "In one line" pitch.
+PILLAR_PREFIXES = ("learn/", "work/", "build/", "tools/", "safety/", "careers/")
 
 _EMOJI_RE = re.compile("[\U0001F000-\U0001FAFF☀-➿⬀-⯿️‍←-⇿⌀-⏿]")
 _IMAGE_RE = re.compile(r"!\[[^\]]*\]\([^)]*\)")
@@ -157,7 +160,7 @@ def _kind(src: str) -> str:
         return "essay"
     if src.startswith("papers/") and src.endswith("/summary.md"):
         return "paper"
-    if src.startswith("explainers/") and not src.endswith("_TEMPLATE.md"):
+    if src.startswith(("explainers/",) + PILLAR_PREFIXES) and not src.endswith(("_TEMPLATE.md", "README.md")):
         return "explainer"
     return ""
 
@@ -215,7 +218,7 @@ def on_page_markdown(markdown, page, config, files, **kwargs):
         meta["robots"] = "noindex, follow"
 
     if page.is_homepage:
-        meta["seo_title"] = f"{config.site_name}: AI Papers and Explainers in Plain Language"
+        meta["seo_title"] = f"{config.site_name}: Learn, Use and Build with AI - Free"
     elif h1:
         if kind in ("paper", "essay") and short and (len(h1) > 50 or slug in SEO_SHORT):
             label = "Essay Summary" if kind == "essay" else "Paper Summary"

@@ -68,6 +68,42 @@ EXPLAINER_SECTIONS = [
 # reader find out.
 STALE_AFTER_DAYS = 180
 
+# Guide pillars: the "zero to hero" half of the site. Each is a top-level
+# folder of <pillar>/<section>/<slug>.md pages with the same three-line header
+# as an explainer (# Title, **In one line:**, **Last reviewed:**), parsed by the
+# same code. The difference is audience: explainers describe the field, pillar
+# pages teach someone to use, build with, govern or work in it. Each pillar gets
+# a generated hub at <pillar>/README.md (never hand-edit it).
+PILLARS = [
+    ("learn", "Learn", "From zero: paths by audience, the day-one basics, and the core ideas.", [
+        ("start-here", "Start Here"),
+        ("day-one", "Day One"),
+        ("concepts", "Core Concepts"),
+    ]),
+    ("work", "AI at Work", "Using AI well in a job and rolling it out to a team: playbooks, use cases, enablement.", [
+        ("enablement", "Team Enablement"),
+        ("playbooks", "Playbooks by Role"),
+        ("use-cases", "Use Cases"),
+    ]),
+    ("build", "Build", "Hands-on projects and the patterns production AI systems are made of.", [
+        ("projects", "Projects"),
+        ("patterns", "Patterns"),
+    ]),
+    ("tools", "Tools", "What to pick: models, frameworks, vector stores, serving, coding assistants.", [
+        ("comparisons", "Comparisons"),
+        ("decisions", "Decision Guides"),
+    ]),
+    ("safety", "Safety & Governance", "Securing AI systems and governing their use: threats, defences, frameworks, law.", [
+        ("security", "Security"),
+        ("governance", "Governance & Compliance"),
+    ]),
+    ("careers", "Careers", "The roles, the roadmaps, the interviews and the certifications.", [
+        ("roles", "Roles & Roadmaps"),
+        ("interviews", "Interview Prep"),
+        ("certifications", "Certifications"),
+    ]),
+]
+
 # Curated topic tags per slug (a controlled vocabulary, kebab-case). These
 # power the `tags:` frontmatter and the generated TAGS.md tag-filtered index.
 # A paper with no entry falls back to its category as a single tag.
@@ -440,7 +476,8 @@ def write_tags(papers: list[dict]) -> None:
     (ROOT / "TAGS.md").write_text("\n".join(lines), encoding="utf-8")
 
 
-def build_site_tree(papers: list[dict], explainers: list[dict] | None = None) -> None:
+def build_site_tree(papers: list[dict], explainers: list[dict] | None = None,
+                    pillars: list[dict] | None = None) -> None:
     """Assemble the curated docs_dir the site is built from.
 
     MkDocs needs every page under one docs_dir, but our content lives at the
@@ -490,7 +527,7 @@ def build_site_tree(papers: list[dict], explainers: list[dict] | None = None) ->
 
     home_src = ROOT / ".github" / "site" / "home.md"
     if home_src.exists():
-        (site / "README.md").write_text(render_home(papers, explainers or []), encoding="utf-8")
+        (site / "README.md").write_text(render_home(papers, explainers or [], pillars or []), encoding="utf-8")
 
     template = PAPERS_DIR / "_TEMPLATE.md"
     if template.exists():
@@ -501,7 +538,13 @@ def build_site_tree(papers: list[dict], explainers: list[dict] | None = None) ->
         (site / "explainers").mkdir(parents=True, exist_ok=True)
         shutil.copy2(explainer_template, site / "explainers" / "_TEMPLATE.md")
 
-    for item in list(papers) + list(explainers or []):
+    for key, *_ in PILLARS:
+        hub = ROOT / key / "README.md"
+        if hub.exists():
+            (site / key).mkdir(parents=True, exist_ok=True)
+            shutil.copy2(hub, site / key / "README.md")
+
+    for item in list(papers) + list(explainers or []) + list(pillars or []):
         dest = site / item["path"]
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(ROOT / item["path"], dest)
@@ -546,7 +589,8 @@ def write_by_year(papers: list[dict]) -> bool:
     return False
 
 
-def render_home(papers: list[dict], explainers: list[dict] | None = None) -> str:
+def render_home(papers: list[dict], explainers: list[dict] | None = None,
+                pillars: list[dict] | None = None) -> str:
     """Fill the landing page's count tokens from the parsed paper list.
 
     Every number on .github/site/home.md is a {{token}} rather than a typed
@@ -617,6 +661,9 @@ def render_home(papers: list[dict], explainers: list[dict] | None = None) -> str
         "topics": f"{len(topics)}",
         "guides": f"{len(guides)}",
         "explainers": f"{len(explainers)}",
+        "guides_total": f"{len(pillars or [])}",
+        **{f"pillar_{key.replace('-', '_')}": f"{sum(1 for p in (pillars or []) if p['pillar'] == key)}"
+           for key, *_ in PILLARS},
         "category_chips": "\n".join(chips),
         "recent_papers": "\n".join(
             f'- [{re.sub(r"\s*\([^()]*\)\s*$", "", p["title"])}]({p["path"]}) ({p["year"]})'
@@ -644,17 +691,31 @@ REVIEWED_RE = re.compile(r"^\*\*Last reviewed:\*\*\s*(\d{4}-\d{2}-\d{2})\s*$", r
 
 
 def parse_explainers() -> list[dict]:
+    return parse_sectioned(EXPLAINERS_DIR, EXPLAINER_SECTIONS)
+
+
+def parse_pillars() -> list[dict]:
+    """Every pillar page, in pillar order then section order then title."""
+    out = []
+    for key, _title, _pitch, sections in PILLARS:
+        for page in parse_sectioned(ROOT / key, sections):
+            page["pillar"] = key
+            out.append(page)
+    return out
+
+
+def parse_sectioned(base: Path, sections: list[tuple[str, str]]) -> list[dict]:
     """Every explainers/<section>/<slug>.md, in section order then by title.
 
     Required header: a `# Title`, an `**In one line:**` pitch and a
     `**Last reviewed:** YYYY-MM-DD` line. check_counts.py fails CI when one is
     missing, so this parser can treat them as present and fall back quietly.
     """
-    if not EXPLAINERS_DIR.exists():
+    if not base.exists():
         return []
-    order = {key: i for i, (key, _) in enumerate(EXPLAINER_SECTIONS)}
+    order = {key: i for i, (key, _) in enumerate(sections)}
     out = []
-    for path in EXPLAINERS_DIR.glob("*/*.md"):
+    for path in base.glob("*/*.md"):
         section = path.parent.name
         if path.name.startswith("_") or section not in order:
             continue
@@ -704,14 +765,55 @@ def write_explainers_hub(explainers: list[dict]) -> None:
     (ROOT / "EXPLAINERS.md").write_text("\n".join(lines), encoding="utf-8")
 
 
-def write_mkdocs(papers: list[dict], explainers: list[dict] | None = None) -> None:
+def write_pillar_hubs(pages: list[dict]) -> None:
+    """Generate <pillar>/README.md for each pillar: every page, by section."""
+    for key, title, pitch, sections in PILLARS:
+        group = [p for p in pages if p["pillar"] == key]
+        if not group:
+            continue
+        lines = [
+            f"# {title}",
+            "",
+            f"{pitch} **{len(group)}** pages. Generated by `scripts/build_manifest.py` - do not edit by hand.",
+            "",
+        ]
+        for skey, stitle in sections:
+            sgroup = [p for p in group if p["section"] == skey]
+            if not sgroup:
+                continue
+            lines += [f"## {stitle}", "", "| Page | In one line | Reviewed |", "|------|-------------|----------|"]
+            for p in sgroup:
+                pitch_cell = p["one_line"].replace("|", "\\|")
+                rel = p["path"][len(key) + 1:]
+                lines.append(f"| [{p['title']}]({rel}) | {pitch_cell} | {p['reviewed']} |")
+            lines.append("")
+        (ROOT / key / "README.md").write_text("\n".join(lines), encoding="utf-8")
+
+
+def write_mkdocs(papers: list[dict], explainers: list[dict] | None = None,
+                 pillars: list[dict] | None = None) -> None:
     nav = []
     nav.append("nav:")
     nav.append("  - Home: README.md")
-    nav.append("  - Browse: BROWSE.md")
-    nav.append("  - Index: INDEX.md")
-    nav.append("  - By Topic: TAGS.md")
-    nav.append("  - Guides:")
+    for key, title, _pitch, sections in PILLARS:
+        group = [p for p in (pillars or []) if p["pillar"] == key]
+        if not group:
+            continue
+        nav.append(f"  - {title}:")
+        nav.append(f"      - Overview: {key}/README.md")
+        for skey, stitle in sections:
+            sgroup = [p for p in group if p["section"] == skey]
+            if not sgroup:
+                continue
+            nav.append(f"      - {stitle}:")
+            for p in sgroup:
+                label = p["title"].replace('"', "'")
+                nav.append(f'          - "{label}": {p["path"]}')
+    nav.append("  - Research Library:")
+    nav.append("      - Browse: BROWSE.md")
+    nav.append("      - Index: INDEX.md")
+    nav.append("      - By Topic: TAGS.md")
+    nav.append("  - Reading Guides:")
     nav.append("      - Learning Roadmap: docs/ROADMAP.md")
     nav.append("      - Reading Guide: docs/READING_GUIDE.md")
     nav.append("      - Quick Reference: docs/QUICK_REFERENCE.md")
@@ -762,6 +864,7 @@ def main() -> None:
     papers.sort(key=lambda p: (p["number"] is None, p["number"] or 0))
 
     explainers = parse_explainers()
+    pillars = parse_pillars()
 
     changed = write_frontmatter(papers)
     write_json(papers)
@@ -769,13 +872,14 @@ def main() -> None:
     write_index(papers)
     write_tags(papers)
     write_explainers_hub(explainers)
-    write_mkdocs(papers, explainers)
+    write_pillar_hubs(pillars)
+    write_mkdocs(papers, explainers, pillars)
     write_by_year(papers)
-    build_site_tree(papers, explainers)
+    build_site_tree(papers, explainers, pillars)
 
-    print(f"Parsed {len(papers)} summaries and {len(explainers)} explainers.")
+    print(f"Parsed {len(papers)} summaries, {len(explainers)} explainers and {len(pillars)} guide pages.")
     today = dt.date.today()
-    stale = [e["path"] for e in explainers if e["reviewed"]
+    stale = [e["path"] for e in explainers + pillars if e["reviewed"]
              and (today - dt.date.fromisoformat(e["reviewed"])).days > STALE_AFTER_DAYS]
     if stale:
         print(f"WARN explainers not reviewed in {STALE_AFTER_DAYS} days: {', '.join(stale)}")
