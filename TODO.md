@@ -22,7 +22,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] 2026-10-21 Six guide pillars shipped (98 pages: learn, work, build, tools, safety, careers); site renamed "AI Zero to Hero". Plan: `~/.cache/ai-z2h/PLAN.md`.
 - [x] 2026-10-21 Repo renamed `ai-zero-to-hero`; site on `ai.noblerworks.com` (Route 53 CNAME, NW) + robots.txt; no redirects from older names.
 - [ ] 2026-10-28 Patrick: Search Console `sc-domain:noblerworks.com` (add if missing) -> submit `https://ai.noblerworks.com/sitemap.xml`, Request indexing on `/`. Replaces the old URL-prefix steps below.
-- [ ] Patrick: upload `assets/brand/social-preview-1280x640.png` (re-rendered 2026-10-21) in Settings -> Social preview.
+- [ ] 2026-10-28 Patrick: upload `assets/brand/social-preview-1280x640.png` at GitHub Settings > General > Social preview (no API). Card is the shared Zero to Hero template (`assets/brand/social-preview.html`, 2026-10-21).
 - [ ] 2026-11-01: verify secondary-sourced facts - ChatGPT/M365 Copilot prices, Cursor-SpaceX and OpenAI-Promptfoo deals (`grep -rln 'Cursor\|Promptfoo\|Copilot' work tools`).
 - [ ] 2026-11-08: run the untested code in `build/projects/{chatbot-in-an-afternoon,structured-extraction-pipeline,voice-agent,prompt-injection-red-team}.md`.
 - [ ] Refresh `tools/comparisons/cloud-ai-ml-services.md` gen-AI table (PaLM 2 / Llama 2 era; flagged stale).
@@ -45,12 +45,6 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 
 ### 🟠 Discoverability (added 2026-08-31)
 
-- [ ] **Patrick: upload the social preview image.** The August render lived in a `/tmp` scratchpad
-      and is gone; a new "Everything AI, summarized" card (144 papers, 31 explainers) is committed at
-      [`assets/brand/social-preview-1280x640.png`](./assets/brand/social-preview-1280x640.png)
-      (source: `assets/brand/social-preview.html`, re-render with headless Chromium
-      `--window-size=1280,640 --screenshot`). Upload via **Settings → General → Social preview**
-      (not exposed by the GitHub API). Re-render when the counts move a lot.
 - [x] ~~Update the GitHub repo description and topics for the broader scope~~ ✅ done 2026-09-30:
       description now "Everything AI, summarized: 144 papers and landmark essays plus 31 dated
       explainers..."; topics `ai-policy`, `robotics`, `explainers` added. **Patrick:** the old
@@ -94,9 +88,6 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
       `python3 scripts/measure_sources.py && python3 scripts/build_manifest.py`** (network + `pdftotext`)
       so the landing page word totals include them. Unverified details are listed in each file's
       claims; facts read from secondary sources: Stochastic Parrots controversy (Wikipedia only).
-- [ ] **Patrick (or me): counts moved to 156 papers.** `assets/brand/social-preview-1280x640.png` still says 144
-      (HTML source updated; re-render with headless Chromium, then re-upload in Settings -> Social preview), and the
-      GitHub repo description still says 144: `gh repo edit --description "Everything AI, summarized: 156 papers and landmark essays plus 31 dated explainers..."`.
 - [x] 2026-10-16 added papers 151-156 (circuit tracing, CoT faithfulness, Emergent Misalignment, s1, DAPO,
       Mamba-3). Still **re-run `scripts/measure_sources.py`** once for 145-156. 151 and 152 read only the first
       ~100k chars of long web pages.
