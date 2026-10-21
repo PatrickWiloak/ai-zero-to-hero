@@ -31,7 +31,7 @@ Learn these with code, not just pen and paper: implement a dot product, a softma
 
 ## Stage 2: Classical machine learning (weeks 5 to 7)
 
-Start with [What is machine learning?](../concepts/what-is-machine-learning.md) for the framing. Then work with scikit-learn on tabular data: linear and logistic regression, decision trees, gradient-boosted trees, k-means. Gradient-boosted trees are still the strongest choice for many tabular business problems, and they train in seconds.
+Start with [What is machine learning?](../concepts/what-is-machine-learning.md) for the framing, then [Classic ML: supervised vs unsupervised](../concepts/classic-ml-supervised-vs-unsupervised.md) and [Training, validation and overfitting](../concepts/training-validation-and-overfitting.md), which give you runnable scikit-learn baselines and the metrics (precision, recall, F1, ROC-AUC) you will use for the rest of your career. [Recommender systems basics](../concepts/recommender-systems-basics.md) shows those pieces in the system most companies actually run. Then work with scikit-learn on tabular data: linear and logistic regression, decision trees, gradient-boosted trees, k-means. Gradient-boosted trees are still the strongest choice for many tabular business problems, and they train in seconds.
 
 The real lessons of this stage are not the algorithms. They are **overfitting**, **data leakage**, **choosing a metric**, and **honest evaluation**. These lessons carry straight into deep learning and LLM work, and they are far cheaper to learn on a dataset that fits in memory.
 
@@ -60,13 +60,13 @@ Then learn what changed after 2017: [tokenization](../../explainers/concepts/tok
 
 ## Stage 5: Post-training and fine-tuning (weeks 17 to 20)
 
-This is the most common ML engineering task today. Read [Fine-tuning vs RAG](../concepts/fine-tuning-vs-rag.md) first, so you know when not to fine-tune. Then:
+This is the most common ML engineering task today. Read [How LLMs are trained](../concepts/how-llms-are-trained.md) for the whole pipeline you are slotting into, then [Fine-tuning vs RAG](../concepts/fine-tuning-vs-rag.md), so you know when not to fine-tune. Then:
 
 - **Parameter-efficient fine-tuning:** [LoRA](../../papers/techniques/10-lora/summary.md) and [QLoRA](../../papers/techniques/22-qlora/summary.md). These let you fine-tune a large model on one GPU.
 - **Preference tuning:** [InstructGPT/RLHF](../../papers/language-models/05-instructgpt-rlhf/summary.md), [DPO](../../papers/language-models/19-dpo/summary.md), [KTO](../../papers/techniques/103-kto/summary.md).
 - **Reinforcement learning for reasoning:** [PPO](../../papers/techniques/63-ppo/summary.md), [GRPO](../../papers/techniques/38-grpo/summary.md), [RLVR](../../papers/techniques/39-rlvr/summary.md), [DeepSeek-R1](../../papers/language-models/26-deepseek-r1/summary.md), and the [reasoning models explainer](../../explainers/concepts/reasoning-models.md).
 - **Data:** [Self-Instruct](../../papers/techniques/79-self-instruct/summary.md), [phi-1 "Textbooks Are All You Need"](../../papers/language-models/135-phi-1-textbooks/summary.md), [FineWeb](../../papers/techniques/133-fineweb/summary.md), and the [Tulu 3](../../papers/language-models/148-tulu-3/summary.md) open post-training recipe, which documents a full pipeline end to end.
-- **Smaller and cheaper:** [Quantization and distillation](../concepts/quantization-and-distillation.md), [GPTQ and AWQ](../../papers/techniques/86-gptq-awq-quantization/summary.md), [knowledge distillation](../../papers/techniques/134-knowledge-distillation/summary.md).
+- **Smaller and cheaper:** [Small language models](../concepts/small-language-models.md), [Quantization and distillation](../concepts/quantization-and-distillation.md), [GPTQ and AWQ](../../papers/techniques/86-gptq-awq-quantization/summary.md), [knowledge distillation](../../papers/techniques/134-knowledge-distillation/summary.md).
 
 **Project:** [Fine-tune with LoRA](../../build/projects/fine-tune-with-lora.md). Fine-tune a small open-weight model on a narrow task, and compare it against the base model with a prompt, using an eval set you wrote before training. Be prepared for the prompt to win; finding that out is a valid result.
 

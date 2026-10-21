@@ -29,7 +29,7 @@ Three kinds of pages on this site feed the path:
 
 **Goal:** know what the words mean and use a modern assistant well.
 
-Most people start using AI by typing into a chat window and judging the result by vibes. That is a fine start. This phase turns it into an informed habit. Read [What is machine learning?](../concepts/what-is-machine-learning.md) for the big picture: a model is a function whose behaviour is learned from examples rather than written by hand. Then read [Neural networks in plain English](../concepts/neural-networks-plain-english.md), which explains weights, training and inference without calculus.
+Most people start using AI by typing into a chat window and judging the result by vibes. That is a fine start. This phase turns it into an informed habit. Read [What is machine learning?](../concepts/what-is-machine-learning.md) for the big picture: a model is a function whose behaviour is learned from examples rather than written by hand. Then read [Neural networks in plain English](../concepts/neural-networks-plain-english.md), which explains weights, training and inference without calculus. If you want the classic ML vocabulary that every later page assumes (classification, regression, clustering, overfitting, precision and recall), [Classic ML: supervised vs unsupervised](../concepts/classic-ml-supervised-vs-unsupervised.md) and [Training, validation and overfitting](../concepts/training-validation-and-overfitting.md) cover it with runnable examples; they are optional here and essential on the ML engineer path.
 
 Then pick one assistant and use it seriously for a week. [Pick a chat assistant](../day-one/pick-a-chat-assistant.md) compares the main options. Use it for real tasks: summarising a long document, drafting an email you would actually send, explaining an error message, planning a trip. Notice where it is excellent and where it is confidently wrong.
 
@@ -44,10 +44,12 @@ That second observation leads straight to [Hallucinations](../concepts/hallucina
 An LLM is a neural network trained to predict the next token (a chunk of text) given everything before it. That one sentence explains an enormous amount: why models are fluent, why they can be wrong, why they have context limits, and why they cost what they cost. Read, in order:
 
 1. [LLM basics](../concepts/llm-basics.md): pretraining, instruction tuning, and what "parameters" are.
+   Then [How LLMs are trained](../concepts/how-llms-are-trained.md) for the full pipeline: pretraining, SFT, RLHF and DPO, and the reinforcement learning behind reasoning models.
 2. [Tokenization](../../explainers/concepts/tokenization.md): what the model actually reads, and why everything is priced in tokens.
 3. [Transformer architecture](../concepts/transformer-architecture.md): the 2017 design almost every model still uses. Pair it with the [Attention Is All You Need summary](../../papers/architectures/01-attention-is-all-you-need/summary.md).
 4. [Context windows](../../explainers/concepts/context-windows.md) and [sampling and decoding](../../explainers/concepts/sampling-and-decoding.md): how much the model can see at once, and what temperature actually does.
 5. [Reasoning models](../../explainers/concepts/reasoning-models.md): why some models "think" before answering and when that is worth paying for.
+6. [AI cost basics](../concepts/ai-cost-basics.md): turning per-token prices into a cost per request and per month, the skill this phase's checkpoint asks for.
 
 If you want the story of how we got here, the [timeline of AI](../../explainers/history/timeline-of-ai.md) is a good evening's read, and the [GPT-3 summary](../../papers/language-models/04-gpt3-few-shot-learners/summary.md) and [InstructGPT summary](../../papers/language-models/05-instructgpt-rlhf/summary.md) explain the two jumps that made chat assistants possible: scale, then training on human feedback.
 
@@ -62,7 +64,7 @@ This is where you cross from user to builder. If you have never programmed, budg
 1. [Notebooks and Colab](../day-one/notebooks-and-colab.md): a place to run code with nothing to install.
 2. [API keys and environment variables](../day-one/api-keys-and-env-vars.md): how to hold a secret without leaking it. Do not skip this one; leaked keys cost real money.
 3. [Your first LLM API call](../day-one/first-llm-api-call.md): the same request with the Anthropic SDK, the OpenAI SDK and raw curl.
-4. [Run a model locally](../day-one/run-a-model-locally.md): an open-weight model on your own laptop, free and private.
+4. [Run a model locally](../day-one/run-a-model-locally.md): an open-weight model on your own laptop, free and private. [Small language models](../concepts/small-language-models.md) explains which models fit on your hardware and when a small one is the right choice.
 
 Then learn to ask well. [Prompt engineering](../concepts/prompt-engineering.md) covers system prompts, examples, and asking for a format, and [structured outputs](../concepts/structured-outputs.md) shows how to get JSON you can parse instead of prose you have to scrape.
 
@@ -90,9 +92,11 @@ Tool use (also called function calling) is the step that turns a model from a wr
 
 Read [Tool use and function calling](../concepts/tool-use-and-function-calling.md), then [Agents explained](../concepts/agents-explained.md) and [Agentic loops](../concepts/agentic-loops.md). [MCP explained](../concepts/mcp-explained.md) covers the Model Context Protocol, the open standard for plugging tools into models, and [agent protocols](../../explainers/ecosystem/agent-protocols.md) puts it in context. For the research lineage, the [ReAct summary](../../papers/techniques/21-react/summary.md), the [Toolformer summary](../../papers/techniques/24-toolformer/summary.md) and Anthropic's [Building Effective Agents essay summary](../../papers/essays/115-building-effective-agents/summary.md) are the three to read. The last one is the most practical: most problems that look like they need an agent are better solved with a fixed workflow.
 
+Three kinds of agent are worth knowing by name: [AI coding agents](../concepts/ai-coding-agents-explained.md) (files, a shell and tests), [computer-use agents](../concepts/computer-use-agents.md) (screenshots, mouse and keyboard), and agents that need to remember across sessions ([Memory for agents](../concepts/memory-for-agents.md)). If voice is your interface, [Speech AI: ASR and TTS](../concepts/speech-ai-asr-and-tts.md) covers the speech half.
+
 Agents also open a new class of security problem. Read [Prompt injection explained](../../safety/security/prompt-injection-explained.md) now, before you give anything write access.
 
-**Build:** [Build a Claude agent with MCP](../../build/projects/build-claude-agent-with-mcp.md). Give it two tools, ask it to do a small research task, and log every model call. Count them, and add up the tokens. The number will surprise you.
+**Build:** [Build a Claude agent with MCP](../../build/projects/build-claude-agent-with-mcp.md). Give it two tools, ask it to do a small research task, and log every model call. Count them, and add up the tokens. The number will surprise you. Then [Build a coding agent loop](../../build/projects/build-a-coding-agent-loop.md): four tools, a test suite, and the harness decisions that keep an agent safe.
 
 **Checkpoint:** you can sketch an agent for a task on a whiteboard, estimate how many model calls it makes and what it costs per run, and point at the tool that would do the most damage if an attacker controlled its input.
 
@@ -104,7 +108,7 @@ Everything up to here produces demos. The gap between a demo and a product is me
 
 Then safety: [Guardrails and safety](../concepts/guardrails-and-safety.md), the [OWASP LLM Top 10](../../safety/security/owasp-llm-top-10.md), and [Prompt injection defense](../../safety/security/prompt-injection-defense.md). Then operations: [Prompt caching](../concepts/prompt-caching.md), [Cost and latency control](../../build/patterns/cost-and-latency-control.md) and [LLMOps and observability](../../build/patterns/llmops-observability.md).
 
-**Build:** [Set up an eval harness](../../build/projects/set-up-eval-harness.md) for the RAG or agent project from earlier. Twenty test cases is enough to start. Change the prompt, rerun, and see whether the score moved. Then add logging of tokens, cost and latency per request.
+**Build:** [Set up an eval harness](../../build/projects/set-up-eval-harness.md) for the RAG or agent project from earlier. Twenty test cases is enough to start. Change the prompt, rerun, and see whether the score moved. Then add logging of tokens, cost and latency per request. For an agent, [Evaluate an agent end to end](../../build/projects/evaluate-an-agent-end-to-end.md) runs it over a set of tasks several times and grades the end state, not its own summary.
 
 **Checkpoint:** for one thing you have built, you can show a number that says how good it is, a number that says what it costs per user per day, and a list of the failure cases you know about.
 
@@ -116,6 +120,7 @@ By now you have the shared foundation. Where you go next depends on what you wan
 |---|---|---|
 | Build AI features into products | [AI engineer path](ai-engineer-path.md) | [AI engineer roadmap](../../careers/roles/ai-engineer-roadmap.md) |
 | Train, fine-tune and serve models | [ML engineer path](ml-engineer-path.md) | [Fine-tune with LoRA](../../build/projects/fine-tune-with-lora.md) |
+| Build classic ML and recommendation systems | [Classic ML](../concepts/classic-ml-supervised-vs-unsupervised.md) | [Recommender systems basics](../concepts/recommender-systems-basics.md) |
 | Understand the research frontier | [Researcher path](researcher-path.md) | [docs/ROADMAP.md](../../docs/ROADMAP.md) |
 | Roll AI out across a team | [AI adoption playbook](../../work/enablement/ai-adoption-playbook.md) | [Measuring AI ROI](../../work/enablement/measuring-ai-roi.md) |
 | Lead or govern AI in an organisation | [AI for leaders](ai-for-leaders.md) | [AI governance program](../../safety/governance/ai-governance-program.md) |

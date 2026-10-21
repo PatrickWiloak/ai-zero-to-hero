@@ -21,7 +21,7 @@ If you are more interested in training and serving models than in building appli
 
 ## Stage 1: Foundations, fast (week 1)
 
-You need an accurate mental model of what you are calling. Skim [LLM basics](../concepts/llm-basics.md), [Tokenization](../../explainers/concepts/tokenization.md), [Context windows](../../explainers/concepts/context-windows.md), [Sampling and decoding](../../explainers/concepts/sampling-and-decoding.md) and [Reasoning models](../../explainers/concepts/reasoning-models.md). Then [Hallucinations](../concepts/hallucinations.md), because designing around them is half your job.
+You need an accurate mental model of what you are calling. Skim [LLM basics](../concepts/llm-basics.md), [Tokenization](../../explainers/concepts/tokenization.md), [Context windows](../../explainers/concepts/context-windows.md), [Sampling and decoding](../../explainers/concepts/sampling-and-decoding.md) and [Reasoning models](../../explainers/concepts/reasoning-models.md). Then [Hallucinations](../concepts/hallucinations.md), because designing around them is half your job, and [AI cost basics](../concepts/ai-cost-basics.md), because every design choice after this has a per-token price.
 
 Then get set up: [API keys and environment variables](../day-one/api-keys-and-env-vars.md), [Your first LLM API call](../day-one/first-llm-api-call.md) with at least two providers, and [Run a model locally](../day-one/run-a-model-locally.md). Knowing how to swap providers and run an open-weight model locally will save you later when a price or a policy changes.
 
@@ -47,13 +47,13 @@ Research to read: [RAG](../../papers/techniques/13-rag/summary.md), [dense retri
 
 ## Stage 4: Tools, agents and MCP (weeks 6 to 8)
 
-Read [Tool use and function calling](../concepts/tool-use-and-function-calling.md), [Agents explained](../concepts/agents-explained.md), [Agentic loops](../concepts/agentic-loops.md) and [MCP explained](../concepts/mcp-explained.md). Then [Agent architectures](../../build/patterns/agent-architectures.md) for the patterns (router, orchestrator-worker, evaluator-optimiser) and the [agent frameworks comparison](../../tools/comparisons/agent-frameworks.md) for the libraries.
+Read [Tool use and function calling](../concepts/tool-use-and-function-calling.md), [Agents explained](../concepts/agents-explained.md), [Agentic loops](../concepts/agentic-loops.md) and [MCP explained](../concepts/mcp-explained.md). Then the specialised kinds: [AI coding agents](../concepts/ai-coding-agents-explained.md), [Computer-use agents](../concepts/computer-use-agents.md) and [Memory for agents](../concepts/memory-for-agents.md). Then [Agent architectures](../../build/patterns/agent-architectures.md) for the patterns (router, orchestrator-worker, evaluator-optimiser) and the [agent frameworks comparison](../../tools/comparisons/agent-frameworks.md) for the libraries.
 
 The essential reading is short: the [Building Effective Agents summary](../../papers/essays/115-building-effective-agents/summary.md) (start with the simplest thing that works), [ReAct](../../papers/techniques/21-react/summary.md), [Reflexion](../../papers/techniques/78-reflexion/summary.md), the [MCP summary](../../papers/techniques/59-model-context-protocol/summary.md), and [SWE-bench](../../papers/techniques/84-swe-bench/summary.md) and [METR time horizons](../../papers/techniques/145-metr-time-horizons/summary.md) to calibrate what agents can actually do. The [agent benchmarks explainer](../../explainers/benchmarks/agents-and-computer-use.md) ties these together.
 
 Security becomes urgent here, because an agent with tools can do damage. Read [Prompt injection explained](../../safety/security/prompt-injection-explained.md) and [Agent security](../../safety/security/agent-security.md) before you give an agent write access to anything.
 
-**Project:** [Build a Claude agent with MCP](../../build/projects/build-claude-agent-with-mcp.md). Then try to break it with [Prompt injection red team](../../build/projects/prompt-injection-red-team.md).
+**Project:** [Build a Claude agent with MCP](../../build/projects/build-claude-agent-with-mcp.md) or [Build a coding agent loop](../../build/projects/build-a-coding-agent-loop.md). Then try to break it with [Prompt injection red team](../../build/projects/prompt-injection-red-team.md).
 
 ## Stage 5: Evaluation (weeks 9 to 10)
 
@@ -61,7 +61,7 @@ If you only get good at one thing on this path, make it this. Read [Evals for LL
 
 The practical pattern: a versioned set of test inputs drawn from real usage, a mix of deterministic checks (does it parse, does it contain the required field, is the number right) and model-graded checks (is the tone right, is the answer supported by the retrieved text), run on every change. Start with 20 cases. Add every production failure as a new case.
 
-**Project:** [Set up an eval harness](../../build/projects/set-up-eval-harness.md) for your RAG or agent project. Make one prompt change that you believe helps, and prove or disprove it with the harness.
+**Project:** [Set up an eval harness](../../build/projects/set-up-eval-harness.md) for your RAG project, or [Evaluate an agent end to end](../../build/projects/evaluate-an-agent-end-to-end.md) for your agent. Make one prompt change that you believe helps, and prove or disprove it with the harness.
 
 ## Stage 6: Production (weeks 11 to 12)
 

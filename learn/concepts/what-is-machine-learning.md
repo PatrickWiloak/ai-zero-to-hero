@@ -118,7 +118,8 @@ A model can only learn patterns that are present in its data. If the data is bia
 ## Next steps
 
 - [Neural networks in plain English](neural-networks-plain-english.md)
-- [LLM basics](llm-basics.md)
+- [Classic ML: supervised vs unsupervised](classic-ml-supervised-vs-unsupervised.md) and [Training, validation and overfitting](training-validation-and-overfitting.md): the next level of detail, with runnable code
+- [LLM basics](llm-basics.md) and [How LLMs are trained](how-llms-are-trained.md)
 - [The Zero to Hero path](../start-here/zero-to-hero-path.md)
 - [ML engineer path](../start-here/ml-engineer-path.md) if you want to train models yourself
 - [docs/GLOSSARY.md](../../docs/GLOSSARY.md) for terms
