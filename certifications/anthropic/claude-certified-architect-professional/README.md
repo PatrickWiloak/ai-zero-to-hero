@@ -96,7 +96,7 @@ Supporting files:
 | [practice-plan.md](practice-plan.md) | 6-week study plan covering all 7 domains |
 | [scenarios.md](scenarios.md) | Exam-style scenario questions with explanations |
 | [strategy.md](strategy.md) | Exam-day tactics and time management |
-| [Practice questions](../../practice-questions/anthropic-claude-architect-professional.md) | 15-question bank across all domains |
+| [Practice questions](../../practice-questions/anthropic-claude-architect-professional.md) | 30-question bank across all domains |
 
 ---
 

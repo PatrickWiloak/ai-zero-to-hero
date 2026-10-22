@@ -2,7 +2,7 @@
 
 ## Important Notice
 
-**The AWS Certified Machine Learning - Specialty (MLS-C01) certification was retired on April 15, 2025.**
+**The AWS Certified Machine Learning - Specialty (MLS-C01) certification was retired: the last exam day was March 31, 2026.**
 
 This certification is no longer available for new candidates. If you hold this certification, your credential will remain valid for three years from the date you earned it.
 

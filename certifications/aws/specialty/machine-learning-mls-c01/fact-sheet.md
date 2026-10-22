@@ -1,12 +1,12 @@
 ---
 last-updated: 2026-05-03
 exam-version: MLS-C01
-exam-retires: 2025-04-15
+exam-retires: 2026-03-31
 ---
 
 # AWS Certified Machine Learning - Specialty (MLS-C01) - Fact Sheet
 
-> ⚠️ **RETIRED April 15, 2025.** No longer available for new candidates. Replaced by **[AWS Machine Learning Engineer - Associate (MLA-C01)](../../associate/ml-engineer-mla-c01/fact-sheet.md)**. Material preserved as historical reference.
+> ⚠️ **RETIRED (last exam day March 31, 2026).** No longer available for new candidates. Replaced by **[AWS Machine Learning Engineer - Associate (MLA-C01)](../../associate/ml-engineer-mla-c01/fact-sheet.md)**. Material preserved as historical reference.
 
 ## Quick Reference
 
