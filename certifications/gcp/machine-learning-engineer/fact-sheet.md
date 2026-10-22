@@ -251,7 +251,7 @@ Google updated the exam for the rename of Vertex AI to Gemini Enterprise Agent P
 - Feature versioning and lineage
 - **[📖 Feature Store Overview](https://cloud.google.com/vertex-ai/docs/featurestore/overview)** - Feature store architecture
 - **[📖 Creating Features](https://cloud.google.com/vertex-ai/docs/featurestore/setup)** - Feature store setup
-- **[📖 Serving Features](https://cloud.google.com/vertex-ai/docs/featurestore/serving-online)** - Online feature serving
+- **[📖 Serving Features](https://docs.cloud.google.com/vertex-ai/docs/featurestore/serving-online)** - Online feature serving
 - **[📖 Feature Store Best Practices](https://cloud.google.com/architecture/architecture-for-mlops-using-tfx-kubeflow-pipelines-and-cloud-build#feature_store)** - Usage patterns
 
 ### BigQuery for ML
@@ -263,10 +263,10 @@ Google updated the exam for the rename of Vertex AI to Gemini Enterprise Agent P
 - **[📖 BigQuery ML Overview](https://cloud.google.com/bigquery-ml/docs/introduction)** - BQML introduction
 - **[📖 Creating Models](https://cloud.google.com/bigquery-ml/docs/create-machine-learning-model)** - Model creation
 - **[📖 Model Types](https://docs.cloud.google.com/bigquery/docs/bqml-introduction)** - Available algorithms
-- **[📖 Hyperparameter Tuning](https://cloud.google.com/bigquery-ml/docs/hp-tuning-overview)** - BQML tuning
+- **[📖 Hyperparameter Tuning](https://docs.cloud.google.com/bigquery/docs/hp-tuning-overview)** - BQML tuning
 - **[📖 Model Evaluation](https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-evaluate)** - Evaluation functions
 - **[📖 Predictions](https://cloud.google.com/bigquery-ml/docs/reference/standard-sql/bigqueryml-syntax-predict)** - Making predictions
-- **[📖 Export Models](https://cloud.google.com/bigquery-ml/docs/exporting-models)** - Export for serving
+- **[📖 Export Models](https://docs.cloud.google.com/bigquery/docs/exporting-models)** - Export for serving
 
 ### Data Validation
 
