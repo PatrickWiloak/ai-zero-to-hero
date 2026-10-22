@@ -56,6 +56,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] 2026-10-22 Databricks GenAI page mapped to the 6-section guide (no official weights, objective counts instead); notes 04-06 added.
 - [x] 2026-10-22 DP-100 page on the final outline (LM optimization 25-30%), retired banner; `notes/language-model-optimization.md` added.
 - [x] 2026-10-22 GAL README, strategy, notes 04 and fact sheet now give the guide's 30/35/20/15 weights.
+- [ ] 2026-11-01: check the official Databricks ML Associate guide (third parties show 4 domains 38/19/31/12; README has the old 5) and align `certifications/azure/genai/README.md` (AI-102 domains, old names) with its fact sheet.
 - [ ] 2027-02-01: re-check GH-300 outline (Spark retired 2026-08-31 but listed; duplicate "GitHub Copilot features" line) and Databricks guide (KA, Supervisor now legacy).
 - [ ] 2026-10-31 spot-check retired-product replacements: LUIS (`certifications/azure/ai-102`), PaLM and AutoML (GCP ML notes).
 - [ ] Distribution: submit to awesome-llm-security.
