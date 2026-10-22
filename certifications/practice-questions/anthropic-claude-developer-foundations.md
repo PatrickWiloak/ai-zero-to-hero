@@ -476,19 +476,19 @@ D. Remove the system prompt to free up space
 </details>
 
 ### Question 28
-**Scenario:** A request uses extended thinking and sets `tool_choice` to force a specific tool. The API rejects it.
+**Scenario:** A request turns on manual extended thinking (`thinking: {type: "enabled", budget_tokens: 8000}`) and sets `tool_choice` to force a specific tool. The API rejects it with a 400 error. What is the cause?
 
-A. Tools cannot be defined when thinking is enabled
-B. The tool name is too long
-C. With extended thinking, only `tool_choice` of `auto` or `none` is supported; forcing a tool is not
-D. Thinking requires the tool to be called through the Batches API
+A. Tools cannot be defined at all on a request that has thinking turned on
+B. The forced tool's name is longer than the API allows for a tool definition
+C. Manual extended thinking only accepts `tool_choice` of `auto` or `none`
+D. Requests that combine thinking with tools must go through the Batches API
 
 <details>
 <summary>Answer</summary>
 
 **Correct: C**
 
-**Why:** Forcing a tool (`any` or a named tool) conflicts with thinking, so the documented combination is thinking with `auto` (or `none`). Tools work fine with thinking under `auto`. Name length and the Batches API are unrelated to this error.
+**Why:** With manual extended thinking, forcing a tool (`any` or a named `tool`) is incompatible because it would skip the thinking step, so only `auto` (the default) and `none` are accepted. Tools work fine with thinking under `auto`; to steer the model toward a tool, say in the prompt when to use it. Adaptive thinking is different: it accepts forced tool use on most models (the response then starts with the tool call and has no thinking block), though the newest models such as Claude Opus 5.5 and Sonnet 5.5 reject forced tool use on every request. Name length and the Batches API are unrelated to this error.
 </details>
 
 ### Question 29

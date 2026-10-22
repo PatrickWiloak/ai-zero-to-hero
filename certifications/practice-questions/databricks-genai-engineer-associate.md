@@ -456,19 +456,19 @@ D. Copy the reviews into a spreadsheet and use a browser extension
 </details>
 
 ### Question 27
-**Scenario:** A Vector Search use case holds over a billion embeddings, is cost-sensitive, and can tolerate somewhat higher query latency.
+**Scenario:** A Vector Search use case will hold close to a billion 768-dimension embeddings, is cost-sensitive, and can tolerate a little more query latency.
 
 A. A standard endpoint, which is designed for the lowest latency at small scale
-B. Ten separate small indexes queried one after another
+B. Ten separate small indexes, queried one after another and merged
 C. No index, computing similarity against every vector at query time
-D. A storage-optimized Vector Search endpoint
+D. A storage-optimized endpoint, which trades a little latency for scale and cost
 
 <details>
 <summary>Answer</summary>
 
 **Correct: D**
 
-**Why:** Storage-optimized endpoints trade some latency for far larger capacity and lower cost, which matches the requirements. Standard endpoints target low latency for smaller indexes. Splitting into sequential indexes adds latency and complexity. Brute force over a billion vectors is not practical.
+**Why:** Storage-optimized endpoints hold roughly a billion vectors at 768 dimensions (about three times a standard endpoint's ~320 million), index 10-20 times faster and are priced for large vector counts, in exchange for about 250 ms of extra query latency. That matches the requirements. Standard endpoints suit lower latency at smaller scale. Splitting into sequential indexes adds latency and complexity. Brute force over a billion vectors is not practical.
 </details>
 
 ### Question 28

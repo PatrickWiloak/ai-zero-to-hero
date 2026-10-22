@@ -502,7 +502,7 @@ D. Settings take time to reach IDEs; reload the editor
 
 **Correct: D**
 
-**Why:** GitHub documents a delay before new exclusion settings reach clients that have already loaded them, and reloading the IDE picks them up. Exclusions work for private repositories, are set centrally by administrators, and accept path patterns.
+**Why:** GitHub documents that a new or changed exclusion can take up to 30 minutes to reach IDEs that have already loaded the settings; reloading the window in VS Code, or restarting Visual Studio or a JetBrains IDE, picks it up sooner (Vim and Neovim fetch exclusions each time a file opens). Exclusions work for private repositories, are set centrally by administrators, and accept path patterns.
 </details>
 
 ### Question 30
