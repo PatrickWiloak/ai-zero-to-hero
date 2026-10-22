@@ -11,7 +11,7 @@ papers-only on 2026-09-30. On 2026-10-21 the repo was renamed `ai-zero-to-hero` 
 sites live on noblerworks.com subdomains (Patrick, 2026-10-21); no redirects from older names (never indexed). The old github.io/genai-research-papers-summarized URL is dead (never indexed). Docs-only educational resource (no application
 code) - markdown plus a stdlib Python regeneration pipeline that builds the index,
 manifests, and an MkDocs Material site.
-History: on 2026-10-21 the combined `cloud-data-ai-security-zero-to-hero` repo split into four subject sites (cloud, data, security, ai); its AI cert guides and AI pages moved here. Siblings: cloud.noblerworks.com, data.noblerworks.com, security.noblerworks.com.
+History: on 2026-10-21 the combined `cloud-data-ai-security-zero-to-hero` repo split into four subject sites (cloud, data, security, ai); its AI cert guides and AI pages moved here. Siblings: cloud.noblerworks.com, data.noblerworks.com, security.noblerworks.com. The "which site?" page (`learn/which-site.md`; ai: `learn/start-here/which-site.md`) is also byte-identical in all four - edit all four together.
 
 ## Structure
 - `papers/` - Paper summaries grouped into category subfolders (`architectures/`, `language-models/`, `image-generation/`, `multimodal/`, `robotics/`, `techniques/`, `essays/`); each summary is a `summary.md`
