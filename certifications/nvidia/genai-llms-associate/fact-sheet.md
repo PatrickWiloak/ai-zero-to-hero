@@ -1,5 +1,5 @@
 ---
-last-updated: 2026-05-03
+last-updated: 2026-10-22
 ---
 
 # NVIDIA Certified Associate - Generative AI and LLMs (NCA-GENL) Fact Sheet
@@ -277,7 +277,7 @@ This domain covers methods for adapting pre-trained models to specific tasks and
 - Validation set for monitoring overfitting
 
 **[📖 NVIDIA NeMo Framework Training](https://docs.nvidia.com/nemo-framework/user-guide/latest/overview.html)** - LLM training with NeMo
-**[📖 NVIDIA NeMo Customization Guide](https://docs.nvidia.com/nemo/microservices/latest/index.html)** - Model customization workflows
+**[📖 NeMo Platform](https://github.com/NVIDIA-NeMo/nemo-platform)** - Model customization and evaluation services (replaced NeMo Microservices, which NVIDIA sunset on 2026-10-01; old docs are on archive.docs.nvidia.com)
 
 ### 4.2 Parameter-Efficient Fine-Tuning (PEFT)
 
@@ -358,7 +358,8 @@ This domain covers deploying LLMs to production with optimized performance.
 - Simple deployment with Docker containers
 
 **Key Features:**
-- Built on TensorRT-LLM for maximum performance
+- Packages an open-source engine, vLLM or SGLang, with NVIDIA optimizations; each image bundles one engine (NIM 1.x ran TensorRT-LLM on supported GPUs, so older material says "built on TensorRT-LLM")
+- Model profiles per image (`vllm-bf16-tp1-pp1` style names): list them with `list-model-profiles`, pin one with `NIM_MODEL_PROFILE`, or let NIM pick automatically
 - Includes optimized tokenization and pre/post-processing
 - Health checks and monitoring endpoints
 - Horizontal scaling support
@@ -366,6 +367,7 @@ This domain covers deploying LLMs to production with optimized performance.
 
 **[📖 NVIDIA NIM Documentation](https://docs.nvidia.com/nim/index.html)** - Complete NIM guides
 **[📖 NVIDIA NIM for LLMs](https://docs.nvidia.com/nim/large-language-models/latest/index.html)** - LLM-specific NIM documentation
+**[📖 NIM Model Profiles and Selection](https://docs.nvidia.com/nim/large-language-models/latest/deployment/model-profiles-and-selection.html)** - profiles, `list-model-profiles`, `NIM_MODEL_PROFILE`
 **[📖 NVIDIA AI Enterprise NIM](https://www.nvidia.com/en-us/ai/)** - Enterprise NIM deployment
 
 ### 5.2 TensorRT-LLM

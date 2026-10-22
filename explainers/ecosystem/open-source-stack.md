@@ -50,7 +50,7 @@ A typical path: download an open-weight model from the Hub (layer 1), fine-tune 
 | **vLLM** | Serving | High-throughput serving engine built on PagedAttention; runs on NVIDIA, AMD, TPU, Trainium and more | Started at UC Berkeley; PyTorch Foundation project since May 2025 | Apache-2.0 |
 | **SGLang** | Serving | High-performance serving with fast prefix reuse and structured generation | Started as LMSYS research; now the sgl-project community | Apache-2.0 |
 | **TensorRT-LLM** | Serving | NVIDIA's compiler-style inference library, tuned per NVIDIA GPU | NVIDIA | Open source (see repo) |
-| **NVIDIA Dynamo** | Serving (cluster) | Orchestrates vLLM, SGLang or TensorRT-LLM across many GPUs, with prefill and decode split apart | NVIDIA (open-sourced March 2025) | Open source (see repo) |
+| **NVIDIA Dynamo** | Serving (cluster) | Orchestrates vLLM, SGLang or TensorRT-LLM across many GPUs, with prefill and decode split apart | NVIDIA (open-sourced March 2025, 1.0 March 2026) | Open source (see repo) |
 | **llm-d** | Serving (cluster) | Kubernetes-native distributed inference built on vLLM with KV-cache-aware routing | Red Hat, Google Cloud, IBM Research, CoreWeave, NVIDIA; CNCF sandbox | Apache-2.0 |
 | **llama.cpp** | Local | C/C++ inference that runs quantized models on CPUs, Apple silicon and consumer GPUs | ggml-org; ggml.ai joined Hugging Face in February 2026 | MIT |
 | **GGUF** | Local (format) | Single-file model format with built-in quantization, used by llama.cpp and its wrappers | ggml project | Open format |
@@ -93,7 +93,7 @@ Serving engines exist because naive inference wastes most of the GPU (see [Infer
 - **SGLang** grew out of research on structured LLM programs. Its RadixAttention reuses shared prompt prefixes across requests, which suits agents and multi-turn chat. It joined the PyTorch ecosystem in March 2025.
 - **TensorRT-LLM** is NVIDIA's own engine. It is built to get the most out of NVIDIA hardware, at the cost of being NVIDIA-only.
 
-On top of single-node engines sits a newer **cluster layer**. NVIDIA **Dynamo** (announced March 2025 as the successor to its Triton server) and **llm-d** (launched by Red Hat and partners in May 2025, now a CNCF sandbox project) both split prefill and decode onto separate GPU pools and route requests to wherever the relevant KV cache already sits.
+On top of single-node engines sits a newer **cluster layer**. NVIDIA **Dynamo** (announced March 2025 as the successor to its Triton server) and **llm-d** (launched by Red Hat and partners in May 2025, now a CNCF sandbox project) both split prefill and decode onto separate GPU pools and route requests to wherever the relevant KV cache already sits. Dynamo reached 1.0 in March 2026 and is on the 1.5 line as of October 2026. Around the engines it adds a KV-cache-aware router, a Planner that scales prefill and decode workers with demand, and a KV Block Manager that manages cache blocks across memory tiers and nodes. It runs on Kubernetes, Slurm or a single machine, and on NVIDIA and AMD GPUs and Intel XPUs. Triton Inference Server has not gone away: NVIDIA still documents and ships it under its own name for general multi-framework model serving.
 
 vLLM and SGLang expose an OpenAI-compatible API, and `transformers` v5 added a `transformers serve` command that does too. The hands-on [Inference Servers](../../learn/concepts/inference-servers.md) page is the hands-on companion.
 
@@ -153,6 +153,7 @@ Three conventions make this stack interchangeable:
 - TensorRT-LLM repository: https://github.com/NVIDIA/TensorRT-LLM
 - NVIDIA, "NVIDIA Dynamo Open-Source Library Accelerates and Scales AI Reasoning Models" (March 18, 2025): https://www.globenewswire.com/news-release/2025/03/18/3044894/0/en/NVIDIA-Dynamo-Open-Source-Library-Accelerates-and-Scales-AI-Reasoning-Models.html
 - NVIDIA Dynamo repository: https://github.com/ai-dynamo/dynamo
+- NVIDIA Dynamo documentation (v1.5.1, release history and glossary): https://docs.nvidia.com/dynamo/latest/
 - Red Hat, "Red Hat Launches the llm-d Community" (May 20, 2025): https://www.redhat.com/en/about/press-releases/red-hat-launches-llm-d-community-powering-distributed-gen-ai-inference-scale
 - llm-d repository: https://github.com/llm-d/llm-d
 - llama.cpp repository: https://github.com/ggml-org/llama.cpp

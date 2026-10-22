@@ -1,6 +1,8 @@
 # RAPIDS Framework Overview
 
-**[📖 RAPIDS Documentation](https://docs.rapids.ai/)** - Complete RAPIDS ecosystem reference
+**[📖 RAPIDS Documentation](https://docs.nvidia.com/datascience/)** - Complete RAPIDS ecosystem reference
+
+The RAPIDS docs moved from docs.rapids.ai to docs.nvidia.com: the hub is now docs.nvidia.com/datascience (titled "NVIDIA CUDA-X libraries for data science"), with each library under its own path, such as docs.nvidia.com/cudf, docs.nvidia.com/cuml and docs.nvidia.com/cugraph. Old docs.rapids.ai links redirect there.
 
 ## RAPIDS Ecosystem
 
@@ -67,7 +69,7 @@
 - Single GPU for medium datasets
 - Multi-GPU with Dask-cuDF for larger datasets
 - Multi-node scaling with Dask distributed scheduler
-- Integration with Spark for enterprise data pipelines
+- Integration with Spark for enterprise data pipelines, through the cuDF plugin for Apache Spark (formerly the RAPIDS Accelerator for Apache Spark)
 
 ## Installation and Setup
 
@@ -95,7 +97,7 @@ docker run --gpus all -it -p 8888:8888 \
 - Sufficient GPU memory for datasets
 - Linux operating system (Ubuntu, CentOS, RHEL)
 
-**[📖 RAPIDS Installation Guide](https://docs.rapids.ai/install)** - Setup instructions
+**[📖 RAPIDS Installation Guide](https://docs.nvidia.com/datascience/install/)** - Setup instructions
 
 ## Memory Management with RMM
 

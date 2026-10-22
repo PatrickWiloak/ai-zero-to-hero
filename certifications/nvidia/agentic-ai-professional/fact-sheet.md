@@ -1,5 +1,5 @@
 ---
-last-updated: 2026-05-03
+last-updated: 2026-10-22
 ---
 
 # NVIDIA Agentic AI Professional - Fact Sheet
@@ -109,7 +109,7 @@ last-updated: 2026-05-03
 - Required vs optional parameters
 - Nested object and array parameter support
 - Clear descriptions help LLM select correct tools
-- **[📖 NVIDIA NIM Function Calling](https://docs.nvidia.com/nim/large-language-models/latest/getting-started.html)** - Function calling with NIM
+- **[📖 NVIDIA NIM Function Calling](https://docs.nvidia.com/nim/large-language-models/latest/advanced-use-cases/tool-calling-and-mcp.html)** - Function calling with NIM
 
 **Parameter Extraction**
 - LLM extracts parameters from natural language
@@ -231,7 +231,7 @@ last-updated: 2026-05-03
 - Models with strong reasoning abilities
 - Consider latency requirements for interactive agents
 - Balance quality and speed for agent backends
-- **[📖 NIM LLM Models](https://docs.nvidia.com/nim/large-language-models/latest/getting-started.html)** - Available NIM models
+- **[📖 NIM LLM Models](https://docs.nvidia.com/nim/large-language-models/latest/reference/support-matrix.html)** - Available NIM models
 - **[📖 NIM Model Cards](https://build.nvidia.com/)** - Model capabilities and performance
 
 **Deployment Options**
@@ -245,13 +245,14 @@ last-updated: 2026-05-03
 - Optimize for low latency (agent interactions should feel fast)
 - Configure appropriate context length for agent memory
 - Set up streaming for responsive user experience
+- Pick a model profile: `list-model-profiles` shows what the image offers (for example `vllm-bf16-tp2-pp1`), `NIM_MODEL_PROFILE` pins one; current NIM images bundle vLLM or SGLang
 
 **Scaling Agent Infrastructure**
 - Horizontal scaling with load balancer
 - Queue-based processing for async tool calls
 - Separate inference and tool execution services
 - Auto-scaling based on agent session count
-- **[📖 NIM Deployment Guide](https://docs.nvidia.com/nim/large-language-models/latest/getting-started.html)** - Deployment configuration
+- **[📖 NIM Model Profiles and Selection](https://docs.nvidia.com/nim/large-language-models/latest/deployment/model-profiles-and-selection.html)** - Choosing the engine, precision and GPU count a NIM runs with
 
 ### Integration Patterns
 
@@ -266,7 +267,7 @@ last-updated: 2026-05-03
 - Function calling through tool_choice parameter
 - Streaming responses for real-time interaction
 - Structured output with JSON mode
-- **[📖 NIM API Reference](https://docs.nvidia.com/nim/large-language-models/latest/api-reference.html)** - Complete API documentation
+- **[📖 NIM API Reference](https://docs.nvidia.com/nim/large-language-models/latest/reference/api-reference.html)** - Complete API documentation
 
 ## Domain 5: Safety, Guardrails, and Production
 

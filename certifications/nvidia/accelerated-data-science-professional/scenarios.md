@@ -34,7 +34,7 @@
 **Common Distractors**:
 - Single cuDF on one GPU - 200GB exceeds 80GB GPU memory
 - pandas on CPU - much slower, defeats purpose of GPU infrastructure
-- Spark RAPIDS - viable but Dask-cuDF is simpler for this single-node case
+- cuDF plugin for Apache Spark (formerly the RAPIDS Accelerator, often called Spark RAPIDS) - viable but Dask-cuDF is simpler for this single-node case
 - Process 50GB chunks sequentially on one GPU - slower than parallel multi-GPU
 
 **Key Takeaway**: When data exceeds single GPU memory, use Dask-cuDF to distribute across multiple GPUs. LocalCUDACluster for single node.
@@ -46,20 +46,20 @@
 **Scenario**: An existing Spark ETL pipeline processes 5TB of Parquet data daily. It runs on a 20-node CPU cluster with 3-hour runtime. The company wants to evaluate GPU acceleration. How should they approach this?
 
 **Solution Pattern**:
-1. Run RAPIDS Qualification Tool on Spark event logs to estimate speedup
-2. Add RAPIDS Accelerator plugin to existing Spark configuration
+1. Run the Qualification Tool on Spark event logs to estimate speedup
+2. Add the cuDF plugin for Spark to the existing Spark configuration
 3. No code changes - plugin transparently accelerates supported operations
 4. Start with GPU-enabled executor nodes (e.g., 4 nodes with A100 GPUs)
 5. Monitor GPU utilization and compare runtime to CPU baseline
 6. Tune `concurrentGpuTasks` and `batchSizeBytes` for optimal performance
 
 **Common Distractors**:
-- Rewrite entire pipeline in cuDF - unnecessary, Spark RAPIDS is drop-in
+- Rewrite entire pipeline in cuDF - unnecessary, the cuDF plugin is drop-in
 - Only use GPU for training, not ETL - ETL is the 3-hour bottleneck
 - Replace Spark with Dask-cuDF immediately - risky for 5TB production pipeline
-- Add GPUs without the RAPIDS plugin - Spark cannot use GPUs without the plugin
+- Add GPUs without the cuDF plugin - Spark cannot use GPUs without the plugin
 
-**Key Takeaway**: RAPIDS Accelerator for Spark is a drop-in plugin - no code changes needed. Use the Qualification Tool first to estimate benefits.
+**Key Takeaway**: The cuDF plugin for Spark is a drop-in plugin - no code changes needed. Use the Qualification Tool first to estimate benefits.
 
 ---
 

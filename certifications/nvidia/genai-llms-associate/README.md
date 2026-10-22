@@ -134,7 +134,7 @@ The NVIDIA Certified Associate - Generative AI and LLMs (NCA-GENL) exam validate
 
 ### NVIDIA AI Platform
 - **NVIDIA NeMo Framework** - End-to-end framework for LLM training and customization
-- **NVIDIA NIM** - Optimized inference microservices for deploying AI models
+- **NVIDIA NIM** - Optimized inference microservices for deploying AI models; NIM for LLMs 2.x bundles vLLM or SGLang (one engine per image), and you choose a model profile with `list-model-profiles` and `NIM_MODEL_PROFILE`
 - **TensorRT-LLM** - High-performance inference engine for LLMs
 - **Triton Inference Server** - Multi-framework model serving platform
 - **NVIDIA NeMo Guardrails** - Toolkit for adding safety to LLM applications
@@ -239,7 +239,7 @@ The NVIDIA Certified Associate - Generative AI and LLMs (NCA-GENL) exam validate
 ### Common Pitfalls
 - Confusing encoder-only (BERT) with decoder-only (GPT) model capabilities
 - Mixing up LoRA and full fine-tuning resource requirements
-- Not understanding the difference between NIM and TensorRT-LLM
+- Not understanding the difference between NIM and TensorRT-LLM (and assuming NIM still runs TensorRT-LLM inside: that was NIM 1.x; current NIM bundles vLLM or SGLang)
 - Confusing vector database indexing methods
 - Overlooking the importance of chunking strategy in RAG
 - Misunderstanding quantization precision trade-offs

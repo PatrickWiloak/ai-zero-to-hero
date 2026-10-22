@@ -1,6 +1,6 @@
 # GPU ETL and Spark Integration
 
-**[📖 Spark RAPIDS Documentation](https://docs.nvidia.com/spark-rapids/)** - RAPIDS Accelerator for Apache Spark
+**[📖 cuDF plugin for Apache Spark Documentation](https://docs.nvidia.com/cudf-spark/latest/)** - cuDF plugin for Apache Spark (formerly the RAPIDS Accelerator for Apache Spark)
 
 ## GPU-Accelerated ETL Pipelines
 
@@ -126,7 +126,9 @@ result = grouped.compute()  # Returns cuDF DataFrame
 - Use persist() for frequently accessed intermediate results
 - Monitor Dask dashboard for task distribution and memory usage
 
-## RAPIDS Accelerator for Apache Spark
+## cuDF plugin for Apache Spark
+
+NVIDIA renamed the RAPIDS Accelerator for Apache Spark to the cuDF plugin for Apache Spark, and its docs moved to docs.nvidia.com/cudf-spark. The rename does not touch your configuration: the plugin class `com.nvidia.spark.SQLPlugin`, the `spark.rapids.*` settings and the `rapids-4-spark` jar keep their old names, so the configuration below still applies.
 
 ### Overview
 - Spark SQL and DataFrame plugin for GPU acceleration
@@ -187,7 +189,7 @@ spark.rapids.sql.hasNans=false  # If data has no NaNs
 - Check Spark UI for GPU vs CPU execution breakdown
 - Adjust `concurrentGpuTasks` based on GPU memory
 
-**[📖 RAPIDS Accelerator Config](https://docs.nvidia.com/spark-rapids/)** - Tuning guide
+**[📖 cuDF plugin for Spark Config](https://docs.nvidia.com/cudf-spark/latest/)** - Tuning guide
 
 ### Qualification Tool
 - Analyzes Spark event logs to estimate GPU speedup
@@ -208,6 +210,6 @@ $SPARK_HOME/bin/spark-submit \
 - cuDF ETL pipeline patterns (extract, transform, load)
 - Performance best practices for GPU ETL
 - Dask-cuDF scaling: single GPU, multi-GPU, multi-node
-- RAPIDS Accelerator for Spark configuration
+- cuDF plugin for Spark (formerly RAPIDS Accelerator) configuration
 - Supported vs unsupported Spark operations on GPU
 - Performance tuning for Spark with GPU

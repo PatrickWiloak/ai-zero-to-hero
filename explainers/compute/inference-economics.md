@@ -102,7 +102,7 @@ Two of these deserve a closer look.
 
 **Continuous batching and paged KV cache.** Early servers batched requests in fixed groups and reserved memory for each request's maximum length, wasting much of it. [vLLM's PagedAttention](../../papers/techniques/52-pagedattention-vllm/summary.md) stores the KV cache in small pages, like an operating system's virtual memory, and lets new requests join a running batch as soon as others finish. The paper reported 2-4x higher throughput than the previous state of the art at the same latency. Every major serving engine now does some version of this.
 
-**Disaggregated serving.** Because prefill and decode stress the hardware differently, large deployments now run them on separate pools of GPUs and move the KV cache between them. NVIDIA's open-source Dynamo (March 2025) and the llm-d project (May 2025) are built around this idea. See [Open-Source Stack](../ecosystem/open-source-stack.md).
+**Disaggregated serving.** Because prefill and decode stress the hardware differently, large deployments now run them on separate pools of GPUs and move the KV cache between them. NVIDIA's open-source Dynamo (announced March 2025, 1.0 in March 2026) and the llm-d project (May 2025) are built around this idea. See [Open-Source Stack](../ecosystem/open-source-stack.md).
 
 ## Reasoning tokens change the picture
 

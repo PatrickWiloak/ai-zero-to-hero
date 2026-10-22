@@ -6,13 +6,13 @@
 1. **RAPIDS Ecosystem** - Components, installation, CPU equivalents
 2. **cuDF** - Data loading, transformations, pandas differences
 3. **cuML** - Algorithms, API patterns, model evaluation
-- **[📖 RAPIDS Docs](https://docs.rapids.ai/)**
+- **[📖 RAPIDS Docs (now docs.nvidia.com/datascience)](https://docs.nvidia.com/datascience/)**
 
 ### Phase 2: Advanced (2-3 weeks)
 1. **cuGraph** - Graph construction, algorithms, integration with cuDF
 2. **Dask-cuDF** - Multi-GPU scaling patterns
-3. **Spark RAPIDS** - Configuration, supported operations, tuning
-- **[📖 Spark RAPIDS Docs](https://docs.nvidia.com/spark-rapids/)**
+3. **cuDF plugin for Apache Spark** (formerly the RAPIDS Accelerator for Apache Spark, often called Spark RAPIDS) - Configuration, supported operations, tuning
+- **[📖 cuDF plugin for Apache Spark Docs](https://docs.nvidia.com/cudf-spark/latest/)**
 
 ### Phase 3: Exam Prep (1-2 weeks)
 1. Practice code-based questions
@@ -20,11 +20,11 @@
 3. Focus on performance optimization scenarios
 
 ## Recommended Resources
-- **[RAPIDS Documentation](https://docs.rapids.ai/)** - Complete reference
-- **[cuDF API](https://docs.rapids.ai/api/cudf/stable/)** - DataFrame reference
-- **[cuML API](https://docs.rapids.ai/api/cuml/stable/)** - ML algorithm reference
-- **[cuGraph API](https://docs.rapids.ai/api/cugraph/stable/)** - Graph analytics reference
-- **[Spark RAPIDS](https://docs.nvidia.com/spark-rapids/)** - Spark integration
+- **[RAPIDS Documentation](https://docs.nvidia.com/datascience/)** - Complete reference (moved from docs.rapids.ai to docs.nvidia.com)
+- **[cuDF API](https://docs.nvidia.com/cudf/latest/)** - DataFrame reference
+- **[cuML API](https://docs.nvidia.com/cuml/latest/)** - ML algorithm reference
+- **[cuGraph API](https://docs.nvidia.com/cugraph/latest/)** - Graph analytics reference
+- **[cuDF plugin for Apache Spark](https://docs.nvidia.com/cudf-spark/latest/)** - Spark integration
 - **[NVIDIA DLI Courses](https://www.nvidia.com/en-us/training/)** - Official training
 - **[RAPIDS GitHub](https://github.com/rapidsai)** - Source code and examples
 
@@ -35,7 +35,7 @@
 - "Classification/clustering/regression" - cuML
 - "Graph" or "network" - cuGraph
 - "Large dataset" or "multi-GPU" - Dask-cuDF
-- "Spark" or "existing pipeline" - RAPIDS Accelerator
+- "Spark" or "existing pipeline" - cuDF plugin for Spark (the exam may still say RAPIDS Accelerator)
 - "Memory" - RMM, managed memory, chunking
 - "Fastest format" - Parquet
 
@@ -44,7 +44,7 @@
 - cuML API mirrors scikit-learn but input should be cuDF/cuPy
 - cuGraph requires integer vertex IDs for best performance
 - Dask-cuDF operations are lazy - need .compute() to execute
-- Spark RAPIDS is a plugin, not a code rewrite
+- The cuDF plugin for Spark is a plugin, not a code rewrite
 - Parquet is always faster than CSV for GPU loading
 
 ## Self-Assessment Questions
@@ -52,5 +52,5 @@
 - Do I know cuDF API for loading, filtering, groupby, and merge?
 - Can I select the right cuML algorithm for a given problem?
 - Do I understand cuGraph construction and key algorithms?
-- Can I configure Spark RAPIDS for GPU acceleration?
-- Do I know when to use cuDF vs Dask-cuDF vs Spark RAPIDS?
+- Can I configure the cuDF plugin for Spark for GPU acceleration?
+- Do I know when to use cuDF vs Dask-cuDF vs the cuDF plugin for Spark?

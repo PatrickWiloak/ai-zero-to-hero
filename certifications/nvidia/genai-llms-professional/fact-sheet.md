@@ -1,5 +1,5 @@
 ---
-last-updated: 2026-05-03
+last-updated: 2026-10-22
 ---
 
 # NVIDIA Generative AI & LLMs Professional - Fact Sheet
@@ -202,18 +202,21 @@ last-updated: 2026-05-03
 ### NVIDIA NIM Microservices
 - Pre-packaged, optimized containers for model inference
 - One-command deployment with Docker or Kubernetes
-- Built-in TensorRT-LLM optimization
+- Bundles an open-source engine, vLLM or SGLang, with NVIDIA optimizations; one engine per image (NIM 1.x used TensorRT-LLM on supported GPUs, which is where "built on TensorRT-LLM" comes from)
+- Model profiles name the engine, precision and parallelism (`vllm-fp8-tp2-pp1`); `list-model-profiles` lists them, `NIM_MODEL_PROFILE` pins one, otherwise NIM picks one that fits the GPUs
 - OpenAI-compatible API endpoints
 - Support for multiple GPU architectures
 - Auto-scaling with Kubernetes HPA
 - **[📖 NVIDIA NIM Overview](https://docs.nvidia.com/nim/index.html)** - NIM documentation
-- **[📖 NIM Quick Start](https://docs.nvidia.com/nim/large-language-models/latest/getting-started.html)** - Deploy your first NIM
-- **[📖 NIM API Reference](https://docs.nvidia.com/nim/large-language-models/latest/api-reference.html)** - API documentation
+- **[📖 NIM Quick Start](https://docs.nvidia.com/nim/large-language-models/latest/get-started/index.html)** - Deploy your first NIM
+- **[📖 NIM API Reference](https://docs.nvidia.com/nim/large-language-models/latest/reference/api-reference.html)** - API documentation
 
 ### Model Serving at Scale
 - Load balancing across multiple GPU instances
 - Auto-scaling based on queue depth and latency metrics
 - Multi-model serving with Triton Inference Server
+- Multi-node LLM serving with NVIDIA Dynamo (open source, 1.0 GA March 2026): disaggregated prefill and decode, a KV-cache-aware router, the Planner (scales workers on live demand, using Profiler results for SLA-driven autoscaling) and the KV Block Manager (KVBM, manages and shares KV-cache blocks across memory tiers and nodes), over vLLM, SGLang or TensorRT-LLM workers
+- **[📖 NVIDIA Dynamo](https://docs.nvidia.com/dynamo/latest/)** - Distributed inference serving
 - A/B testing frameworks for model comparison
 - Blue-green deployments for zero-downtime updates
 - Resource allocation and GPU sharing strategies

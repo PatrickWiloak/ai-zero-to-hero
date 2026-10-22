@@ -1,5 +1,5 @@
 ---
-last-updated: 2026-05-03
+last-updated: 2026-10-22
 ---
 
 # NVIDIA AI Operations Professional - Fact Sheet
@@ -102,9 +102,9 @@ model_repository/
 
 - Pre-optimized inference containers
 - OpenAI-compatible API
-- TensorRT-LLM optimization built-in
+- Bundles an open-source engine, vLLM or SGLang, with NVIDIA optimizations (one engine per image; NIM 1.x used TensorRT-LLM on supported GPUs)
 - Simple deployment with Docker or Kubernetes
-- Auto-tuning for target GPU hardware
+- Picks a model profile (engine, precision, GPU count) for the target hardware; `list-model-profiles` shows the options, `NIM_MODEL_PROFILE` pins one
 - **[📖 NIM Documentation](https://docs.nvidia.com/nim/large-language-models/latest/getting-started.html)**
 
 ### Deployment Patterns

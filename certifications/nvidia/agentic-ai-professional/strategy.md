@@ -112,7 +112,7 @@
 **NIM Misconceptions:**
 - NIM is for inference/serving - not for training
 - NIM provides OpenAI-compatible API - not a proprietary-only interface
-- NIM handles TensorRT-LLM optimization automatically - you do not configure TRT manually
+- NIM handles engine tuning for you - current NIM bundles vLLM or SGLang (one per image) and picks a model profile for your GPUs; you can list them with `list-model-profiles` and pin one with `NIM_MODEL_PROFILE`. "NIM runs TensorRT-LLM inside" is the NIM 1.x answer
 - Not all NIM models support function calling - verify model capabilities
 
 **Guardrails Mistakes:**

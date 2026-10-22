@@ -1,5 +1,5 @@
 ---
-last-updated: 2026-05-03
+last-updated: 2026-10-22
 ---
 
 # NVIDIA Accelerated Data Science Professional - Fact Sheet
@@ -42,7 +42,7 @@ last-updated: 2026-05-03
 - pandas-like API - minimal code changes
 - Interoperable with existing Python ecosystem
 - Open-source (Apache 2.0 license)
-- **[📖 RAPIDS Documentation](https://docs.rapids.ai/)**
+- **[📖 RAPIDS Documentation](https://docs.nvidia.com/datascience/)** - moved from docs.rapids.ai to docs.nvidia.com
 
 ### Installation
 ```bash
@@ -106,7 +106,7 @@ df['name_upper'] = df['name'].str.upper()
 - Chunked processing for datasets larger than GPU memory
 - Monitor with `nvidia-smi` or `rmm` utilities
 
-**[📖 cuDF Documentation](https://docs.rapids.ai/api/cudf/stable/)** - API reference
+**[📖 cuDF Documentation](https://docs.nvidia.com/cudf/latest/)** - API reference
 
 ## Domain 3: cuML - GPU Machine Learning
 
@@ -168,7 +168,7 @@ accuracy = accuracy_score(y_test, predictions)
 - Input: cuDF DataFrame or cuPy array
 - Also accepts pandas/numpy (auto-converts)
 
-**[📖 cuML Documentation](https://docs.rapids.ai/api/cuml/stable/)** - Algorithm reference
+**[📖 cuML Documentation](https://docs.nvidia.com/cuml/latest/)** - Algorithm reference
 
 ## Domain 4: cuGraph - GPU Graph Analytics
 
@@ -199,7 +199,7 @@ G.from_cudf_edgelist(edges, source='src', destination='dst', edge_attr='weight')
 | Jaccard | Similarity | Node similarity |
 | Connected Components | Structure | Graph connectivity |
 
-**[📖 cuGraph Documentation](https://docs.rapids.ai/api/cugraph/stable/)** - Graph algorithms
+**[📖 cuGraph Documentation](https://docs.nvidia.com/cugraph/latest/)** - Graph algorithms
 
 ## Domain 5: GPU ETL and Spark
 
@@ -221,7 +221,9 @@ result = ddf.groupby('key').agg({'value': 'mean'}).compute()
 - Multi-GPU (single node): Dask-cuDF with LocalCUDACluster
 - Multi-node: Dask-cuDF with distributed scheduler
 
-### RAPIDS Accelerator for Apache Spark
+### cuDF plugin for Apache Spark
+
+Formerly the RAPIDS Accelerator for Apache Spark (often shortened to Spark RAPIDS); older questions may use that name. The plugin class, the `spark.rapids.*` settings and the `rapids-4-spark` jar name are unchanged.
 
 **Purpose:** Run Spark SQL and DataFrame operations on GPUs
 
@@ -238,7 +240,7 @@ spark.rapids.sql.enabled=true
 spark.rapids.memory.pinnedPool.size=2G
 ```
 
-**[📖 Spark RAPIDS Documentation](https://docs.nvidia.com/spark-rapids/)** - Configuration guide
+**[📖 cuDF plugin for Apache Spark Documentation](https://docs.nvidia.com/cudf-spark/latest/)** - Configuration guide
 
 ### Performance Tuning
 - Maximize GPU memory utilization
@@ -255,4 +257,4 @@ spark.rapids.memory.pinnedPool.size=2G
 3. cuML algorithm selection and API usage
 4. cuGraph construction and algorithm execution
 5. Dask-cuDF for multi-GPU scaling
-6. Spark RAPIDS configuration and benefits
+6. cuDF plugin for Spark configuration and benefits

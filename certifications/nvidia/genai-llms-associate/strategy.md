@@ -127,7 +127,7 @@
 **NVIDIA Tool Confusion:**
 - NIM is for deployment/inference, not training
 - NeMo Framework is for training/customization, not just inference
-- TensorRT-LLM is an optimization engine, NIM wraps it for deployment
+- TensorRT-LLM is an optimization engine you compile and tune yourself; NIM is the ready-made container (current NIM bundles vLLM or SGLang; only NIM 1.x ran TensorRT-LLM inside)
 - Triton can serve any framework, not just TensorRT models
 - NeMo Guardrails is separate from model training
 

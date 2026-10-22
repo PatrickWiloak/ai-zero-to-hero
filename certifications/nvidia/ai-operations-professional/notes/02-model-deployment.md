@@ -101,9 +101,9 @@ docker run -d --gpus all \
 ```
 
 **Key Features:**
-- Pre-optimized with TensorRT-LLM
+- Bundles vLLM or SGLang with NVIDIA optimizations; the image you pull decides the engine (NIM 1.x used TensorRT-LLM on supported GPUs)
 - OpenAI-compatible API
-- Automatic GPU detection and optimization
+- Automatic GPU detection and model profile selection (`list-model-profiles` to see them, `NIM_MODEL_PROFILE` to pin one)
 - Built-in health checks and metrics
 - Supports function calling and structured output
 
@@ -113,7 +113,7 @@ docker run -d --gpus all \
 |---------|-----|--------|
 | Focus | LLM/GenAI inference | General model serving |
 | API | OpenAI-compatible | HTTP/gRPC custom |
-| Optimization | Auto-optimized | Manual TensorRT conversion |
+| Optimization | Pre-tuned model profiles, picked automatically | You choose the backend and convert or tune models yourself (TensorRT, TensorRT-LLM, ONNX and others) |
 | Models | Pre-packaged LLMs | Any framework |
 | Setup | Simple Docker run | Model repo + config |
 

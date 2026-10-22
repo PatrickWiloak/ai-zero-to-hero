@@ -1,7 +1,7 @@
 # cuDF and cuML
 
-**[📖 cuDF Documentation](https://docs.rapids.ai/api/cudf/stable/)** - GPU DataFrame API
-**[📖 cuML Documentation](https://docs.rapids.ai/api/cuml/stable/)** - GPU ML algorithms
+**[📖 cuDF Documentation](https://docs.nvidia.com/cudf/latest/)** - GPU DataFrame API
+**[📖 cuML Documentation](https://docs.nvidia.com/cuml/latest/)** - GPU ML algorithms
 
 ## cuDF - GPU DataFrames
 

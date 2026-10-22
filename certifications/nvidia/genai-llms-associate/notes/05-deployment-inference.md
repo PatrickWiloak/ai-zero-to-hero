@@ -7,15 +7,18 @@
 
 ### Overview
 
-NIM provides pre-optimized, containerized inference microservices for deploying AI models on NVIDIA GPUs. It wraps TensorRT-LLM optimizations in an easy-to-deploy container with an OpenAI-compatible API.
+NIM provides pre-optimized, containerized inference microservices for deploying AI models on NVIDIA GPUs. Current NIM for LLMs (version 2.x) packages an open-source inference engine, **vLLM or SGLang**, with NVIDIA optimizations, and puts it behind an OpenAI-compatible API. Each container image bundles exactly one engine, so the image you pull decides the backend.
+
+This changed. The older NIM 1.x containers ran TensorRT-LLM engines on a subset of NVIDIA GPUs and fell back to vLLM on the rest, and a lot of study material (and possibly some exam questions) still says "NIM is built on TensorRT-LLM". Treat that as the 1.x answer. Today TensorRT-LLM is a separate NVIDIA library you use directly, or through Triton or Dynamo, not the engine inside a NIM.
 
 **[📖 NVIDIA NIM for LLMs](https://docs.nvidia.com/nim/large-language-models/latest/index.html)** - LLM deployment with NIM
+**[📖 NIM 1.x to 2.0 Migration Guide](https://docs.nvidia.com/nim/large-language-models/latest/reference/1.x-migration-guide.html)** - what changed when NIM moved to one engine per image
 
 ### Key Features
 
 - **Pre-optimized containers** - ready-to-deploy Docker images
 - **OpenAI-compatible API** - familiar chat completion and completion endpoints
-- **Automatic optimization** - selects best configuration for the available GPU
+- **Model profiles** - each image ships a manifest of profiles named `<engine>-<precision>-tp<N>-pp1` (plus `-lora` where LoRA is supported), for example `vllm-bf16-tp1-pp1`; NIM picks one that fits your GPUs automatically
 - **Multiple model support** - LLMs, embedding models, reranking models
 - **Health monitoring** - built-in health check endpoints
 - **Enterprise support** - part of NVIDIA AI Enterprise platform
@@ -29,6 +32,15 @@ docker run -d --gpus all \
   -p 8000:8000 \
   nvcr.io/nim/meta/llama-3.1-8b-instruct:latest
 ```
+
+### Model Profiles
+
+A profile is one tested way to run the model: which engine, which precision (bf16, fp8, mxfp4, nvfp4), and how many GPUs it is split across with tensor parallelism (TP) and pipeline parallelism (PP). Two things to know:
+
+- Run `list-model-profiles` inside the container to see every profile in the image, its 64-character ID, its human-readable name and how much GPU memory it needs.
+- Set `NIM_MODEL_PROFILE` to pin one, by ID or by name (`-e NIM_MODEL_PROFILE=vllm-bf16-tp2-pp1`). Leave it unset and NIM chooses the best profile your hardware can run, using memory estimates for the model.
+
+**[📖 Model Profiles and Selection](https://docs.nvidia.com/nim/large-language-models/latest/deployment/model-profiles-and-selection.html)** - profile names, `list-model-profiles` and `NIM_MODEL_PROFILE`
 
 ### When to Use NIM
 
@@ -68,7 +80,7 @@ TensorRT-LLM is NVIDIA's open-source library for optimizing LLM inference perfor
 | Ease of use | Simple (Docker pull and run) | Requires model compilation |
 | Customization | Limited | Extensive |
 | API | OpenAI-compatible REST API | Python/C++ library |
-| Underlying engine | Uses TensorRT-LLM internally | Direct engine access |
+| Underlying engine | Bundles vLLM or SGLang (NIM 1.x used TensorRT-LLM on supported GPUs) | Is the engine; you call it directly |
 | Best for | Production deployment | Custom optimization |
 
 ## Triton Inference Server
@@ -209,7 +221,7 @@ For a 7B model (32 layers, 32 KV heads, 128 head dim) in FP16:
 - Does not wait for entire batch to complete
 - Completed requests are immediately returned
 - Maximum GPU utilization for LLM serving
-- Used by TensorRT-LLM, vLLM, and NIM
+- Used by TensorRT-LLM, vLLM, SGLang, and so by NIM (which bundles vLLM or SGLang)
 
 ### Batching Comparison
 
@@ -268,7 +280,8 @@ For a 7B model (32 layers, 32 KV heads, 128 head dim) in FP16:
 - **Maximum throughput**: Continuous batching + quantization
 
 ### Common Exam Questions
-- NIM vs TensorRT-LLM? (NIM wraps TensorRT-LLM for easy deployment)
+- NIM vs TensorRT-LLM? (NIM is the packaged, OpenAI-compatible container; TensorRT-LLM is a low-level engine you compile and tune yourself. NIM 1.x ran TensorRT-LLM inside; NIM 2.x bundles vLLM or SGLang)
+- How do you choose what a NIM runs? (`list-model-profiles` to see the options, `NIM_MODEL_PROFILE` to pin one)
 - Best quantization for H100? (FP8 - native hardware support)
 - What is paged attention? (virtual memory-style KV-cache management)
 - Static vs continuous batching? (continuous removes batch completion bottleneck)

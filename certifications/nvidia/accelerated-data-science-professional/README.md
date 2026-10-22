@@ -40,17 +40,17 @@ The NVIDIA Certified Professional - Accelerated Data Science certification valid
 
 ### Domain 5: GPU ETL and Spark Integration (20%)
 - GPU-accelerated ETL pipelines
-- RAPIDS Accelerator for Apache Spark
+- cuDF plugin for Apache Spark (formerly the RAPIDS Accelerator for Apache Spark)
 - Dask-cuDF for multi-GPU and multi-node processing
 - Performance tuning for GPU data pipelines
 
 ## Quick Links
 - **[NVIDIA Certification Program](https://www.nvidia.com/en-us/learn/certification/)** - Registration
-- **[RAPIDS Documentation](https://docs.rapids.ai/)** - Complete RAPIDS reference
-- **[cuDF Documentation](https://docs.rapids.ai/api/cudf/stable/)** - GPU DataFrames
-- **[cuML Documentation](https://docs.rapids.ai/api/cuml/stable/)** - GPU Machine Learning
-- **[cuGraph Documentation](https://docs.rapids.ai/api/cugraph/stable/)** - GPU Graph Analytics
-- **[RAPIDS Accelerator for Spark](https://docs.nvidia.com/spark-rapids/)** - Spark on GPU
+- **[RAPIDS Documentation](https://docs.nvidia.com/datascience/)** - Complete RAPIDS reference (moved from docs.rapids.ai to docs.nvidia.com)
+- **[cuDF Documentation](https://docs.nvidia.com/cudf/latest/)** - GPU DataFrames
+- **[cuML Documentation](https://docs.nvidia.com/cuml/latest/)** - GPU Machine Learning
+- **[cuGraph Documentation](https://docs.nvidia.com/cugraph/latest/)** - GPU Graph Analytics
+- **[cuDF plugin for Apache Spark](https://docs.nvidia.com/cudf-spark/latest/)** - Spark on GPU (formerly the RAPIDS Accelerator for Apache Spark)
 
 ## Career Benefits
 

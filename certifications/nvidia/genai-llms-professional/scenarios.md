@@ -35,8 +35,8 @@ An AI chatbot serving 1000 concurrent users experiences high latency (8 seconds 
 - **Step 1:** Switch from static to continuous/in-flight batching
 - **Step 2:** Apply INT8 or FP8 quantization to reduce memory and increase throughput
 - **Step 3:** Enable paged attention for efficient KV cache management
-- **Step 4:** Use TensorRT-LLM to compile optimized inference engine
-- **Tool:** Deploy with NVIDIA NIM for pre-optimized serving
+- **Step 4:** Use TensorRT-LLM to compile an optimized inference engine and serve it with Triton or Dynamo
+- **Tool:** Or, if the model has a NIM, deploy the NIM with a pre-tuned model profile and skip the compile step (current NIM bundles vLLM or SGLang)
 
 **Why this approach works:**
 - Continuous batching eliminates waiting for full batch completion

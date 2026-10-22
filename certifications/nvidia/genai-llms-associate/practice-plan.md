@@ -159,7 +159,8 @@
 - [ ] Study NVIDIA NIM - architecture, deployment, API
 - [ ] Learn TensorRT-LLM - optimization techniques, quantization
 - [ ] Understand Triton Inference Server - multi-framework serving
-- [ ] Study the relationship between NIM, TensorRT-LLM, and Triton
+- [ ] Study the relationship between NIM, TensorRT-LLM, and Triton (NIM 2.x bundles vLLM or SGLang, not TensorRT-LLM; Triton and Dynamo can serve TensorRT-LLM)
+- [ ] Run `list-model-profiles` in a NIM container and pin a profile with `NIM_MODEL_PROFILE`
 - [ ] Learn about containerized model deployment
 - [ ] Hands-on: Deploy a model using NVIDIA NIM
 - [ ] Review Notes: `notes/05-deployment-inference.md`

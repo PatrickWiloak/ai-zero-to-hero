@@ -1,13 +1,14 @@
 # NVIDIA NIM Microservices for Agents
 
-**[📖 NIM Documentation](https://docs.nvidia.com/nim/large-language-models/latest/getting-started.html)** - Getting started with NVIDIA NIM
+**[📖 NIM Documentation](https://docs.nvidia.com/nim/large-language-models/latest/get-started/index.html)** - Getting started with NVIDIA NIM
 
 ## NIM Overview
 
 NVIDIA NIM (NVIDIA Inference Microservices) provides optimized, containerized AI model serving with:
 - Pre-built Docker containers for popular models
 - OpenAI-compatible API for easy integration
-- TensorRT-LLM optimization under the hood
+- An open-source engine under the hood, vLLM or SGLang with NVIDIA optimizations (one engine per container image; NIM 1.x used TensorRT-LLM on supported GPUs)
+- Model profiles (engine, precision, GPU count) chosen automatically, or pinned with `NIM_MODEL_PROFILE` after checking `list-model-profiles`
 - GPU auto-configuration and performance tuning
 - Support for function calling and structured output
 
@@ -55,7 +56,7 @@ docker run -d --gpus all \
 - Health checks and readiness probes
 - Resource limits and GPU scheduling
 
-**[📖 NIM Kubernetes Guide](https://docs.nvidia.com/nim/large-language-models/latest/getting-started.html)** - Kubernetes deployment documentation
+**[📖 NIM Kubernetes Guide](https://docs.nvidia.com/nim/large-language-models/latest/deployment/kubernetes-deployment/index.html)** - Kubernetes deployment documentation
 
 ### Cloud Deployment
 - Available on AWS, Azure, GCP with NVIDIA GPU instances

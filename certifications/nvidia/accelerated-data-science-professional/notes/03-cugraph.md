@@ -1,6 +1,6 @@
 # cuGraph - GPU Graph Analytics
 
-**[📖 cuGraph Documentation](https://docs.rapids.ai/api/cugraph/stable/)** - GPU graph analytics reference
+**[📖 cuGraph Documentation](https://docs.nvidia.com/cugraph/latest/)** - GPU graph analytics reference
 
 ## Graph Construction
 

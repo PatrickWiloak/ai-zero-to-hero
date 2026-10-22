@@ -48,7 +48,7 @@ TensorRT-LLM is NVIDIA's high-performance inference library for large language m
 **Step 3: Deploy Engine**
 - Load compiled engine for inference
 - Configure runtime parameters (batching, KV cache)
-- Serve through Triton or NIM
+- Serve through Triton (TensorRT-LLM backend) or NVIDIA Dynamo (TensorRT-LLM workers). Current NIM for LLMs bundles vLLM or SGLang instead, so a NIM is not where your own compiled engine goes
 
 **Configuration Parameters**
 - `max_batch_size` - maximum concurrent requests

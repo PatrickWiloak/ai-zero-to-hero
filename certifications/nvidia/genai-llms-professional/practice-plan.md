@@ -131,8 +131,8 @@
 - [ ] Study NIM architecture and deployment options
 - [ ] Deploy a model using NIM containers
 - [ ] Learn NIM API endpoints (OpenAI-compatible)
-- [ ] Understand NIM configuration and optimization
-- [ ] **Reference:** [NIM Getting Started](https://docs.nvidia.com/nim/large-language-models/latest/getting-started.html)
+- [ ] Understand NIM configuration and optimization: model profiles, `list-model-profiles`, `NIM_MODEL_PROFILE`, and which engine (vLLM or SGLang) your image bundles
+- [ ] **Reference:** [NIM Getting Started](https://docs.nvidia.com/nim/large-language-models/latest/get-started/index.html), [Model Profiles and Selection](https://docs.nvidia.com/nim/large-language-models/latest/deployment/model-profiles-and-selection.html)
 
 #### Day 3-4: Serving and Scaling
 - [ ] Study load balancing for inference services

@@ -140,7 +140,7 @@ Full fine-tuning requires storing:
 
 ### Supervised Fine-Tuning (SFT)
 
-**[📖 NVIDIA NeMo Customization](https://docs.nvidia.com/nemo/microservices/latest/index.html)** - Model customization workflows
+**[📖 NeMo Platform](https://github.com/NVIDIA-NeMo/nemo-platform)** - Model customization workflows (NeMo Platform replaced the NeMo Microservices, including NeMo Customizer, which were sunset on 2026-10-01)
 
 - First step in most alignment pipelines
 - Train on high-quality instruction-response pairs
