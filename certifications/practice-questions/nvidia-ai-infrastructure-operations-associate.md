@@ -1,11 +1,11 @@
 ---
-last-updated: 2026-08-09
+last-updated: 2026-10-22
 difficulty: intermediate
 ---
 
 # NVIDIA Certified Associate - AI Infrastructure Operations (NCA-AIIO) - Practice Questions
 
-15 questions for NCA-AIIO prep, weighted toward GPU fundamentals and monitoring (25%) and container and runtime management (25%), then Kubernetes GPU operations (20%).
+30 questions for NCA-AIIO prep, weighted toward GPU fundamentals and monitoring (25%) and container and runtime management (25%), then Kubernetes GPU operations (20%).
 
 > **Cert page:** [exams/nvidia/ai-infrastructure-operations-associate/](../nvidia/ai-infrastructure-operations-associate/README.md)
 
@@ -277,6 +277,306 @@ D. A screenshot of the failing console output, which shows the error text but no
 **Correct: C**
 
 **Why:** The bug report script collects driver logs, kernel messages, and configuration in one bundle, and DCGM diagnostics distinguish hardware faults from software issues. Gathering this before escalating typically removes a full round trip.
+</details>
+
+---
+
+### Question 16
+**Scenario:** On a headless inference server, the first CUDA call after an idle period takes several seconds, and `nvidia-smi` itself is slow to respond.
+
+A. Set the GPU's compute mode to Exclusive Process, which keeps the device ready between client processes
+B. Lower the GPU's power limit, which shortens the time that the card takes to wake from its idle state
+C. Run the NVIDIA persistence daemon so that the driver stays initialized when no client is using the GPU
+D. Reinstall the CUDA toolkit, because a slow first call means the runtime libraries are partly missing
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Without persistence, the kernel driver tears down GPU state when the last client exits and must reinitialize it on the next call, which adds the delay seen on headless systems. `nvidia-persistenced` keeps that state loaded. Compute mode controls how many processes may share the GPU, a lower power limit does not speed initialization, and the toolkit is not involved in driver startup.
+
+**Key Concept:** [Driver persistence](https://docs.nvidia.com/deploy/driver-persistence/index.html)
+</details>
+
+---
+
+### Question 17
+**Scenario:** A team training a transformer on recent data center GPUs sees low Tensor Core activity in DCGM, and all math runs in FP32.
+
+A. Enable mixed precision such as BF16 so that matrix math runs on the Tensor Cores
+B. Increase the number of CPU data-loader workers until the Tensor Cores become busy
+C. Turn off ECC on the GPUs, which frees the Tensor Cores for the training math
+D. Switch the GPUs to the Default compute mode, which unlocks Tensor Core usage
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Tensor Cores accelerate reduced-precision matrix math, so training entirely in FP32 leaves most of their throughput unused; BF16 or FP16 mixed precision is the standard fix. More data-loader workers help an input-bound job but do not change which units do the math. ECC and compute mode have no effect on Tensor Core use.
+
+**Key Concept:** [DCGM feature overview](https://docs.nvidia.com/datacenter/dcgm/latest/user-guide/feature-overview.html)
+</details>
+
+---
+
+### Question 18
+**Scenario:** A GPU was replaced in a server after repeated memory errors, and the node must be checked thoroughly before it rejoins the production pool.
+
+A. Run `nvidia-smi` once and confirm that all eight GPUs appear in the device list
+B. Run `dcgmi diag -r 1`, the quick check that takes a few seconds per node
+C. Start a short user training job and return the node if the job does not crash
+D. Run a long DCGM diagnostic such as `dcgmi diag -r 3`, which adds stress tests
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** DCGM diagnostics have run levels: level 1 is a seconds-long sanity check, while levels 3 and 4 add hardware stress tests, including memory stress, that take many minutes and are suited to validating repaired hardware. Seeing the GPU in `nvidia-smi` proves only that it enumerates. Using a user's job as the test risks their work and gives weak evidence.
+
+**Key Concept:** [DCGM diagnostics](https://docs.nvidia.com/datacenter/dcgm/latest/user-guide/dcgm-diagnostics.html)
+</details>
+
+---
+
+### Question 19
+**Scenario:** Before pinning processes to CPUs and GPUs, an administrator needs to see which GPUs are connected by NVLink and which CPU NUMA node each GPU is closest to.
+
+A. Run `nvidia-smi -q -d CLOCK`, which lists the link speed and NUMA node of each GPU
+B. Run `nvidia-smi topo -m`, which prints the GPU interconnect matrix and CPU affinity
+C. Run `lspci -v`, which shows the NVLink connections between each pair of the GPUs
+D. Run `dcgmi discovery -l`, which prints the NVLink matrix and the PCIe switch layout
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** `nvidia-smi topo -m` prints a matrix showing how each GPU pair is connected (NVLink, PCIe switch, host bridge) along with CPU and NUMA affinity, which is the input for process pinning. The clock query shows clocks only. `lspci` shows PCIe devices but not NVLink, and DCGM discovery lists the GPUs it can manage rather than the topology matrix.
+
+**Key Concept:** [nvidia-smi documentation](https://docs.nvidia.com/deploy/nvidia-smi/index.html)
+</details>
+
+---
+
+### Question 20
+**Scenario:** A host runs Podman rather than Docker, and containers must get GPU access through the NVIDIA Container Toolkit.
+
+A. Generate a CDI specification with `nvidia-ctk cdi generate` and request devices such as `nvidia.com/gpu=all`
+B. Copy the NVIDIA driver libraries into each image at build time so that Podman can find them at run time
+C. Install Docker alongside Podman, because the NVIDIA Container Toolkit supports only the Docker engine
+D. Run every container with `--privileged`, which passes all host devices and drivers into the container
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** The Container Device Interface (CDI) is a vendor-neutral way to describe devices for container runtimes, and the toolkit's `nvidia-ctk` generates the CDI spec that Podman and others consume. Baking driver libraries into images ties them to one host driver version. The toolkit is not Docker-only, and `--privileged` grants far more than GPU access.
+
+**Key Concept:** [Container Device Interface support](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html)
+</details>
+
+---
+
+### Question 21
+**Scenario:** Two inference containers share an 8-GPU Docker host, and each must see only its own assigned GPU.
+
+A. Set `CUDA_LAUNCH_BLOCKING=1` in each container so that the CUDA calls run on separate GPUs
+B. Start both containers with `--gpus all` and trust each application to choose a different device
+C. Enable MIG on every GPU, because Docker cannot assign whole GPUs to separate containers
+D. Start each container with a specific device, such as `--gpus '"device=3"'`, so only that GPU is exposed
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Docker's `--gpus` flag, backed by the NVIDIA Container Toolkit, can expose specific devices by index or UUID, so each container sees only its own GPU. `CUDA_LAUNCH_BLOCKING` makes kernel launches synchronous for debugging. Relying on applications to pick different devices is not isolation, and MIG is for partitioning one GPU, not assigning whole ones.
+
+**Key Concept:** [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html)
+</details>
+
+---
+
+### Question 22
+**Scenario:** A team wants the newest NGC PyTorch container, but the cluster's data center driver is a few releases old.
+
+A. Always pick the newest tag, because NGC containers ship with their own kernel driver inside the image
+B. Rebuild the container from source on the cluster, which removes any driver version requirement
+C. Check the container's release notes for its minimum driver and forward-compatibility support first
+D. Use the oldest available tag, since older containers are the only ones that run on older drivers
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Each NGC framework release lists the CUDA version it is built on and the driver versions it supports, including data center GPUs that can use CUDA forward compatibility with an older driver. Containers include the CUDA user-space libraries, not the kernel driver. Rebuilding from source does not remove the driver dependency, and the oldest tag gives up fixes needlessly.
+
+**Key Concept:** [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html)
+</details>
+
+---
+
+### Question 23
+**Scenario:** After installing the NVIDIA Container Toolkit on a Kubernetes node that uses containerd, pods still cannot see GPUs.
+
+A. Reinstall the NVIDIA driver, because containerd requires a separate driver build
+B. Run `nvidia-ctk runtime configure --runtime=containerd` and restart containerd
+C. Install Docker on the node, since Kubernetes only uses the toolkit through Docker
+D. Add `privileged: true` to every GPU pod spec so that the devices become visible
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Installing the toolkit does not by itself register the NVIDIA runtime with containerd; `nvidia-ctk runtime configure` updates the containerd configuration, and the service must restart to pick it up. The GPU Operator automates this. The driver is not runtime-specific, Kubernetes no longer uses Docker as its runtime, and privileged pods are a security shortcut rather than a fix.
+
+**Key Concept:** [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html)
+</details>
+
+---
+
+### Question 24
+**Scenario:** Twenty data scientists run light notebook work and want to share four GPUs. Memory and fault isolation between them are not required.
+
+A. Configure GPU time-slicing in the GPU Operator so that each GPU is advertised as several replicas
+B. Enable MIG on the GPUs, because it is the only way to let more than one pod share a GPU
+C. Give each data scientist a full GPU and keep the other sixteen people in a waiting queue
+D. Request `nvidia.com/gpu: 0.2` in each pod spec, since Kubernetes accepts fractional GPU requests
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Time-slicing oversubscribes a GPU by advertising replicas, letting several pods share it in turn, which suits light interactive work when isolation is not needed. MIG gives hardware isolation but is not the only sharing method and needs supported GPUs. Dedicated GPUs waste capacity, and the standard device plugin does not accept fractional GPU requests.
+
+**Key Concept:** [Time-slicing GPUs in Kubernetes](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-sharing.html)
+</details>
+
+---
+
+### Question 25
+**Scenario:** A cluster mixes nodes with different GPU models, and a training job must land only on nodes with a specific GPU product.
+
+A. Add a node name to the pod spec for every job, chosen by hand from a list of the right nodes
+B. Request a larger `nvidia.com/gpu` count, which makes the scheduler prefer the newer GPU nodes
+C. Use a nodeSelector or affinity on the GPU product label that GPU Feature Discovery applies
+D. Set the pod's priority class to high, which places the job on the most capable GPUs available
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** GPU Feature Discovery, deployed by the GPU Operator, labels each node with GPU attributes such as product name, memory and MIG capability, and pods select on those labels. Hard-coding node names breaks when nodes change. GPU count and priority class do not express which GPU model a job needs.
+
+**Key Concept:** [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/index.html)
+</details>
+
+---
+
+### Question 26
+**Scenario:** MIG is enabled with the mixed strategy, and a pod needs one specific slice size rather than a whole GPU.
+
+A. Request `nvidia.com/gpu: 1` and add an annotation that names the slice size the pod needs
+B. Set `CUDA_VISIBLE_DEVICES` in the pod to the MIG device ID of a free slice on the node
+C. Request a fraction such as `nvidia.com/gpu: 0.25`, which the plugin maps to a MIG slice
+D. Request the slice's own resource name, such as `nvidia.com/mig-1g.10gb: 1`, in the pod spec
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** With the mixed strategy the device plugin advertises each MIG profile as its own extended resource, so pods request the profile by name. In the single strategy every slice is the same and is advertised as `nvidia.com/gpu`. Annotations do not change scheduling, hand-set device IDs bypass the scheduler, and fractional requests are not supported.
+
+**Key Concept:** [GPU Operator with MIG](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-operator-mig.html)
+</details>
+
+---
+
+### Question 27
+**Scenario:** A new 32-node GPU cluster needs bare-metal provisioning, OS image management and node health monitoring from one NVIDIA tool.
+
+A. NVIDIA Triton Inference Server
+B. NVIDIA Base Command Manager
+C. NVIDIA Nsight Systems profiler
+D. NVIDIA NGC container catalog
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Base Command Manager provisions and manages clusters: it images nodes, manages software, integrates workload managers such as Slurm and Kubernetes, and monitors health. Triton serves models, Nsight Systems profiles applications, and NGC is a catalog of containers and models.
+
+**Key Concept:** [NVIDIA Base Command Manager](https://docs.nvidia.com/base-command-manager/index.html)
+</details>
+
+---
+
+### Question 28
+**Scenario:** A rack's power budget is temporarily reduced, and each GPU's power draw must be lowered without taking the nodes offline.
+
+A. Disable ECC on the GPUs, which reduces their power draw by about a third
+B. Lower the fan speed in the BMC so that each GPU draws less power overall
+C. Set a lower power limit on each GPU with `nvidia-smi -pl`, within its range
+D. Stop the persistence daemon, which drops every GPU to its minimum power state
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** A GPU power limit caps board power within the range the device supports, and the GPU manages clocks to stay under it, trading some performance for lower draw. ECC is about memory error protection, not a power control. Slower fans risk thermal throttling, and stopping persistence affects driver initialization, not the power ceiling under load.
+
+**Key Concept:** [nvidia-smi documentation](https://docs.nvidia.com/deploy/nvidia-smi/index.html)
+</details>
+
+---
+
+### Question 29
+**Scenario:** The kernel log on a node shows Xid 79, "GPU has fallen off the bus," and that GPU no longer responds.
+
+A. Drain the node, collect logs such as `nvidia-bug-report.sh`, and treat it as a hardware or PCIe fault
+B. Restart the training job on the same node, because Xid 79 is a transient application error
+C. Raise the GPU's power limit, because Xid 79 means the card ran out of power during a kernel
+D. Reinstall the CUDA toolkit in the container, because Xid 79 is caused by a toolkit mismatch
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Xid 79 means the system lost contact with the GPU over PCIe, which points at hardware, power delivery, thermals or the bus rather than application code. The node should be drained and evidence collected before reseating or replacing parts. Rerunning on the same node will fail again, and power limits and toolkit versions do not cause the device to disappear.
+
+**Key Concept:** [Xid errors](https://docs.nvidia.com/deploy/xid-errors/index.html)
+</details>
+
+---
+
+### Question 30
+**Scenario:** After a routine OS update and reboot, `nvidia-smi` reports that it cannot communicate with the NVIDIA driver on one node.
+
+A. Replace the GPUs, because a failed driver connection after a reboot always means dead hardware
+B. Reinstall the CUDA toolkit, which contains the kernel driver that `nvidia-smi` talks to
+C. Disable Secure Boot on every node in the cluster as a precaution, then reboot all of them
+D. Check whether the kernel changed and rebuild or reinstall the driver module for the new kernel
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** A kernel update can leave the NVIDIA kernel module built for the old kernel, so it fails to load; DKMS or a reinstall builds it for the running kernel. Hardware failure is unlikely when every GPU vanished right after an update. The toolkit is user-space, and changing Secure Boot cluster-wide is a broad change made before diagnosing one node.
+
+**Key Concept:** [nvidia-smi documentation](https://docs.nvidia.com/deploy/nvidia-smi/index.html)
 </details>
 
 ---

@@ -1,11 +1,11 @@
 ---
-last-updated: 2026-08-09
+last-updated: 2026-10-22
 difficulty: intermediate
 ---
 
 # NVIDIA Certified Associate - Generative AI and LLMs (NCA-GENL) - Practice Questions
 
-15 questions for NCA-GENL prep, weighted toward LLM fundamentals (25%), prompt engineering (20%), and RAG and vector databases (20%).
+30 questions for NCA-GENL prep, weighted toward LLM fundamentals (25%), prompt engineering (20%), and RAG and vector databases (20%).
 
 > **Cert page:** [exams/nvidia/genai-llms-associate/](../nvidia/genai-llms-associate/README.md)
 
@@ -277,6 +277,306 @@ D. User feedback after launch, collected through thumbs-up buttons and support t
 **Correct: A**
 
 **Why:** Evals are the regression suite for a nondeterministic system, and they only earn their keep if they run on every change: prompt edits and model upgrades both change behavior. Post-launch feedback is a lagging signal that arrives after users are affected.
+</details>
+
+---
+
+### Question 16
+**Scenario:** A team needs a model to classify support tickets and tag product names in them. It does not need to generate any free text.
+
+A. A decoder-only model, because only GPT-style models can label tokens within a sequence
+B. An encoder-only model such as BERT, which reads the whole input in both directions
+C. A diffusion model, because classification works by denoising the input into a label
+D. An encoder-decoder model, because every classification task needs a separate decoder
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Encoder-only models attend to the full input bidirectionally, which makes them a strong, efficient fit for understanding tasks such as classification and named entity recognition. Decoder-only models can do these tasks but are built for generation and usually cost more. Diffusion models generate images and other media, and an encoder-decoder adds a generator the task does not need.
+
+**Key Concept:** [NeMo Framework overview](https://docs.nvidia.com/nemo-framework/user-guide/latest/overview.html)
+</details>
+
+---
+
+### Question 17
+**Scenario:** During training, a decoder-only model applies a mask inside its self-attention layers.
+
+A. The mask hides padding tokens only, so that each batch can hold sequences of different lengths
+B. The mask hides a random 15% of tokens, which the model must then predict from the surrounding context
+C. The mask removes attention heads at random during training, which acts as a form of regularization
+D. The causal mask stops each position from attending to later tokens, so that it predicts the next token
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** A causal mask lets each position attend only to itself and earlier positions, so training on next-token prediction cannot peek at the answer, and the same model generates text left to right. Padding masks exist too but are not what makes a decoder causal. Masking 15% of tokens is BERT's masked language modeling, and dropping heads describes a dropout-style technique.
+
+**Key Concept:** [Megatron Core user guide](https://docs.nvidia.com/megatron-core/developer-guide/latest/index.html)
+</details>
+
+---
+
+### Question 18
+**Scenario:** A lab has a fixed compute budget for pretraining and must choose between a larger model on fewer tokens and a smaller model on more tokens.
+
+A. Always choose the largest model that fits in memory, since parameter count alone decides quality
+B. Spend the budget on extra epochs over a small dataset, since repeating data is as good as new data
+C. Follow compute-optimal scaling results, which favor scaling parameters and training tokens together
+D. Choose the smallest model, since smaller models always reach a lower loss for the same compute
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Compute-optimal scaling research (the Chinchilla results) showed many large models were undertrained, and that for a fixed budget, parameters and training tokens should grow together. Parameter count alone does not decide quality. Repeating a small dataset gives diminishing returns, and the smallest model is not always best either.
+
+**Key Concept:** [NeMo Framework overview](https://docs.nvidia.com/nemo-framework/user-guide/latest/overview.html)
+</details>
+
+---
+
+### Question 19
+**Scenario:** A model has a large total parameter count, but each token is processed by only a few of its feed-forward sub-networks, chosen by a learned router.
+
+A. A mixture-of-experts model, which activates a subset of experts for each token
+B. A distilled model, which copies the outputs of a larger teacher at each layer
+C. A quantized model, which stores each weight in four bits to save GPU memory
+D. A pruned model, which has had most of its weights permanently set to zero
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** In a mixture-of-experts (MoE) layer, a router sends each token to a few experts, so compute per token tracks the active parameters while total capacity is much larger. All experts still need to be held in memory. Distillation, quantization and pruning are compression techniques with no per-token routing.
+
+**Key Concept:** [Megatron Core user guide](https://docs.nvidia.com/megatron-core/developer-guide/latest/index.html)
+</details>
+
+---
+
+### Question 20
+**Scenario:** An application extracts invoice fields into JSON, and the same input must give the same output on every call as far as possible.
+
+A. Use a high temperature with top-p near 1.0, which keeps the model focused on the likeliest tokens
+B. Use a temperature of zero or close to it, so the model picks the most likely token at each step
+C. Raise the maximum output length, which makes the model's answer the same on every call
+D. Add more few-shot examples, since examples remove all randomness from the model's sampling
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Temperature scales how sharply the model's choices favor the most likely token; near zero, decoding is close to greedy and outputs become highly repeatable, which suits extraction. High temperature with wide top-p increases variety. Output length limits only truncate, and examples improve format but do not control sampling randomness.
+
+**Key Concept:** [NIM for LLMs API reference](https://docs.nvidia.com/nim/large-language-models/latest/reference/api-reference.html)
+</details>
+
+---
+
+### Question 21
+**Scenario:** A model keeps returning product summaries in inconsistent layouts, even though the instructions describe the desired format in detail.
+
+A. Raise the temperature so that the model explores more layouts and finds the right one by itself
+B. Fine-tune a new base model from scratch on product summaries before trying any other change
+C. Remove the instructions and let the model choose a layout, since detailed instructions confuse it
+D. Add two or three examples of input and correctly formatted output to the prompt (few-shot)
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Few-shot examples show the model the exact output pattern, which is often more reliable than describing a format in words, and it costs only prompt tokens. Higher temperature increases variation. Training from scratch is far out of proportion to a formatting problem, and removing instructions makes consistency worse.
+
+**Key Concept:** [NIM for LLMs API reference](https://docs.nvidia.com/nim/large-language-models/latest/reference/api-reference.html)
+</details>
+
+---
+
+### Question 22
+**Scenario:** A RAG assistant summarizes web pages. One page contains hidden text telling the model to reveal its system prompt, and the model obeys.
+
+A. Direct prompt injection, so the fix is to block users from typing the word "instructions"
+B. A hallucination, so the fix is to lower the temperature for every request that uses web pages
+C. Indirect prompt injection: treat retrieved text as data and add input and output guardrails
+D. Model drift, so the fix is to fine-tune the model again on a newer set of web pages
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Instructions hidden in content the system retrieves, rather than typed by the user, are indirect prompt injection. Mitigations include clearly delimiting retrieved content as untrusted data, limiting what the model can do, and rails such as NeMo Guardrails on inputs and outputs. Keyword blocking misses it because the user typed nothing malicious, it is not a hallucination, and retraining does not address untrusted input.
+
+**Key Concept:** [NeMo Guardrails library overview](https://docs.nvidia.com/nemo/guardrails/about-nemo-guardrails-library/overview)
+</details>
+
+---
+
+### Question 23
+**Scenario:** A RAG system's vector search returns 50 candidate chunks, and the best one is often ranked twentieth. Only the top 5 fit in the prompt.
+
+A. Add a reranking model that scores each query and chunk pair together and reorders the candidates
+B. Increase the embedding dimension of the index so that vector search ranks the chunks correctly
+C. Put all 50 chunks in the prompt and let the model find the right one inside the long context
+D. Reduce the chunk size to one sentence, so that more chunks fit in the prompt at the same time
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Retrieval with embeddings is fast but approximate; a reranker (a cross-encoder) reads the query and each candidate together and orders them by relevance, so the best chunks reach the top 5. NeMo Retriever offers reranking NIMs for this. A bigger embedding dimension needs re-embedding and does not guarantee better order. Stuffing 50 chunks raises cost and dilutes attention, and tiny chunks lose context.
+
+**Key Concept:** [NeMo Retriever reranking NIM](https://docs.nvidia.com/nim/nemo-retriever/reranking/latest/index.html)
+</details>
+
+---
+
+### Question 24
+**Scenario:** A vector database is configured to use cosine similarity between query and document embeddings.
+
+A. It counts how many words the query and the document have in common
+B. It measures the angle between two vectors, ignoring their length
+C. It measures the straight-line distance between the two vectors' tips
+D. It compares the two texts character by character after tokenization
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Cosine similarity is the cosine of the angle between two vectors, so it compares direction, which encodes meaning, and ignores magnitude. For normalized vectors it ranks the same as dot product. Word overlap is a lexical measure such as BM25, straight-line distance is Euclidean, and character comparison is not semantic at all.
+
+**Key Concept:** [NeMo Retriever embedding NIM](https://docs.nvidia.com/nim/nemo-retriever/embedding/latest/index.html)
+</details>
+
+---
+
+### Question 25
+**Scenario:** Users say a RAG chatbot gives wrong answers. The team must find out whether retrieval or generation is at fault.
+
+A. Measure only the final answer accuracy, since retrieval quality cannot be measured on its own
+B. Replace the language model with a larger one, since wrong answers are always a generation problem
+C. Ask users to rate each answer, since automatic metrics cannot assess any part of a RAG pipeline
+D. Evaluate the stages separately: retrieval recall for the right chunks, then answer faithfulness
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** RAG failures come from two places: the right content was never retrieved, or it was retrieved and the model misused it. Measuring retrieval (for example, recall at k against labeled relevant chunks) separately from generation (faithfulness and answer relevance) shows which to fix. End-to-end accuracy alone hides the cause, a larger model cannot use content that was never retrieved, and user ratings are slow and coarse.
+
+**Key Concept:** [NVIDIA NeMo Retriever](https://docs.nvidia.com/nemo/retriever/index.html)
+</details>
+
+---
+
+### Question 26
+**Scenario:** A developer must fine-tune a 70B model on a single GPU with limited memory and still get quality close to full fine-tuning.
+
+A. QLoRA, which keeps the frozen base model in 4-bit precision and trains small LoRA adapters
+B. Full fine-tuning in FP32, which updates every weight and gives the highest possible quality
+C. Prompt engineering only, since a model of this size cannot be fine-tuned on a single GPU
+D. Training a new 70B model from scratch, which needs less memory than fine-tuning an old one
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** QLoRA quantizes the frozen base weights to 4-bit and trains low-rank adapters in higher precision, cutting memory enough to fine-tune very large models on one GPU with quality close to full fine-tuning. Full FP32 fine-tuning needs many times the model's size in memory for gradients and optimizer states. Single-GPU fine-tuning is feasible this way, and pretraining from scratch costs far more.
+
+**Key Concept:** [NeMo AutoModel documentation](https://docs.nvidia.com/nemo/automodel/latest)
+</details>
+
+---
+
+### Question 27
+**Scenario:** After full fine-tuning on legal documents, a model drafts contracts well but has become noticeably worse at general reasoning and everyday questions.
+
+A. Overfitting to the validation set, fixed by removing the validation set from the run
+B. Catastrophic forgetting, reduced by PEFT methods or by mixing general data into training
+C. Hallucination, fixed by grounding every answer in retrieved legal documents
+D. Underfitting, fixed by training the same data for many more epochs
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Updating all weights on a narrow domain can overwrite general abilities, which is catastrophic forgetting. Parameter-efficient methods such as LoRA keep the base weights frozen, and mixing general data into the fine-tuning set preserves broad skills. Removing validation data hides problems, RAG addresses facts rather than lost skills, and more epochs on legal text worsens the forgetting.
+
+**Key Concept:** [NeMo AutoModel documentation](https://docs.nvidia.com/nemo/automodel/latest)
+</details>
+
+---
+
+### Question 28
+**Scenario:** During text generation, an inference engine stores the attention keys and values of previous tokens instead of recomputing them for each new token.
+
+A. The model's weights, which are reloaded from the cache at the start of each generation step
+B. The tokenizer's vocabulary, which is cached to speed up converting text into token IDs
+C. The KV cache, which saves recomputation but grows with sequence length and batch size
+D. The prompt cache in the browser, which stores previous answers to return them faster
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** The KV cache keeps the key and value tensors for tokens already processed, so each new token needs attention computed only for itself. It trades memory for speed, and because it grows with context length and batch size it is often the main memory limit in serving. Weights and the vocabulary are not what this cache stores, and a browser cache is unrelated.
+
+**Key Concept:** [TensorRT-LLM documentation](https://nvidia.github.io/TensorRT-LLM/)
+</details>
+
+---
+
+### Question 29
+**Scenario:** A team wants the highest LLM inference throughput on NVIDIA GPUs using optimized kernels, in-flight batching and FP8 or INT4 quantization.
+
+A. RAPIDS cuDF, which accelerates DataFrame operations on GPUs
+B. NeMo Curator, which filters and deduplicates training datasets
+C. DCGM, which monitors GPU health and performance metrics
+D. TensorRT-LLM, an open-source library for optimized LLM inference
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** TensorRT-LLM provides optimized attention kernels, paged KV cache, in-flight batching, quantization and multi-GPU parallelism for LLM inference on NVIDIA GPUs, and serving stacks such as Triton and Dynamo can run it as a backend. cuDF is for DataFrames, NeMo Curator prepares data, and DCGM monitors GPUs.
+
+**Key Concept:** [TensorRT-LLM documentation](https://nvidia.github.io/TensorRT-LLM/)
+</details>
+
+---
+
+### Question 30
+**Scenario:** A customer-service LLM application logs every prompt and response for quality review, and some prompts contain customers' card numbers and addresses.
+
+A. Detect and redact personal data before logging, and limit who can read the logs and for how long
+B. Stop logging altogether, since any record of prompts is unlawful for a customer service tool
+C. Keep the logs as they are, since data typed into a chatbot is not considered personal data
+D. Encrypt the logs once a year, which is enough to make storing raw card numbers acceptable
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Responsible handling means minimizing personal data: detect and redact PII before it is stored, restrict access, and set retention limits, which keeps quality review possible. Logging is lawful when it is controlled. Chat input can certainly be personal data, and occasional encryption does not make storing raw card numbers acceptable.
+
+**Key Concept:** [NeMo Guardrails library overview](https://docs.nvidia.com/nemo/guardrails/about-nemo-guardrails-library/overview)
 </details>
 
 ---

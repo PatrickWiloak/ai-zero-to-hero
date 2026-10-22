@@ -1,11 +1,11 @@
 ---
-last-updated: 2026-08-09
+last-updated: 2026-10-22
 difficulty: intermediate
 ---
 
 # NVIDIA-Certified Associate - Generative AI Multimodal (NCA-GENM) - Practice Questions
 
-15 questions for NCA-GENM prep, weighted toward multimodal fundamentals (25%) and image and video generation (25%), then text and speech (20%), NVIDIA tooling (15%), and applications (15%).
+30 questions for NCA-GENM prep, weighted toward experimentation (25%) and core machine learning and AI knowledge (20%), then multimodal data (15%), software development (15%), data analysis (10%), performance optimization (10%), and trustworthy AI (5%).
 
 > **Cert page:** [exams/nvidia/generative-ai-multimodal-associate/](../nvidia/generative-ai-multimodal-associate/README.md)
 
@@ -277,6 +277,306 @@ D. Use a smaller model in the cloud, which processes less data and so counts as 
 **Correct: A**
 
 **Why:** Self-hosting is the answer to a data residency constraint, and containerized microservices make it a deployment choice rather than a rewrite. Anonymization is rarely sufficient for images and audio, which carry identifying signal that is hard to remove.
+</details>
+
+---
+
+### Question 16
+**Scenario:** A latent diffusion model such as Stable Diffusion runs its denoising steps on a small compressed representation rather than on full-resolution pixels.
+
+A. A tokenizer that turns each image into a sequence of words the language model can read
+B. A classifier that labels each image so the denoiser knows which object class to draw
+C. A super-resolution network that upscales every intermediate step to the final pixel size
+D. A variational autoencoder that compresses images into latents and decodes them back
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Latent diffusion trains the denoiser in the latent space of an autoencoder, which is far smaller than pixel space, so each step is much cheaper; the decoder turns the final latent back into an image. A text tokenizer handles the prompt, not the image. Class labels are not part of text-to-image denoising, and upscaling every step would defeat the purpose.
+
+**Key Concept:** [NVIDIA Cosmos documentation](https://docs.nvidia.com/cosmos/latest/index.html)
+</details>
+
+---
+
+### Question 17
+**Scenario:** A Vision Transformer (ViT) applies a standard transformer encoder to images.
+
+A. It splits the image into fixed-size patches, embeds each as a token, and adds positions
+B. It feeds every pixel to the transformer as a separate token, which keeps all of the spatial detail
+C. It converts the image into a text caption first and then runs the transformer on the caption words
+D. It replaces attention with convolutions, so the model processes images the same way as a CNN
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** ViT cuts the image into patches (for example 16 by 16 pixels), linearly embeds each one as a token, adds position embeddings, and runs a transformer encoder over the sequence. Per-pixel tokens would make attention prohibitively expensive. Captioning first discards visual information, and ViT keeps attention rather than replacing it with convolutions.
+
+**Key Concept:** [NVIDIA TAO Toolkit](https://docs.nvidia.com/tao/tao-toolkit/latest/index.html)
+</details>
+
+---
+
+### Question 18
+**Scenario:** While fine-tuning an image classifier, training loss keeps falling, but validation loss starts rising after epoch 6.
+
+A. The model is underfitting, so it needs more epochs and a larger learning rate to keep improving
+B. The validation set is broken, since validation loss can never rise while the training loss falls
+C. The model is overfitting, so use early stopping, augmentation or regularization such as dropout
+D. The GPU is throttling, which slows training and makes the validation loss go up over time
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Diverging training and validation loss is the classic sign of overfitting: the model memorizes the training set and generalizes worse. Stopping at the best validation checkpoint, adding data augmentation and using regularization all address it. Underfitting shows high loss on both sets, the pattern is expected rather than a broken set, and GPU speed does not change loss values.
+
+**Key Concept:** [NVIDIA TAO Toolkit](https://docs.nvidia.com/tao/tao-toolkit/latest/index.html)
+</details>
+
+---
+
+### Question 19
+**Scenario:** A defect-detection image dataset has 98% "no defect" and 2% "defect" images. A model reports 98% accuracy, and the team is pleased.
+
+A. Accept the result, because 98% accuracy is high enough for any production image model
+B. Check per-class metrics such as recall and F1 on the defect class, using stratified splits
+C. Remove the defect images, since rare classes add noise that lowers the overall accuracy
+D. Report the training accuracy instead, since validation accuracy is unreliable on small data
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** With this imbalance, a model that always predicts "no defect" scores 98% accuracy while catching no defects. Per-class recall, precision and F1, with stratified splits so each set keeps both classes, show whether the rare class is detected. Removing the class makes the task meaningless, and training accuracy overstates performance.
+
+**Key Concept:** [NVIDIA TAO Toolkit](https://docs.nvidia.com/tao/tao-toolkit/latest/index.html)
+</details>
+
+---
+
+### Question 20
+**Scenario:** Two image generation models must be compared on how closely the statistics of their outputs match a set of real images.
+
+A. Word error rate, which counts the words in each generated caption that differ from a reference
+B. BLEU score, which measures n-gram overlap between each generated image and a reference image
+C. Perplexity, which measures how surprised the model is by each pixel of the generated image
+D. Fréchet Inception Distance (FID), which compares feature distributions of real and generated images
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** FID embeds real and generated images with a pretrained vision network and measures the distance between the two feature distributions; lower is better, and it reflects both quality and diversity. Word error rate is for speech recognition, BLEU is for text overlap, and perplexity applies to language models.
+
+**Key Concept:** [NVIDIA Cosmos documentation](https://docs.nvidia.com/cosmos/latest/index.html)
+</details>
+
+---
+
+### Question 21
+**Scenario:** Before training, a team wants to explore 200,000 image embeddings to spot clusters, outliers and possibly mislabeled examples.
+
+A. Project the embeddings to 2D with UMAP or t-SNE, color by label, and inspect clusters and outliers
+B. Print the first 100 embedding vectors and read the numbers to find any mislabeled images
+C. Sort the images by file size, since mislabeled images are usually larger than the correct ones
+D. Train the final model first and look for mislabeled data only if the accuracy is disappointing
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Dimensionality reduction such as UMAP or t-SNE projects high-dimensional embeddings into 2D while largely preserving neighborhoods, so points that sit inside another class's cluster stand out as likely label errors; cuML runs these on the GPU for large sets. Raw vectors are unreadable, file size has nothing to do with labels, and checking data only after training wastes compute.
+
+**Key Concept:** [cuML documentation](https://docs.nvidia.com/cuml/latest/)
+</details>
+
+---
+
+### Question 22
+**Scenario:** A team compares two prompt templates for an image generator, but results change every run, so they cannot tell which template is better.
+
+A. Generate a single image per template and judge the better one by eye
+B. Use a new random seed for every image so that the comparison stays fair
+C. Raise the number of denoising steps until both templates give identical images
+D. Fix the random seeds and generate the same set of images for each template
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Diffusion sampling starts from random noise, so controlled comparisons fix the seeds and generate a set of images per variant, letting differences be attributed to the template rather than to chance. One image per variant is anecdotal. Unfixed seeds add the noise that caused the problem, and more steps do not make different prompts produce identical images.
+
+**Key Concept:** [NVIDIA Cosmos documentation](https://docs.nvidia.com/cosmos/latest/index.html)
+</details>
+
+---
+
+### Question 23
+**Scenario:** A new captioning pipeline changes the image encoder, the prompt template and the learning rate at once, and quality improves. The team wants to know which change helped.
+
+A. Keep all three changes and stop there, since the reason for an improvement does not matter
+B. Run an ablation that changes one factor at a time against the baseline on the same eval set
+C. Change all three factors again in a different direction and see whether quality falls back
+D. Ask users which of the three changes they prefer, based on a short description of each
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** An ablation isolates each factor by changing one at a time against a fixed baseline and evaluation set, showing what each contributes, which matters when one change adds cost or risk. Keeping everything blindly can keep a harmful change hidden by a helpful one. Changing everything again is still confounded, and user preference for descriptions is not a measurement.
+
+**Key Concept:** [NVIDIA TAO Toolkit](https://docs.nvidia.com/tao/tao-toolkit/latest/index.html)
+</details>
+
+---
+
+### Question 24
+**Scenario:** A speech recognition model trained on 16 kHz audio gives poor transcripts for a new batch of 44.1 kHz recordings.
+
+A. Resample the recordings to the 16 kHz rate that the model expects, before running inference
+B. Speed up the recordings by a factor of 2.75 so that their duration matches the training audio
+C. Convert the recordings to images with a camera filter, since speech models read only spectrogram photos
+D. Retrain the model from scratch on 44.1 kHz audio, since sample rates cannot be converted
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Audio models expect a fixed sample rate, and feeding a different rate distorts the features they compute, so resampling to the training rate is a standard preprocessing step. Speeding the audio up changes pitch and timing. Spectrograms are computed from the waveform, not photographed, and retraining is unnecessary when resampling solves the mismatch.
+
+**Key Concept:** [NVIDIA Speech NIM microservices](https://docs.nvidia.com/nim/speech/latest/about/index.html)
+</details>
+
+---
+
+### Question 25
+**Scenario:** A team scraped millions of image-caption pairs to train a text-to-image model. Many captions do not describe their images.
+
+A. Keep every pair, because the model learns to ignore wrong captions automatically
+B. Remove every image larger than 1 MB, since large files are the most likely to be mislabeled
+C. Translate every caption into English, which aligns the captions with their images
+D. Score each pair with a CLIP-style model and drop pairs whose image-text similarity is low
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** An image-text model such as CLIP scores how well a caption matches its image, so filtering out low-similarity pairs is a standard way to clean scraped multimodal data; NeMo Curator supports this kind of filtering at scale. Noisy pairs teach the model wrong associations. File size is unrelated to caption quality, and translation does not fix a caption that describes something else.
+
+**Key Concept:** [NeMo Curator documentation](https://docs.nvidia.com/nemo/curator/home/welcome)
+</details>
+
+---
+
+### Question 26
+**Scenario:** A trained image generation model is too slow in production on NVIDIA GPUs, and the team wants faster inference from the same model.
+
+A. Convert the model weights to FP64, which the GPU processes faster than other formats
+B. Run the model on the CPU, since image models are mainly limited by the GPU's clock speed
+C. Optimize it with TensorRT, which fuses layers and uses FP16 or INT8 kernels for the GPU
+D. Increase the image resolution, which lets the GPU process more pixels in each kernel
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** TensorRT builds an optimized engine for the target GPU with layer fusion, kernel selection and reduced precision, which commonly speeds up diffusion and vision models substantially. FP64 is much slower on most GPUs. Moving to the CPU is slower, and higher resolution adds work rather than saving it.
+
+**Key Concept:** [NVIDIA TensorRT documentation](https://docs.nvidia.com/deeplearning/tensorrt/latest/index.html)
+</details>
+
+---
+
+### Question 27
+**Scenario:** Fine-tuning a vision-language model in FP32 is slow, and the GPUs' Tensor Cores are mostly idle.
+
+A. Switch to FP64 training, which keeps the Tensor Cores busy with double-precision math
+B. Reduce the dataset to a tenth of its size, so that every epoch finishes faster
+C. Train with automatic mixed precision (BF16 or FP16), keeping FP32 where it is needed
+D. Disable the GPU's ECC memory protection, which is what slows down FP32 training
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Automatic mixed precision runs most math in BF16 or FP16 on Tensor Cores while keeping sensitive operations and master weights in FP32, which raises throughput and lowers memory with little or no accuracy loss. FP64 is slower. Shrinking the dataset trades away quality, and ECC is not the cause of slow FP32 math.
+
+**Key Concept:** [Train with mixed precision](https://docs.nvidia.com/deeplearning/performance/mixed-precision-training/index.html)
+</details>
+
+---
+
+### Question 28
+**Scenario:** A multimodal training job's GPU utilization swings between 0% and 100%. The team does not know whether data loading or the model is the bottleneck.
+
+A. Buy faster GPUs, since utilization swings always mean that the GPU itself is too slow
+B. Profile a few steps with Nsight Systems to see whether the GPU waits for data
+C. Double the learning rate, which makes each step finish faster and evens out usage
+D. Turn off data augmentation permanently, because augmentation always runs on the GPU
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Nsight Systems shows a timeline of CPU and GPU activity, so gaps where the GPU waits for the next batch reveal an input bottleneck, which might be fixed with more loader workers or GPU-side decoding such as DALI. Faster GPUs make an input-bound job wait longer. The learning rate does not affect step time, and augmentation often runs on the CPU, which is part of the problem.
+
+**Key Concept:** [Nsight Systems user guide](https://docs.nvidia.com/nsight-systems/UserGuide/index.html)
+</details>
+
+---
+
+### Question 29
+**Scenario:** An application already uses the OpenAI Python client and must now send images with questions to a vision language model served by NVIDIA NIM.
+
+A. Rewrite the client in a NIM-specific SDK, since NIM does not accept OpenAI-style requests
+B. Encode each image as a filename and let the NIM container search the client's disk for it
+C. Send the image to a separate OCR service and pass only the extracted text to the model
+D. Point the client's base URL at the NIM endpoint and include the image in the message content
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** NIM for vision language models exposes an OpenAI-compatible chat completions API, so the existing client works by changing the base URL and model name, with images sent in the message content (for example as a URL or base64 data). No special SDK is required. A server cannot read the client's disk, and OCR loses the visual information that a VLM uses.
+
+**Key Concept:** [NIM for vision language models](https://docs.nvidia.com/nim/vision-language-models/latest/index.html)
+</details>
+
+---
+
+### Question 30
+**Scenario:** A live video-conference app must show captions while people are still speaking, with words appearing within a fraction of a second.
+
+A. Use streaming speech recognition, sending audio chunks and receiving partial and final transcripts
+B. Record the full meeting, then send the file for offline transcription after the call has ended
+C. Send one-minute audio files for batch transcription and show each result when it arrives
+D. Use a text-to-speech model, which converts the meeting's audio into on-screen text as it plays
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Streaming ASR, as offered by NVIDIA's Riva-based speech NIM microservices, accepts audio as it is captured and returns interim results that are updated into final transcripts, which gives live captions. Offline or one-minute batch transcription arrives far too late. Text-to-speech works in the opposite direction.
+
+**Key Concept:** [NVIDIA Speech NIM microservices](https://docs.nvidia.com/nim/speech/latest/about/index.html)
 </details>
 
 ---
