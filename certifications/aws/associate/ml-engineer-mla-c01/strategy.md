@@ -83,7 +83,7 @@
 - **GenAI**: Bedrock -> Knowledge Base -> Agent -> Guardrails
 
 ### Time Management
-- **2 minutes per question** average (85 questions, 170 minutes)
+- **2 minutes per question** average (65 questions, 130 minutes)
 - **Flag and move**: Don't spend too long on difficult questions
 - **Review time**: Reserve 20 minutes for flagged questions
 - **Quick wins**: Answer easy questions first

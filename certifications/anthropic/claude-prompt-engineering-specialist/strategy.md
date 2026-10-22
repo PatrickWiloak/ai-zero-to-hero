@@ -1,4 +1,6 @@
-# CPES - Exam Strategy
+# Claude Prompt Engineering Specialist (study track) - Strategy
+
+> **No such exam exists** (checked 2026-10-22; see the [fact sheet](fact-sheet.md)). The advice below is written as exam strategy; use it to drive self-testing with the practice questions and scenarios.
 
 The Specialist exam tests judgment more than recall. Many questions show two prompt variants and ask which is better, or show a failing prompt and ask which intervention would help most. Your job is to recognize the technique each option represents and judge its fit.
 

@@ -14,7 +14,7 @@ Not sure which one to take? Start with the [AI certifications guide](../careers/
 | [Claude Certified Associate - Foundations (CCAO-F)](anthropic/claude-certified-associate-foundations/README.md) | CCAO-F | Foundational | Ready | 7 | [72](anthropic/claude-certified-associate-foundations/flashcards.csv) | [Questions](practice-questions/anthropic-claude-associate-foundations.md) |
 | [Claude Certified Developer - Foundations (CCDV-F)](anthropic/claude-certified-developer-foundations/README.md) | CCDV-F | Foundational | Ready | 10 | - | [Questions](practice-questions/anthropic-claude-developer-foundations.md) |
 | [Claude Certified Architect - Professional (CCAR-P)](anthropic/claude-certified-architect-professional/README.md) | CCAR-P | Professional | Ready | 9 | [43](anthropic/claude-certified-architect-professional/flashcards.csv) | [Questions](practice-questions/anthropic-claude-architect-professional.md) |
-| [Claude Prompt Engineering Specialist - Self-Directed Study Track](anthropic/claude-prompt-engineering-specialist/README.md) | CPES | Specialty | Study track | 7 | - | [Questions](practice-questions/anthropic-claude-prompt-engineering-specialist.md) |
+| [Claude Prompt Engineering Specialist - Self-Directed Study Track](anthropic/claude-prompt-engineering-specialist/README.md) | - | - | Study track | 7 | - | [Questions](practice-questions/anthropic-claude-prompt-engineering-specialist.md) |
 
 ## NVIDIA
 
@@ -24,14 +24,14 @@ Not sure which one to take? Start with the [AI certifications guide](../careers/
 |------|------|-------|--------|------:|-----------:|--------------------|
 | [NVIDIA Certified Associate - AI Infrastructure Operations (NCA-AIIO)](nvidia/ai-infrastructure-operations-associate/README.md) | NCA-AIIO | Associate | Ready | 4 | [25](nvidia/ai-infrastructure-operations-associate/flashcards.csv) | [Questions](practice-questions/nvidia-ai-infrastructure-operations-associate.md) |
 | [NVIDIA Certified Associate - Generative AI and LLMs (NCA-GENL)](nvidia/genai-llms-associate/README.md) | NCA-GENL | Associate | Ready | 6 | [129](nvidia/genai-llms-associate/flashcards.csv) | [Questions](practice-questions/nvidia-genai-llms-associate.md) |
-| [NVIDIA Certified Associate - Multimodal Generative AI (NCA-MMGA)](nvidia/multimodal-genai-associate/README.md) | NCA-MMGA | Associate | Ready | 4 | [58](nvidia/multimodal-genai-associate/flashcards.csv) | [Questions](practice-questions/nvidia-multimodal-genai-associate.md) |
+| [NVIDIA-Certified Associate - Generative AI Multimodal (NCA-GENM)](nvidia/generative-ai-multimodal-associate/README.md) | NCA-GENM | Associate | Ready | 4 | [58](nvidia/generative-ai-multimodal-associate/flashcards.csv) | [Questions](practice-questions/nvidia-generative-ai-multimodal-associate.md) |
 | [NVIDIA Certified Professional - Accelerated Data Science (NCP-ADS)](nvidia/accelerated-data-science-professional/README.md) | NCP-ADS | Professional | Ready | 4 | - | [Questions](practice-questions/nvidia-accelerated-data-science-professional.md) |
 | [NVIDIA Certified Professional - Agentic AI (NCP-AAI)](nvidia/agentic-ai-professional/README.md) | NCP-AAI | Professional | Ready | 5 | [65](nvidia/agentic-ai-professional/flashcards.csv) | [Questions](practice-questions/nvidia-agentic-ai-professional.md) |
 | [NVIDIA Certified Professional - AI Infrastructure (NCP-AII)](nvidia/ai-infrastructure-professional/README.md) | NCP-AII | Professional | Ready | 5 | [43](nvidia/ai-infrastructure-professional/flashcards.csv) | [Questions](practice-questions/nvidia-ai-infrastructure-professional.md) |
 | [NVIDIA Certified Professional - AI Operations (NCP-AIO)](nvidia/ai-operations-professional/README.md) | NCP-AIO | Professional | Ready | 5 | [21](nvidia/ai-operations-professional/flashcards.csv) | [Questions](practice-questions/nvidia-ai-operations-professional.md) |
 | [NVIDIA Certified Professional - Generative AI & LLMs (NCP-GENL)](nvidia/genai-llms-professional/README.md) | NCP-GENL | Professional | Ready | 6 | - | [Questions](practice-questions/nvidia-genai-llms-professional.md) |
-| [NVIDIA Certified Professional - Networking (NCP-NET)](nvidia/networking-professional/README.md) | NCP-NET | Professional | Ready | 5 | [27](nvidia/networking-professional/flashcards.csv) | [Questions](practice-questions/nvidia-networking-professional.md) |
-| [NVIDIA Certified Professional - OpenUSD (NCP-USD)](nvidia/openusd-professional/README.md) | NCP-USD | Professional | Ready | 5 | [59](nvidia/openusd-professional/flashcards.csv) | [Questions](practice-questions/nvidia-openusd-professional.md) |
+| [NVIDIA-Certified Professional - AI Networking (NCP-AIN)](nvidia/ai-networking-professional/README.md) | NCP-AIN | Professional | Ready | 5 | [27](nvidia/ai-networking-professional/flashcards.csv) | [Questions](practice-questions/nvidia-ai-networking-professional.md) |
+| [NVIDIA-Certified Professional - OpenUSD Development (NCP-OUSD)](nvidia/openusd-development-professional/README.md) | NCP-OUSD | Professional | Ready | 5 | [59](nvidia/openusd-development-professional/flashcards.csv) | [Questions](practice-questions/nvidia-openusd-development-professional.md) |
 
 ## AWS
 

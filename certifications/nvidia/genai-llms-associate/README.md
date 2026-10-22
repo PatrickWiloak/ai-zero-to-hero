@@ -281,7 +281,7 @@ The NVIDIA Certified Associate - Generative AI and LLMs (NCA-GENL) exam validate
 - Foundation for advanced NVIDIA certifications
 
 ### Advanced Certifications
-- **NVIDIA Certified Associate - Multimodal Generative AI** - Expand into vision, audio, and cross-modal AI
+- **NVIDIA-Certified Associate - Generative AI Multimodal (NCA-GENM)** - Expand into vision, audio, and cross-modal AI
 - **NVIDIA Certified Associate - AI Infrastructure and Operations** - Infrastructure focus
 - **NVIDIA Certified Professional certifications** - Advanced specializations
 

@@ -1,4 +1,4 @@
-# NCA-MMGA Multimodal GenAI Associate Study Strategy
+# NCA-GENM Generative AI Multimodal Associate Study Strategy
 
 ## Study Approach
 

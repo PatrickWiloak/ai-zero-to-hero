@@ -43,6 +43,8 @@ Official blueprint v1.0, effective July 2026:
 | 6 | Configuration and Knowledge Management | 12% |
 | 7 | Troubleshooting and Optimization | 10% |
 
+Weights checked 2026-10-22 against Anthropic's *Claude Certified Associate - Foundations Exam Guide* (v1.0, effective July 2026, exam code CCAO-F), linked from the [Partner Academy certifications page](https://anthropic-partners.skilljar.com/page/partner-certifications). This table is ordered by weight; the official guide numbers the domains differently (Prompting and Task Execution is Domain 1).
+
 Note the ordering: the biggest domain is not prompting, it is evaluating and validating what Claude produces. The exam rewards people who treat Claude's output as a draft to verify, not a finished answer.
 
 ---

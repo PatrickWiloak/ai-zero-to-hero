@@ -3,11 +3,11 @@ last-updated: 2026-08-09
 difficulty: advanced
 ---
 
-# NVIDIA Certified Professional - OpenUSD (NCP-USD) - Practice Questions
+# NVIDIA-Certified Professional - OpenUSD Development (NCP-OUSD) - Practice Questions
 
-15 questions for NCP-USD prep, weighted toward USD fundamentals (25%) and scene composition (25%), then the Omniverse platform (20%), rendering and materials (15%), and collaboration (15%).
+15 questions for NCP-OUSD prep, weighted toward USD fundamentals (25%) and scene composition (25%), then the Omniverse platform (20%), rendering and materials (15%), and collaboration (15%).
 
-> **Cert page:** [exams/nvidia/openusd-professional/](../nvidia/openusd-professional/README.md)
+> **Cert page:** [exams/nvidia/openusd-development-professional/](../nvidia/openusd-development-professional/README.md)
 
 ---
 
@@ -283,7 +283,7 @@ D. In a separate video file
 
 ## Where to go deeper
 
-- [NCP-USD cert page](../nvidia/openusd-professional/README.md) - notes, practice plan, strategy
-- [NCA-MMGA practice questions](nvidia-multimodal-genai-associate.md) - generative content for 3D pipelines
+- [NCP-OUSD cert page](../nvidia/openusd-development-professional/README.md) - notes, practice plan, strategy
+- [NCA-GENM practice questions](nvidia-generative-ai-multimodal-associate.md) - generative content for 3D pipelines
 - **[📖 OpenUSD documentation](https://openusd.org/release/index.html)** - primary source
 - **[📖 NVIDIA training and certification](https://www.nvidia.com/en-us/training/)** - official exam pages

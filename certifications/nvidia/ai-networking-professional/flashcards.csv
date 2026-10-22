@@ -1,9 +1,9 @@
 Question,Answer,Tags
-How long is the NVIDIA Certified Professional - Networking (NCP-NET) exam?,120 minutes,exam-logistics
-How many questions are on the NVIDIA Certified Professional - Networking (NCP-NET) exam?,60-70 questions,exam-logistics
-What is the passing score for NVIDIA Certified Professional - Networking (NCP-NET)?,Not officially published,exam-logistics
-What does the NVIDIA Certified Professional - Networking (NCP-NET) exam cost?,$200 USD,exam-logistics
-How long is NVIDIA Certified Professional - Networking (NCP-NET) valid for?,2 years,exam-logistics
+How long is the NVIDIA-Certified Professional - AI Networking (NCP-AIN) exam?,2 hours,exam-logistics
+How many questions are on the NVIDIA-Certified Professional - AI Networking (NCP-AIN) exam?,70-75 questions,exam-logistics
+What is the passing score for NVIDIA-Certified Professional - AI Networking (NCP-AIN)?,Not officially published,exam-logistics
+What does the NVIDIA-Certified Professional - AI Networking (NCP-AIN) exam cost?,$400 USD ($500 once labs are added on November 1 2026),exam-logistics
+How long is NVIDIA-Certified Professional - AI Networking (NCP-AIN) valid for?,2 years,exam-logistics
 Master (infiniband),Active SM controlling the fabric,"notes,infiniband"
 Standby (infiniband),Backup SM ready for failover,"notes,infiniband"
 Zero-copy (rdma roce),Data moves directly between application buffers,"notes,rdma-roce"

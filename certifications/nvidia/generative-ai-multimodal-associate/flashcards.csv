@@ -1,9 +1,9 @@
 Question,Answer,Tags
-How long is the NVIDIA Certified Associate - Multimodal Generative AI (NCA-MMGA) exam?,60 minutes,exam-logistics
-How many questions are on the NVIDIA Certified Associate - Multimodal Generative AI (NCA-MMGA) exam?,50-60 questions,exam-logistics
-What is the passing score for NVIDIA Certified Associate - Multimodal Generative AI (NCA-MMGA)?,Not officially published,exam-logistics
-What does the NVIDIA Certified Associate - Multimodal Generative AI (NCA-MMGA) exam cost?,$135 USD,exam-logistics
-How long is NVIDIA Certified Associate - Multimodal Generative AI (NCA-MMGA) valid for?,2 years,exam-logistics
+How long is the NVIDIA-Certified Associate - Generative AI Multimodal (NCA-GENM) exam?,1 hour,exam-logistics
+How many questions are on the NVIDIA-Certified Associate - Generative AI Multimodal (NCA-GENM) exam?,50-60 questions,exam-logistics
+What is the passing score for NVIDIA-Certified Associate - Generative AI Multimodal (NCA-GENM)?,Not officially published,exam-logistics
+What does the NVIDIA-Certified Associate - Generative AI Multimodal (NCA-GENM) exam cost?,$125 USD,exam-logistics
+How long is NVIDIA-Certified Associate - Generative AI Multimodal (NCA-GENM) valid for?,2 years,exam-logistics
 LLaVA (multimodal fundamentals),Visual instruction tuning on LLaMA,"notes,multimodal-fundamentals"
 NVIDIA VILA (multimodal fundamentals),NVIDIA's vision-language model family,"notes,multimodal-fundamentals"
 GPT-4V (multimodal fundamentals),OpenAI's multimodal model,"notes,multimodal-fundamentals"

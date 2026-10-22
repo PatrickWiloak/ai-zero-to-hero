@@ -1,4 +1,4 @@
-# NCP-USD High-Yield Scenarios and Practice Problems
+# NCP-OUSD High-Yield Scenarios and Practice Problems
 
 ## Scenario 1: Composition Strength
 

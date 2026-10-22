@@ -1,28 +1,37 @@
 ---
-last-updated: 2026-05-03
+last-updated: 2026-10-22
 ---
 
-# NVIDIA OpenUSD Professional - Fact Sheet
+# NVIDIA-Certified Professional - OpenUSD Development (NCP-OUSD) - Fact Sheet
 
 ## Quick Reference
 
-**Exam Code:** NCP-USD
-**Duration:** 120 minutes
-**Questions:** 60-70 questions
-**Passing Score:** Not officially published
-**Cost:** $200 USD
-**Validity:** 2 years
-**Difficulty:** Advanced
+**Exam code:** NCP-OUSD  
+**Duration:** 120 minutes  
+**Questions:** 60-70  
+**Cost:** $200 USD  
+**Level:** Professional  
+**Validity:** 2 years from issuance  
+**Delivery:** Online, remotely proctored, English; needs a Certiverse account  
+**Prerequisites:** 2-3 years with the OpenUSD framework and Python or C++, or completion of the study guide materials (recommended)  
+**Passing score:** Not published  
 
-## Exam Domains
+**[📖 Official exam page](https://www.nvidia.com/en-us/learn/certification/openusd-development-professional/)**
 
-| Domain | Weight | Key Focus |
-|--------|--------|-----------|
-| USD Fundamentals | 25% | Data model, prims, properties, schemas |
-| Scene Composition | 25% | Layers, composition arcs, LIVRPS |
-| Omniverse Platform | 20% | Nucleus, connectors, Kit SDK |
-| Rendering and Materials | 15% | Materials, lighting, Hydra, RTX |
-| Collaboration and Pipeline | 15% | Multi-user, versioning, integration |
+## Exam Blueprint
+
+| Topic | Weight | Where in this guide |
+|---|---|---|
+| Composition | 23% | [02 Scene composition](notes/02-scene-composition.md) |
+| Content Aggregation | 10% | [02 Scene composition](notes/02-scene-composition.md) |
+| Customizing USD | 6% | [01 USD fundamentals](notes/01-usd-fundamentals.md) (schemas) |
+| Data Exchange | 15% | [05 Collaboration](notes/05-collaboration.md) |
+| Data Modeling | 13% | [01 USD fundamentals](notes/01-usd-fundamentals.md) |
+| Debugging and Troubleshooting | 11% | Not covered in the notes yet |
+| Pipeline Development | 14% | [05 Collaboration](notes/05-collaboration.md), [03 Omniverse](notes/03-omniverse.md) |
+| Visualization | 8% | [04 Rendering](notes/04-rendering.md) |
+
+> **Blueprint updated 2026-10-22** from [NVIDIA's exam page](https://www.nvidia.com/en-us/learn/certification/openusd-development-professional/) (checked 2026-10-22). The notes below were written in May 2026 against an earlier domain list that NVIDIA no longer publishes, so they do not yet map one-to-one onto these topics; topics marked "not covered" need outside study.
 
 ## Domain 1: USD Fundamentals
 

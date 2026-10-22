@@ -3,11 +3,11 @@ last-updated: 2026-08-09
 difficulty: advanced
 ---
 
-# NVIDIA Certified Professional - Networking (NCP-NET) - Practice Questions
+# NVIDIA-Certified Professional - AI Networking (NCP-AIN) - Practice Questions
 
-15 questions for NCP-NET prep, weighted toward InfiniBand (25%), Spectrum Ethernet (20%), RDMA and RoCE (20%), and UFM fabric management (20%).
+15 questions for NCP-AIN prep, weighted toward InfiniBand (25%), Spectrum Ethernet (20%), RDMA and RoCE (20%), and UFM fabric management (20%).
 
-> **Cert page:** [exams/nvidia/networking-professional/](../nvidia/networking-professional/README.md)
+> **Cert page:** [exams/nvidia/ai-networking-professional/](../nvidia/ai-networking-professional/README.md)
 
 ---
 
@@ -283,7 +283,7 @@ D. They are identical in behavior; the only difference is the connector and cabl
 
 ## Where to go deeper
 
-- [NCP-NET cert page](../nvidia/networking-professional/README.md) - notes, practice plan, strategy
+- [NCP-AIN cert page](../nvidia/ai-networking-professional/README.md) - notes, practice plan, strategy
 - [NCP-AII practice questions](nvidia-ai-infrastructure-professional.md) - cluster design in context
 - [Networking topic index](https://cloud.noblerworks.com/topics/networking/) - cross-cloud networking
 - **[📖 NVIDIA training and certification](https://www.nvidia.com/en-us/training/)** - official exam pages

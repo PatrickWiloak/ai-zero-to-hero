@@ -1,4 +1,4 @@
-# NCP-NET Networking Professional Study Plan
+# NCP-AIN AI Networking Professional Study Plan
 
 ## 8-Week Intensive Study Schedule
 

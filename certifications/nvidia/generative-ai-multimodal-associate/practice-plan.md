@@ -1,4 +1,4 @@
-# NCA-MMGA Multimodal GenAI Associate Study Plan
+# NCA-GENM Generative AI Multimodal Associate Study Plan
 
 ## 6-Week Study Schedule
 

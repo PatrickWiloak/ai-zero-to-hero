@@ -2,7 +2,7 @@
 
 ## Important Notice
 
-**The MLA-C01 exam was retired on September 28, 2026.** It can no longer be taken. Credentials already earned remain valid under the vendor's own terms. This guide is kept as historical reference. The English MLA-C01 exam ended on this date. **MLA-C02** is in beta (general availability not yet announced); this guide has not been rebuilt for it yet.
+**MLA-C01 in English ended on September 28, 2026**; AWS says MLA-C01 in Korean, Japanese and Simplified Chinese "remains available until general availability of MLA-C02." **MLA-C02** is in beta (beta exam code ME1-C02, English only, $75, 170 minutes, 85 questions; delivery began September 29, 2026; general availability TBD, checked 2026-10-22). This guide covers MLA-C01 and has not been rebuilt for MLA-C02. Credentials already earned remain valid under the vendor's own terms.
 
 Source: [AWS Certified Machine Learning Engineer - Associate](https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/)
 
@@ -14,8 +14,8 @@ The AWS Certified Machine Learning Engineer - Associate (MLA-C01) exam validates
 
 **Exam Details:**
 - **Exam Code:** MLA-C01
-- **Duration:** 170 minutes
-- **Number of Questions:** 85 scored questions
+- **Duration:** 130 minutes
+- **Number of Questions:** 65 questions
 - **Question Types:** Multiple choice and multiple response
 - **Passing Score:** 720 out of 1000 (approximately 72%)
 - **Cost:** $150 USD
@@ -184,7 +184,7 @@ SageMaker is the central service for this exam. Key components:
 4. **Consider the ML lifecycle stage** - data prep, training, deployment, or monitoring
 
 ### Time Management
-- 170 minutes for 85 questions = 2 minutes per question
+- 130 minutes for 65 questions = 2 minutes per question
 - Flag uncertain questions and return later
 - Don't spend more than 3 minutes on any question initially
 - Leave 20 minutes for review

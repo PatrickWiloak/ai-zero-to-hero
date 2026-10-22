@@ -1,28 +1,36 @@
 ---
-last-updated: 2026-05-03
+last-updated: 2026-10-22
 ---
 
-# NVIDIA Multimodal GenAI Associate - Fact Sheet
+# NVIDIA-Certified Associate - Generative AI Multimodal (NCA-GENM) - Fact Sheet
 
 ## Quick Reference
 
-**Exam Code:** NCA-MMGA
-**Duration:** 60 minutes
-**Questions:** 50-60 questions
-**Passing Score:** Not officially published
-**Cost:** $135 USD
-**Validity:** 2 years
-**Difficulty:** Associate (foundational)
+**Exam code:** NCA-GENM  
+**Duration:** 1 hour  
+**Questions:** 50-60 multiple choice  
+**Cost:** $125 USD  
+**Level:** Associate  
+**Validity:** 2 years from issuance; recertify by retaking the exam  
+**Delivery:** Online, remotely proctored; needs a Certiverse account  
+**Prerequisites:** A basic understanding of generative AI  
+**Passing score:** Not published  
 
-## Exam Domains
+**[📖 Official exam page](https://www.nvidia.com/en-us/learn/certification/generative-ai-multimodal-associate/)**
 
-| Domain | Weight | Key Focus |
-|--------|--------|-----------|
-| Multimodal AI Fundamentals | 25% | Modalities, architectures, VLMs |
-| Image and Video Generation | 25% | Diffusion models, text-to-image, video |
-| Text and Speech Modalities | 20% | LLMs, TTS, STT, Riva |
-| NVIDIA Multimodal Tools | 15% | NIM, NeMo, Build, AI Enterprise |
-| Applications and Best Practices | 15% | Multimodal RAG, evaluation, ethics |
+## Exam Blueprint
+
+| Topic | Weight | Where in this guide |
+|---|---|---|
+| Core Machine Learning and AI Knowledge | 20% | [01 Multimodal fundamentals](notes/01-multimodal-fundamentals.md) |
+| Data Analysis | 10% | Not covered in the notes yet |
+| Experimentation | 25% | [02 Image and video generation](notes/02-image-video-generation.md), [03 Text and speech](notes/03-text-speech.md) |
+| Multimodal Data | 15% | [01 Multimodal fundamentals](notes/01-multimodal-fundamentals.md) |
+| Performance Optimization | 10% | [04 NVIDIA tools](notes/04-nvidia-tools-applications.md) |
+| Software Development | 15% | [04 NVIDIA tools](notes/04-nvidia-tools-applications.md) |
+| Trustworthy AI | 5% | [04 NVIDIA tools](notes/04-nvidia-tools-applications.md) (best practices) |
+
+> **Blueprint updated 2026-10-22** from [NVIDIA's exam page](https://www.nvidia.com/en-us/learn/certification/generative-ai-multimodal-associate/) (checked 2026-10-22). The notes below were written in May 2026 against an earlier domain list that NVIDIA no longer publishes, so they do not yet map one-to-one onto these topics; topics marked "not covered" need outside study.
 
 ## Domain 1: Multimodal AI Fundamentals
 

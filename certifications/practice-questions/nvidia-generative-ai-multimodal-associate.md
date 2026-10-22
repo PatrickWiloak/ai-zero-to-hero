@@ -3,11 +3,11 @@ last-updated: 2026-08-09
 difficulty: intermediate
 ---
 
-# NVIDIA Certified Associate - Multimodal Generative AI (NCA-MMGA) - Practice Questions
+# NVIDIA-Certified Associate - Generative AI Multimodal (NCA-GENM) - Practice Questions
 
-15 questions for NCA-MMGA prep, weighted toward multimodal fundamentals (25%) and image and video generation (25%), then text and speech (20%), NVIDIA tooling (15%), and applications (15%).
+15 questions for NCA-GENM prep, weighted toward multimodal fundamentals (25%) and image and video generation (25%), then text and speech (20%), NVIDIA tooling (15%), and applications (15%).
 
-> **Cert page:** [exams/nvidia/multimodal-genai-associate/](../nvidia/multimodal-genai-associate/README.md)
+> **Cert page:** [exams/nvidia/generative-ai-multimodal-associate/](../nvidia/generative-ai-multimodal-associate/README.md)
 
 ---
 
@@ -283,7 +283,7 @@ D. Use a smaller model in the cloud, which processes less data and so counts as 
 
 ## Where to go deeper
 
-- [NCA-MMGA cert page](../nvidia/multimodal-genai-associate/README.md) - notes, practice plan, strategy
+- [NCA-GENM cert page](../nvidia/generative-ai-multimodal-associate/README.md) - notes, practice plan, strategy
 - [NCA-GENL practice questions](nvidia-genai-llms-associate.md) - the text-focused sibling
 - [Multimodal models](../../learn/concepts/multimodal-models.md) - plain-English primer
 - [LLMs and GenAI topic index](../../learn/README.md) - the wider AI stack

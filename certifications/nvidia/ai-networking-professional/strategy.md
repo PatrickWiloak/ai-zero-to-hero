@@ -1,4 +1,4 @@
-# NCP-NET Networking Professional Study Strategy
+# NCP-AIN AI Networking Professional Study Strategy
 
 ## Study Approach
 

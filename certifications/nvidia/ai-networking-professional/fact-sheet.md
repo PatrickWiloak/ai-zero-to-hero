@@ -1,28 +1,34 @@
 ---
-last-updated: 2026-05-03
+last-updated: 2026-10-22
 ---
 
-# NVIDIA Networking Professional - Fact Sheet
+# NVIDIA-Certified Professional - AI Networking (NCP-AIN) - Fact Sheet
 
 ## Quick Reference
 
-**Exam Code:** NCP-NET
-**Duration:** 120 minutes
-**Questions:** 60-70 questions
-**Passing Score:** Not officially published
-**Cost:** $200 USD
-**Validity:** 2 years
-**Difficulty:** Advanced
+**Exam code:** NCP-AIN  
+**Duration:** 2 hours  
+**Questions:** 70-75  
+**Cost:** $400 USD; NVIDIA says lab exercises are being added on November 1 (2026), when the price rises to $500  
+**Level:** Professional  
+**Validity:** 2 years from issuance  
+**Prerequisites:** 2-3 years of hands-on data center networking experience with NVIDIA hardware (recommended)  
+**Passing score:** Not published  
 
-## Exam Domains
+**[📖 Official exam page](https://www.nvidia.com/en-us/learn/certification/ai-networking-professional/)**
 
-| Domain | Weight | Key Focus |
-|--------|--------|-----------|
-| InfiniBand Technology | 25% | IB architecture, speeds, subnet management |
-| Spectrum Ethernet | 20% | Spectrum switches, Cumulus Linux, RoCE |
-| RDMA and RoCE | 20% | RDMA protocols, PFC, ECN, GPUDirect |
-| Network Topologies for AI | 15% | Fat-tree, rail-optimized, adaptive routing |
-| UFM and Network Management | 20% | UFM monitoring, telemetry, fabric management |
+## Exam Blueprint
+
+| Topic | Weight | Where in this guide |
+|---|---|---|
+| AI Data Center Design and Optimization | 5% | [04 Network topologies](notes/04-network-topologies.md) |
+| NVIDIA Spectrum Networking | 30% | [02 Spectrum Ethernet](notes/02-spectrum-ethernet.md), [03 RDMA and RoCE](notes/03-rdma-roce.md) |
+| NVIDIA InfiniBand Networking | 30% | [01 InfiniBand](notes/01-infiniband.md) |
+| Kubernetes Integration | 5% | Not covered in the notes yet |
+| Troubleshooting Tools | 20% | [05 UFM](notes/05-ufm.md) |
+| Automation and Configuration | 10% | [02 Spectrum Ethernet](notes/02-spectrum-ethernet.md) (Cumulus Linux, automation) |
+
+> **Blueprint updated 2026-10-22** from [NVIDIA's exam page](https://www.nvidia.com/en-us/learn/certification/ai-networking-professional/) (checked 2026-10-22). The notes below were written in May 2026 against an earlier domain list that NVIDIA no longer publishes, so they do not yet map one-to-one onto these topics; topics marked "not covered" need outside study.
 
 ## Domain 1: InfiniBand Technology
 

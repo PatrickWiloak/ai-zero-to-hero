@@ -285,6 +285,6 @@ D. Check `nvidia-smi` only, since a clean GPU listing, driver version and temper
 
 - [NCP-AII cert page](../nvidia/ai-infrastructure-professional/README.md) - notes, practice plan, strategy
 - [NCA-AIIO practice questions](nvidia-ai-infrastructure-operations-associate.md) - the associate level below this
-- [NCP-NET practice questions](nvidia-networking-professional.md) - the fabric in depth
+- [NCP-AIN practice questions](nvidia-ai-networking-professional.md) - the fabric in depth
 - [GPUs for AI](../../learn/concepts/gpus-for-ai.md) - the hardware concepts in plain English
 - **[📖 NVIDIA training and certification](https://www.nvidia.com/en-us/training/)** - official exam pages

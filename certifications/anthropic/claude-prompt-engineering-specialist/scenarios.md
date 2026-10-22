@@ -1,4 +1,4 @@
-# CPES - Exam Scenarios
+# Claude Prompt Engineering Specialist (study track) - Scenarios
 
 Ten scenario-based questions at the difficulty expected for the Specialist exam. Time yourself at 1.5 minutes per question.
 

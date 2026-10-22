@@ -1,4 +1,4 @@
-# NCP-USD OpenUSD Professional Study Strategy
+# NCP-OUSD OpenUSD Development Professional Study Strategy
 
 ## Study Approach
 

@@ -1,4 +1,4 @@
-# NCP-USD OpenUSD Professional Study Plan
+# NCP-OUSD OpenUSD Development Professional Study Plan
 
 ## 8-Week Study Schedule
 

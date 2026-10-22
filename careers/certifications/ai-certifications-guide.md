@@ -66,13 +66,15 @@ Also here: a [Google Cloud generative AI study track](../../certifications/gcp/g
 | Certification | Level | Cost | Validity | Study guide |
 |---|---|---|---|---|
 | Generative AI and LLMs Associate (NCA-GENL) | Associate | $125 | 2 years | [Guide](../../certifications/nvidia/genai-llms-associate/README.md) |
-| Multimodal Generative AI Associate (NCA-MMGA) | Associate | $135 | 2 years | [Guide](../../certifications/nvidia/multimodal-genai-associate/README.md) |
+| Generative AI Multimodal Associate (NCA-GENM) | Associate | $125 | 2 years | [Guide](../../certifications/nvidia/generative-ai-multimodal-associate/README.md) |
 | AI Infrastructure and Operations Associate (NCA-AIIO) | Associate | $135 | 2 years | [Guide](../../certifications/nvidia/ai-infrastructure-operations-associate/README.md) |
 | Generative AI and LLMs Professional (NCP-GENL) | Professional | $200 | 2 years | [Guide](../../certifications/nvidia/genai-llms-professional/README.md) |
 | Agentic AI Professional (NCP-AAI) | Professional | $200 | 2 years | [Guide](../../certifications/nvidia/agentic-ai-professional/README.md) |
 | AI Infrastructure Professional (NCP-AII) | Professional | $200 | 2 years | [Guide](../../certifications/nvidia/ai-infrastructure-professional/README.md) |
 | AI Operations Professional (NCP-AIO) | Professional | $200 | 2 years | [Guide](../../certifications/nvidia/ai-operations-professional/README.md) |
 | Accelerated Data Science Professional (NCP-ADS) | Professional | $200 | 2 years | [Guide](../../certifications/nvidia/accelerated-data-science-professional/README.md) |
+| AI Networking Professional (NCP-AIN) | Professional | $400 ($500 from 2026-11-01, when labs are added) | 2 years | [Guide](../../certifications/nvidia/ai-networking-professional/README.md) |
+| OpenUSD Development Professional (NCP-OUSD) | Professional | $200 | 2 years | [Guide](../../certifications/nvidia/openusd-development-professional/README.md) |
 
 ### Databricks
 
@@ -111,7 +113,7 @@ This site also keeps an [Azure generative AI study track](../../certifications/a
 | Certification | Retired | Notes | Historical guide |
 |---|---|---|---|
 | AWS Machine Learning - Specialty (MLS-C01) | 15 April 2025 | Existing holders stay valid for three years from earning | [Guide](../../certifications/aws/specialty/machine-learning-mls-c01/README.md) |
-| AWS Machine Learning Engineer - Associate (MLA-C01) | 28 September 2026 | MLA-C02 in beta, general availability not announced as of 2026-10 | [Guide](../../certifications/aws/associate/ml-engineer-mla-c01/README.md) |
+| AWS Machine Learning Engineer - Associate (MLA-C01) | 28 September 2026 (English; Korean, Japanese and Simplified Chinese stay until MLA-C02 GA) | MLA-C02 in beta since 29 September 2026 (code ME1-C02, $75); GA date TBD as of 2026-10-22 | [Guide](../../certifications/aws/associate/ml-engineer-mla-c01/README.md) |
 | Microsoft Azure AI Fundamentals (AI-900) | 30 June 2026 | Replaced by AI-901, which earns the same certification | [Guide](../../certifications/azure/ai-900/README.md) |
 | Microsoft Azure AI Engineer Associate (AI-102) | 30 June 2026 | Replaced by AI-103 (Azure AI Apps and Agents Developer Associate), a different certification | [Guide](../../certifications/azure/ai-102/README.md) |
 | Microsoft Azure Data Scientist Associate (DP-100) | 1 June 2026 | Can no longer be earned or renewed | [Guide](../../certifications/azure/dp-100/README.md) |
@@ -153,5 +155,5 @@ This site also keeps an [Azure generative AI study track](../../certifications/a
 - Microsoft Learn, retired certification exams (AI-900, AI-102, DP-100): https://learn.microsoft.com/en-us/credentials/support/retired-certification-exams
 - Microsoft Learn, Exam AI-901 (read 2026-10-21) and the Azure AI Apps and Agents Developer Associate (AI-103) certification page and study guide (read 2026-10-22): https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-901/ , https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-apps-and-agents-developer-associate/ , https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ai-103
 - Google Cloud, Generative AI Leader: https://cloud.google.com/learn/certification/generative-ai-leader
-- NVIDIA, certification program: https://www.nvidia.com/en-us/learn/certification/
+- NVIDIA, certification program and the NCP-AIN, NCP-OUSD and NCA-GENM exam pages (read 2026-10-22): https://www.nvidia.com/en-us/learn/certification/
 - Databricks, certifications: https://www.databricks.com/learn/certification

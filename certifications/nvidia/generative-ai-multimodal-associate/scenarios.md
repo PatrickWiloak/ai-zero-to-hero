@@ -1,4 +1,4 @@
-# NCA-MMGA High-Yield Scenarios and Practice Problems
+# NCA-GENM High-Yield Scenarios and Practice Problems
 
 ## Scenario 1: Choosing a Multimodal Architecture
 

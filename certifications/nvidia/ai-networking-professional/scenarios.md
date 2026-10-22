@@ -1,4 +1,4 @@
-# NCP-NET High-Yield Scenarios and Practice Problems
+# NCP-AIN High-Yield Scenarios and Practice Problems
 
 ## Scenario 1: Topology Selection for AI Cluster
 

@@ -42,8 +42,12 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [ ] 2026-12-01: re-check the AI-103 study guide change log (skills as of 2026-04-16) and preview status of agentic mode, memory, workflows in `certifications/azure/ai-103/`.
 - [ ] 2026-11-08: run the AI-103 note code (`certifications/azure/ai-103/notes/*.md`) against a Foundry project; samples are copied from Microsoft docs, not executed here.
 - [x] 2026-10-22 AI-901 duration added (45 min, Microsoft's Fundamentals figure); question count is not published by Microsoft.
-- [ ] 2026-11-01 judge rewrites: MLA-C02 (beta); NVIDIA codes NCP-NET -> NCP-AIN, NCP-USD -> NCP-OUSD, NCA-MMGA -> NCA-GENM [H].
-- [ ] Verify `certifications/anthropic/claude-prompt-engineering-specialist` (CPES absent from Anthropic's cert FAQ); Associate dir should read "Claude Certified Associate"; verify CCAO-F / CCAR-P domain weights.
+- [x] 2026-10-22 NVIDIA codes confirmed on nvidia.com: NCP-NET -> NCP-AIN, NCP-USD -> NCP-OUSD, NCA-MMGA -> NCA-GENM; names, logistics, blueprints and dirs fixed.
+- [ ] 2026-11-15: rewrite notes + banks for NCP-AIN, NCP-OUSD, NCA-GENM to NVIDIA's blueprints (gaps: Kubernetes, debugging, data analysis); see each README table.
+- [ ] 2026-11-02: confirm NCP-AIN labs + $500 price took effect 11-01 (nvidia.com exam page); update README, fact sheet, flashcards, careers guide.
+- [x] 2026-10-22 MLA-C01 guide: real logistics (130 min, 65 q) and verified MLA-C02 beta facts (ME1-C02, $75, 170 min, 85 q, GA TBD).
+- [ ] 2026-12-01: MLA-C02 GA date on aws.amazon.com? If announced, build `aws/associate/ml-engineer-mla-c02` from the exam guide [H].
+- [x] 2026-10-22 Anthropic: CPES confirmed not an exam (study track, invented logistics removed); CCAO-F and CCAR-P weights match the v1.0 exam guide PDFs.
 - [ ] New-guide candidates (verify codes): AWS AI Business Strategist (beta), NVIDIA NCA-ADS, NCP-ARI.
 - [ ] Rename sweep: "Vertex AI" -> Gemini Enterprise Agent Platform in `certifications/gcp/machine-learning-engineer` + GCP genai tracks.
 - [ ] 2026-10-31 spot-check retired-product replacements: LUIS (`certifications/azure/ai-102`), PaLM and AutoML (GCP ML notes).

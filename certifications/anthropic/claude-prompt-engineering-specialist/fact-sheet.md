@@ -1,26 +1,14 @@
 ---
-last-updated: 2026-05-03
+last-updated: 2026-10-22
 ---
 
-# CPES - Fact Sheet
+# Claude Prompt Engineering Specialist (study track) - Fact Sheet
 
-## Quick Reference (Preliminary)
-
-| Detail | Info |
-|---|---|
-| Exam Code | CPES |
-| Full Name | Claude Prompt Engineering Specialist |
-| Provider | Anthropic |
-| Duration | 90 minutes (estimate) |
-| Questions | 50-60 (estimate) |
-| Passing Score | ~720 / 1000 (estimate) |
-| Cost | TBD |
-| Delivery | Online proctored |
-| Validity | 2 years |
+> **There is no Anthropic exam with this name.** Checked 2026-10-22: Anthropic's [Partner Academy certifications page](https://anthropic-partners.skilljar.com/page/partner-certifications) lists four certifications (Associate, Developer and Architect - Foundations, and Architect - Professional) and no prompt engineering specialist. Earlier versions of this page gave an estimated exam code ("CPES"), duration, question count and passing score; those were guesses and have been removed. Treat this as a self-directed study track. For a real exam with prompting content, see [Claude Certified Developer - Foundations](../claude-certified-developer-foundations/README.md) or [Claude Certified Associate - Foundations](../claude-certified-associate-foundations/README.md).
 
 ---
 
-## Domain Weights (Preliminary)
+## Study areas (this site's own weighting, not an exam blueprint)
 
 | Domain | Weight | Focus |
 |---|---|---|

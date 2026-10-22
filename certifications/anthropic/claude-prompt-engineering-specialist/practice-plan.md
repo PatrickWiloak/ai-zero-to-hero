@@ -1,4 +1,4 @@
-# CPES - 4-Week Practice Plan
+# Claude Prompt Engineering Specialist (study track) - 4-Week Practice Plan
 
 Daily commitment: 1-1.5 hours weekdays, 2-3 hours one weekend day. Total: ~35 hours.
 

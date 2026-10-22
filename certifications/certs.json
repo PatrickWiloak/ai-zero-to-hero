@@ -31,8 +31,8 @@
         },
         {
           "path": "anthropic/claude-prompt-engineering-specialist",
-          "code": "CPES",
-          "level": "Specialty",
+          "code": null,
+          "level": null,
           "status": "Study track"
         }
       ],
@@ -55,8 +55,8 @@
           "status": "Ready"
         },
         {
-          "path": "nvidia/multimodal-genai-associate",
-          "code": "NCA-MMGA",
+          "path": "nvidia/generative-ai-multimodal-associate",
+          "code": "NCA-GENM",
           "level": "Associate",
           "status": "Ready"
         },
@@ -91,14 +91,14 @@
           "status": "Ready"
         },
         {
-          "path": "nvidia/networking-professional",
-          "code": "NCP-NET",
+          "path": "nvidia/ai-networking-professional",
+          "code": "NCP-AIN",
           "level": "Professional",
           "status": "Ready"
         },
         {
-          "path": "nvidia/openusd-professional",
-          "code": "NCP-USD",
+          "path": "nvidia/openusd-development-professional",
+          "code": "NCP-OUSD",
           "level": "Professional",
           "status": "Ready"
         }

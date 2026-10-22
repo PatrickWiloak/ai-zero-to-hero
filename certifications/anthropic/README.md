@@ -12,7 +12,7 @@ Study guides for Anthropic's official Claude certification program (launched Mar
 | [Claude Certified Associate - Foundations (CCAO-F)](claude-certified-associate-foundations/README.md) | CCAO-F | Foundational | Ready | 7 |
 | [Claude Certified Developer - Foundations (CCDV-F)](claude-certified-developer-foundations/README.md) | CCDV-F | Foundational | Ready | 10 |
 | [Claude Certified Architect - Professional (CCAR-P)](claude-certified-architect-professional/README.md) | CCAR-P | Professional | Ready | 9 |
-| [Claude Prompt Engineering Specialist - Self-Directed Study Track](claude-prompt-engineering-specialist/README.md) | CPES | Specialty | Study track | 7 |
+| [Claude Prompt Engineering Specialist - Self-Directed Study Track](claude-prompt-engineering-specialist/README.md) | - | - | Study track | 7 |
 
 **Study track** - a self-directed guide spanning several exams or none. Not a certification, and not counted as one.
 

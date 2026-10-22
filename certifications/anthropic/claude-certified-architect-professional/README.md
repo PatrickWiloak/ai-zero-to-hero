@@ -37,6 +37,8 @@ Anthropic recommends, but does not require, passing CCAR-F before sitting CCAR-P
 | 6 | Claude Models, Prompting and Context Engineering | 13% |
 | 7 | Developer Productivity and Operational Enablement | 7% |
 
+Weights checked 2026-10-22 against Anthropic's *Claude Certified Architect - Professional Exam Guide* (v1.0, effective July 2026, exam code CCAR-P), linked from the [Partner Academy certifications page](https://anthropic-partners.skilljar.com/page/partner-certifications). This table is ordered by weight; the official guide numbers the domains differently (Solution Design & Architecture is Domain 1).
+
 ### Domain Summaries
 
 **1 - Integration (19%).** Connecting Claude to the systems around it: tool design, MCP servers and transports, first-party tools (code execution, computer use, web search, memory), the Agent SDK, streaming clients, and deployment through Amazon Bedrock and Google Cloud Agent Platform (formerly Vertex AI) as well as the first-party API.
