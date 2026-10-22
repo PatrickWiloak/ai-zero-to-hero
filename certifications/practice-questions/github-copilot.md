@@ -1,11 +1,11 @@
 ---
-last-updated: 2026-08-09
+last-updated: 2026-10-22
 difficulty: beginner
 ---
 
 # GitHub Copilot Certification - Practice Questions
 
-15 questions for the GitHub Copilot exam, weighted toward using Copilot (25%), introduction (20%), then plans and features, developer use cases, responsible use, and prompt engineering.
+30 questions for the GitHub Copilot exam (GH-300). Questions 16-30 follow the skills measured as of 2026-08-07: use GitHub Copilot features (25-30%), use Copilot responsibly (15-20%), then data and architecture, prompt engineering and context crafting, developer productivity, and privacy, content exclusions and safeguards (10-15% each).
 
 > **Cert page:** [exams/github/copilot/](../github/copilot/README.md)
 
@@ -279,6 +279,246 @@ D. Write less: keep every comment to two or three words, so the model is not dis
 **Correct: A**
 
 **Why:** Context and specificity are the levers. Treating a poor suggestion as a signal to add detail, rather than as a failure, is the working habit that separates productive use from frustration.
+</details>
+
+### Question 16
+**Scenario:** Copilot suggests a database query built by concatenating user input into a SQL string. The developer is in a hurry.
+
+A. Accept it, since Copilot only suggests code that has passed a security review
+B. Treat it as SQL injection risk and use parameterised queries
+C. Accept it and add a comment saying Copilot wrote it
+D. Reject Copilot entirely for the rest of the project
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Generative tools can reproduce insecure patterns, so suggestions get the same scrutiny as human code, and security tooling backs that up. Copilot does not guarantee secure output. A comment does not remove the risk. Dropping the tool over one bad suggestion overreacts; validation is the habit.
+</details>
+
+### Question 17
+**Scenario:** A pull request contains code that was suggested by Copilot and accepted by a developer. A bug in it reaches production. Who is responsible for the code?
+
+A. GitHub, because Copilot wrote it
+B. The model provider, because the model generated it
+C. Nobody, because AI-generated code has no owner
+D. The developer and team who accepted, reviewed and merged it
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Copilot is an assistant; the people who accept and ship the code remain accountable for it, which is why review and testing still apply. Responsible use means humans stay in charge of what goes into the codebase.
+</details>
+
+### Question 18
+**Scenario:** Copilot generates a regular expression to validate email addresses. It looks plausible.
+
+A. Test it against valid, invalid and edge-case inputs
+B. Accept it, since regular expressions are easy for models
+C. Ask Copilot whether the regex is correct and accept a "yes"
+D. Use it only in production, where real data will show whether it works
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** AI output must be validated, and tests with edge cases are how you validate a regex. Plausible-looking patterns often have gaps. Asking the same tool to grade itself is weak evidence. Testing in production lets users find the bugs.
+</details>
+
+### Question 19
+**Scenario:** A developer needs a change across several files, including running the test suite and fixing failures until it passes, with the developer approving the steps.
+
+A. Inline code completions in the open file
+B. Copilot Chat in ask mode, copying each answer into the files by hand
+C. Agent mode in the IDE
+D. Pull request summaries
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Agent mode works across files, runs terminal commands such as tests, and iterates on the results, with the developer able to review and approve. Inline completions work at the cursor. Ask mode answers questions but does not apply and verify changes. PR summaries describe changes rather than making them.
+</details>
+
+### Question 20
+**Scenario:** A developer spends most of the day in the terminal and wants Copilot's help to write shell scripts, explain commands and work with files without opening an IDE.
+
+A. GitHub Copilot CLI
+B. Copilot code review on github.com
+C. Copilot inline suggestions in the IDE
+D. GitHub Pages
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Copilot CLI brings Copilot into the terminal, where it can answer questions, generate scripts and work with files interactively. Code review runs on pull requests. Inline suggestions need an editor. GitHub Pages hosts websites.
+</details>
+
+### Question 21
+**Scenario:** A team keeps typing the same long request to scaffold a new API endpoint in their style. They want one reusable prompt that everyone in the repository can run.
+
+A. Paste the request into the README and copy it each time
+B. Rely on chat history from a previous session
+C. Turn on the public code filter
+D. Save it as a prompt file in the repository
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Prompt files store reusable prompts in the repository so everyone gets consistent results. Custom instruction files are the related feature for standing guidance that applies to every request. Copying from a README is manual. Chat history is per session. The public code filter is unrelated.
+</details>
+
+### Question 22
+**Scenario:** An organisation onboards and offboards hundreds of developers each month and wants Copilot seats assigned and removed automatically from its HR system.
+
+A. Ask each developer to buy their own Copilot Pro plan
+B. Use the Copilot user management REST API
+C. Assign seats by hand in the settings page every Friday
+D. Give every member a seat permanently, whether they still work there or not
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** The REST API lets an organisation manage Copilot seat assignments programmatically, so the HR system can drive it. Personal plans bypass organisation policy. Weekly manual changes lag and cost money. Leaving seats for departed staff wastes licences and access control.
+</details>
+
+### Question 23
+**Scenario:** An administrator asks where the filter that blocks suggestions matching public code is applied in Copilot's flow.
+
+A. Before the prompt is built, by removing the open files from context
+B. Inside the developer's compiler at build time
+C. After the model generates a suggestion, as part of post-processing before it is shown
+D. In the git pre-commit hook on the developer's machine
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Copilot's pipeline builds a prompt from context, passes it through the proxy to the model, then post-processes the response, which is where suggestions matching public code can be filtered. The filter does not remove context, run in the compiler or depend on git hooks.
+</details>
+
+### Question 24
+**Scenario:** A developer is surprised that a completion ignores a helper function defined in a file that is not open anywhere in the editor.
+
+A. Completions only see limited context, mainly open files
+B. Copilot reads every file in the repository for every completion
+C. The helper function must be written in a different language
+D. Copilot only works in files under 100 lines
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Context for completions is limited and comes mainly from the cursor position, the current file and open or related files. Opening the relevant file, or referencing it in chat, improves results. Copilot does not read the whole repository for each completion, and language and file length are not the cause.
+</details>
+
+### Question 25
+**Scenario:** A developer wants Copilot Chat to write new unit tests in exactly the structure the team uses, and includes two existing tests in the prompt as examples.
+
+A. Zero-shot prompting
+B. Role prompting with no examples
+C. Prompt chaining across separate tools
+D. Few-shot prompting
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Giving the model a few examples of the desired output is few-shot prompting, and it is effective for matching an existing style. Zero-shot means no examples. A role alone does not show the structure. Prompt chaining splits a task into steps, which is not what is happening here.
+</details>
+
+### Question 26
+**Scenario:** After a long chat about a payment module, the developer asks about an unrelated logging library and gets answers mixed with payment details.
+
+A. Lower the temperature in the IDE settings so answers stay focused
+B. Start a new chat thread for the new topic
+C. Ask the same question five more times
+D. Uninstall and reinstall the extension
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Chat history becomes part of the prompt, so earlier turns about a different topic can pull the answer off course. A fresh thread gives clean context. Repeating the question keeps the same history. Reinstalling changes nothing, and temperature is not the issue.
+</details>
+
+### Question 27
+**Scenario:** A team must convert a legacy module from an old language to a modern one and cannot afford behaviour changes.
+
+A. Ask Copilot to translate the whole module at once and deploy the result
+B. Rewrite it by hand without looking at the old code
+C. Explain it, pin behaviour with tests, then translate in parts
+D. Ask Copilot for a summary and delete the old code
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Modernising with Copilot works best when the existing behaviour is understood and pinned down by tests before translating, so each step can be verified. A one-shot translation deployed untested risks silent changes. Ignoring the old code loses its rules. A summary is not a replacement.
+</details>
+
+### Question 28
+**Scenario:** Copilot generated tests for a date-range function, but they only check one ordinary case.
+
+A. Ask for edge-case tests and review the assertions
+B. Accept the tests, since any test that passes is enough to show the function works
+C. Delete the tests and ship the function untested
+D. Increase the test timeout
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Copilot can help identify and test edge cases if asked, and the developer still checks that the assertions are meaningful. One happy-path test misses the bugs that matter. No tests is worse. A timeout setting has nothing to do with coverage.
+</details>
+
+### Question 29
+**Scenario:** An administrator adds a content exclusion for `secrets/**`. A few minutes later a developer still gets suggestions in an excluded file.
+
+A. Content exclusions only apply to public repositories
+B. Exclusions have to be added again by every developer
+C. The exclusion syntax requires listing every file by name
+D. Settings take time to reach IDEs; reload the editor
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** GitHub documents a delay before new exclusion settings reach clients that have already loaded them, and reloading the IDE picks them up. Exclusions work for private repositories, are set centrally by administrators, and accept path patterns.
+</details>
+
+### Question 30
+**Scenario:** An organisation allows suggestions that match public code, but wants developers to see where the code came from and under what licence.
+
+A. Block all suggestions, since public code can never be used
+B. Turn off Copilot for every repository that uses open source
+C. Allow matches and use code referencing
+D. Add a note in the README asking developers to search GitHub by hand
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** When matches are allowed, code referencing reports matching public code with details such as the repository and licence, so developers can decide how to use it. Blocking everything or disabling Copilot goes beyond the stated policy. Manual searching is unreliable.
 </details>
 
 ---

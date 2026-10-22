@@ -1,6 +1,6 @@
 # Google Cloud Generative AI Leader - Practice Questions
 
-15 questions for Generative AI Leader prep. This is a business certification: expect scenario questions about value, cost, adoption, and responsible AI alongside the technical concepts.
+30 questions for Generative AI Leader prep, weighted by the exam guide's sections: Google Cloud's gen AI offerings (~35%), fundamentals of gen AI (~30%), techniques to improve model output (~20%) and business strategies (~15%). This is a business certification: expect scenario questions about value, cost, adoption, and responsible AI alongside the technical concepts.
 
 > **Cert page:** [exams/gcp/generative-ai-leader/](../gcp/generative-ai-leader/README.md)
 
@@ -274,10 +274,250 @@ D. This is not achievable with a managed service, because the provider's infrast
 **Why:** Enterprise data governance, residency, private connectivity, and encryption controls are frequently the deciding factor in business scenarios involving regulated industries, and they are available on the managed platform rather than requiring self-hosting.
 </details>
 
+### Question 16
+**Scenario:** A marketing team has purchase histories for a million customers but no labels. They want to discover natural customer groups to target.
+
+A. Supervised learning, because the purchase histories are the labels
+B. Unsupervised learning, such as clustering
+C. Reinforcement learning, which learns from rewards for each grouping
+D. Fine-tuning a foundation model on the customer list
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Finding groups without labels is the textbook unsupervised task. Supervised learning needs a known target to predict, which the team does not have. Reinforcement learning learns actions from rewards in an environment. Fine-tuning adapts a model's behaviour and is not a way to discover segments.
+</details>
+
+### Question 17
+**Scenario:** A leader asks for the stages of the machine learning lifecycle in order.
+
+A. Model training, data ingestion, model deployment, data preparation, model management
+B. Deployment, model training, data preparation, data ingestion, model management
+C. Data preparation, model management, data ingestion, model training, deployment
+D. Data ingestion, data preparation, model training, deployment, model management
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Data must be collected before it can be prepared, a model is trained on prepared data, deployed once trained, and then managed (monitored, versioned, retrained) in production. The other orders put a step before something it depends on.
+</details>
+
+### Question 18
+**Scenario:** A bank lists its data sources. Which are unstructured data?
+
+A. Recorded customer calls and free-text complaint emails
+B. A table of account balances with fixed columns
+C. A spreadsheet of transaction dates and amounts
+D. A relational database of branch addresses
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Audio and free text have no fixed schema, which makes them unstructured; they are where generative AI often adds the most value. Tables, spreadsheets and relational databases organise data into defined rows and columns, which is structured data.
+</details>
+
+### Question 19
+**Scenario:** In the layers of the generative AI landscape (infrastructure, models, platforms, agents, applications), where does a service for building, deploying and managing models and agents, such as Agent Platform, sit?
+
+A. Infrastructure, because it runs on Google's data centres
+B. Models, because it hosts Gemini
+C. Platforms
+D. Applications, because end users interact with it directly
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** The platform layer sits between models and the things built on them, offering tooling for development, deployment and management. Infrastructure is the compute (TPUs, GPUs, data centres). Models are the foundation models themselves. Applications are finished products end users work in, such as the Gemini app.
+</details>
+
+### Question 20
+**Scenario:** A travel company wants short promotional video clips generated from text descriptions of its destinations.
+
+A. Gemma, Google's open model family for running on your own infrastructure
+B. Imagen, Google's image generation model
+C. A text-only Gemini prompt with no media output
+D. Veo, Google's video generation model
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Veo generates video from text (and image) prompts. Imagen produces still images. Gemma is an open model family chosen for control and self-hosting, not video. A text-only prompt cannot produce a clip.
+</details>
+
+### Question 21
+**Scenario:** A contact centre wants its human agents to get suggested replies and relevant knowledge articles in real time while they talk to customers.
+
+A. Agent Assist, part of the Customer Engagement Suite
+B. Conversational Insights, which analyses conversations after they end
+C. Imagen, which generates images for the agents to send
+D. AutoML, which trains a custom model with no code
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Agent Assist supports human agents during live conversations with suggestions and knowledge. Conversational Insights analyses conversations for trends and is not a live helper. Imagen and AutoML do not provide in-call assistance.
+</details>
+
+### Question 22
+**Scenario:** Employees waste time hunting for information across Google Drive, a ticketing system and a document management system. Leadership wants one place to search all of it and use AI agents, with existing permissions respected.
+
+A. The consumer Gemini app with personal accounts
+B. A custom model trained from scratch on all company documents
+C. Gemini Enterprise
+D. Google AI Studio, used by each employee to build their own prototype
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Gemini Enterprise is the prebuilt, employee-facing offering that connects to enterprise data sources, honours access controls and offers search and agents. Consumer accounts lack enterprise controls. Training from scratch is the highest-cost rung of the ladder for a problem that a product solves. AI Studio is a developer prototyping tool.
+</details>
+
+### Question 23
+**Scenario:** A developer wants to try Gemini prompts quickly and get an API key for a prototype. Later the company will need enterprise governance, security controls and managed deployment for production.
+
+A. Start on Agent Platform for the prototype, then move to Google AI Studio for production
+B. Prototype in Google AI Studio, then build the production solution on Agent Platform
+C. Use Google AI Studio for both, since it has every enterprise control
+D. Skip prototyping and train a custom model on Agent Platform
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Google AI Studio is the fast way to experiment with Gemini models and prompts. Agent Platform is Google Cloud's enterprise platform with the security, governance and deployment controls production needs. Option A reverses the roles. Option C overstates AI Studio. Option D jumps to the most expensive rung without testing the idea.
+</details>
+
+### Question 24
+**Scenario:** A board member asks what Google's custom-designed chips for training and serving AI models are called.
+
+A. GPUs, which Google designs in-house for every workload
+B. CPUs optimised for spreadsheets
+C. Edge TPUs, which are the only accelerators Google offers in the cloud
+D. Tensor Processing Units (TPUs)
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** TPUs are Google's custom accelerators for machine learning, offered in Google Cloud alongside GPUs from partners as part of its AI Hypercomputer infrastructure. Google Cloud offers GPUs but does not design them. CPUs are general-purpose processors. Edge TPUs are small devices for edge inference, not the main cloud offering.
+</details>
+
+### Question 25
+**Scenario:** An agent processing supplier invoices needs a tool that reliably extracts fields such as invoice number, totals and line items from scanned documents.
+
+A. Document AI, a prebuilt API for extracting structured data from documents
+B. The Text-to-Speech API
+C. The Translation API
+D. Cloud Video Intelligence API
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Document AI is the Google Cloud service for parsing documents into structured fields, and it is a natural tool for an agent working with invoices. Text-to-Speech produces audio, Translation converts languages, and Video Intelligence analyses video; none extract invoice fields.
+</details>
+
+### Question 26
+**Scenario:** An assistant must answer questions that need several lookups: it should think about what it needs, call a search tool, read the result, and decide its next step until it has an answer.
+
+A. Zero-shot prompting with no examples or tools
+B. Role prompting, telling the model it is an expert researcher
+C. ReAct prompting
+D. One-shot prompting with a single example answer
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** ReAct (reason and act) alternates between reasoning, taking an action such as a tool call, and observing the result, which is exactly the loop described. Zero-shot, one-shot and role prompting shape a single response and do not involve tool actions.
+</details>
+
+### Question 27
+**Scenario:** Product descriptions come back in inconsistent formats. Instructions alone have not fixed it.
+
+A. Raise the temperature so the model tries more formats
+B. Few-shot prompting with formatted examples
+C. Fine-tune a new foundation model from scratch
+D. Ground the model with Google Search
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Showing a few examples of the desired output is the cheapest strong lever for format consistency and comes before fine-tuning on the adoption ladder. Higher temperature adds variation. Training from scratch is far out of proportion. Grounding adds facts, not formatting.
+</details>
+
+### Question 28
+**Scenario:** A summarisation feature quietly got worse after a model version change, and nobody noticed for a month.
+
+A. Turn off all monitoring to avoid alert fatigue
+B. Avoid ever upgrading models, whatever the security patches
+C. Rely on users to report problems through a feedback form, since they notice quality changes first
+D. Pin versions, evaluate before switching, and track quality KPIs
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Google's recommended practices include versioning, performance tracking and continuous evaluation, so a change is tested before rollout and drift is caught quickly. Removing monitoring caused this. Never upgrading misses security and quality fixes. User reports are slow and incomplete.
+</details>
+
+### Question 29
+**Scenario:** A CISO asks what Google's Secure AI Framework (SAIF) is for.
+
+A. A framework of practices for securing AI systems across their lifecycle
+B. A Google product that automatically fixes all prompt injection attacks
+C. A legal certification that every AI model must hold before launch
+D. A pricing plan that bundles Google Cloud's AI security tools into one monthly fee
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** SAIF is a framework of practices for securing AI systems, extending familiar security foundations to AI-specific risks. It is not a single product, a legal certification or a pricing plan; Google Cloud tools such as IAM and Security Command Center help put it into practice.
+</details>
+
+### Question 30
+**Scenario:** An analytics team needs to link records belonging to the same customer across datasets, without seeing customers' real names.
+
+A. Anonymisation, which removes identifiers so records can never be linked to a person or to each other
+B. Deleting the customer column from every dataset
+C. Pseudonymisation, which swaps names for consistent tokens
+D. Publishing the data openly so that more people can check it
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Pseudonymisation swaps names for consistent tokens, so the same customer can still be matched across datasets while the real identity stays hidden. Full anonymisation (and deleting the column) prevents the linking the team needs. Publishing the data is a privacy breach.
+</details>
+
 ---
 
 ## Scoring guide
 
-- **13-15 correct (85%+):** Ready.
-- **10-12 correct (65-80%):** Review the adoption ladder and the business strategy material, which is weighted more heavily than a technical reader expects.
-- **Below 10:** Read the official exam guide and study guide directly, then re-read [notes 04](../gcp/generative-ai-leader/notes/04-business-strategy.md).
+- **26-30 correct (85%+):** Ready.
+- **20-25 correct (65-84%):** Review the adoption ladder and Google Cloud's product portfolio (notes 02), the largest section at about 35% of the exam.
+- **Below 20:** Read the official exam guide and study guide directly, then re-read [notes 04](../gcp/generative-ai-leader/notes/04-business-strategy.md).

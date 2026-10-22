@@ -1,11 +1,11 @@
 ---
-last-updated: 2026-08-09
+last-updated: 2026-10-22
 difficulty: advanced
 ---
 
 # AWS Certified Generative AI Developer - Professional (AIP-C01) - Practice Questions
 
-15 questions for AIP-C01 prep, weighted toward foundation model integration, data management, and compliance (31%), implementation and integration (26%), and AI safety, security, and governance (20%).
+30 questions for AIP-C01 prep, weighted toward foundation model integration, data management, and compliance (31%), implementation and integration (26%), and AI safety, security, and governance (20%), then operational efficiency (12%) and testing and troubleshooting (11%).
 
 > **Cert page:** [exams/aws/professional/genai-developer-aip-c01/](../aws/professional/genai-developer-aip-c01/README.md)
 
@@ -277,6 +277,246 @@ D. Always use RAG, because retrieval adds current knowledge to every request and
 **Correct: B**
 
 **Why:** The three address different problems, and cost and iteration speed rise in that order. RAG updates when your documents update; fine-tuning requires a retraining cycle. Many production systems end up using all three for different aspects of the same feature.
+</details>
+
+### Question 16
+**Scenario:** A Bedrock knowledge base indexes long engineering manuals with nested sections. Answers need precise matches on a specific procedure but also the surrounding section for context.
+
+A. Fixed-size chunking at 2,000 tokens with no overlap, so each chunk holds as much as possible
+B. No chunking, so each manual is stored as a single vector
+C. Hierarchical chunking (small child chunks, larger parent chunks)
+D. Semantic chunking with the smallest possible buffer so chunks are very short
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Hierarchical chunking is built for this: small child chunks give precise retrieval, and the parent chunk supplies the wider context to the model. Very large fixed chunks blur relevance. One vector per manual cannot match a specific procedure. Tiny semantic chunks are precise but lose the context the scenario asks for.
+</details>
+
+### Question 17
+**Scenario:** Users search a knowledge base with exact part numbers such as "XR-7731-B". Semantic search often returns similar-looking but wrong parts.
+
+A. Hybrid search (keyword plus semantic)
+B. Switch to a larger embedding model so that the part numbers are understood better
+C. Lower the number of results returned to one
+D. Fine-tune the generation model on the part catalog
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Exact identifiers are a keyword problem; embeddings capture meaning and can treat near-identical codes as close. Hybrid search adds lexical matching while keeping semantic recall. A bigger embedding model has the same weakness. Returning one result just returns one wrong part. Fine-tuning the generator does not change what is retrieved.
+</details>
+
+### Question 18
+**Scenario:** Retrieval returns the right document somewhere in the top 20 results, but the top 5 that reach the prompt are often only loosely related.
+
+A. Increase the chunk size so that more text fits into each of the five results
+B. Send all 20 results to the model on every request, whatever the cost
+C. Replace the vector store with a relational database
+D. Retrieve more candidates, then apply a reranking model
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Reranking scores the query against each candidate more precisely than vector similarity, pushing the truly relevant chunks to the top before the cut. Bigger chunks dilute relevance. Sending all 20 raises cost and adds noise. A relational database does not do semantic ranking.
+</details>
+
+### Question 19
+**Scenario:** A team must choose a foundation model for analysing 300-page scanned contracts with tables and images. Three Bedrock models look suitable on paper.
+
+A. Pick the model with the highest score on a public leaderboard
+B. Filter on context length and modality, then run a model evaluation job on real contracts
+C. Pick the cheapest model, since all three are described as suitable and quality differences between them will be small
+D. Fine-tune all three models first and choose afterwards
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Hard requirements (context length, image and document input) narrow the field, and evaluation on the team's own data shows which model actually performs best for the cost. Public leaderboards measure other tasks. Choosing on price alone ignores quality. Fine-tuning before knowing whether it is needed is expensive and premature.
+</details>
+
+### Question 20
+**Scenario:** A European bank wants Bedrock to absorb traffic bursts by using capacity in more than one Region, but inference must stay within the EU.
+
+A. An EU geographic cross-Region inference profile
+B. Use the global cross-Region inference profile, which offers the most capacity
+C. Call the model only in one EU Region and accept throttling during bursts
+D. Deploy the model in a US Region and encrypt the traffic with a customer managed key
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Geographic inference profiles spread requests across Regions within a defined geography such as the EU, which meets both needs. A global profile can route anywhere. A single Region meets residency but fails the burst requirement. Encryption does not change where the data is processed.
+</details>
+
+### Question 21
+**Scenario:** A Bedrock agent decides an action is needed, but the action must run inside the customer's application using that user's own session and credentials, not in a Lambda function.
+
+A. Give the agent's Lambda function the user's password
+B. Turn off the agent's action groups and hard-code the action in the prompt
+C. Return of control to the application
+D. Add a knowledge base that describes how the action works
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Return of control hands the chosen action and its parameters back to the calling application instead of invoking a Lambda function, so the app can execute it in the user's context. Sharing a password with a function is a security failure. A prompt cannot execute anything. A knowledge base supplies information, not actions.
+</details>
+
+### Question 22
+**Scenario:** A chat UI should show the answer as it is generated instead of waiting several seconds for the full response.
+
+A. Call the model with a lower max token limit so it finishes sooner
+B. A streaming API such as ConverseStream, relayed to the client
+C. Poll the model every second for the latest partial answer
+D. Use batch inference and display the results when the job completes
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Streaming APIs return tokens as they are produced, and a transport that supports streaming delivers them to the browser. Fewer tokens shortens answers rather than streaming them. Polling is not how model responses work. Batch inference is asynchronous and slower, the opposite of what the UI needs.
+</details>
+
+### Question 23
+**Scenario:** A claims workflow must extract fields with a model, validate them, wait up to three days for a human adjuster's approval, retry failed steps, and then update a core system, in a fixed order.
+
+A. One Lambda function that calls each step in sequence and sleeps while waiting for approval
+B. A Bedrock agent with no other components, trusting it to remember the approval for three days
+C. A cron job that checks a spreadsheet for approvals every hour
+D. AWS Step Functions with retries and a task token for the approval
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Step Functions provides fixed ordering, built-in retries and long waits via the callback (task token) pattern, and it can call Bedrock directly. Lambda has a 15-minute limit, so it cannot sleep for days. An agent alone is not a durable workflow engine. A spreadsheet poller has no retries, ordering or audit trail.
+</details>
+
+### Question 24
+**Scenario:** An application must be able to switch between models from different providers on Bedrock without rewriting request and response handling for each one.
+
+A. The Converse API
+B. Write a separate InvokeModel payload builder for each provider and keep them in sync
+C. Use only one provider's models forever to avoid the issue
+D. Call each provider's own public API directly instead of Bedrock
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** The Converse API normalises requests and responses across models, so switching is mostly a model ID change. Per-provider payload builders are the maintenance burden the scenario wants to avoid. Locking to one provider removes the choice. Calling each vendor directly multiplies integrations and loses Bedrock's controls.
+</details>
+
+### Question 25
+**Scenario:** A RAG assistant sometimes adds details that are not in the retrieved documents. The team wants such answers blocked at run time.
+
+A. A denied topic in Bedrock Guardrails listing "made-up facts"
+B. A contextual grounding check in Bedrock Guardrails, with grounding and relevance thresholds
+C. A word filter that blocks the words "maybe" and "probably"
+D. A higher temperature, so the model explores more of the source
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Contextual grounding checks score whether the response is supported by the reference source and relevant to the query, and block it below the thresholds. Denied topics block subjects, not unsupported claims. Word filters match strings, not meaning. Higher temperature increases invention.
+</details>
+
+### Question 26
+**Scenario:** A call-centre summariser must keep summaries useful but must not reveal customers' phone numbers or email addresses.
+
+A. Block every response that contains any personal information
+B. A denied topic named "contact details"
+C. A Guardrails sensitive information filter set to mask phone numbers and email addresses
+D. Tell the model in the prompt never to include contact details
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Sensitive information filters can either block or mask detected PII; masking replaces the values while keeping the rest of the summary. Blocking whole responses loses the useful content. Denied topics are for subjects, not entity types. A prompt instruction is not an enforced control.
+</details>
+
+### Question 27
+**Scenario:** A company uses a model hosted on Amazon SageMaker and another outside AWS, and wants the same safety policies it applies on Bedrock to cover both.
+
+A. Call the ApplyGuardrail API with the existing guardrail
+B. Move both models into Bedrock before any safety controls can be used
+C. Recreate the policies as regular expressions in each application
+D. Rely on each model provider's built-in safety settings
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** ApplyGuardrail runs a guardrail on any text without invoking a Bedrock model, so one policy can cover models hosted anywhere. Migrating models is unnecessary. Hand-written regexes drift from the central policy and miss semantic checks. Vendor defaults are different policies, not the company's.
+</details>
+
+### Question 28
+**Scenario:** Two million archived documents must be summarised once. Nobody needs the results before tomorrow, and cost matters most.
+
+A. Provisioned Throughput sized for the full job
+B. On-demand InvokeModel calls from a loop, as fast as quotas allow
+C. A streaming API, so each summary starts sooner
+D. Bedrock batch inference
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Batch inference suits large, latency-tolerant jobs and is priced at a discount to on-demand for supported models. Provisioned Throughput is a commitment for steady traffic. A tight on-demand loop pays full price and fights throttling. Streaming improves perceived latency for one user, not bulk cost.
+</details>
+
+### Question 29
+**Scenario:** An on-demand Bedrock workload hits ThrottlingException errors during daily peaks. Traffic outside peaks is light.
+
+A. Buy Provisioned Throughput sized for the peak and leave it running all day
+B. Lower the temperature so each request is cheaper to serve
+C. Backoff retries plus a cross-Region inference profile
+D. Cache every response forever so the model is called less
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Backoff absorbs short spikes, cross-Region inference adds capacity during bursts, and a quota increase covers sustained growth. Provisioned capacity sized for a short peak sits idle most of the day. Temperature does not affect throttling. Caching every response is wrong for varied prompts and can serve stale answers.
+</details>
+
+### Question 30
+**Scenario:** A RAG chatbot gives wrong answers to some questions. The team needs to know whether retrieval or generation is at fault.
+
+A. Swap the generation model for a bigger one and see if answers improve
+B. Inspect what was retrieved for the failing questions (for example with the Retrieve API) and evaluate retrieval and generation separately, such as with a knowledge base evaluation job
+C. Increase the number of results returned and redeploy
+D. Rewrite the system prompt until the failing answers are right
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Separating the two stages shows where the error starts: if the right chunks are not retrieved, the model never had a chance; if they are, the issue is in generation or the prompt. Swapping models, adding results or rewriting prompts are guesses that may hide the real cause.
 </details>
 
 ---

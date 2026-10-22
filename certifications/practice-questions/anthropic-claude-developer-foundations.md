@@ -1,11 +1,11 @@
 ---
-last-updated: 2026-08-11
+last-updated: 2026-10-22
 difficulty: intermediate
 ---
 
 # Claude Certified Developer - Foundations (CCDV-F) - Practice Questions
 
-16 questions for the CCDV-F exam, weighted to mirror the official blueprint: Applications and Integration (33.1%) gets the most questions, followed by Model Selection and Optimization (16.8%), Agents and Workflows (14.7%), Prompt and Context Engineering (11.0%), Tools and MCPs (10.6%), Security and Safety (8.1%), Claude Code (3.1%), and Eval, Testing, and Debugging (2.6%).
+30 questions for the CCDV-F exam, weighted to mirror the official blueprint: Applications and Integration (33.1%) gets the most questions, followed by Model Selection and Optimization (16.8%), Agents and Workflows (14.7%), Prompt and Context Engineering (11.0%), Tools and MCPs (10.6%), Security and Safety (8.1%), Claude Code (3.1%), and Eval, Testing, and Debugging (2.6%).
 
 The real exam is 53 multiple-choice and multiple-response questions in 120 minutes, passing score 720 / 1000. Verify API details against the current documentation, which changes faster than any study guide.
 
@@ -297,6 +297,230 @@ D. Run a versioned eval set through an LLM-as-judge with a rubric validated agai
 **Correct: D**
 
 **Why:** Free-form prose defeats exact match, and spot checks do not scale or repeat. LLM-as-judge is the grader type for subjective quality, provided the judge is validated and given a rubric rather than a bare score request. The eval set doubles as a regression suite: run it on every prompt change and every model upgrade, and add each production failure to it as a new case.
+</details>
+
+### Question 17
+**Scenario:** A streaming client must record why each response ended and how many output tokens it used. Which event carries the final `stop_reason` and output usage?
+
+A. `message_start`, which is sent once at the beginning of the stream before any content
+B. `content_block_start`, which opens each text or tool block
+C. `message_delta`, sent near the end of the stream before `message_stop`
+D. `ping`, which the server sends at intervals during the stream
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** `message_delta` carries top-level changes to the message, including the `stop_reason` and cumulative output token usage, just before `message_stop`. `message_start` arrives before the model has finished, so it cannot know the final reason. Content block events describe individual blocks. Pings keep the connection alive and carry no result data.
+</details>
+
+### Question 18
+**Scenario:** A batch job logs API errors over a week: 400 `invalid_request_error`, 429 `rate_limit_error`, 500 `api_error` and 529 `overloaded_error`. Which retry policy is right?
+
+A. Back off and retry 429, 500 and 529; fix the request on a 400
+B. Retry every error immediately, up to ten times in a row
+C. Retry only the 400 errors, since the others are the provider's problem
+D. Never retry anything, and fail the job on the first error of any type
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Rate limits, server errors and overload are transient, so backoff with jitter (and the server's `retry-after` hint) is the right response. A 400 means the request itself is wrong and will fail the same way every time. Immediate retries add load at the worst moment. Failing on the first transient error makes the job fragile for no reason.
+</details>
+
+### Question 19
+**Scenario:** A streaming app uses tools. While the model writes a `tool_use` block, the client receives several `input_json_delta` events and tries to parse each one as JSON. Parsing fails.
+
+A. The model is producing invalid JSON and the prompt needs a stricter schema
+B. Streaming does not support tools, so the app must switch to non-streaming requests
+C. The client should set the temperature to 0 so the JSON arrives in one event
+D. Each delta is a partial JSON string; accumulate them and parse once the content block stops
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Tool input streams as fragments of a JSON string. The client concatenates the `partial_json` pieces and parses after `content_block_stop` (the SDK streaming helpers do this for you). The fragments are not meant to be valid on their own, streaming does support tools, and temperature does not change how the input is chunked.
+</details>
+
+### Question 20
+**Scenario:** A Message Batch of 20,000 requests finishes. The developer writes results to a database in the order they come back, assuming it matches the submission order. Some rows end up with the wrong answers.
+
+A. Batches always return results in submission order, so the bug must be elsewhere
+B. Results can arrive in any order; join on each request's `custom_id`
+C. Batches only process requests one at a time, so ordering is guaranteed
+D. Re-submit the batch with fewer requests until the order comes back correct
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Batch results are not guaranteed to follow the input order, which is why each request carries a `custom_id`. Joining on that ID is the fix. Options A and C state a guarantee that does not exist, and resubmitting smaller batches does not create one.
+</details>
+
+### Question 21
+**Scenario:** A compliance tool answers questions about uploaded policy PDFs. Auditors need to see which exact passage supports each statement in the answer.
+
+A. Enable citations on the document blocks
+B. Ask the model to add page numbers in brackets after each sentence
+C. Raise max_tokens so the model has room to quote whole pages
+D. Use a lower temperature, which makes answers more traceable
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** The citations feature returns structured references to the source passages that back each part of the answer, which is what an auditor can check. Asking the model to write page numbers is unverified free text. Longer output and lower temperature do not produce links between claims and sources.
+</details>
+
+### Question 22
+**Scenario:** A request enables extended thinking with `budget_tokens: 16000` and sets `max_tokens: 8000`. The API rejects it.
+
+A. Extended thinking is not available through the Messages API
+B. `budget_tokens` must be at least 100,000 for thinking to start
+C. Thinking cannot be used together with a system prompt
+D. `budget_tokens` must be lower than `max_tokens`
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** The thinking budget is part of the response's output, so `max_tokens` has to be larger than the budget to leave room for it and the final answer. Extended thinking is a Messages API feature, it works with system prompts, and the minimum budget is far lower than 100,000.
+</details>
+
+### Question 23
+**Scenario:** An orchestrator agent plans a research task and hands out 200 small, well-defined lookup subtasks. The team wants good plans and low cost per subtask.
+
+A. Run the orchestrator and every subtask on the largest model, since quality matters everywhere
+B. A capable model for the orchestrator, a smaller, faster one for workers
+C. Use the smallest model for the orchestrator and the largest for the workers
+D. Use one model for everything and lower `max_tokens` until the bill drops
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Match the model to the job: planning benefits from the strongest reasoning, while narrow, repeated lookups run well on a cheaper, faster model. All-large pays premium prices for easy work. Option C puts the weakest model on the hardest step. Cutting `max_tokens` truncates answers rather than lowering the price of the work itself.
+</details>
+
+### Question 24
+**Scenario:** A hand-written agent loop calls the Messages API, runs any requested tools, and calls the API again. When should the loop stop?
+
+A. After exactly three iterations, whatever the model returns
+B. When the response contains any text block at all
+C. When `stop_reason` is no longer `tool_use` (for example `end_turn`), with a maximum iteration cap as a safety net
+D. Only when the user closes the browser tab
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** The model signals that it wants another tool round with `stop_reason: "tool_use"`; anything else (such as `end_turn` or `max_tokens`) ends the loop or needs handling. A cap protects against runaway loops. A fixed count ignores the model, a response can contain text alongside tool calls, and waiting for the user to leave is not a stop condition.
+</details>
+
+### Question 25
+**Scenario:** A team wants an autonomous agent that reads and edits files, runs shell commands, manages its own context, and asks permission before risky actions. They do not want to build the loop and tools themselves.
+
+A. The Claude Agent SDK
+B. The Message Batches API, which runs many requests unattended
+C. A single Messages API call with a very long system prompt describing the tools
+D. The token counting endpoint, which plans the agent's steps
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** The Agent SDK packages the same agent harness that powers Claude Code: the loop, file and shell tools, context management and a permission system. Batches are for asynchronous bulk requests, not interactive agents. Describing tools in a prompt does not execute them. Token counting estimates size; it does not plan anything.
+</details>
+
+### Question 26
+**Scenario:** A developer sends the assistant's persona and rules as the first message in the `messages` array with `"role": "system"`. The API returns an error.
+
+A. System instructions are not supported, so the persona must be dropped
+B. The persona should be sent as an assistant message before the first user message
+C. The rules must be repeated in every user message instead
+D. Send it in the top-level `system` parameter instead
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** The Messages API has no system role inside `messages`; the system prompt goes in the separate `system` field. Personas are supported there. Putting it in an assistant turn or repeating it in every user turn is a workaround that weakens the instruction and wastes tokens.
+</details>
+
+### Question 27
+**Scenario:** A support chat runs for hundreds of turns and starts hitting the context window limit.
+
+A. Start a new conversation with no history whenever the limit is near
+B. Summarise or compact older turns and keep recent ones in full
+C. Raise `max_tokens`, which enlarges the context window
+D. Remove the system prompt to free up space
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Summarising or compacting older turns keeps the important facts while freeing room, and clearing stale tool results does the same for agents. Dropping all history forgets the customer's problem. `max_tokens` limits the output, not the window. The system prompt carries the rules the assistant needs.
+</details>
+
+### Question 28
+**Scenario:** A request uses extended thinking and sets `tool_choice` to force a specific tool. The API rejects it.
+
+A. Tools cannot be defined when thinking is enabled
+B. The tool name is too long
+C. With extended thinking, only `tool_choice` of `auto` or `none` is supported; forcing a tool is not
+D. Thinking requires the tool to be called through the Batches API
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Forcing a tool (`any` or a named tool) conflicts with thinking, so the documented combination is thinking with `auto` (or `none`). Tools work fine with thinking under `auto`. Name length and the Batches API are unrelated to this error.
+</details>
+
+### Question 29
+**Scenario:** A front-end developer put the Anthropic API key in browser JavaScript to call the API directly from a web page.
+
+A. Rotate the key and move the calls to a backend that holds it
+B. Obfuscate the JavaScript so the key is harder to read
+C. Keep the key in the page but restrict it to the company's IP range in the code
+D. Store the key in the browser's local storage instead of the source file
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Anything shipped to the browser can be read by users, so the key is already compromised and must be rotated, and calls must go through a server that keeps the secret. Obfuscation and local storage still deliver the key to the client. A check written in client-side code can be bypassed by anyone with the key.
+</details>
+
+### Question 30
+**Scenario:** A developer wants Claude Code to auto-approve a few commands on their own machine without changing the permissions their teammates get from the repository.
+
+A. Edit the team's `.claude/settings.json` and commit it
+B. Add the commands to the project `CLAUDE.md`
+C. Ask every teammate to accept the same prompts each session
+D. Put the allow rules in `.claude/settings.local.json`
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** `.claude/settings.local.json` holds personal project settings and is git-ignored, so the change stays on one machine. `.claude/settings.json` is shared and would change everyone's permissions. `CLAUDE.md` is guidance, not permission configuration. Asking teammates to change their behaviour is not a settings change at all.
 </details>
 
 ---

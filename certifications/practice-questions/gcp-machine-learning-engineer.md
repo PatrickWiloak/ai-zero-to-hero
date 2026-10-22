@@ -1,11 +1,11 @@
 ---
-last-updated: 2026-08-09
+last-updated: 2026-10-22
 difficulty: advanced
 ---
 
 # Google Cloud Professional Machine Learning Engineer - Practice Questions
 
-15 questions for the Professional ML Engineer exam, covering problem framing, data and model development on Agent Platform (formerly Vertex AI), pipeline automation, serving, and monitoring.
+30 questions for the Professional ML Engineer exam, covering problem framing, data and model development on Agent Platform (formerly Vertex AI), pipeline automation, serving, and monitoring. Questions 16-30 are weighted by the six sections of the current exam guide: scaling prototypes (~21%), serving and scaling (~20%), pipelines (~18%), collaborating on data and models (~16%), low-code AI (~13%) and monitoring AI solutions (~13%).
 
 > **Cert page:** [exams/gcp/machine-learning-engineer/](../gcp/machine-learning-engineer/README.md)
 
@@ -277,6 +277,246 @@ D. Evaluate disaggregated performance across affected groups, document intended 
 **Correct: D**
 
 **Why:** Aggregate accuracy hides subgroup failure, so disaggregated evaluation is the measurement that matters. Model cards document intended use and limits, and a human path handles the cases the model gets wrong, which is the part that determines real-world harm.
+</details>
+
+### Question 16
+**Scenario:** Analysts keep customer data in BigQuery and know SQL but not Python. They need a first churn model within a week.
+
+A. Export the data to CSV and build a custom TensorFlow model on a GPU cluster
+B. BigQuery ML, training with SQL where the data lives
+C. Build a Kubeflow pipeline with custom containers before training anything
+D. Wait until the team has learned Python
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** BigQuery ML trains models with SQL inside BigQuery, which fits the team's skills, avoids moving data and delivers a baseline fast. Custom TensorFlow and a full pipeline are heavier than a first model needs. Waiting delays value for no technical reason.
+</details>
+
+### Question 17
+**Scenario:** A product team wants a feature that summarises customer reviews. There is no labelled data and the deadline is close.
+
+A. Collect and label 100,000 reviews, then train a summarisation model from scratch
+B. Train an AutoML tabular model on review star ratings
+C. Fine-tune a model before testing any prompts
+D. Prompt a Gemini model from Model Garden, tuning only if needed
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Summarisation is a strength of foundation models, so a prompt-based solution is the low-code first step; tuning comes later if measured quality falls short. Training from scratch is slow and costly. AutoML tabular predicts a column, not a summary. Fine-tuning before trying prompts skips the cheapest option.
+</details>
+
+### Question 18
+**Scenario:** Five data scientists train variants of a model and keep results in personal notebooks. Nobody can say which settings produced the model now in production.
+
+A. Agent Platform Experiments plus Model Registry versions
+B. Ask everyone to email their results to a shared inbox
+C. Keep the best model file in a shared folder named "final"
+D. Use only one data scientist so there is less to track
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Experiment tracking records parameters and metrics per run, and the Model Registry versions models, so the team can compare work and trace what is deployed. Email and a "final" folder have no lineage or versioning. Reducing the team does not fix the process.
+</details>
+
+### Question 19
+**Scenario:** A team wants managed Jupyter notebooks with BigQuery and Cloud Storage integration, idle shutdown, and the option to run notebooks on a schedule.
+
+A. Compute Engine VMs with Jupyter installed by hand
+B. Cloud Functions
+C. Agent Platform Workbench
+D. App Engine
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Workbench provides managed notebook instances integrated with Google Cloud data services, with idle shutdown and scheduled execution. Hand-built VMs need the team to manage everything. Cloud Functions and App Engine run application code, not interactive notebooks.
+</details>
+
+### Question 20
+**Scenario:** A prototype trains in 30 hours on one GPU. The full dataset is ten times larger and results are needed within a day.
+
+A. Keep one GPU and wait ten days
+B. Reduce the dataset to the prototype size permanently, since more data rarely changes results
+C. Distributed training on Agent Platform Managed Training
+D. Switch to a larger CPU-only machine
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Distributing training across multiple accelerators or workers is how a prototype scales to full data within a deadline. Waiting misses the deadline. Throwing away data lowers quality. CPUs are slower than GPUs for this kind of training.
+</details>
+
+### Question 21
+**Scenario:** A large model built in TensorFlow (or JAX) is dominated by big matrix multiplications and trains with very large batches for weeks.
+
+A. TPUs, which are designed for large matrix workloads at scale
+B. A single small CPU VM
+C. Cloud Functions running in parallel
+D. Preemptible CPU VMs only
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** TPUs are Google's accelerators for large-scale training dominated by matrix operations, and they work with TensorFlow and JAX. CPUs and serverless functions are not suited to weeks of heavy training. Preemptible CPUs save money but lack the needed acceleration.
+</details>
+
+### Question 22
+**Scenario:** A prototype reaches 99% accuracy on training data and 70% on validation data.
+
+A. Train for more epochs to raise validation accuracy
+B. Deploy it, since training accuracy is high
+C. Remove the validation set and report training accuracy
+D. Treat it as overfitting and regularise
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** A large gap between training and validation scores is the classic sign of overfitting, and these are the standard remedies. More epochs usually make it worse. Training accuracy does not predict real-world performance. Dropping validation hides the problem.
+</details>
+
+### Question 23
+**Scenario:** An online endpoint's p99 latency spikes every morning when traffic jumps, because new replicas take minutes to start.
+
+A. Lower the model's accuracy so it serves faster
+B. Raise the minimum replica count and tune autoscaling
+C. Move all predictions to batch inference
+D. Turn off autoscaling and run one large replica, so there is never a cold start to wait for
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Keeping enough warm replicas and scaling on the right signal avoids waiting for cold replicas during the jump. Cutting accuracy is unrelated to start-up time. Batch inference does not serve live requests. One replica guarantees overload at peak.
+</details>
+
+### Question 24
+**Scenario:** At training time, features are normalised with statistics computed in a Python preprocessing step. At serving time, the app sends raw values and predictions are poor.
+
+A. Package the same preprocessing with the model
+B. Ask each client application to reimplement the normalisation in its own language
+C. Retrain the model on raw values without telling anyone
+D. Add more replicas to the endpoint
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** The problem is training-serving skew caused by different preprocessing paths. Shipping one preprocessing implementation with the model removes it. Reimplementing in each client creates more skew. Silent retraining changes the model without fixing the cause. Replicas affect capacity, not correctness.
+</details>
+
+### Question 25
+**Scenario:** A model must run on handheld devices in warehouses with unreliable network connections.
+
+A. Serve it only from an online endpoint and retry when the network fails
+B. Run batch inference once a day and print the results
+C. Export an optimised edge format (for example TensorFlow Lite) and run inference on the device
+D. Host the model in a Cloud Function
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** On-device inference works without connectivity, and edge formats are optimised for small hardware. Online endpoints and Cloud Functions need the network the devices often lack. Daily batch output cannot react to what happens on the floor.
+</details>
+
+### Question 26
+**Scenario:** A pipeline reruns an expensive data preparation step every time, even when its inputs and code have not changed.
+
+A. Remove the data preparation step from the pipeline
+B. Run the pipeline less often
+C. Use a bigger machine for the step
+D. Enable execution caching
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** With caching, a step whose inputs and definition are unchanged reuses its previous outputs, saving time and money. Removing the step breaks the pipeline. Running less often delays models. A bigger machine still repeats wasted work.
+</details>
+
+### Question 27
+**Scenario:** A team wants every merge to main to test pipeline code, compile the pipeline and run it, with a new model promoted only if it beats the current one on evaluation.
+
+A. Have a data scientist run the notebook manually after each merge
+B. CI/CD (for example Cloud Build) with an evaluation gate
+C. Deploy every newly trained model straight to production
+D. Run the pipeline once and never change it
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** CI/CD automates testing and running the pipeline on code changes, and a conditional step compares the candidate with the current model before promotion. Manual runs are not repeatable. Deploying every model removes the quality gate. A frozen pipeline cannot improve.
+</details>
+
+### Question 28
+**Scenario:** An auditor asks which dataset version and pipeline run produced the model currently deployed.
+
+A. Pipelines and ML Metadata lineage
+B. Search team chat history for the deployment date
+C. Ask the person who deployed it
+D. Retrain the model and assume the result matches
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Pipelines record metadata linking datasets, runs and resulting models, which answers lineage questions reliably. Chat history and memory are incomplete. Retraining produces a different model and proves nothing about the deployed one.
+</details>
+
+### Question 29
+**Scenario:** Monitoring should alert when the distribution of features arriving at a production endpoint differs from the distribution in the training data.
+
+A. Prediction drift detection, which compares recent serving data with earlier serving data
+B. CPU utilisation alerts on the endpoint
+C. Training-serving skew detection, which compares serving data with the training baseline
+D. Cloud Logging of HTTP status codes
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Skew is the gap between training data and serving data, so a training baseline is the comparison point. Drift compares serving data over time; it is related but answers a different question. CPU and HTTP status tell you about the infrastructure, not data distributions.
+</details>
+
+### Question 30
+**Scenario:** Before launch, a team must check a Gemini-based summariser for groundedness, fluency and safety on a set of test inputs, and repeat the check after each prompt change.
+
+A. Ask the developers to read ten outputs and approve them
+B. Compare outputs with exact string matching against reference summaries
+C. Track only the endpoint's latency
+D. The Gen AI evaluation service on a fixed dataset
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** The evaluation service scores generative output against criteria such as groundedness, fluency and safety, and a fixed dataset makes results comparable between versions. Ten manual reads do not repeat reliably. Exact match fails for free-form summaries. Latency says nothing about quality.
 </details>
 
 ---

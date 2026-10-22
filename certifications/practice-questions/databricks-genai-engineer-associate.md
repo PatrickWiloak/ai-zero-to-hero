@@ -1,11 +1,11 @@
 ---
-last-updated: 2026-08-09
+last-updated: 2026-10-22
 difficulty: intermediate
 ---
 
 # Databricks Certified Generative AI Engineer Associate - Practice Questions
 
-15 questions for this exam, weighted toward RAG application design (30%) and implementation (30%), then governance and evaluation (20%) and LLM fundamentals (20%).
+30 questions for this exam. Questions 1-15 were written against the older four-domain outline (RAG design and implementation, governance and evaluation, LLM fundamentals). Questions 16-30 follow the six sections of the exam guide live since 2026-03-18 (Design Applications, Data Preparation, Application Development, Assembling and Deploying Applications, Governance, Evaluation and Monitoring), weighted by the widely cited 14/14/30/22/8/12% split; the current guide itself publishes no weights.
 
 > **Cert page:** [exams/databricks/genai-engineer-associate/](../databricks/genai-engineer-associate/README.md)
 
@@ -277,6 +277,246 @@ D. A larger instance
 **Correct: B**
 
 **Why:** Scale-to-zero suits development and intermittent internal tools where a few seconds of cold start is acceptable. Interactive user-facing applications usually keep a warm minimum, so the choice follows the latency requirement rather than the cost target alone.
+</details>
+
+### Question 16
+**Scenario:** A legal team wants structured fields (party names, renewal dates, notice periods) pulled from 50,000 unstructured contracts into a table, with as little custom code as possible.
+
+A. Knowledge Assistant, which answers questions over documents in a chat interface
+B. A Vector Search index with no generation step
+C. Agent Bricks Information Extraction
+D. Multi-Agent Supervisor, which coordinates several existing agents
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Information Extraction is the Agent Bricks option for converting documents into structured fields. Knowledge Assistant is for question answering, not filling a table. A vector index retrieves chunks but extracts nothing. A supervisor coordinates agents that would still need to be built.
+</details>
+
+### Question 17
+**Scenario:** The business asks for "AI on our support tickets" so a dashboard can show categories and urgency. What should the engineer define first?
+
+A. The input (ticket text) and the output schema
+B. The largest model available, since a bigger model will work out the requirement
+C. A fine-tuning dataset of 100,000 labelled tickets
+D. The GPU type for the serving endpoint
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Translating the goal into concrete inputs and outputs comes before choosing models or infrastructure: it fixes the task (classification with a set schema) and makes evaluation possible. Model size, training data and hardware are decisions that depend on that definition.
+</details>
+
+### Question 18
+**Scenario:** Source PDFs repeat page headers, footers, copyright notices and a two-page legal disclaimer. Retrieval keeps returning these chunks.
+
+A. Increase the chunk overlap so the boilerplate is spread across more chunks
+B. Switch to a larger generation model
+C. Increase the number of chunks retrieved per query
+D. Strip the boilerplate during parsing, before chunking
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Extraneous content that appears in every document competes with real content at retrieval time, so it should be filtered out during preparation. More overlap spreads it further. A larger model does not change what is retrieved. Retrieving more chunks just returns more boilerplate.
+</details>
+
+### Question 19
+**Scenario:** Chunked text is written to a Delta table in Unity Catalog. Creating a Delta Sync vector index on it fails.
+
+A. Vector Search only reads CSV files, so the table must be exported
+B. Change Data Feed must be enabled on the source table
+C. The table must be stored outside Unity Catalog
+D. Delta Sync indexes require the embeddings to be computed by hand first
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** A Delta Sync index tracks changes in its source table through Change Data Feed, so the feature must be on. Vector Search reads Delta tables, and Unity Catalog governance is the expected setup. Delta Sync can compute embeddings for you (managed embeddings) or use ones you supply.
+</details>
+
+### Question 20
+**Scenario:** Documents are chunked at 1,000 tokens, but the chosen embedding model accepts at most 512 tokens. Answers miss details that appear late in chunks.
+
+A. Chunks are truncated by the embedding model's 512-token limit
+B. The generation model's context window is too small to hold all of the retrieved chunks at once
+C. The vector index needs more replicas
+D. The retriever should return fewer chunks
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Text beyond the embedding model's limit is cut off, so the second half of each chunk is never represented in its vector. Matching chunk size to the embedding context (or choosing a longer-context model) fixes it. The generator, replicas and result count do not affect what was embedded.
+</details>
+
+### Question 21
+**Scenario:** A team picks an open model from a model hub for a commercial product that must handle Spanish and German.
+
+A. Choose the model with the most downloads
+B. Choose the newest model, since newer is always better
+C. Check model cards for licence, languages and evaluation results
+D. Choose any model, since all models published on a hub share the same open licence
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Model cards document licence, intended use, languages and benchmarks, which are exactly the constraints here. Popularity and recency do not guarantee a commercial licence or language support, and hub models carry many different licences.
+</details>
+
+### Question 22
+**Scenario:** Experiments show three models all pass the team's quality threshold on the evaluation set. One is far cheaper and faster than the others.
+
+A. Choose the model with the single highest score, whatever it costs
+B. Choose the cheapest, fastest model that meets the quality threshold
+C. Run all three in production and let users pick
+D. Retrain all three before deciding
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Once the quality bar is met, latency and cost decide. The highest score may not matter if every model meets the bar. Running three in production triples cost and complexity. Retraining is unnecessary when all three already pass.
+</details>
+
+### Question 23
+**Scenario:** A team has written an agent in Python. They want to log it with MLflow, trace each step, collect feedback from reviewers, and deploy it to a serving endpoint.
+
+A. Copy the code into a notebook cell and share the notebook link with reviewers
+B. Package it as a Docker image and run it on a single cluster node
+C. Rewrite the agent as SQL so it can run in a warehouse
+D. Mosaic AI Agent Framework with MLflow
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Agent Framework and MLflow cover authoring, tracing, logging, registration and deployment, and deploying an agent also creates a review app for feedback. A shared notebook and a single-node container skip tracing, governance and managed serving. Agents are not written in SQL.
+</details>
+
+### Question 24
+**Scenario:** A multi-agent system needs to answer questions such as "What were our top five products by revenue last quarter?" from governed sales tables.
+
+A. Add a Genie space as an agent in the system
+B. Embed every row of the sales tables into a vector index and retrieve rows by similarity
+C. Paste the full sales table into the prompt on each request
+D. Fine-tune the model on last quarter's sales figures
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Genie spaces turn natural-language questions into queries over structured data, which is the right tool for aggregates like "top five by revenue". Vector similarity is poor at sums and rankings. Pasting whole tables does not scale. Fine-tuned numbers are stale the day after training.
+</details>
+
+### Question 25
+**Scenario:** A chain logged with MLflow must be registered to Unity Catalog. Registration fails.
+
+A. Unity Catalog only accepts models trained with Spark ML
+B. Use the Unity Catalog registry URI, a three-level name and a signature
+C. Models must be registered to a workspace folder first
+D. Registration only works from the Databricks UI, not from code running in a notebook or job
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Registering to Unity Catalog needs the registry URI set to Unity Catalog, a catalog.schema.model name and a model signature (an input example lets MLflow infer one). Any MLflow flavour can be registered, there is no folder step, and registration from code is the normal path.
+</details>
+
+### Question 26
+**Scenario:** Every night, five million product reviews in a Delta table must be classified by sentiment with an LLM. Analysts work in SQL.
+
+A. A Python loop calling a chat endpoint one review at a time from a notebook
+B. Fine-tune a model to output the sentiment and deploy it to a real-time endpoint
+C. Use ai_query() in a SQL query to call the model over the table as a batch workload
+D. Copy the reviews into a spreadsheet and use a browser extension
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** ai_query() applies a served model to rows directly in SQL, which is built for batch inference on tables. A one-at-a-time loop is slow and fragile. A real-time endpoint is designed for interactive traffic, and fine-tuning is not needed for sentiment. Spreadsheets do not scale to millions of rows.
+</details>
+
+### Question 27
+**Scenario:** A Vector Search use case holds over a billion embeddings, is cost-sensitive, and can tolerate somewhat higher query latency.
+
+A. A standard endpoint, which is designed for the lowest latency at small scale
+B. Ten separate small indexes queried one after another
+C. No index, computing similarity against every vector at query time
+D. A storage-optimized Vector Search endpoint
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Storage-optimized endpoints trade some latency for far larger capacity and lower cost, which matches the requirements. Standard endpoints target low latency for smaller indexes. Splitting into sequential indexes adds latency and complexity. Brute force over a billion vectors is not practical.
+</details>
+
+### Question 28
+**Scenario:** A team wants to add a scraped web dataset to a RAG application. The site's terms forbid commercial reuse.
+
+A. Exclude the dataset or obtain a licence that permits the use, and record the source's terms
+B. Use it anyway, since retrieval does not copy the data
+C. Use it but remove the site's name from the documents
+D. Use it only in production, not in testing
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Legal and licensing requirements on data sources apply to RAG just as to training: the content is stored, indexed and shown to users. Removing attribution makes it worse. Restricting the use to production does not change the licence terms.
+</details>
+
+### Question 29
+**Scenario:** An evaluation run uses several LLM judges. The team has no expected answers yet. Which judge cannot run without ground truth?
+
+A. Safety
+B. Relevance of the response to the query
+C. Groundedness of the response in the retrieved context
+D. Correctness, which compares the response to an expected answer
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Correctness needs an expected response or expected facts to compare against. Safety, relevance and groundedness are judged from the request, response and retrieved context alone, so they run without labels.
+</details>
+
+### Question 30
+**Scenario:** A RAG agent is live on a serving endpoint. The team needs to see real requests and responses, token usage and latency, and to spot quality problems over time.
+
+A. Ask users to email screenshots of bad answers
+B. Inference tables, usage tracking and monitoring with judges
+C. Re-run the offline evaluation set once a year
+D. Turn on debug printing in the agent code and read the cluster logs
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Inference tables log requests and responses to Delta, usage tracking records tokens, and monitoring can score that traffic with LLM judges, which gives a continuous view of production. Screenshots, yearly offline runs and debug prints are incomplete and do not scale.
 </details>
 
 ---

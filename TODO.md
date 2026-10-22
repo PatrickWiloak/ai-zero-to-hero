@@ -51,6 +51,11 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [ ] New-guide candidates (verify codes): AWS AI Business Strategist (beta), NVIDIA NCA-ADS, NCP-ARI.
 - [x] 2026-10-22 Vertex AI -> Agent Platform names swept in `certifications/gcp/` (PMLE + GAL exam guides use only new names); PMLE domains set to the 2026-06-01 guide.
 - [ ] 2026-11-22: re-map PMLE notes + bank to the 6-section guide (new: Section 6 Monitoring AI solutions, Gemini tuning in BigQuery, Model Garden).
+- [x] 2026-10-22 Banks for CCAR-F, CCDV-F, AIP-C01, GAL, Databricks GenAI, DP-100, Copilot, PMLE expanded to 30 questions (new ones weighted by current guides).
+- [ ] 2026-11-15: Copilot cert page is stale: README has 6 old domains and 90 min; GH-300 skills as of 2026-08-07 have 7 areas, 100 min (`certifications/github/copilot/`).
+- [ ] 2026-11-15: Databricks GenAI Engineer page is stale: 4 domains vs the 6-section guide live since 2026-03-18 (no official weights) (`certifications/databricks/genai-engineer-associate/`).
+- [ ] 2026-11-15: DP-100 page (retired) lists the old outline; the final one (2025-04-11) added "Optimize language models" at 25-30% (`certifications/azure/dp-100/README.md`).
+- [ ] 2026-11-15: GAL README, strategy.md and notes 04 say business strategy is weighted heavily; the guide gives it ~15% (offerings ~35%, fundamentals ~30%).
 - [ ] 2026-10-31 spot-check retired-product replacements: LUIS (`certifications/azure/ai-102`), PaLM and AutoML (GCP ML notes).
 - [ ] Distribution: submit to awesome-llm-security.
 
