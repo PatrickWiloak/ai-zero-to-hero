@@ -44,7 +44,7 @@ A sample from the providers' own pricing pages, US dollars per million tokens, s
 | gpt-6-astra | $10.00 | $1.00 | $50.00 | OpenAI |
 | gpt-6.1-sol | $2.00 | $0.10 | $10.00 | OpenAI |
 | gpt-6-luna | $0.10 | $0.01 | $0.50 | OpenAI |
-| gemini-3.5-flash-lite | $0.30 | $0.03 | $2.50 | Google (check page) |
+| gemini-3.5-flash-lite | $0.30 | $0.03 | $2.50 | Google |
 
 Notes that matter as much as the numbers:
 
@@ -154,6 +154,6 @@ Running an open-weight model on your own GPUs swaps a per-token price for a per-
 
 - Anthropic, "Pricing" (Claude model prices, cache multipliers, batch 50%, long-context and US-only inference rates), read 2026-10-21: https://platform.claude.com/docs/en/about-claude/pricing
 - OpenAI, "Pricing" (GPT-6 family, cached input, batch, long-context and priority tiers), read 2026-10-21: https://developers.openai.com/api/docs/pricing
-- Google, "Gemini Developer API pricing", read 2026-10-21 (summarised, not table-checked; confirm before quoting): https://ai.google.dev/gemini-api/docs/pricing
+- Google, "Gemini Developer API pricing", table-checked 2026-10-22 (3.5 Flash-Lite standard and batch; Gemini 4 Argon and 3.8 Flash promo prices and end dates): https://ai.google.dev/gemini-api/docs/pricing
 - Google Cloud, "Generative AI pricing" on Gemini Enterprise Agent Platform (grounding prices), read 2026-10-21: https://cloud.google.com/gemini-enterprise-agent-platform/generative-ai/pricing
 - Calculator output above produced on 2026-10-21 from the Anthropic prices listed.

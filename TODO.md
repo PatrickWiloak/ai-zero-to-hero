@@ -27,8 +27,8 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [ ] 2026-11-08: run the untested code in `build/projects/{chatbot-in-an-afternoon,structured-extraction-pipeline,voice-agent,prompt-injection-red-team}.md`.
 - [ ] 2026-11-08: run `build/projects/{build-a-coding-agent-loop,evaluate-an-agent-end-to-end}.md` against the live API (tested with a scripted stand-in model only) and replace the illustrative output.
 - [x] 2026-10-21 Refreshed the gen-AI table, prices and SDK samples in `tools/comparisons/cloud-ai-ml-services.md` from vendor pages.
-- [ ] 2026-12-01: re-check prices in `learn/concepts/ai-cost-basics.md` + `tools/comparisons/cloud-ai-ml-services.md` (Gemini 4 Argon promo ends 11-30, 3.8 Flash 12-31); table-check Gemini API prices (summarised only).
-- [ ] 2026-11-01: confirm OSWorld-Verified top scores on the official leaderboard (`learn/concepts/computer-use-agents.md` hedges it).
+- [ ] 2026-12-01: re-check prices in `learn/concepts/ai-cost-basics.md` + `tools/comparisons/cloud-ai-ml-services.md` (Gemini 4 Argon promo ends 11-30, 3.8 Flash 12-31).
+- [x] 2026-10-22 OSWorld-Verified top scores confirmed on the official leaderboard; `computer-use-agents.md` now cites them.
 - [x] 2026-10-21 Ten new concept pages in `learn/concepts/` (classic ML, overfitting/metrics, LLM training, coding/computer-use agents, agent memory, speech, SLMs, recommenders, cost) and two agent projects in `build/projects/`.
 - [ ] Next pillar page: AI news digest + RSS. (Paper lineage graph skipped 2026-10-21: `papers.json` has no builds-on/citation field, so it could only be hand-typed; add that field first.)
 - [x] 2026-10-21 Split from cloud-data-ai-security-zero-to-hero on 2026-10-21; AI cert guides wired in as `certifications/` (index `certs.json`, generated hub + nav, flashcard pages).
@@ -39,7 +39,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 
 - [x] 2026-10-21 AI-901 guide built (`certifications/azure/ai-901/`, notes, plan, 20-question bank, flashcards).
 - [ ] Build an AI-103 guide (Azure AI Apps and Agents Developer Associate; live on Microsoft Learn 2026-10-21, study guide skills as of 2026-04-16).
-- [ ] 2026-11-01: add AI-901 exam length and question count to its fact sheet (not on Microsoft's exam page 2026-10-21; check the exam sandbox).
+- [x] 2026-10-22 AI-901 duration added (45 min, Microsoft's Fundamentals figure); question count is not published by Microsoft.
 - [ ] 2026-11-01 judge rewrites: MLA-C02 (beta); NVIDIA codes NCP-NET -> NCP-AIN, NCP-USD -> NCP-OUSD, NCA-MMGA -> NCA-GENM [H].
 - [ ] Verify `certifications/anthropic/claude-prompt-engineering-specialist` (CPES absent from Anthropic's cert FAQ); Associate dir should read "Claude Certified Associate"; verify CCAO-F / CCAR-P domain weights.
 - [ ] New-guide candidates (verify codes): AWS AI Business Strategist (beta), NVIDIA NCA-ADS, NCP-ARI.

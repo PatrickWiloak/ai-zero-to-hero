@@ -113,7 +113,7 @@ Some of the most useful memory is not about the user but about **how to do the j
 ## Building blocks you can use (as of 2026-10-21)
 
 - **Anthropic memory tool** (`memory_20250818`): Claude reads and writes files under a `/memories` directory, checks it before starting a task, and continues earlier work in later conversations. It runs **client-side**: your application executes each operation against storage you control, and must block paths outside `/memories`.
-- **ChatGPT memory**: saved memories the user can view and delete, plus reference to past chat history, in the consumer product (described in OpenAI's help centre; settings vary by plan).
+- **ChatGPT memory**: saved memories the user can view, correct and delete, plus an optional "Reference chat history" setting that draws on past conversations, in the consumer product. Newer accounts get "improved memory" with an editable memory summary; available controls vary by account and workspace (OpenAI Memory FAQ).
 - **LangGraph**: short-term memory is per-thread state persisted by a checkpointer; long-term memory lives in stores shared across threads under namespaces you define.
 - **Letta** (formerly MemGPT): an open-source platform for stateful agents.
 - **Cloud agent platforms**: Google's Gemini Enterprise Agent Platform offers Memory Bank, and Amazon Bedrock AgentCore includes a Memory service. See [Cloud AI/ML services compared](../../tools/comparisons/cloud-ai-ml-services.md).
@@ -150,5 +150,5 @@ Some of the most useful memory is not about the user but about **how to do the j
 - Park et al., "Generative Agents: Interactive Simulacra of Human Behavior" (2023): https://arxiv.org/abs/2304.03442
 - Google Cloud, Gemini Enterprise Agent Platform agents overview (Memory Bank): https://docs.cloud.google.com/gemini-enterprise-agent-platform/agents
 - AWS, "What is Amazon Bedrock AgentCore?" (Memory service): https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html
-- OpenAI Help Center on ChatGPT memory (not fetched directly on 2026-10-21; described from search results): https://help.openai.com/en/articles/11146739-how-does-reference-saved-memories-work
+- OpenAI Help Center, "Memory in ChatGPT" (saved memories, reference chat history, improved memory and summary), read 2026-10-22: https://help.openai.com/en/articles/8590148-memory-faq
 - Code output above produced on 2026-10-21.

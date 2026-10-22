@@ -13,7 +13,8 @@ Microsoft's entry-level AI certification, rebuilt for the generative AI era. AI-
 - **Exam code:** AI-901 (skills measured as of 2026-04-15)
 - **Passing score:** 700
 - **Cost:** varies by country or region; shown when you schedule
-- **Duration and question count:** not stated on the exam page as of 2026-10-21; check when booking
+- **Duration:** 45 minutes (65 minutes seat time), Microsoft's standard for Fundamentals exams ([exam duration page](https://learn.microsoft.com/en-us/credentials/support/exam-duration-exam-experience))
+- **Question count:** not published; Microsoft says most exams have 40-60 questions
 - **Prerequisites:** none required. Microsoft expects conceptual AI knowledge, basic Python syntax, and familiarity with creating Azure resources
 - **Renewal:** Fundamentals certifications do not expire
 

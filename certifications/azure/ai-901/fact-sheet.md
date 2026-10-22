@@ -15,7 +15,8 @@ reading-time: 8 min
 **Replaces:** AI-900, retired 2026-06-30
 **Passing score:** 700
 **Cost:** Based on the country or region where the exam is proctored (shown at scheduling)
-**Duration / number of questions:** Not stated on Microsoft's exam page as of 2026-10-21; Microsoft's exam sandbox and the confirmation at booking show the current figures
+**Duration:** 45 minutes of exam time, 65 minutes of seat time (Microsoft's figures for all Fundamentals exams; the AI-901 page itself gives none, checked 2026-10-22)
+**Number of questions:** Not published. Microsoft says most of its exams have 40-60 questions and the count varies by exam
 **Languages:** 13
 **Renewal:** None needed; Microsoft states that Fundamentals certifications do not expire
 **Practice assessment:** Free, on Microsoft's AI Skills Navigator
@@ -24,6 +25,7 @@ reading-time: 8 min
 
 **[📖 Exam AI-901](https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-901/)**
 **[📖 Azure AI Fundamentals certification](https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-fundamentals/)**
+**[📖 Exam duration and exam experience](https://learn.microsoft.com/en-us/credentials/support/exam-duration-exam-experience)** - Fundamentals exams: 45 minutes exam time, 65 minutes seat time; "most" exams have 40-60 questions
 **[📖 AI-901 study guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ai-901)**
 **[📖 AI-900 retirement notice](https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-900/)** - "retired on June 30, 2026, and has been replaced by AI-901"
 
