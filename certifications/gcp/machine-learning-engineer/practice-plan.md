@@ -79,7 +79,7 @@
 
 #### Day 5-7: Hyperparameter Tuning
 - [ ] Study hyperparameter optimization
-- [ ] Learn Vertex AI Vizier service
+- [ ] Learn Agent Platform Vizier service
 - [ ] Understand tuning strategies
 - [ ] Practice with tuning jobs
 - [ ] **Lab:** Optimize model hyperparameters

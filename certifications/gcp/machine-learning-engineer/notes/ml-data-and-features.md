@@ -1422,7 +1422,7 @@ from google.cloud import aiplatform
 from google.cloud.aiplatform import Feature, EntityType, Featurestore
 import pandas as pd
 
-# Initialize Vertex AI
+# Initialize Agent Platform
 aiplatform.init(project='your-project-id', location='us-central1')
 
 # Create Featurestore

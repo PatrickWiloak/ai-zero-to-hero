@@ -166,7 +166,7 @@
 - [ ] Lab: Data quality monitoring pipeline
 
 #### Day 5-7: Model Explainability
-- [ ] Study Vertex AI Explainable AI
+- [ ] Study Agent Platform Explainable AI
 - [ ] Learn feature attributions
 - [ ] Understand model interpretability techniques
 - [ ] Study responsible AI practices
@@ -376,7 +376,7 @@
 
 ### Essential gcloud Commands
 ```bash
-# Vertex AI training
+# Agent Platform training
 gcloud ai custom-jobs create
 gcloud ai models upload
 gcloud ai endpoints create

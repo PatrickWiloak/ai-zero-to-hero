@@ -4,6 +4,8 @@
 
 Agent Platform (formerly Vertex AI) is Google Cloud's unified machine learning platform that combines AutoML and AI Platform into a unified API, client library, and user interface, providing tools for every step of the ML workflow.
 
+> **Naming (checked 2026-10-22).** Google renamed Vertex AI to **Gemini Enterprise Agent Platform** on 2026-04-22 ("Agent Platform" for short); Vertex AI Search is now Agent Search and Vertex AI Agent Engine is Agent Runtime ([name-change map](https://docs.cloud.google.com/gemini-enterprise-agent-platform/vertex-ai-name-changes)). Prose here uses the new names. Code samples keep the SDK identifiers they import (`vertexai`, `google.cloud.aiplatform`, `roles/aiplatform.*`), and some doc links still use `cloud.google.com/vertex-ai/` paths.
+
 ### Key Benefits
 - **Unified platform**: One place for all ML workflows
 - **MLOps integration**: Built-in experiment tracking and model management
@@ -11,7 +13,7 @@ Agent Platform (formerly Vertex AI) is Google Cloud's unified machine learning p
 - **Pre-built solutions**: AutoML and pre-trained models
 - **Custom development**: Full flexibility for custom models
 
-## Vertex AI Components
+## Agent Platform Components
 
 ### Agent Platform Workbench
 **Jupyter-based development environment**
@@ -42,7 +44,7 @@ Agent Platform (formerly Vertex AI) is Google Cloud's unified machine learning p
 ```python
 from google.cloud import aiplatform
 
-# Initialize Vertex AI
+# Initialize Agent Platform
 aiplatform.init(project='my-project', location='us-central1')
 
 # Create custom training job
@@ -266,7 +268,7 @@ model_version = model.upload(
 import vertexai
 from vertexai.language_models import TextGenerationModel
 
-# Initialize Vertex AI
+# Initialize Agent Platform
 vertexai.init(project="my-project", location="us-central1")
 
 # Load text-bison model
@@ -304,8 +306,8 @@ chat = chat_model.start_chat(
     context="You are a helpful cloud architect assistant specializing in GCP",
     examples=[
         {
-            "input": {"content": "What is Vertex AI?"},
-            "output": {"content": "Vertex AI is Google Cloud's unified ML platform..."}
+            "input": {"content": "What is Agent Platform?"},
+            "output": {"content": "Agent Platform is Google Cloud's unified ML platform..."}
         }
     ],
     temperature=0.3,
@@ -315,7 +317,7 @@ chat = chat_model.start_chat(
 )
 
 # Send messages
-response1 = chat.send_message("What are the benefits of using Vertex AI?")
+response1 = chat.send_message("What are the benefits of using Agent Platform?")
 print(f"Response 1: {response1.text}")
 
 # Follow-up with context
@@ -420,7 +422,7 @@ print(f"Embedding vector (length {len(embedding.values)}): {embedding.values[:5]
 
 # Batch embeddings
 texts = [
-    "Vertex AI is a machine learning platform",
+    "Agent Platform is a machine learning platform",
     "BigQuery is a data warehouse",
     "Cloud Storage stores objects",
     "Kubernetes runs containers"
@@ -1004,14 +1006,14 @@ if response.candidates[0].grounding_metadata:
 ```python
 from vertexai.preview.generative_models import grounding
 
-# Create Vertex AI Search datastore
+# Create Agent Search datastore
 # (Done via Console or gcloud CLI)
 # gcloud alpha discovery-engine data-stores create my-datastore \
 #   --location=global \
 #   --collection=default_collection \
 #   --industry-vertical=GENERIC
 
-# Initialize model with Vertex AI Search grounding
+# Initialize model with Agent Search grounding
 vertex_search_tool = Tool.from_retrieval(
     grounding.Retrieval(
         source=grounding.VertexAISearch(
@@ -1418,7 +1420,7 @@ print(f"Processed {len(embedded_chunks)} chunks")
 from google.cloud import aiplatform
 import json
 
-# Initialize Vertex AI
+# Initialize Agent Platform
 aiplatform.init(project="my-project", location="us-central1")
 
 # Create Matching Engine Index
@@ -1791,7 +1793,7 @@ prediction = private_endpoint.predict(instances=data)
 #### VPC Peering and Private Service Connect
 
 ```python
-# Configure VPC peering for Vertex AI
+# Configure VPC peering for Agent Platform
 # (Done via gcloud or Console)
 
 # gcloud compute networks peerings create vertex-ai-peering \
@@ -1890,7 +1892,7 @@ def create_service_perimeter():
 
     perimeter = {
         "name": f"accessPolicies/{POLICY_ID}/servicePerimeters/vertex_ai_perimeter",
-        "title": "Vertex AI Perimeter",
+        "title": "Agent Platform Perimeter",
         "perimeter_type": "PERIMETER_TYPE_REGULAR",
         "status": {
             "resources": [
@@ -1923,7 +1925,7 @@ def enable_audit_logging():
         "exempted_members": []
     }
 
-    # All Vertex AI API calls logged
+    # All Agent Platform API calls logged
     # View in Cloud Logging:
     # resource.type="aiplatform.googleapis.com/Endpoint"
     # protoPayload.methodName="google.cloud.aiplatform.v1.PredictionService.Predict"
@@ -1932,7 +1934,7 @@ def enable_audit_logging():
 #### Identity and Access Management
 
 ```python
-# IAM roles for Vertex AI Gen AI
+# IAM roles for Agent Platform Gen AI
 from google.cloud import resourcemanager_v3
 
 def configure_iam_for_genai():
@@ -1940,10 +1942,10 @@ def configure_iam_for_genai():
 
     # Predefined roles
     roles = {
-        "roles/aiplatform.user": "Use Vertex AI resources",
-        "roles/aiplatform.admin": "Full Vertex AI administration",
+        "roles/aiplatform.user": "Use Agent Platform resources",
+        "roles/aiplatform.admin": "Full Agent Platform administration",
         "roles/aiplatform.modelUser": "Use deployed models",
-        "roles/aiplatform.viewer": "View Vertex AI resources",
+        "roles/aiplatform.viewer": "View Agent Platform resources",
         "roles/aiplatform.featurestoreUser": "Access feature store",
         "roles/aiplatform.customCodeServiceAgent": "Custom code execution"
     }
@@ -1967,7 +1969,7 @@ def configure_iam_for_genai():
 
 # Workload Identity for GKE
 def configure_workload_identity():
-    """Configure Workload Identity for Vertex AI access from GKE"""
+    """Configure Workload Identity for Agent Platform access from GKE"""
 
     # Link Kubernetes SA to Google SA
     # gcloud iam service-accounts add-iam-policy-binding \
@@ -2045,7 +2047,7 @@ def call_genai_model(prompt):
 from google.cloud import monitoring_v3
 
 def check_quota_usage():
-    """Monitor Vertex AI API quota usage"""
+    """Monitor Agent Platform API quota usage"""
 
     client = monitoring_v3.MetricServiceClient()
     project_name = f"projects/{PROJECT_ID}"
@@ -2075,7 +2077,7 @@ def check_quota_usage():
 # check_quota_usage()
 ```
 
-### Vertex AI Gen AI Scenarios
+### Agent Platform Gen AI Scenarios
 
 #### Scenario 1: Enterprise Document Q&A System
 
@@ -2886,7 +2888,7 @@ tuning_job = aiplatform.HyperparameterTuningJob(
 
 ### IAM and Security
 ```python
-# Service account for Vertex AI
+# Service account for Agent Platform
 from google.oauth2 import service_account
 
 credentials = service_account.Credentials.from_service_account_file(
@@ -3480,7 +3482,7 @@ def track_api_costs():
     return input_cost + output_cost
 ```
 
-## Exam Tips: Vertex AI Gen AI
+## Exam Tips: Agent Platform Gen AI
 
 ### Key Exam Topics
 
@@ -3622,7 +3624,7 @@ Need current information (news, events)?
 Have custom knowledge base?
   YES → Continue
     Structured data (FAQ, policies)?
-      YES → Vertex AI Search
+      YES → Agent Search
       NO → Continue
     Unstructured documents?
       YES → RAG with Matching Engine

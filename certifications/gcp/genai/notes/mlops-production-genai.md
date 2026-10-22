@@ -2936,7 +2936,7 @@ def run_production_pipeline(
         package_path="genai_production_pipeline.json"
     )
 
-    # Initialize Vertex AI
+    # Initialize Agent Platform
     aiplatform.init(project=project_id, location=location)
 
     # Create and run pipeline job

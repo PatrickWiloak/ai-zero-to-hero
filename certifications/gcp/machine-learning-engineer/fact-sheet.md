@@ -1,5 +1,5 @@
 ---
-last-updated: 2026-05-03
+last-updated: 2026-10-22
 ---
 
 # Google Cloud Professional Machine Learning Engineer - Fact Sheet
@@ -18,14 +18,16 @@ last-updated: 2026-05-03
 
 ## Exam Domains
 
-| Domain | Weight | Key Focus |
+| Section (exam guide as of 2026-06-01) | Weight | Key Focus |
 |--------|--------|-----------|
-| Framing ML Problems | 15-20% | Translating business objectives to ML use cases, defining success metrics |
-| Data Engineering for ML | 15-20% | Data ingestion, preprocessing, feature engineering, data validation |
-| ML Model Building | 30-35% | Model selection, training, hyperparameter tuning, transfer learning |
-| ML Pipeline Automation | 15-20% | MLOps, CI/CD, workflow orchestration, model deployment |
-| ML Solution Monitoring and Optimization | 15-20% | Model monitoring, retraining triggers, A/B testing, performance optimization |
-| Responsible AI | 5-10% | Bias detection, fairness, explainability, privacy |
+| 1. Architecting low-code AI solutions | ~13% | BigQuery ML, AutoML on Agent Platform, Model Garden, Google Cloud AI APIs, Gemini cost and latency |
+| 2. Collaborating within and across teams to manage data and models | ~16% | Data exploration and preprocessing, Feature Store, Workbench and Colab Enterprise, experiment tracking |
+| 3. Scaling prototypes into ML models | ~21% | Model choice by cost and latency, training, hardware selection |
+| 4. Serving and scaling models | ~20% | Model Registry, online and batch inference, scaling endpoints |
+| 5. Automating and orchestrating ML pipelines | ~18% | Agent Platform Pipelines, Airflow, Ray, CI/CD/CT retraining |
+| 6. Monitoring AI solutions | ~13% | Risks to AI solutions, Model Monitoring, testing and troubleshooting |
+
+Google updated the exam for the rename of Vertex AI to Gemini Enterprise Agent Platform (2026-04-22); the guide uses only the new names. The topic sections further down this page predate the June 2026 guide and are organised differently.
 
 ## ML Problem Framing
 
@@ -384,7 +386,7 @@ last-updated: 2026-05-03
 - Random search
 - Bayesian optimization
 - Hyperband algorithm
-- **[📖 Vertex AI Hyperparameter Tuning](https://cloud.google.com/vertex-ai/docs/training/hyperparameter-tuning-overview)** - Tuning service
+- **[📖 Agent Platform hyperparameter tuning](https://cloud.google.com/vertex-ai/docs/training/hyperparameter-tuning-overview)** - Tuning service
 - **[📖 Tuning Algorithms](https://cloud.google.com/vertex-ai/docs/training/using-hyperparameter-tuning#search-algorithms)** - Algorithm comparison
 - **[📖 Parallel Trials](https://cloud.google.com/vertex-ai/docs/training/using-hyperparameter-tuning#parallel-trials)** - Parallel tuning
 - **[📖 Early Stopping](https://cloud.google.com/vertex-ai/docs/training/using-hyperparameter-tuning#early-stopping)** - Stop underperforming trials
@@ -418,7 +420,7 @@ last-updated: 2026-05-03
 - SHAP (SHapley Additive exPlanations)
 - LIME (Local Interpretable Model-agnostic Explanations)
 - Integrated Gradients
-- **[📖 Vertex Explainable AI](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview)** - Explainability overview
+- **[📖 Agent Platform Explainable AI](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview)** - Explainability overview
 - **[📖 Feature Attributions](https://docs.cloud.google.com/gemini-enterprise-agent-platform/machine-learning/tabular-data/classification-explanations)** - Attribution methods
 - **[📖 Explanation Methods](https://cloud.google.com/vertex-ai/docs/explainable-ai/configuring-explanations)** - Configuration guide
 - **[📖 What-If Tool](https://docs.cloud.google.com/vertex-ai/docs/explainable-ai/overview)** - Interactive explanations
@@ -587,7 +589,7 @@ last-updated: 2026-05-03
 ### Explainability
 
 **Model Transparency:**
-- Vertex AI Explainable AI
+- Agent Platform Explainable AI
 - Feature attribution methods
 - Counterfactual explanations
 - Model cards for documentation
@@ -732,7 +734,7 @@ last-updated: 2026-05-03
 - Agent Platform-specific IAM roles
 - Service accounts for training/serving
 - Workload Identity for GKE
-- **[📖 Vertex AI IAM](https://cloud.google.com/vertex-ai/docs/general/access-control)** - Access control
+- **[📖 Agent Platform IAM](https://cloud.google.com/vertex-ai/docs/general/access-control)** - Access control
 - **[📖 IAM Roles](https://docs.cloud.google.com/gemini-enterprise-agent-platform/machine-learning/general/access-control)** - Available roles
 - **[📖 Service Accounts](https://cloud.google.com/vertex-ai/docs/general/custom-service-account)** - Custom service accounts
 
@@ -822,7 +824,7 @@ last-updated: 2026-05-03
 **Requirements:** Retrain models weekly with new data, automated pipeline, minimal manual intervention
 
 **Solution:**
-- Build Vertex AI Pipeline with Kubeflow components
+- Build Agent Platform Pipeline with Kubeflow components
 - Include data validation (TFDV), training, evaluation, deployment
 - Schedule pipeline with Cloud Scheduler
 - Implement automatic deployment if metrics exceed threshold
@@ -905,7 +907,7 @@ last-updated: 2026-05-03
 - **"Cost-effective"** → AutoML, batch processing, preemptible VMs, BigQuery ML
 - **"No code/quick start"** → AutoML solutions
 - **"Custom model"** → TensorFlow, PyTorch, custom training
-- **"Explainability"** → Vertex Explainable AI, What-If Tool
+- **"Explainability"** → Agent Platform Explainable AI, What-If Tool
 - **"Fairness/bias"** → Fairness Indicators, What-If Tool
 - **"Automated pipeline"** → Agent Platform Pipelines, TFX, Kubeflow
 - **"Data drift"** → Model Monitoring, TFDV
@@ -920,7 +922,7 @@ Need quick solution?
 │  ├─ YES → AutoML (Tables/Vision/NLP)
 │  └─ NO → Pre-trained APIs
 └─ NO → Custom model needed?
-   ├─ YES → TensorFlow/PyTorch on Vertex AI
+   ├─ YES → TensorFlow/PyTorch on Agent Platform
    └─ NO → BigQuery ML (for tabular data)
 ```
 
@@ -935,7 +937,7 @@ Latency requirements?
 **Pipeline Orchestration:**
 ```
 Need orchestration?
-├─ ML-specific → Vertex AI Pipelines (Kubeflow)
+├─ ML-specific → Agent Platform Pipelines (Kubeflow)
 ├─ General workflow → Cloud Composer (Airflow)
 └─ Simple scheduling → Cloud Scheduler
 ```

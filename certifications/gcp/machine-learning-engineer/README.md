@@ -11,35 +11,40 @@ The Google Cloud Professional Machine Learning Engineer certification demonstrat
 **Passing Score:** No official passing score published (estimated 70%)
 **Cost:** $200 USD
 **Validity:** 2 years
-**Prerequisites:** Recommended 3+ years industry experience, 1+ year ML experience on GCP
+**Prerequisites:** None; Google recommends 3+ years of industry experience including 1+ year designing and managing solutions on Google Cloud
+**Languages:** English, Japanese
 
 ## Exam Domains
 
-### Domain 1: Architecting low-code ML solutions (26%)
-- Developing ML models by using BigQuery ML
-- Building AI solutions by using ML APIs
-- Training models by using AutoML
-- Building and using AI Platform Notebooks
+From Google's exam guide "as of June 1, 2026" (checked 2026-10-22). Google says the exam "was updated to reflect the transition from Vertex AI to Gemini Enterprise Agent Platform", and the guide uses only the new product names, so this guide does too ("Agent Platform" for short).
 
-### Domain 2: Collaborating within and across teams to manage data and models (21%)
-- Exploring and preprocessing organization-wide data
-- Managing a data science workspace
-- Managing model artifacts and versions
+### Section 1: Architecting low-code AI solutions (~13%)
+- 1.1 Developing ML models using BigQuery ML or AutoML on Gemini Enterprise Agent Platform
+- 1.2 Building AI solutions using Google Cloud AI APIs or foundational models (Model Garden, Gemini, Imagen, Veo, Document AI, Vision, Translate)
 
-### Domain 3: Scaling prototypes into ML production systems (23%)
-- Building resilient serving systems
-- Building automated training pipelines
-- Tracking model and pipeline metadata
+### Section 2: Collaborating within and across teams to manage data and models (~16%)
+- 2.1 Exploring and preprocessing data for ML (including Agent Platform Feature Store)
+- 2.2 Model prototyping using notebooks (Agent Platform Workbench, Colab Enterprise)
+- 2.3 Tracking and running ML experiments (Experiments on Agent Platform, Agent Platform Pipelines, Kubeflow Pipelines)
 
-### Domain 4: Serving and scaling models (15%)
-- Serving models
-- Scaling online model serving
-- Monitoring ML solutions
+### Section 3: Scaling prototypes into ML models (~21%)
+- 3.1 Building models given the task, considering cost, complexity, latency and scalability
+- 3.2 Training models
+- 3.3 Choosing appropriate hardware for training
 
-### Domain 5: Automating and orchestrating ML pipelines (15%)
-- Developing end-to-end ML pipelines
-- Automating model retraining
-- Tracking and auditing metadata
+### Section 4: Serving and scaling models (~20%)
+- 4.1 Serving models (including Agent Platform Model Registry)
+- 4.2 Scaling online model serving
+
+### Section 5: Automating and orchestrating ML pipelines (~18%)
+- 5.1 Developing end-to-end ML pipelines (Agent Platform Pipelines, Managed Service for Apache Airflow, Ray on Agent Platform)
+- 5.2 Automating model retraining (CI/CD/CT, for example Cloud Build)
+
+### Section 6: Monitoring AI solutions (~13%)
+- 6.1 Identifying risks to AI solutions
+- 6.2 Monitoring, testing and troubleshooting AI solutions (Model Monitoring on Agent Platform)
+
+Source: [Professional Machine Learning Engineer exam guide](https://services.google.com/fh/files/misc/professional_machine_learning_engineer_exam_guide_english_new.pdf) and [certification page](https://cloud.google.com/learn/certification/machine-learning-engineer). The guide also notes that the exam "does not directly assess coding skills"; minimum Python and SQL proficiency is enough to read code snippets.
 
 ## Key Technologies and Services
 
@@ -47,7 +52,7 @@ The Google Cloud Professional Machine Learning Engineer certification demonstrat
 - **Agent Platform (formerly Vertex AI):** Unified ML platform
 - **AutoML:** Automated machine learning
 - **BigQuery ML:** SQL-based machine learning
-- **AI Platform Notebooks:** Jupyter-based development environment
+- **Agent Platform Workbench and Colab Enterprise:** Jupyter-based development environments
 - **Explainable AI:** Model interpretability and fairness
 
 ### Pre-trained AI Services

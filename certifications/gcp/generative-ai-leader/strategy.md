@@ -17,7 +17,7 @@ Conversely, if you come from a business background, the product portfolio is the
 **1. Choose the lowest rung of the ladder that solves the problem.**
 
 ```
-Applied assistant  →  Pre-built API  →  Build on Vertex AI  →  Fine-tune  →  Train from scratch
+Applied assistant  →  Pre-built API  →  Build on Agent Platform  →  Fine-tune  →  Train from scratch
      lowest cost                                                              highest cost
 ```
 

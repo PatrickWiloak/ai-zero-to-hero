@@ -141,7 +141,7 @@ D. Manual sampling of predictions by an analyst each quarter, checked against la
 **Scenario:** A model must explain individual predictions for a regulated decision.
 
 A. Model size, since a smaller model has fewer parameters and is therefore easier to explain to a regulator
-B. Vertex Explainable AI with feature attributions (integrated gradients, sampled Shapley, or XRAI)
+B. Agent Platform Explainable AI with feature attributions (integrated gradients, sampled Shapley, or XRAI)
 C. The training loss curve, which shows how well the model fit the data it saw during training
 D. The confusion matrix, which shows true and false prediction counts for each class
 

@@ -16,7 +16,7 @@ last-updated: 2026-05-03
 
 2. **Agent Platform vs legacy AI Platform**: Agent Platform is the unified platform (renamed in 2021). AI Platform is legacy. Pick Agent Platform in modern questions.
 
-3. **AutoML vs Custom Training on Vertex**: AutoML for tabular / image / text / video without writing model code. Custom for full control with TensorFlow / PyTorch / XGBoost / scikit-learn.
+3. **AutoML vs Custom Training on Agent Platform**: AutoML for tabular / image / text / video without writing model code. Custom for full control with TensorFlow / PyTorch / XGBoost / scikit-learn.
 
 4. **Feature Store**: solves training-serving skew. Online store for low-latency serving (Bigtable-backed). Offline store for training (BigQuery-backed). Sync between them.
 
@@ -31,7 +31,7 @@ last-updated: 2026-05-03
    - GPUs (A100, H100, L4): general-purpose ML
    Pick TPU for large-scale training that fits the TF/JAX ecosystem.
 
-9. **Explainability**: Vertex AI Explainable AI provides feature attribution (Sampled Shapley, Integrated Gradients, XRAI for images). For regulated workloads.
+9. **Explainability**: Agent Platform Explainable AI provides feature attribution (Sampled Shapley, Integrated Gradients, XRAI for images). For regulated workloads.
 
 10. **Endpoints vs batch prediction**: Endpoints for sync low-latency. Batch for offline scoring at scale (Dataflow under the hood).
 
@@ -74,8 +74,8 @@ last-updated: 2026-05-03
 - "Custom model with full control" = Agent Platform custom training
 - "Training-serving skew" = Agent Platform Feature Store
 - "Drift monitoring" = Model Monitoring on Agent Platform
-- "HPT" = Vertex AI Vizier
+- "HPT" = Agent Platform Vizier
 - "Reproducible pipelines" = Agent Platform Pipelines (KFP)
 - "Cheap large-scale training" = Spot + checkpointing + distributed
-- "Per-prediction explanation" = Vertex AI Explainable AI
+- "Per-prediction explanation" = Agent Platform Explainable AI
 - "Foundation model + RAG" = Agent Search + Agent Studio

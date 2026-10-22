@@ -13,7 +13,7 @@ Model deployment, serving, monitoring, MLOps practices, and production ML system
 from google.cloud import aiplatform
 import json
 
-# Initialize Vertex AI
+# Initialize Agent Platform
 aiplatform.init(project='my-project', location='us-central1')
 
 # Create endpoint
@@ -1148,7 +1148,7 @@ def register_model(
 
     aiplatform.init(project=project_id, location=location)
 
-    # Upload model to Vertex AI Model Registry
+    # Upload model to Agent Platform Model Registry
     uploaded_model = aiplatform.Model.upload(
         display_name=model_display_name,
         artifact_uri=model.uri,
@@ -1796,7 +1796,7 @@ def get_model_lineage(model_id):
     return None
 ```
 
-## Vertex AI Explainable AI
+## Agent Platform Explainable AI
 
 ### Feature Attribution Methods
 
@@ -3136,4 +3136,4 @@ replicas = ceil(current_metric / target_metric × current_replicas)
 - [Agent Platform Pipelines Documentation](https://cloud.google.com/vertex-ai/docs/pipelines/introduction)
 - [MLOps: Continuous delivery and automation pipelines](https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning)
 - [Kubeflow Pipelines SDK](https://www.kubeflow.org/docs/components/pipelines/)
-- [Vertex AI Explainable AI](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview)
+- [Agent Platform Explainable AI](https://cloud.google.com/vertex-ai/docs/explainable-ai/overview)

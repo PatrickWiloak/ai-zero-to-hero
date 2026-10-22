@@ -9,7 +9,7 @@ This guide covers:
 - AutoML for Tables, Vision, Natural Language, and Video
 - TensorFlow, Keras, PyTorch, and Scikit-learn on Agent Platform
 - Distributed training with GPUs and TPUs
-- Hyperparameter tuning with Vertex AI Vizier
+- Hyperparameter tuning with Agent Platform Vizier
 - Model optimization techniques (pruning, quantization, distillation)
 - Experiment tracking and TensorBoard integration
 - Pre-trained models and transfer learning
@@ -937,7 +937,7 @@ model = job.run(
     accelerator_count=1,  # 1 GPU per worker
     base_output_dir='gs://bucket/output',
     environment_variables={
-        'TF_CONFIG': 'auto'  # Vertex AI sets this automatically
+        'TF_CONFIG': 'auto'  # Agent Platform sets this automatically
     }
 )
 ```
@@ -955,7 +955,7 @@ import os
 
 def setup_distributed():
     """Initialize distributed training environment."""
-    # Vertex AI sets these environment variables
+    # Agent Platform sets these environment variables
     rank = int(os.environ.get('RANK', 0))
     local_rank = int(os.environ.get('LOCAL_RANK', 0))
     world_size = int(os.environ.get('WORLD_SIZE', 1))
@@ -1248,7 +1248,7 @@ model = job.run(
 )
 ```
 
-## Hyperparameter Tuning with Vertex AI Vizier
+## Hyperparameter Tuning with Agent Platform Vizier
 
 ### Complete Hyperparameter Tuning Example
 
@@ -1337,7 +1337,7 @@ def main():
     # Get final validation accuracy
     val_accuracy = history.history['val_accuracy'][-1]
 
-    # Report metric to Vertex AI for hyperparameter tuning
+    # Report metric to Agent Platform for hyperparameter tuning
     hpt = hypertune.HyperTune()
     hpt.report_hyperparameter_tuning_metric(
         hyperparameter_metric_tag='accuracy',
@@ -2961,7 +2961,7 @@ Need model optimization?
    - **Answer**: Not covered by Professional ML Engineer (use on-premises solutions)
 
 7. **Scenario**: Optimize hyperparameters for complex model
-   - **Answer**: Vertex AI Hyperparameter Tuning with Bayesian search
+   - **Answer**: Agent Platform hyperparameter tuning with Bayesian search
 
 8. **Scenario**: Standard object detection (cars, people, animals)
    - **Answer**: Vision API object localization (no training needed)

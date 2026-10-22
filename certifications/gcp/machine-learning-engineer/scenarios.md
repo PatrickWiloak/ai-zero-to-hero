@@ -12,7 +12,7 @@ last-updated: 2026-05-03
 
 A team needs to extract entities and sentiment from product reviews. They have no labeled data and want to ship in 2 weeks.
 
-**Options:** A. Vertex AI Natural Language API (pre-trained). B. Custom BERT trained on Agent Platform. C. AutoML Natural Language. D. Self-hosted Hugging Face model.
+**Options:** A. Natural Language API (pre-trained). B. Custom BERT trained on Agent Platform. C. AutoML Natural Language. D. Self-hosted Hugging Face model.
 
 **Analysis:** A is right for time-to-ship and zero labeling. B requires labeling. C - AutoML still needs labels. D adds infra. The PMLE rule: build > buy only when pre-trained doesn't meet quality.
 
@@ -56,7 +56,7 @@ A deployed model needs alerts when input feature distribution drifts or predicti
 
 **Options:** A. Model Monitoring on Agent Platform with feature drift + prediction drift jobs; Cloud Monitoring alerts. B. Manual monthly reports. C. Custom Lambda comparing percentiles. D. Cloud Monitoring metrics on infra only.
 
-**Analysis:** A is right - Model Monitoring is purpose-built for drift detection on Vertex Endpoints. B is reactive. C reinvents the tool. D misses model-level drift.
+**Analysis:** A is right - Model Monitoring is purpose-built for drift detection on Agent Platform Endpoints. B is reactive. C reinvents the tool. D misses model-level drift.
 
 **Answer:** A
 
@@ -68,13 +68,13 @@ A deployed model needs alerts when input feature distribution drifts or predicti
 
 A team has 6 hyperparameters and 100-run budget. They want maximum quality.
 
-**Options:** A. Vertex AI Vizier with Bayesian optimization. B. Random search with 100 runs. C. Grid search. D. Manual tuning.
+**Options:** A. Agent Platform Vizier with Bayesian optimization. B. Random search with 100 runs. C. Grid search. D. Manual tuning.
 
 **Analysis:** A is right - Vizier (the GCP HPT service) uses Bayesian optimization (default) or Grid/Random. Bayesian is sample-efficient for moderate budgets. B is less efficient. C is infeasible at 6 dims. D doesn't scale.
 
 **Answer:** A
 
-**Key takeaway:** Vertex AI Vizier = HPT service. Bayesian default; supports parallel trials and early stopping (Hyperband-like).
+**Key takeaway:** Agent Platform Vizier = HPT service. Bayesian default; supports parallel trials and early stopping (Hyperband-like).
 
 ---
 

@@ -216,7 +216,7 @@ last-updated: 2026-05-03
 
 **REST API**
 ```python
-# Vertex AI Python SDK example
+# Agent Platform Python SDK example
 from google.cloud import aiplatform
 
 aiplatform.init(project='your-project', location='us-central1')
@@ -271,7 +271,7 @@ print(response.text)
 ## Essential gcloud Commands
 
 ```bash
-# Enable Vertex AI API
+# Enable Agent Platform API
 gcloud services enable aiplatform.googleapis.com
 
 # List available models

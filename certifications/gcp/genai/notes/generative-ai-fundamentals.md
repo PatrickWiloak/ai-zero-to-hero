@@ -1206,7 +1206,7 @@ Think step by step:
 - Anomaly detection
 - Classification
 
-**Vertex AI Text Embeddings**
+**Agent Platform text embeddings**
 ```python
 from vertexai.language_models import TextEmbeddingModel
 
@@ -2050,7 +2050,7 @@ def answer_with_rag(question, knowledge_base):
 # Example usage
 knowledge_base = create_knowledge_base([
     "Cloud Run is a fully managed serverless platform for containers.",
-    "Vertex AI provides ML model training and deployment services.",
+    "Agent Platform provides ML model training and deployment services.",
     "BigQuery is a serverless data warehouse for analytics."
 ])
 

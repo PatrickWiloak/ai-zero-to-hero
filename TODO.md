@@ -49,7 +49,8 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [ ] 2026-12-01: MLA-C02 GA date on aws.amazon.com? If announced, build `aws/associate/ml-engineer-mla-c02` from the exam guide [H].
 - [x] 2026-10-22 Anthropic: CPES confirmed not an exam (study track, invented logistics removed); CCAO-F and CCAR-P weights match the v1.0 exam guide PDFs.
 - [ ] New-guide candidates (verify codes): AWS AI Business Strategist (beta), NVIDIA NCA-ADS, NCP-ARI.
-- [ ] Rename sweep: "Vertex AI" -> Gemini Enterprise Agent Platform in `certifications/gcp/machine-learning-engineer` + GCP genai tracks.
+- [x] 2026-10-22 Vertex AI -> Agent Platform names swept in `certifications/gcp/` (PMLE + GAL exam guides use only new names); PMLE domains set to the 2026-06-01 guide.
+- [ ] 2026-11-22: re-map PMLE notes + bank to the 6-section guide (new: Section 6 Monitoring AI solutions, Gemini tuning in BigQuery, Model Garden).
 - [ ] 2026-10-31 spot-check retired-product replacements: LUIS (`certifications/azure/ai-102`), PaLM and AutoML (GCP ML notes).
 - [ ] Distribution: submit to awesome-llm-security.
 
