@@ -127,7 +127,7 @@ Several certifications that older roadmaps recommend are no longer available:
 
 - **AWS Machine Learning - Specialty (MLS-C01)**: retired April 2025.
 - **AWS Machine Learning Engineer - Associate (MLA-C01)**: retired 28 September 2026; a successor, MLA-C02, was in beta with no general availability date announced.
-- **Microsoft Azure AI Fundamentals (AI-900)** and **Azure AI Engineer Associate (AI-102)**: retired 30 June 2026. **Azure Data Scientist Associate (DP-100)**: retired 1 June 2026.
+- **Microsoft Azure AI Fundamentals (AI-900)** and **Azure AI Engineer Associate (AI-102)**: retired 30 June 2026; their successors are [AI-901](../../certifications/azure/ai-901/README.md) and [AI-103](../../certifications/azure/ai-103/README.md) (Azure AI Apps and Agents Developer Associate). **Azure Data Scientist Associate (DP-100)**: retired 1 June 2026.
 
 For everything still available, prices and levels, see the [AI certifications guide](../certifications/ai-certifications-guide.md).
 

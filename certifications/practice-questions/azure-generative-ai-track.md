@@ -286,7 +286,7 @@ D. Re-run the launch evaluation once a year, comparing the scores with the numbe
 ## Where to go deeper
 
 - [Azure GenAI track page](../azure/genai/README.md) - notes, practice plan, strategy
-- [AI-102 practice questions](azure-ai-engineer-ai-102.md) - the certification nearest this track
+- [AI-103 practice questions](azure-ai-apps-agents-developer-ai-103.md) - the certification nearest this track (AI-102, retired: [questions](azure-ai-engineer-ai-102.md))
 - [Prompt injection defense](../../safety/security/prompt-injection-defense.md) - the security side of question 10
 - [RAG explained](../../learn/concepts/rag-explained.md) - retrieval in plain English
 - **[📖 Azure OpenAI documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/)** - primary source

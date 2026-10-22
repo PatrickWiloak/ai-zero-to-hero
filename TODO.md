@@ -38,7 +38,9 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 ## Certifications (moved in from the old cloud repo TODO, 2026-10-21)
 
 - [x] 2026-10-21 AI-901 guide built (`certifications/azure/ai-901/`, notes, plan, 20-question bank, flashcards).
-- [ ] Build an AI-103 guide (Azure AI Apps and Agents Developer Associate; live on Microsoft Learn 2026-10-21, study guide skills as of 2026-04-16).
+- [x] 2026-10-22 AI-103 guide built (`certifications/azure/ai-103/`: 5 notes, plan, 51 flashcards, 30-question bank); AI-102 points at it.
+- [ ] 2026-12-01: re-check the AI-103 study guide change log (skills as of 2026-04-16) and preview status of agentic mode, memory, workflows in `certifications/azure/ai-103/`.
+- [ ] 2026-11-08: run the AI-103 note code (`certifications/azure/ai-103/notes/*.md`) against a Foundry project; samples are copied from Microsoft docs, not executed here.
 - [x] 2026-10-22 AI-901 duration added (45 min, Microsoft's Fundamentals figure); question count is not published by Microsoft.
 - [ ] 2026-11-01 judge rewrites: MLA-C02 (beta); NVIDIA codes NCP-NET -> NCP-AIN, NCP-USD -> NCP-OUSD, NCA-MMGA -> NCA-GENM [H].
 - [ ] Verify `certifications/anthropic/claude-prompt-engineering-specialist` (CPES absent from Anthropic's cert FAQ); Associate dir should read "Claude Certified Associate"; verify CCAO-F / CCAR-P domain weights.

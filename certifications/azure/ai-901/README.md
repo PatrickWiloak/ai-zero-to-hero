@@ -67,7 +67,8 @@ Schedule in the [practice plan](practice-plan.md).
 ## Related
 
 - [Azure AI-900](../ai-900/README.md) - the retired predecessor, kept for reference
-- [Azure AI-102](../ai-102/README.md) - the retired associate exam; its successor is AI-103
+- [Azure AI-103](../ai-103/README.md) - the associate exam to take next (apps and agents on Foundry)
+- [Azure AI-102](../ai-102/README.md) - the retired associate exam AI-103 replaced
 - [AWS AI Practitioner](../../aws/foundational/ai-practitioner-aif-c01/README.md) and [Google Cloud Generative AI Leader](../../gcp/generative-ai-leader/README.md) - the equivalent tiers elsewhere
 - [AZ-900](https://cloud.noblerworks.com/exams/azure/az-900/) - Azure fundamentals, if Azure itself is new to you
 - Background on this site: [What is machine learning?](../../../learn/concepts/what-is-machine-learning.md), [LLM basics](../../../learn/concepts/llm-basics.md), [Agents explained](../../../learn/concepts/agents-explained.md), [Speech AI](../../../learn/concepts/speech-ai-asr-and-tts.md), [Responsible AI basics](../../../safety/governance/responsible-ai-basics.md)

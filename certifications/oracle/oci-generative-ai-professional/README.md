@@ -60,7 +60,7 @@ An OCI free tier account plus the Generative AI playground covers most of this. 
 
 - [OCI AI Foundations](../oci-ai-foundations/README.md) - the tier below
 - [AWS GenAI Developer Professional](../../aws/professional/genai-developer-aip-c01/README.md) - the AWS equivalent
-- [Azure AI-102](../../azure/ai-102/README.md) - the Azure equivalent
+- [Azure AI-103](../../azure/ai-103/README.md) - the Azure equivalent (AI-102, retired 2026-06-30, is kept [for reference](../../azure/ai-102/README.md))
 - [Databricks GenAI Engineer Associate](../../databricks/genai-engineer-associate/README.md)
 - [AI security](../../../safety/README.md) - securing what you build here
 - [AI/ML Engineer roadmap](../../../careers/roles/ai-engineer-roadmap.md)

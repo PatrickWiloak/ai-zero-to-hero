@@ -1,0 +1,52 @@
+Question,Answer,Tags
+Which certification does AI-103 earn?,Microsoft Certified: Azure AI Apps and Agents Developer Associate,exam-logistics
+Which exam did AI-103 replace and when did it retire?,AI-102 (Azure AI Engineer Associate); retired 2026-06-30,exam-logistics
+What are the five AI-103 domains and weights?,Plan and manage (25-30%); generative AI and agents (30-35%); computer vision (10-15%); text analysis (10-15%); information extraction (10-15%),exam-logistics
+How long is the AI-103 exam?,120 minutes,exam-logistics
+Which programming language does AI-103 expect?,Python,exam-logistics
+How do you renew an associate certification?,Free online assessment on Microsoft Learn; associate certifications expire annually,exam-logistics
+What is the Foundry project endpoint format?,https://<resource>.services.ai.azure.com/api/projects/<project>,foundry
+Which Python package is the Foundry SDK?,azure-ai-projects 2.x (AIProjectClient),foundry
+What do you pass as model in responses.create?,The deployment name,foundry
+Which deployment type is Microsoft's default starting point?,Global Standard,deployments
+Which deployment type keeps inference in the EU?,Data Zone (Standard; Provisioned or Batch) in an EU region,deployments
+Which deployment type gives predictable throughput and low latency variance?,Provisioned (reserved PTUs),deployments
+Which deployment type is 50% cheaper with a 24-hour target?,Global Batch or Data Zone Batch,deployments
+What is the Developer deployment type for?,Evaluating fine-tuned models only; 24-hour lifetime and no SLA,deployments
+What HTTP status means you hit TPM or RPM limits?,429 (retry with backoff; honour retry-after),operations
+What replaces API keys for keyless auth?,Microsoft Entra ID tokens via managed identity or DefaultAzureCredential,security
+What were Foundry User and Foundry Owner called before?,Azure AI User and Azure AI Owner (role IDs unchanged),security
+What does a Foundry guardrail consist of?,Controls: a risk; intervention points; and an action (annotate or annotate and block),responsible-ai
+Name the four guardrail intervention points,User input; tool call (agents); tool response (agents); output,responsible-ai
+Content harm blocking level High blocks what?,"Low, medium and high severity (most restrictive)",responsible-ai
+Content harm blocking level Low blocks what?,High severity only (least restrictive),responsible-ai
+Agent and its model deployment have different guardrails. Which applies to the agent?,The agent's guardrail; it fully overrides the model's,responsible-ai
+What are the two kinds of Prompt Shields attack?,User prompt attacks (jailbreaks) and document (indirect) attacks,responsible-ai
+What does spotlighting do?,Marks documents as lower-trust by base-64 transforming them so the model is less likely to follow embedded instructions (preview),responsible-ai
+Groundedness vs response completeness?,Groundedness = precision (no content outside the context); completeness = recall (nothing missing versus ground truth),evaluation
+What scale do Foundry RAG evaluators use and what is the default pass threshold?,1-5; threshold 3,evaluation
+What three things define a prompt agent?,A model; instructions; tools,agents
+What keeps multi-turn state for an agent client?,A conversation (openai.conversations.create) passed to each responses.create,agents
+What must your app send back after a function_call?,A function_call_output with the same call_id,agents
+How long before a function-calling run expires?,10 minutes,agents
+Memory vs knowledge for agents?,Memory = user context learned across sessions; knowledge (Foundry IQ / AI Search) = curated organisational content,agents
+Name the three Foundry memory types,User profile memory; chat summary memory; procedural memory,agents
+Which Agent Framework builder chains agents in order?,SequentialBuilder (agent_framework.orchestrations),agents
+How do you require human approval for a tool in Agent Framework?,"@tool(approval_mode=""always_require"")",agents
+Which env var enables Foundry GenAI client tracing in Python?,AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING=true (before instrumenting),observability
+Are prompts recorded in traces by default?,No; set OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true (dev only),observability
+Which image model was retired on 2026-03-04?,DALL-E 3 (use GPT-image models),vision
+In an image edit mask what do transparent pixels mean?,The area to edit,vision
+What does input_fidelity control?,How closely edits preserve the input image's style and features especially faces,vision
+What pattern does Sora 2 video generation use?,Asynchronous job: create; poll status; download,vision
+How do you edit a generated Sora 2 video?,Remix it with videos.remix and a prompt,vision
+What replaced Content Understanding pro mode?,Agentic mode (preview; 2026-06-01-preview API),extraction
+Name the three Content Understanding field methods,Extract; classify (enum); generate,extraction
+What does begin_analyze return?,A poller; call .result() for the AnalysisResult,extraction
+Which Azure AI Search query type is the agent tool's default?,vector_semantic_hybrid,retrieval
+What must match between indexing and the vectorizer?,The embedding model,retrieval
+What does integrated vectorization add to a skillset?,Chunking (Text Split or Content Understanding skill) and an embedding skill; plus a query-time vectorizer,retrieval
+What are index projections for?,Writing chunks to a secondary index alongside parent documents in one indexer run,retrieval
+Which Azure Language call redacts PII?,recognize_pii_entities (returns redacted_text; categories; offsets; confidence),text
+What handles a single utterance in the Speech SDK?,recognize_once_async (about 30 seconds or until silence),speech
+What is the Voice Live API?,Managed speech-to-speech for voice agents: STT + generative model + TTS with noise suppression and turn detection,speech

@@ -157,6 +157,6 @@ The Azure Data Scientist Associate certification validates your knowledge of app
 ### Career Path
 - **Role Focus:** Data Scientist, ML Engineer, AI Engineer
 - **Skills Development:** MLOps, responsible AI, model optimization
-- **Next Steps:** Consider AI-102 (AI Engineer) or specialized ML certifications
+- **Next Steps:** Consider [AI-103](../ai-103/README.md) (AI Apps and Agents Developer, the successor to AI-102) or specialized ML certifications
 
 Remember: DP-100 requires practical ML experience with Azure ML. Hands-on model training and deployment is essential!

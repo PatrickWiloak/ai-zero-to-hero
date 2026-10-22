@@ -4,6 +4,8 @@
 
 **The AI-102 exam and its certification were retired on June 30, 2026.** It can no longer be taken and the certification can no longer be earned or renewed. Credentials already earned stay on the holder's Microsoft Learn transcript. This guide is kept as historical reference. 
 
+**Successor:** [AI-103, Azure AI Apps and Agents Developer Associate](../ai-103/README.md) (live on Microsoft Learn; skills measured as of 2026-04-16; checked 2026-10-22). Study AI-103 instead of this guide.
+
 Source: [Microsoft Learn - exam retirement](https://learn.microsoft.com/en-us/credentials/support/retired-certification-exams)
 
 ---

@@ -3,7 +3,7 @@
 > ℹ️ **Cross-cert study track, not a single Microsoft certification.** Microsoft's GenAI content is split across several certs (AI-900 fundamentals, AI-102 AI Engineer Associate, plus newer AI-3xxx/Copilot specialties). This dir is a focused study guide for **Generative AI on Azure** (Azure OpenAI, AI Studio, prompt engineering, responsible AI) that complements the cert-specific dirs:
 >
 > - **Foundational coverage:** [exams/azure/ai-900/](../ai-900/README.md)
-> - **Engineer-tier coverage:** [exams/azure/ai-102/](../ai-102/README.md)
+> - **Engineer-tier coverage:** [AI-103](../ai-103/README.md) (AI-102, retired 2026-06-30: [historical guide](../ai-102/README.md))
 
 ## 📋 Quick Links
 
@@ -18,7 +18,7 @@
 - [Responsible AI & Model Deployment](notes/responsible-ai-model-deployment.md) - Ethics, governance, deployment patterns
 
 ### Companion Materials
-- [Azure AI Engineer (AI-102)](../ai-102/README.md) - The deeper-dive exam after this introduction
+- [Azure AI Apps and Agents Developer (AI-103)](../ai-103/README.md) - The deeper-dive exam after this introduction (replaced AI-102 on 2026-06-30)
 - [Azure AI Fundamentals (AI-900)](../ai-900/README.md) - Foundational pre-requisite
 
 ## 🎯 Exam Focus Areas

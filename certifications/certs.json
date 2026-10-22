@@ -252,6 +252,12 @@
           "status": "Ready"
         },
         {
+          "path": "azure/ai-103",
+          "code": "AI-103",
+          "level": "Associate",
+          "status": "Ready"
+        },
+        {
           "path": "azure/ai-102",
           "code": "AI-102",
           "level": "Associate",
