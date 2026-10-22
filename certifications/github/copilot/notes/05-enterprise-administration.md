@@ -58,12 +58,19 @@ Policies are set at org (Business/Enterprise) or enterprise (Enterprise) level.
 
 ### Copilot in the CLI
 
-- Enable or disable `gh copilot` usage for org members
+- Enable or disable the Copilot CLI for org members
 
-### Copilot Extensions
+### Copilot Code Review
 
-- Allow all, selected, or no extensions
-- Approve specific extensions before members can install
+- Enable or disable Copilot code review for members, on github.com and in the IDEs
+- Use repository or organization rulesets to request a Copilot review automatically on every pull request
+- Copilot leaves "Comment" reviews only, so it never satisfies a required approval
+- Review standards come from `.github/copilot-instructions.md` and path-specific `.instructions.md` files
+
+### Feature Availability Across IDEs and github.com
+
+- Policies decide which features (chat, agent mode, coding agent, code review, preview features, model choices) are available, and where
+- An enterprise policy can be enforced on all organizations or delegated to each organization to decide
 
 ### MCP (Model Context Protocol)
 
@@ -104,29 +111,13 @@ Policies are set at org (Business/Enterprise) or enterprise (Enterprise) level.
 
 **[Excluding content](https://docs.github.com/en/copilot/managing-copilot/managing-github-copilot-in-your-organization)** - Exclusion guide
 
-## Knowledge Bases (Enterprise)
+## Copilot Spaces (replaced knowledge bases)
 
-### What They Are
+Knowledge bases, the old Enterprise feature for curated documentation context, were retired on 2025-11-01 and replaced by **Copilot Spaces**. A Space holds repositories, code, issues, pull requests, notes, images and uploaded files as context. Organization-owned Spaces are shared with members as admin, editor or viewer; anyone with a Copilot licence can create one. See [note 07](07-agents-cli-and-customization.md).
 
-A knowledge base is a curated collection of markdown-heavy repositories that Copilot Chat on github.com can use as additional context.
+**[Copilot Spaces](https://docs.github.com/en/copilot/concepts/context/spaces)** - Spaces docs
 
-### Setup
-
-1. Enterprise admin creates a knowledge base
-2. Add repositories (often internal docs, wikis-as-repos, runbooks)
-3. Users select the knowledge base from Copilot Chat on github.com
-4. Chat retrieves relevant passages to answer questions
-
-### Use Cases
-
-- Internal engineering handbooks
-- Platform documentation
-- Runbooks and SOPs
-- Onboarding materials
-
-**[Knowledge Bases](https://docs.github.com/en/copilot/concepts/context/spaces)** - Enterprise docs
-
-## PR Summaries and Code Review (Enterprise)
+## PR Summaries and Code Review
 
 - **PR summaries** - Draft PR descriptions from the diff; admins enable per-org
 - **Copilot code review** - Request Copilot as a reviewer; receive inline comments and suggestions
@@ -177,11 +168,23 @@ Filter the audit log with `action:copilot` to see Copilot-only events.
 - Update exclusions as new sensitive repos are added
 - Communicate new features as they GA
 
-## API Highlights
+## API Highlights: managing subscriptions with the REST API
 
-- **Seats API** - List, add, remove seats programmatically
-- **Usage metrics API** - Query Copilot usage by org
-- **Audit log API** - Pull Copilot events into SIEM
+The outline asks you to "manage subscriptions using the REST API". The Copilot user management endpoints operate on an organization:
+
+| Method and path | Purpose |
+|---|---|
+| `GET /orgs/{org}/copilot/billing` | Subscription details, seat breakdown and feature policies |
+| `GET /orgs/{org}/copilot/billing/seats` | List every billed seat, with last activity |
+| `POST /orgs/{org}/copilot/billing/selected_users` | Add seats for named users |
+| `DELETE /orgs/{org}/copilot/billing/selected_users` | Set named users' seats to pending cancellation |
+| `POST /orgs/{org}/copilot/billing/selected_teams` | Add seats for every member of named teams |
+| `DELETE /orgs/{org}/copilot/billing/selected_teams` | Set those teams' seats to pending cancellation |
+| `GET /orgs/{org}/members/{username}/copilot` | Seat details for one member |
+
+Removing a seat does not cut access instantly: it becomes pending cancellation and ends at the close of the billing cycle. A common automation is to list seats, find those with no recent activity, and remove them. Usage metrics have their own API, and audit log events can be streamed or pulled through the audit log API into a SIEM.
+
+**[Copilot user management API](https://docs.github.com/en/rest/copilot/copilot-user-management)** - REST reference
 
 ## Billing
 
@@ -193,7 +196,7 @@ Filter the audit log with `action:copilot` to see Copilot-only events.
 
 - Copilot Business and Enterprise are managed at the organization level; Enterprise adds enterprise-level cascading
 - Content exclusions are YAML-like, path-based, configured per repo/org/enterprise
-- Knowledge bases, PR summaries, Copilot code review, and custom models are Enterprise-only
+- Knowledge bases were replaced by Copilot Spaces (2025-11-01); seats are managed through the `/orgs/{org}/copilot/billing` REST endpoints
 - Audit log events use the `copilot` action namespace
 - Seat assignment and policy changes are auditable
 

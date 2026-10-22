@@ -1,5 +1,5 @@
 ---
-last-updated: 2026-08-09
+last-updated: 2026-10-22
 difficulty: beginner
 reading-time: 4 min
 ---
@@ -8,9 +8,9 @@ reading-time: 4 min
 
 ## Know what is being tested
 
-This is a **business** certification. The technical content is real but shallow, and the strategy content is weighted more heavily than a technical reader expects. If you come from an engineering background, the fundamentals will be easy and the business strategy section is where you can lose marks by over-thinking.
+This is a **business** certification. The technical content is real but shallow. The exam guide weights the four sections at about 30% fundamentals, 35% Google Cloud's gen AI offerings, 20% techniques to improve output, and 15% business strategy, so the product portfolio is the single biggest block of marks and business strategy is the smallest. If you come from an engineering background, the fundamentals will be easy; the marks you are most likely to lose are in the product portfolio (names and where each product fits) and, on the smaller business strategy section, by over-thinking a question that wants the plain business answer.
 
-Conversely, if you come from a business background, the product portfolio is the memorization load.
+Conversely, if you come from a business background, the product portfolio is the memorization load, and at about a third of the exam it deserves the largest share of your time.
 
 ## The two habits
 

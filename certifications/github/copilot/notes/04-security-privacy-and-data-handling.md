@@ -78,15 +78,22 @@ Exclusion rules use glob-like path patterns. Examples:
 
 - Prevent files matching a rule from being sent as context
 - Suppress suggestions inside editors for files matching a rule
-- Apply to completions AND chat
+- Apply to inline completions and to chat in ask mode
 
 ### What Exclusions Do Not Do
 
 - Do not retroactively delete data already received by Copilot
 - Do not affect data already indexed by public code search
 - Do not block the user from editing excluded files; only Copilot behavior changes
+- Are not supported in the Edit and Agent modes of Copilot Chat in VS Code and other editors
+- Do not apply to symbolic links or repositories on remote filesystems
+- Cannot stop the IDE passing semantic information (types, hover definitions) from an excluded file indirectly
 
-**[Content Exclusions](https://docs.github.com/en/copilot/managing-copilot/managing-github-copilot-in-your-organization)** - Full exclusion guide
+### Timing and Troubleshooting
+
+A new or changed exclusion can take up to 30 minutes to take effect in IDEs that already loaded the settings. Reload the VS Code window ("Developer: Reload Window") or restart Visual Studio or a JetBrains IDE to apply it sooner; Vim and Neovim fetch exclusions each time a file opens. Content exclusion is available on Copilot Business and Enterprise. More troubleshooting is in [note 09](09-productivity-testing-and-safeguards.md).
+
+**[Content Exclusions](https://docs.github.com/en/copilot/how-tos/configure-content-exclusion/exclude-content-from-copilot)** - Full exclusion guide
 
 ## Secrets Handling
 

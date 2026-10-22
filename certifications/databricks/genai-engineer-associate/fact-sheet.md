@@ -1,5 +1,5 @@
 ---
-last-updated: 2026-05-03
+last-updated: 2026-10-22
 ---
 
 # Databricks Generative AI Engineer Associate - Fact Sheet
@@ -8,7 +8,8 @@ last-updated: 2026-05-03
 
 **Exam Name:** Databricks Certified Generative AI Engineer Associate
 **Duration:** 90 minutes
-**Questions:** 45 multiple-choice questions
+**Questions:** 45 scored multiple-choice or multiple-selection items
+**Exam guide:** six sections, live since 2026-03-18, no published weights
 **Passing Score:** 70% (approximately 32 correct)
 **Cost:** $200 USD
 **Delivery:** Online proctored
@@ -27,7 +28,33 @@ This certification is designed for:
 - Developers integrating LLMs into data workflows
 - Professionals familiar with Databricks and Python
 
-## Domain 1: RAG Application Design (30%)
+## Exam Outline: six sections, no published weights
+
+The current exam guide (live since 2026-03-18) lists six sections and their objectives, and gives **no weights**. Any percentage split you see elsewhere is not from Databricks. Objective counts are the best available proxy: Design Applications 6, Data Preparation 8, Application Development 13, Assembling and Deploying Applications 15, Governance 4, Evaluation and Monitoring 10.
+
+**[📖 Exam guide (March 2026)](https://www.databricks.com/sites/default/files/2026-03/Databricks-Certified-Generative-AI-Engineer-Associate-Exam-Guide-Mar26.pdf)** - the authoritative outline
+
+The sections below follow the six sections. The older guide's RAG design, RAG implementation and LLM fundamentals material is kept where the current objectives still draw on it.
+
+## Section 1: Design Applications
+
+**[📖 Agent Bricks FAQ](https://docs.databricks.com/aws/en/agents/concepts/faq)** - current status of Agent Bricks
+**[📖 Information Extraction](https://docs.databricks.com/aws/en/agents/agent-bricks/info-extraction)** - documents to structured fields
+
+**Key Facts:**
+- Start every design by writing the required inputs and outputs; the rest follows from them
+- Model task selection: summarization (long text to a short gist), classification (fixed labels), extraction (fields), question answering, translation, generation, embedding
+- Chain components: prompt template, retriever, model, output parser, tools; RAG is retriever, prompt, model, parser
+- Formatted output: state the format, give an example, parse the result
+- Tool ordering: gather knowledge with read-only tools first, take actions with side effects last
+- Agent Bricks named by the guide:
+  - Knowledge Assistant: question answering over documents, with citations
+  - Information Extraction: unstructured documents to structured JSON per a schema you define (UI, SQL or REST API)
+  - Multiagent Supervisor (Supervisor Agent in the docs): routes parts of a request to existing agents, Genie spaces and tools
+- Since the guide was published, the docs label Knowledge Assistant and Supervisor Agent as legacy (Genie Agents for new low-code agents, Agent Bricks CLI for code); Information Extraction is current
+- Genie spaces answer questions over Unity Catalog tables by writing SQL; multi-agent systems call them through the Genie conversation API
+
+## Section 2: Data Preparation (and RAG design background)
 
 ### RAG Architecture
 
@@ -77,6 +104,17 @@ This certification is designed for:
 - Similarity metrics: cosine similarity, dot product, Euclidean distance
 - Embedding model selection: domain relevance, dimension size, latency
 
+### Extraction, Delta and Retrieval Evaluation
+
+**Key Facts:**
+- Choose the extraction package by format: scanned images need OCR (`pytesseract`); PDFs use `pypdf` or `PyMuPDF`; mixed layouts `unstructured`; HTML `beautifulsoup`
+- Strip headers, footers, navigation and boilerplate before chunking; it degrades retrieval
+- Write chunks with metadata and a primary key to a Delta table in Unity Catalog, enable Change Data Feed, then build a Delta Sync index on it
+- Larger chunks and less overlap mean fewer records; a smaller embedding model does not reduce the count
+- Advanced chunking: structure-aware, parent-child (small-to-big), chunk summaries
+- Retrieval metrics: precision@k, recall@k, MRR, NDCG; MLflow retrieval judges score relevance and sufficiency
+- Re-ranking re-scores a generous candidate set with a cross-encoder: better precision, more latency
+
 ### Retrieval Strategies
 
 **Key Facts:**
@@ -88,7 +126,7 @@ This certification is designed for:
 - Top-k selection: number of documents to retrieve (typically 3-10)
 - Multi-query retrieval: generate multiple query variations for better recall
 
-## Domain 2: RAG Application Implementation (30%)
+## Sections 3 and 4: Application Development, Assembling and Deploying Applications
 
 ### Databricks Vector Search
 
@@ -110,6 +148,8 @@ This certification is designed for:
 - Vector Search endpoint: serves the index for low-latency queries
 - Query with `similarity_search()` or REST API
 - Filter support: combine vector search with column filters
+- Endpoint types: standard (about 320M vectors at 768 dimensions, lowest latency) versus storage-optimized (about 1B vectors at 768 dimensions, 10-20x faster indexing, priced for scale, about 250 ms extra latency, no continuous sync, dimensions divisible by 16)
+- Hybrid search and re-ranking add relevance and latency; the guide's latency-critical sample turns both off and fine-tunes the embedding model instead
 
 ### Foundation Model APIs
 
@@ -168,7 +208,26 @@ This certification is designed for:
 - Artifact logging for prompts, configs, and evaluation data
 - Experiment tracking for prompt engineering iterations
 
-## Domain 3: Governance and Evaluation (20%)
+### Added in the 2026 outline (Sections 3 and 4)
+
+**[📖 Prompt Registry](https://docs.databricks.com/aws/en/mlflow3/genai/prompt-version-mgmt/prompt-registry/)** - versioned prompts
+**[📖 MCP on Databricks](https://docs.databricks.com/aws/en/generative-ai/mcp/)** - managed, external and custom servers
+
+**Key Facts:**
+- pyfunc chain: `load_context()` loads once, `predict()` does pre-processing, model call and post-processing
+- A deployable RAG model needs flavor, embedding model, retriever, dependencies, input example and signature
+- Register to Unity Catalog: `mlflow.set_registry_uri("databricks-uc")` and a `catalog.schema.model` name
+- Serving access: declare dependent resources so Databricks provisions a scoped identity, or use on-behalf-of-user auth for per-user data; never embed personal tokens
+- `ai_query()` runs a serving endpoint over table rows in SQL; the answer for batch inference
+- Persistent memory: a transactional store (Lakebase) for conversation state and long-term memory, Delta for analytical history
+- Prompt Registry: `mlflow.genai.register_prompt()` creates immutable versions in Unity Catalog; aliases (`staging`, `production`) promote and roll back; load with `prompts:/catalog.schema.name@production`
+- CI/CD: sync the index after source updates, promote prompts by alias, test retriever, tools and prompt separately
+- MCP: managed (Databricks-hosted, platform features) first, external (third-party, keys in Databricks Secrets) next, custom (built on Databricks Apps) last
+- Interfaces: Databricks Apps for internal web UIs, Slack or Teams for meet-them-where-they-work bots; keep credentials on the server side
+- Embedding model context length should cover the chunk size and no more when cost and latency matter
+- Read model cards (task, languages, context, licence, limits) before choosing from a hub or marketplace
+
+## Sections 5 and 6: Governance, Evaluation and Monitoring
 
 ### RAG Evaluation
 
@@ -207,7 +266,26 @@ This certification is designed for:
 - Inference table logging: capture all requests and responses
 - Data retention policies for inference logs
 
-## Domain 4: LLM Fundamentals (20%)
+### Added in the 2026 outline (Sections 5 and 6)
+
+**[📖 Built-in judges](https://docs.databricks.com/aws/en/mlflow3/genai/eval-monitor/concepts/judges/)** - which judges need ground truth
+**[📖 AI Gateway](https://docs.databricks.com/aws/en/ai-gateway/)** - usage, inference tables, rate limits
+
+**Key Facts:**
+- Evaluate with `mlflow.genai.evaluate()` plus MLflow tracing: the score says something is wrong, the trace says where
+- Judges needing ground truth: `Correctness`, `RetrievalSufficiency`, `ToolCallCorrectness`
+- Judges without ground truth (usable on live traffic): `RelevanceToQuery`, `RetrievalRelevance`, `RetrievalGroundedness`, `Safety`, `Guidelines`, `ToolCallEfficiency`
+- Custom scorers: code-based for deterministic rules, custom LLM judges for judgment calls
+- SME feedback: review app and labeling sessions; calibrate experts on clear rubrics, then use aligned judgments in evaluation
+- Evaluation is before release on a chosen dataset; monitoring is after release on live traffic
+- AI Gateway: inference tables (payload logging to Unity Catalog), usage tables, rate limits, guardrails, traffic splitting, fallbacks
+- Agent Monitoring runs scorers on sampled production traces
+- Cost control: smallest model that passes evaluation, pay-per-token versus provisioned throughput, scale to zero, `ai_query()` for batch, rate limits
+- Governance: mask sensitive values before the model, layer guardrails against prompt injection, check data and model licences, clean problematic text at the source
+
+## Background: LLM Fundamentals (no longer its own section)
+
+The current outline has no fundamentals section, but its model selection objectives in Sections 3 and 6 assume this material.
 
 ### Transformer Architecture
 
@@ -264,16 +342,16 @@ This certification is designed for:
 
 ## Exam Tips
 
-1. **RAG is 60% of the exam** - master both design and implementation
-2. **Vector Search** - know Delta Sync vs Direct Vector Access Index deeply
-3. **Chunking strategy selection** - understand tradeoffs for different approaches
-4. **Foundation Model APIs** - pay-per-token vs provisioned throughput
-5. **Agent Framework** - know how to build and deploy agents
-6. **Evaluation metrics** - faithfulness, relevance, groundedness
-7. **LLM-as-judge** - understand automated evaluation patterns
-8. **Prompt engineering** - practical techniques for RAG systems
-9. **Governance** - PII handling, guardrails, cost management
-10. **Hands-on practice** - build at least one RAG app on Databricks
+1. **No official weights** - Sections 3 and 4 hold the most objectives (13 and 15)
+2. **Agent Bricks by output** - cited answers (Knowledge Assistant), structured fields (Information Extraction), delegation (Multiagent Supervisor)
+3. **Vector Search endpoint choice** - standard for latency, storage-optimized for scale and cost
+4. **Batch inference** - `ai_query()` over a table
+5. **Prompt Registry aliases** - promotion and rollback without redeploying
+6. **MCP order of preference** - managed, then external, then custom
+7. **Ground-truth judges** - Correctness, RetrievalSufficiency, ToolCallCorrectness
+8. **AI Gateway** - inference tables, usage tables, rate limits
+9. **SME feedback** - calibrate on rubrics; do not average or replace experts
+10. **Hands-on practice** - build, evaluate and deploy at least one agent on Databricks
 
 ## Quick Reference
 
@@ -315,11 +393,15 @@ from langchain_community.vectorstores import DatabricksVectorSearch
 retriever = DatabricksVectorSearch(index, text_column="text").as_retriever()
 llm = ChatDatabricks(endpoint="databricks-meta-llama-3-1-70b-instruct")
 
-# Agent Evaluation
+# Agent evaluation (MLflow 3)
 import mlflow
-results = mlflow.evaluate(
-    model=rag_chain,
-    data=eval_dataset,
-    model_type="databricks-agent"
+from mlflow.genai.scorers import Correctness, RelevanceToQuery, RetrievalGroundedness
+results = mlflow.genai.evaluate(
+    data=eval_dataset,            # records with inputs and, for Correctness, expectations
+    predict_fn=my_agent,
+    scorers=[Correctness(), RelevanceToQuery(), RetrievalGroundedness()],
 )
+
+# Batch inference in SQL
+# SELECT ai_query('databricks-meta-llama-3-3-70b-instruct', CONCAT('Sentiment of: ', review)) FROM reviews
 ```

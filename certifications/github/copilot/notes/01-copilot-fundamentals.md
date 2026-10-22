@@ -31,7 +31,9 @@ On supported surfaces the chat UI has a model picker. Users can pick the model t
 | Copilot Pro | Paid individual | Unlimited completions; chat; model choice |
 | Copilot Pro+ | Power user | Higher premium request limits; access to more models |
 | Copilot Business | Organizations | Admin controls, content exclusions, audit logs, IP indemnity |
-| Copilot Enterprise | Enterprise Cloud customers | All Business features plus knowledge bases, PR summaries, Copilot code review, custom models |
+| Copilot Enterprise | Enterprise Cloud customers | All Business features plus a larger monthly allowance of premium usage and the newest enterprise features |
+
+Plans change often. As of 2026-10 GitHub also lists Copilot Student (free for verified students) and Copilot Max for individuals, and usage of premium models is metered against a monthly allowance; check the plans page before relying on any matrix, including the one below.
 
 **[Plans for Copilot](https://docs.github.com/en/copilot/about-github-copilot/plans-for-github-copilot)** - Plan comparison
 
@@ -47,7 +49,7 @@ On supported surfaces the chat UI has a model picker. Users can pick the model t
 | Audit log events | No | No | Yes | Yes |
 | IP indemnity | No | No | Yes | Yes |
 | PR summaries | No | No | No | Yes |
-| Knowledge bases | No | No | No | Yes |
+| Copilot Spaces (replaced knowledge bases, 2025-11-01) | Yes | Yes | Yes | Yes |
 | Custom models (preview) | No | No | No | Yes |
 
 ## Where Copilot Runs
@@ -66,9 +68,9 @@ On supported surfaces the chat UI has a model picker. Users can pick the model t
 - **GitHub Mobile** - iOS and Android chat
 
 ### CLI
-- `gh extension install github/gh-copilot`
-- `gh copilot suggest` - Natural language to command
-- `gh copilot explain` - Explain a command
+- The Copilot CLI: install with `npm install -g @github/copilot` (or Homebrew, WinGet, the install script, or `gh copilot`), then run `copilot`
+- An agent in the terminal: answers questions, writes and edits code, runs commands, manages files; `-p` runs one prompt non-interactively
+- The old `gh copilot suggest` / `gh copilot explain` extension stopped working on 2025-10-25; see [note 07](07-agents-cli-and-customization.md)
 
 ## The Three Core Interactions
 
@@ -91,7 +93,7 @@ Conversational assistant that can reason across files, explain code, refactor, g
 
 ### 3. CLI Assistant
 
-`gh copilot` provides terminal-grade help for shell, Git, and the gh CLI.
+The Copilot CLI (`copilot`) is an agent in the terminal: it can explain and generate commands and scripts, edit files and work with GitHub.com.
 
 ## Supported Languages
 
@@ -138,10 +140,10 @@ Context excluded by content exclusion rules is removed from these inputs.
 ## Key Exam Facts
 
 - Copilot Business is the minimum plan for content exclusions, audit logs, and IP indemnity
-- Copilot Enterprise adds knowledge bases, PR summaries, Copilot code review, and custom models
+- Copilot Spaces replaced knowledge bases on 2025-11-01; Copilot code review and PR summaries are covered in note 07
 - Duplicate detection filter blocks suggestions matching ~150 characters of public code
 - IP indemnity requires Business/Enterprise AND duplicate detection enabled
-- `gh copilot` requires installing the gh-copilot extension
+- The Copilot CLI is started with `copilot`; the `gh-copilot` extension is retired
 
 ## Study Checklist
 

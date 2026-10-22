@@ -2,7 +2,7 @@
 
 ## Overview
 
-This section covers RAG (Retrieval-Augmented Generation) application design, representing 30% of the exam. You need to understand RAG architecture, chunking strategies, embedding models, and retrieval approaches.
+This note covers **Section 2: Data Preparation** of the exam guide live since 2026-03-18, plus the retrieval background that Sections 3 and 4 build on. (It was written for the older four-domain outline, where RAG design was its own domain; the current guide has six sections and publishes no weights.) You need to understand RAG architecture, chunking strategies, embedding models and retrieval approaches, and, new in the current outline, extracting content from source files, writing chunks into Unity Catalog, and evaluating retrieval. Those additions are in section 5 below.
 
 **[📖 RAG Overview](https://docs.databricks.com/en/generative-ai/retrieval-augmented-generation.html)** - RAG on Databricks
 **[📖 Vector Search](https://docs.databricks.com/en/generative-ai/vector-search.html)** - Vector database
@@ -100,6 +100,22 @@ Documents -> Chunking -> Embedding -> Vector Store -> Retrieval -> LLM Generatio
 - Hybrid search combines semantic understanding with keyword matching
 - Re-ranking is a second pass that improves precision at the cost of latency
 
+### 5. Data preparation objectives added in the 2026 outline
+
+**Extracting content from source files.** The guide asks you to "choose the appropriate Python package to extract document content from provided source data and format". Match the package to the format. Scanned pages saved as images (`.png`, `.jpeg`) contain no text layer, so they need optical character recognition, and `pytesseract` (a wrapper around the Tesseract OCR engine) is the guide's own sample answer. Digital PDFs have a text layer, so a PDF library such as `pypdf` or `PyMuPDF` reads them directly, and `unstructured` handles mixed document types and layout. HTML pages want an HTML parser such as `beautifulsoup`. Web crawlers such as `scrapy` fetch pages but do not read images, which is why they are distractors on image questions.
+
+**Filtering extraneous content.** Headers, footers, navigation menus, legal boilerplate, tables of contents and repeated disclaimers end up in chunks and then in retrieval results, where they crowd out the passage that answers the question. The guide asks you to "filter extraneous content in source documents that degrades quality of a RAG application"; the fix is to strip that material during parsing, before chunking, rather than hoping the model ignores it.
+
+**Choosing the right sources.** "Identify needed source documents that provide necessary knowledge and quality" is a coverage question. If the application answers shipping questions badly, ask whether any source actually contains shipping dates. Adding the right source (or a structured lookup, when the answer is a per-customer fact) beats tuning the chunker.
+
+**Writing chunks to Delta in Unity Catalog.** The sequence the guide expects is: read the raw files (for example from a Unity Catalog volume), parse them to text, chunk the text, add metadata (source path, title, section, page), give each chunk a stable primary key, and write the result to a Delta table in Unity Catalog. Enable Change Data Feed on that table, because a Delta Sync Vector Search index reads changes from it. Then create the index on the table. Writing straight to the index, or skipping the primary key, breaks incremental sync.
+
+**Chunk counts and limits.** Chunk size and overlap decide how many records you store. The guide's sample has 150 million embeddings and a 100 million limit: increasing chunk size and decreasing overlap both reduce the record count, while a smaller embedding model changes vector size, not the number of vectors.
+
+**Advanced chunking.** "Design retrieval systems using advanced chunking strategies" covers structure-aware chunking (split on headings so a chunk is one section), parent-child or small-to-big retrieval (match on small chunks, return the larger parent for context), and adding summaries or titles to each chunk so short chunks still carry their context.
+
+**Evaluating retrieval and re-ranking.** "Use tools and metrics to evaluate retrieval performance" means measuring the retriever on its own with a labelled set of queries and the chunks that should come back. Precision at k (how many of the top k are relevant), recall at k (how many of the relevant chunks made the top k), mean reciprocal rank (how high the first relevant chunk appears) and NDCG (whether the most relevant chunks are ranked highest) are the standard measures, and MLflow's retrieval judges (`RetrievalRelevance`, `RetrievalSufficiency`) score the same thing with an LLM. Re-ranking is a second stage: the vector search returns a generous candidate set quickly, then a more expensive model (typically a cross-encoder that reads query and chunk together) re-scores those candidates so the best few go to the LLM. It raises precision at the cost of latency, which is why it is switched off in latency-critical designs.
+
 ## Exam Tips for This Domain
 
 1. **RAG vs fine-tuning** - RAG for changing knowledge; fine-tuning for changing behavior
@@ -107,6 +123,8 @@ Documents -> Chunking -> Embedding -> Vector Store -> Retrieval -> LLM Generatio
 3. **Embedding consistency** - Same model for indexing and querying
 4. **Retrieval strategies** - Know MMR, filtered search, hybrid search, and re-ranking
 5. **Chunk overlap** - Prevents information loss at boundaries
+6. **Format decides the parser** - Images need OCR (`pytesseract`); PDFs, HTML and mixed files have their own libraries
+7. **Delta first, then index** - Chunks go to a Unity Catalog Delta table with a primary key and Change Data Feed, then a Delta Sync index reads it
 
 ## Documentation Links Summary
 

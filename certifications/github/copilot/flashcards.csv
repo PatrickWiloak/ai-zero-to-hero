@@ -1,10 +1,10 @@
 Question,Answer,Tags
-How long is the GitHub Copilot exam?,90 minutes,exam-logistics
-How many questions are on the GitHub Copilot exam?,~65 multiple choice and multiple response,exam-logistics
-What is the passing score for GitHub Copilot?,70%,exam-logistics
+How long is the GitHub Copilot exam?,100 minutes (GH-300; skills as of 2026-08-07),exam-logistics
+How many questions are on the GitHub Copilot exam?,Not published; multiple choice and multiple response,exam-logistics
+What is the passing score for GitHub Copilot?,700 on a 1-1000 scale,exam-logistics
 What does the GitHub Copilot exam cost?,$99 USD,exam-logistics
 How long is GitHub Copilot valid for?,2 years,exam-logistics
-How is the GitHub Copilot exam delivered?,Online proctored (PSI),exam-logistics
+How is the GitHub Copilot exam delivered?,Pearson VUE (online or test centre),exam-logistics
 OpenAI (copilot fundamentals),"GPT-4o, o-series, Codex-family for completions","notes,copilot-fundamentals"
 Anthropic (copilot fundamentals),Claude 3.5 Sonnet (selectable in chat where eligible),"notes,copilot-fundamentals"
 Google (copilot fundamentals),Gemini (selectable where available),"notes,copilot-fundamentals"
@@ -42,3 +42,14 @@ Copilot code review (enterprise administration),Request Copilot as a reviewer; r
 Seats API (enterprise administration),"List, add, remove seats programmatically","notes,enterprise-administration"
 Usage metrics API (enterprise administration),Query Copilot usage by org,"notes,enterprise-administration"
 Audit log API (enterprise administration),Pull Copilot events into SIEM,"notes,enterprise-administration"
+How many skill areas does the GH-300 outline (2026-08-07) list?,"Seven, though ""GitHub Copilot features (25-30%)"" has no objectives and appears to duplicate ""Use GitHub Copilot features""",exam-logistics
+How do you start the Copilot CLI?,"Run copilot (install with npm install -g @github/copilot, Homebrew, WinGet or the install script); -p runs one prompt and exits","notes,agents-cli-and-customization"
+Where do prompt files live?,".github/prompts/NAME.prompt.md; reusable prompts run on demand in the IDE","notes,agents-cli-and-customization"
+Where do path-specific instructions live?,".github/instructions/NAME.instructions.md with an applyTo glob","notes,agents-cli-and-customization"
+What replaced Copilot knowledge bases?,"Copilot Spaces (knowledge bases retired 2025-11-01)","notes,agents-cli-and-customization"
+Why delegate work to a sub-agent?,"It works in an isolated context and returns only results, keeping the main session's context small","notes,agents-cli-and-customization"
+How long can a content exclusion change take to reach an IDE?,"Up to 30 minutes; reload the window (VS Code) or restart the IDE to apply sooner","notes,security-privacy-and-data-handling"
+Which content exclusion limitation catches people out?,"Exclusions are not supported in Edit and Agent modes of Copilot Chat, nor for symlinks or remote filesystems","notes,security-privacy-and-data-handling"
+What does Copilot code review leave on a pull request?,"Comment reviews with suggestions, never an approval","notes,agents-cli-and-customization"
+Which REST endpoint lists an organization's Copilot seats?,GET /orgs/{org}/copilot/billing/seats,"notes,enterprise-administration"
+Does the proxy filter input or output?,"Both: it screens prompts on the way in and applies harmful-content and public code checks on the way out","notes,data-architecture-and-lifecycle"

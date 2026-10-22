@@ -1,135 +1,88 @@
 # Azure Data Scientist Associate (DP-100) Study Plan
 
-## 10-Week Study Schedule
+> ⚠️ **DP-100 retired on 2026-06-01.** The exam can no longer be booked. This plan is kept as a structured way to learn Azure Machine Learning and language-model optimization on Azure, following the final skills outline (skills measured as of 2025-04-11). For a current Microsoft exam covering the generative AI half, see [AI-103](../ai-103/README.md).
 
-> **Time Commitment**: 12-15 hours/week
+## 10-Week Learning Schedule
+
+> **Time Commitment**: 10-12 hours/week
 > **Difficulty**: Associate
 
----
-
-## Study Approach
-
-This 10-week plan is designed to systematically cover all exam domains with hands-on practice and real-world scenarios.
-
-### Weekly Structure
-- **Days 1-2**: Study core concepts and services
-- **Days 3-4**: Hands-on labs and implementation
-- **Days 5-6**: Practice scenarios and troubleshooting
-- **Day 7**: Review and practice questions
+The weeks follow the four domains of the final outline, with time in proportion to their weights: design and prepare (20-25%), explore data and run experiments (20-25%), train and deploy models (25-30%), and optimize language models for AI applications (25-30%).
 
 ---
 
-## Week 1-2: Foundation and Core Services
+## Weeks 1-2: Design and Prepare a Machine Learning Solution (20-25%)
 
-### Week 1: Getting Started
-- [ ] Review exam objectives and domains
-- [ ] Set up Azure environment and tools
-- [ ] Complete Microsoft Learn introduction modules
-- [ ] Review relevant notes files
-- [ ] Create study schedule and track progress
+### Week 1: Designing the solution
+- [ ] Read [notes/machine-learning-solution-design.md](notes/machine-learning-solution-design.md)
+- [ ] For three example problems, write down the dataset structure and format, the compute needed, and whether you would use AutoML, the designer or code
+- [ ] Create an Azure Machine Learning workspace and look at what it provisions (storage, key vault, container registry, Application Insights)
 
-### Week 2: Core Domain #1
-- [ ] Study first major exam domain
-- [ ] Complete hands-on labs for core services
-- [ ] Practice with Azure Portal, CLI, and PowerShell
-- [ ] Review configuration scenarios
-- [ ] Complete domain practice questions
+### Week 2: Workspace resources and assets
+- [ ] Create a datastore pointing at a storage container
+- [ ] Create a compute instance, a compute cluster, and run a job on serverless compute
+- [ ] Connect the workspace to a Git repository
+- [ ] Create versioned data assets and a custom environment
+- [ ] Share an environment or model through a registry
 
 ---
 
-## Week 3-4: Domain Deep Dives
+## Weeks 3-4: Explore Data, and Run Experiments (20-25%)
 
-### Week 3: Domain #2
-- [ ] Study second major domain area
-- [ ] Implement practical solutions
-- [ ] Practice troubleshooting scenarios
-- [ ] Review best practices and design patterns
-- [ ] Complete practice questions
+### Week 3: Automated machine learning
+- [ ] Read [notes/data-exploration-model-training.md](notes/data-exploration-model-training.md)
+- [ ] Run AutoML on a tabular classification dataset; review featurization, the leaderboard and the explanation and fairness views
+- [ ] Read how AutoML differs for computer vision and NLP tasks
 
-### Week 4: Domain #3
-- [ ] Study third major domain
-- [ ] Hands-on implementation labs
-- [ ] Integration scenarios
-- [ ] Security and compliance considerations
-- [ ] Practice questions and review
+### Week 4: Notebooks and hyperparameter tuning
+- [ ] Configure a compute instance from its terminal and wrangle data in a notebook
+- [ ] Wrangle data with serverless Spark compute
+- [ ] Retrieve features from a feature store for training
+- [ ] Track a training run with MLflow
+- [ ] Run a sweep job: choose a sampling method, define the search space and primary metric, add an early termination policy
 
 ---
 
-## Week 5-6: Advanced Topics
+## Weeks 5-6: Train and Deploy Models (25-30%)
 
-### Week 5: Domain #4
-- [ ] Study remaining exam domains
-- [ ] Advanced configuration scenarios
-- [ ] Performance optimization
-- [ ] Cost management strategies
-- [ ] Practice questions
+### Week 5: Jobs, pipelines and model management
+- [ ] Submit a training script as a command job with parameters, compute and environment; troubleshoot a failure from the logs
+- [ ] Build a pipeline from custom components, pass data between steps, and schedule it
+- [ ] Inspect the MLmodel file and its signature; register an MLflow model
+- [ ] Generate a responsible AI dashboard for a model
 
-### Week 6: Integration and Scenarios
-- [ ] End-to-end solution design
-- [ ] Multi-service integration
-- [ ] Real-world case studies
-- [ ] Troubleshooting complex issues
-- [ ] Domain review
+### Week 6: Deployment
+- [ ] Read [notes/model-deployment-monitoring.md](notes/model-deployment-monitoring.md)
+- [ ] Deploy a model to a managed online endpoint and test it
+- [ ] Deploy a model to a batch endpoint and invoke a batch scoring job
 
 ---
 
-## Week 7-8: Practice and Review
+## Weeks 7-9: Optimize Language Models for AI Applications (25-30%)
 
-### Week 7: First Practice Exam
-- [ ] Take full-length practice exam #1
-- [ ] Review all incorrect answers
-- [ ] Identify weak areas
-- [ ] Deep dive into weak domains
-- [ ] Hands-on practice in weak areas
+### Week 7: Preparing and prompting
+- [ ] Read [notes/language-model-optimization.md](notes/language-model-optimization.md)
+- [ ] Deploy two models from the model catalog and compare them by benchmark and in the playground
+- [ ] Write down, for three scenarios, whether prompting, RAG or fine-tuning is the right first step and why
+- [ ] Build a prompt flow with a template and two variants; run it in bulk and read the trace
 
-### Week 8: Focused Review
-- [ ] Review all notes and key concepts
-- [ ] Practice complex scenarios
-- [ ] Service comparison review
-- [ ] Take practice exam #2 (aim for 80%+)
+### Week 8: Retrieval augmented generation
+- [ ] Clean, chunk and embed a small document set
+- [ ] Create an Azure AI Search index with vector, keyword and semantic ranking; compare results
+- [ ] Add retrieval to the prompt flow and evaluate groundedness and relevance
 
----
-
-## Week 8-9: Advanced Preparation
-
-### Week 8: Advanced Scenarios
-- [ ] Practice advanced troubleshooting
-- [ ] Multi-region and hybrid scenarios
-- [ ] Disaster recovery planning
-- [ ] Compliance and governance
-- [ ] Security best practices
-
-### Week 9: Final Practice
-- [ ] Take official practice exam
-- [ ] Review all flagged topics
-- [ ] Practice exam #3 (aim for 85%+)
-- [ ] Review decision trees and comparisons
+### Week 9: Fine-tuning
+- [ ] Prepare a small JSONL fine-tuning dataset with a validation split
+- [ ] Run a fine-tuning job on a supported base model and watch training and validation loss
+- [ ] Compare the fine-tuned model against the base model with your best prompt
 
 ---
 
-## Week 10: Final Review and Exam
+## Week 10: Review
 
-### Days 64-66: Comprehensive Review
-- [ ] Review all exam domains
-- [ ] Quick review of all notes
-- [ ] Service cheat sheets review
-- [ ] Common scenarios walkthrough
-
-### Days 67-68: Light Review
-- [ ] Review weak areas only
-- [ ] Quick CLI command review
-- [ ] Rest and mental preparation
-
-### Day 69: Day Before Exam
-- [ ] Light review of cheat sheets only (1 hour max)
-- [ ] Verify exam logistics and system requirements
-- [ ] Get good sleep
-- [ ] Stay calm and confident
-
-### Day 70: Exam Day
-- [ ] Light warm-up review (30 min max)
-- [ ] Take exam with confidence
-- [ ] Trust your preparation 🚀
+- [ ] Re-read the [fact sheet](fact-sheet.md) end to end
+- [ ] Work through the [DP-100 practice questions](../../practice-questions/azure-data-scientist-dp-100.md), especially Questions 16-30, which follow the final outline
+- [ ] Revisit whichever domain you scored lowest in
 
 ---
 
@@ -137,89 +90,15 @@ This 10-week plan is designed to systematically cover all exam domains with hand
 
 **👉 [Complete Azure Study Resources Guide](https://cloud.noblerworks.com/provider-resources/resources-azure/)**
 
-### Quick Links (DP-100 Specific)
-- **[DP-100 Official Exam Page](https://learn.microsoft.com/en-us/certifications/exams/dp-100/)** - Registration and exam details
-- **[Microsoft Learn - DP-100 Learning Path](https://learn.microsoft.com/en-us/certifications/azure-data-scientist/)** - FREE official study path
-- **[Azure Documentation](https://docs.microsoft.com/en-us/azure/)** - Complete Azure documentation
-- **[Azure Free Account](https://azure.microsoft.com/en-us/free/)** - $200 free credit for hands-on practice
+- **[DP-100 study guide (archived)](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-100)** - the final outline
+- **[Azure Machine Learning documentation](https://learn.microsoft.com/en-us/azure/machine-learning/)** - workspaces, jobs, pipelines, endpoints
+- **[Prompt flow](https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/overview-what-is-prompt-flow)** - flows, variants, tracing
+- **[RAG with Azure AI Search](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)** - retrieval for generative AI
+- **[Azure Free Account](https://azure.microsoft.com/en-us/free/)** - credit for hands-on practice
 
-### Recommended Study Materials
-- **Microsoft Learn (FREE)** - Official learning paths
-- **John Savill's DP-100 Study Cram (FREE)** - YouTube comprehensive review
-- **Scott Duffy or Alan Rodrigues Udemy Course** - $10-15 on sale
-- **Tutorials Dojo Practice Tests** - $14.99 (best value)
-- **MeasureUp Official Practice Test** - $99-119 (optional)
+## 💡 Tips
 
----
-
-## 📊 Study Progress Tracker
-
-### Weekly Milestones
-- [ ] Week 1-2: Foundation and core services ✓
-- [ ] Week 3-4: Domain deep dives ✓
-- [ ] Week 5-6: Advanced topics ✓
-- [ ] Week 7-8: Practice and review ✓
-- [ ] Week 9: Final preparation ✓
-- [ ] Week 10: Exam week ✓
-
-### Practice Exam Scores
-- [ ] Practice Exam 1 (Week 7): ___% (Target: 70%+)
-- [ ] Practice Exam 2 (Week 8): ___% (Target: 80%+)
-- [ ] Practice Exam 3 (Week 9): ___% (Target: 85%+)
-
-### Hands-On Labs Completed
-- [ ] Microsoft Learn sandbox labs
-- [ ] Azure Portal configurations
-- [ ] Azure CLI/PowerShell automation
-- [ ] Real-world scenario implementations
-
----
-
-## 🎯 Exam Day Strategy
-
-### Time Management
-- Read questions carefully (scenario-based questions can be long)
-- Flag difficult questions and move on
-- Don't spend more than 3 minutes on any question
-- Leave time to review flagged questions
-
-### Question Approach
-1. Identify key requirements and constraints
-2. Eliminate obviously incorrect answers
-3. Look for keywords (cost, performance, security, compliance)
-4. Choose the BEST answer for the scenario
-5. Trust your preparation
-
-### Common Exam Patterns
-- Service selection scenarios (when to use X vs. Y)
-- Configuration and troubleshooting
-- Security and compliance requirements
-- Cost optimization decisions
-- Performance and scalability
-
----
-
-## 💡 Pro Tips
-
-### Study Effectively
-- Use hands-on practice, not just reading
-- Focus on understanding WHY, not just memorizing
-- Practice with Azure CLI and PowerShell
-- Build real solutions in free tier
-- Join study communities (r/AzureCertification, Discord)
-
-### Exam Preparation
-- Take practice exams to identify weak areas
-- Review incorrect answers thoroughly
-- Don't just memorize dumps - understand concepts
-- Microsoft Learn is your best free resource
-- Practice exams worth the investment
-
-### Common Mistakes to Avoid
-- Not getting enough hands-on practice
-- Skipping Microsoft Learn paths
-- Using outdated study materials
-- Not taking practice exams
-- Cramming the night before
-
-Good luck on your DP-100 journey! You've got this! 🎉
+- Hands-on practice matters more than reading; every week above has a lab
+- Use the SDK v2 and CLI v2; SDK v1 material is out of date
+- For the language-model domain, always ask which approach fixes the actual problem: missing knowledge (RAG) or wrong behaviour (fine-tuning)
+- Check dates on any third-party material; much of it predates the final outline

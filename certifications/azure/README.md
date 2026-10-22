@@ -12,7 +12,7 @@ Study guides for the Azure AI and machine learning certifications. Every provide
 | [Microsoft Azure AI Fundamentals (AI-901)](ai-901/README.md) | AI-901 | Foundational | Ready | 4 |
 | [Microsoft Azure AI Apps and Agents Developer Associate (AI-103)](ai-103/README.md) | AI-103 | Associate | Ready | 5 |
 | [Microsoft Azure AI Engineer Associate (AI-102)](ai-102/README.md) | AI-102 | Associate | Retired | 5 |
-| [Microsoft Azure Data Scientist Associate (DP-100)](dp-100/README.md) | DP-100 | Associate | Retired | 3 |
+| [Microsoft Azure Data Scientist Associate (DP-100)](dp-100/README.md) | DP-100 | Associate | Retired | 4 |
 | [Azure Generative AI - Self-Directed Study Track](genai/README.md) | - | - | Study track | 3 |
 
 Other Microsoft Azure certifications are covered on the sibling Zero to Hero sites:

@@ -1,12 +1,12 @@
 ---
-last-updated: 2026-08-09
+last-updated: 2026-10-22
 difficulty: beginner
 reading-time: 9 min
 ---
 
 # 04 - Business strategies for a successful generative AI solution
 
-Weighted more heavily than a technical reader expects. This is the section that distinguishes the exam from every other AI certification in this repo.
+About 15% of the exam, the smallest of the four sections by weight (the guide gives fundamentals about 30%, offerings about 35% and techniques about 20%). It still matters more than its size suggests for a technical reader, because it is the section that distinguishes this exam from every other AI certification in this repo: the questions want the business answer (start from the problem, measure the outcome, keep a human in the loop), and engineers lose marks here by reaching for a technical fix.
 
 ---
 

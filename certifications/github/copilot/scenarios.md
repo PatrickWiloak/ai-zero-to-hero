@@ -16,7 +16,7 @@ D. Copilot Free for every developer
 **Correct Answer:** B
 
 **Explanation:**
-Copilot Business is the minimum plan that offers content exclusions, audit logs, prompt/suggestion non-retention, and IP indemnification (with duplicate detection enabled). Copilot Enterprise adds more (knowledge bases, PR summaries, custom models) but is not required by the stated requirements.
+Copilot Business is the minimum plan that offers content exclusions, audit logs, prompt/suggestion non-retention, and IP indemnification (with duplicate detection enabled). Copilot Enterprise adds more (a larger premium allowance and enterprise-level features) but is not required by the stated requirements.
 
 **Why other options are wrong:**
 - **A:** Pro is an individual plan; it lacks admin content exclusions and IP indemnity.
@@ -36,7 +36,7 @@ A compliance officer is worried about receiving code suggestions that match publ
 A. Content exclusions
 B. Duplicate detection filter
 C. Custom models
-D. Knowledge bases
+D. Copilot Spaces
 
 **Correct Answer:** B
 
@@ -46,7 +46,7 @@ The duplicate detection filter blocks suggestions that match approximately 150 c
 **Why other options are wrong:**
 - **A:** Content exclusions prevent files from being used as context; they do not block matches against public code.
 - **C:** Custom models personalize suggestions; they do not filter matches.
-- **D:** Knowledge bases provide repo context for Enterprise chat; not a public code filter.
+- **D:** Spaces curate context for chat; they are not a public code filter.
 
 ---
 
@@ -85,7 +85,7 @@ A developer wants Copilot to generate unit tests for a selected function in VS C
 **Options:**
 A. Type a comment above the function and press Tab to accept
 B. Select the function, open Copilot Chat, and run `/tests`
-C. Run `gh copilot explain` on the function
+C. Ask Copilot code review to comment on the function
 D. Accept the next inline suggestion
 
 **Correct Answer:** B
@@ -95,7 +95,7 @@ The `/tests` slash command in chat is specifically designed to generate tests fo
 
 **Why other options are wrong:**
 - **A:** Can work but is slower and less consistent than `/tests`.
-- **C:** `gh copilot explain` describes shell commands, not code tests.
+- **C:** Code review comments on changes; it does not write a test suite.
 - **D:** Inline suggestions may not target test generation.
 
 ---
@@ -161,7 +161,7 @@ A Copilot Business customer wants IP indemnification for generated suggestions.
 A. The customer has Copilot Business and the duplicate detection filter is enabled
 B. The customer has Copilot Free with duplicate detection enabled
 C. The customer pays an additional per-seat fee for indemnification
-D. The customer has enabled knowledge bases
+D. The customer has created a Copilot Space
 
 **Correct Answer:** A
 
@@ -171,7 +171,7 @@ IP indemnification applies to Copilot Business and Copilot Enterprise customers 
 **Why other options are wrong:**
 - **B:** Free does not include indemnity.
 - **C:** No additional fee is required; indemnity is included with Business/Enterprise.
-- **D:** Knowledge bases are an Enterprise feature and unrelated to indemnification.
+- **D:** Spaces curate chat context and are unrelated to indemnification.
 
 ---
 
@@ -184,44 +184,44 @@ A developer frequently forgets Bash flag combinations for `tar` and `find`.
 
 **Options:**
 A. GitHub Mobile app
-B. `gh copilot suggest`
+B. The Copilot CLI (`copilot`)
 C. Copilot PR summaries
-D. Copilot knowledge bases
+D. Copilot Spaces
 
 **Correct Answer:** B
 
 **Explanation:**
-`gh copilot suggest` accepts natural language and proposes shell, Git, or gh CLI commands. It is the right tool for terminal tasks. `gh copilot explain` is its companion for explaining existing commands.
+The Copilot CLI is Copilot's agent in the terminal: describe what you want in natural language and it proposes (and, with approval, runs) the command, or explains one you paste. It replaced the old `gh copilot suggest` and `gh copilot explain` extension, which stopped working on 2025-10-25.
 
 **Why other options are wrong:**
 - **A:** Mobile is for on-the-go GitHub tasks, not local shell commands.
 - **C:** PR summaries are for pull request descriptions, not the shell.
-- **D:** Knowledge bases are for Enterprise chat context, not CLI help.
+- **D:** Spaces curate context for chat, not shell help.
 
 ---
 
-## Scenario 9: Enterprise-Only Feature
+## Scenario 9: Curated Context for the Team
 
 ### Scenario
 A platform team wants to curate a collection of internal engineering documents that Copilot Chat can reference when answering developer questions on github.com.
 
-**Question:** Which feature and plan is required?
+**Question:** Which feature fits?
 
 **Options:**
-A. Content exclusions on Copilot Business
-B. Knowledge bases on Copilot Enterprise
-C. Custom models on Copilot Business
-D. Copilot Extensions on Copilot Free
+A. Content exclusions on the documentation repositories
+B. An organization-owned Copilot Space holding the documents
+C. A repository custom instructions file listing the documents
+D. The public code filter set to allowed with references
 
 **Correct Answer:** B
 
 **Explanation:**
-Knowledge bases are an Enterprise feature that let admins curate a collection of markdown repos as context for Copilot Chat on github.com.
+Copilot Spaces curate repositories, files, issues, notes and uploads as context, and organization-owned Spaces can be shared with members. Spaces replaced Copilot knowledge bases, which were retired on 2025-11-01; anyone with a Copilot licence can create one.
 
 **Why other options are wrong:**
 - **A:** Content exclusions remove context; they do not add curated references.
-- **C:** Custom models are preview and Enterprise-only; they are not a curated document store.
-- **D:** Extensions are available on multiple plans but are not the same as a knowledge base.
+- **C:** Instructions add standing guidance to requests; they do not make a document collection searchable.
+- **D:** Code referencing concerns public code matches, not internal documents.
 
 ---
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This section covers governance and evaluation for GenAI applications, representing 20% of the exam. You need to understand RAG evaluation metrics, LLM-as-judge patterns, guardrails, and GenAI governance.
+This note covers the foundations of **Section 5: Governance** and **Section 6: Evaluation and Monitoring** of the exam guide live since 2026-03-18 (the guide publishes no weights). You need to understand RAG evaluation metrics, LLM-as-judge patterns, guardrails and GenAI governance. The current outline is more specific than this note's original scope: built-in judges and which need ground truth, AI Gateway inference and usage tables, rate limits, custom scorers, SME feedback, masking and licensing are covered in [note 06](06-evaluation-monitoring-and-governance.md). Code below that uses `mlflow.evaluate(model_type="databricks-agent")` is the older API; current Databricks docs use `mlflow.genai.evaluate()` with scorers.
 
 **[📖 Agent Evaluation](https://docs.databricks.com/en/generative-ai/agent-evaluation/index.html)** - Evaluation framework
 **[📖 AI Governance](https://docs.databricks.com/aws/en/ai-gateway/ai-governance)** - GenAI governance

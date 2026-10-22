@@ -13,14 +13,15 @@
 
 #### Day 3-4: Plan and Feature Matrix
 - [ ] Build a feature matrix comparing Free, Pro, Business, Enterprise
-- [ ] Identify which features are Enterprise-only (knowledge bases, PR summaries, custom models)
+- [ ] Read the [GH-300 study guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-300) end to end and note the seven skill areas
+- [ ] Note which older features are retired (knowledge bases, Extensions, Workspace, `gh copilot suggest` / `explain`, Spark)
 - [ ] Note which controls are user-level vs admin-level
 - [ ] Read: [Plans for Copilot](https://docs.github.com/en/copilot/about-github-copilot/plans-for-github-copilot)
 
 #### Day 5-6: Install and Trial
 - [ ] Start a Copilot Free or Individual trial
 - [ ] Install Copilot in VS Code and at least one JetBrains IDE
-- [ ] Install the Copilot CLI: `gh extension install github/gh-copilot`
+- [ ] Install the Copilot CLI: `npm install -g @github/copilot` (or Homebrew / WinGet), run `copilot`, sign in with `/login`
 - [ ] Accept and decline suggestions; try all keyboard shortcuts
 - [ ] Review Notes: `notes/01-copilot-fundamentals.md`
 
@@ -46,7 +47,9 @@
 
 #### Day 12-13: Other Surfaces
 - [ ] Try Copilot Chat on github.com (repo-level and general)
-- [ ] Use `gh copilot suggest` and `gh copilot explain` in terminal
+- [ ] Use the Copilot CLI interactively, then run one task with `copilot -p "..."`
+- [ ] Try agent mode and Copilot Edits on the same small change and compare
+- [ ] Configure one MCP server; read [notes 07](notes/07-agents-cli-and-customization.md)
 - [ ] Explore Copilot in GitHub Mobile
 - [ ] Generate a commit message with IDE source control
 - [ ] Review Notes: `notes/03-ide-integration-and-workflows.md`
@@ -75,7 +78,7 @@
 - [ ] Generate a GitHub Actions workflow for CI with Copilot Chat
 - [ ] Generate a multi-stage Dockerfile
 - [ ] Generate Terraform for a simple AWS resource
-- [ ] Explain a complex shell pipeline with `gh copilot explain`
+- [ ] Explain a complex shell pipeline with the Copilot CLI
 
 #### Day 21: Week 3 Review
 - [ ] Review your strongest and weakest prompt patterns
@@ -99,9 +102,12 @@
 - [ ] Review audit log events for Copilot
 
 #### Day 26-27: Enterprise Features
-- [ ] Study knowledge bases (Enterprise) and how they are built
+- [ ] Create a Copilot Space from a repository and some notes
 - [ ] Study PR summaries and Copilot code review
-- [ ] Study Copilot Extensions and custom GitHub Apps integrations
+- [ ] Add `.github/copilot-instructions.md`, a path-specific `.instructions.md` and a `.prompt.md` to a test repository
+- [ ] Request a Copilot code review on a pull request
+- [ ] Read the Copilot seat management REST endpoints in [notes 05](notes/05-enterprise-administration.md)
+- [ ] Read [notes 08](notes/08-data-architecture-and-lifecycle.md) and [notes 09](notes/09-productivity-testing-and-safeguards.md)
 - [ ] Review Notes: `notes/05-enterprise-administration.md`
 
 #### Day 28: Week 4 Review
@@ -122,7 +128,8 @@
 
 #### Day 33-34: Mock Exams
 - [ ] Take any available practice exam
-- [ ] Time yourself to 90 minutes
+- [ ] Time yourself to 100 minutes
+- [ ] Take Microsoft's free practice assessment
 - [ ] Log weak areas and revisit specific notes
 
 #### Day 35: Exam Day
@@ -133,16 +140,18 @@
 
 ## Study Tips
 
-### Time Allocation by Domain Weight
+### Time Allocation by Skill Area Weight
 
-| Domain | Weight | Suggested Hours |
+| Skill area (2026-08-07) | Weight | Suggested Hours |
 |--------|--------|----------------|
-| Using Copilot | 25% | 10-12 hours |
-| Introduction to Copilot | 20% | 8-10 hours |
-| Responsible Use | 15% | 6-8 hours |
-| Plans and Features | 15% | 6-8 hours |
-| Developer Use Cases | 15% | 6-8 hours |
-| Prompt Engineering | 10% | 4-6 hours |
+| Use GitHub Copilot features | 25-30% | 12-14 hours |
+| Use GitHub Copilot responsibly | 15-20% | 6-8 hours |
+| Data and architecture | 10-15% | 4-6 hours |
+| Prompt engineering and context crafting | 10-15% | 4-6 hours |
+| Developer productivity | 10-15% | 4-6 hours |
+| Privacy, content exclusions and safeguards | 10-15% | 4-6 hours |
+
+The outline also lists "GitHub Copilot features (25-30%)" with no objectives; it appears to duplicate the first row.
 
 ### Recommended Daily Schedule
 - **20 min** reading Copilot docs or notes
@@ -155,4 +164,4 @@
 2. Generate a full test suite for an existing small repo
 3. Configure content exclusions on a sandbox org and verify behavior
 4. Create a GitHub Actions workflow by prompting Copilot
-5. Use `gh copilot` to build 10 shell one-liners from natural language
+5. Use the Copilot CLI to build 10 shell one-liners from natural language

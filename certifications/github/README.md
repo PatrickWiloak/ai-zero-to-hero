@@ -8,7 +8,7 @@ Study guides for the GitHub AI and machine learning certifications. Every provid
 
 | Cert | Code | Level | Status | Notes |
 |------|------|-------|--------|------:|
-| [GitHub Copilot Certification Exam Guide](copilot/README.md) | - | - | Ready | 6 |
+| [GitHub Copilot Certification Exam Guide (GH-300)](copilot/README.md) | - | - | Ready | 9 |
 
 Other GitHub certifications are covered on the sibling Zero to Hero sites:
 

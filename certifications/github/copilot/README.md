@@ -1,185 +1,115 @@
-# GitHub Copilot Certification Exam Guide
+# GitHub Copilot Certification Exam Guide (GH-300)
 
 ## Exam Overview
 
-The GitHub Copilot certification validates your ability to use GitHub Copilot effectively in professional development workflows. It covers Copilot's capabilities, plans, integrations, responsible AI usage, prompt engineering, and enterprise administration. The exam targets developers, team leads, and administrators who deploy or consume AI-assisted development tools.
+The GitHub Copilot certification (exam GH-300) validates that you can use GitHub Copilot to improve software development productivity, quality and security. Microsoft's audience profile names responsible AI use, prompt engineering, Copilot features across the plans, and privacy safeguards, and expects familiarity with GitHub fundamentals and at least one programming language. The current skills outline, **as of 2026-08-07**, has moved well beyond ghost text and chat: agent mode, the Copilot CLI, MCP, sub-agents, instructions and prompt files, Copilot code review policies and subscription management through the REST API are all named objectives.
 
 ### Exam Details
-- **Exam Name:** GitHub Copilot
-- **Duration:** 90 minutes
-- **Format:** Multiple choice and multiple response
-- **Number of Questions:** ~65 questions
-- **Passing Score:** 70%
-- **Cost:** $99 USD
-- **Delivery:** Online proctored via PSI
-- **Prerequisites:** None required; familiarity with Git, GitHub, and at least one modern IDE recommended
-- **Validity:** 2 years
-- **Retake Policy:** 24-hour wait for first retake, 14 days for subsequent attempts
+- **Exam code:** GH-300
+- **Duration:** 100 minutes (it was 90 before the current outline)
+- **Format:** Multiple choice and multiple response; may include interactive components
+- **Number of questions:** Not published by Microsoft
+- **Passing score:** 700 on a 1-1000 scale
+- **Cost:** Set by the country where the exam is proctored (around USD 99 in the US)
+- **Delivery:** Pearson VUE (online proctored or test centre)
+- **Languages:** English, Spanish, Portuguese (Brazil), Korean, Japanese
+- **Prerequisites:** None required; Git, GitHub and IDE familiarity recommended
+- **Validity:** 2 years; GitHub is moving to Microsoft's recertification process
+- **Retake policy:** 24 hours after the first attempt; longer for later attempts
+- **Skills outline checked:** 2026-10-22 against the [GH-300 study guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-300)
 
 ### Official Resources
-- **[GitHub Certifications](https://learn.github.com/certifications)** - Program overview and registration
-- **[GitHub Copilot Documentation](https://docs.github.com/en/copilot)** - Complete product docs
-- **[GitHub Copilot Trust Center](https://resources.github.com/copilot-trust-center/)** - Security, privacy, IP
-- **[GitHub Skills](https://skills.github.com/)** - Interactive learning
-- **[Copilot Learning Pathway](https://learn.github.com/learning-pathways)** - Structured path
+- **[GH-300 study guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-300)** - the skills measured; study against this
+- **[GitHub Copilot certification page](https://learn.microsoft.com/en-us/credentials/certifications/github-copilot/)** - registration, duration, free practice assessment
+- **[GitHub Copilot Documentation](https://docs.github.com/en/copilot)** - complete product docs
+- **[GitHub Copilot Fundamentals Part 1](https://learn.microsoft.com/en-us/training/paths/copilot/)** and **[Part 2](https://learn.microsoft.com/en-us/training/paths/gh-copilot-2/)** - the official learning paths
+- **[GitHub Trust Center](https://github.com/trust-center)** - how Copilot handles data
 
-## Exam Domains
+## Skills Measured (as of 2026-08-07)
 
-The GitHub Copilot exam is organized around six major functional areas. The weight percentages below reflect the most commonly published distribution for the exam.
+The outline lists **seven skill areas**. One of them needs a warning: the published "skills at a glance" contains both "Use GitHub Copilot features (25-30%)" and a second line, "GitHub Copilot features (25-30%)", that has no objectives of its own anywhere in the study guide. It reads as a duplicate of the first. Counting it, the ranges add up to well over 100%; leaving it out, they bracket 100% the way Microsoft outlines normally do. Study the six areas that have objectives, and treat "Use GitHub Copilot features" as the single biggest area on the exam.
 
-### Domain 1: Introduction to GitHub Copilot (20%)
+| # | Skill area | Weight | Notes in this repo |
+|---|---|---|---|
+| 1 | Use GitHub Copilot responsibly | 15-20% | [04](notes/04-security-privacy-and-data-handling.md), [08](notes/08-data-architecture-and-lifecycle.md) |
+| 2 | Use GitHub Copilot features | 25-30% | [02](notes/02-code-completions-and-chat.md), [03](notes/03-ide-integration-and-workflows.md), [05](notes/05-enterprise-administration.md), [07](notes/07-agents-cli-and-customization.md) |
+| 3 | GitHub Copilot features | 25-30% | Listed in the outline with no objectives; see above |
+| 4 | Understand GitHub Copilot data and architecture | 10-15% | [08](notes/08-data-architecture-and-lifecycle.md) |
+| 5 | Apply prompt engineering and context crafting | 10-15% | [06](notes/06-prompt-engineering-for-copilot.md) |
+| 6 | Improve developer productivity with GitHub Copilot | 10-15% | [09](notes/09-productivity-testing-and-safeguards.md) |
+| 7 | Configure privacy, content exclusions, and safeguards | 10-15% | [04](notes/04-security-privacy-and-data-handling.md), [09](notes/09-productivity-testing-and-safeguards.md) |
 
-Covers what GitHub Copilot is, how it works, and what products are available.
+### What changed from the older outline
 
-**Key Topics:**
-- What GitHub Copilot is and the AI models that power it (OpenAI Codex, GPT-4o, Claude, Gemini)
-- Copilot product family: Copilot Individual, Copilot Business, Copilot Enterprise, Copilot Free
-- Feature availability by plan (chat, PR summaries, knowledge bases, custom models)
-- How Copilot differs from traditional code completion (LSP) and snippet tools
-- High-level architecture: client extension, proxy, model providers, telemetry
-- Supported languages (best for popular languages like Python, JavaScript, TypeScript, Go, Ruby, Java, C#)
+Older guides (and older versions of this page) described six domains with fixed percentages and a 90-minute exam: introduction, responsible use, plans and features, using Copilot, prompt engineering and developer use cases. The current outline regroups that content and adds a great deal. New or much expanded: agent mode, Copilot Edits and MCP; managing agent sessions and delegating to sub-agents; the Copilot CLI as a full objective group; Copilot code review and organization policies for it; Spaces, Spark and pull request summaries; instructions files and prompt files; audit log events; subscription management through the REST API; and a separate area on data flow, prompt building, proxy filtering and the suggestion lifecycle. Several products named in older material have since been retired (Copilot Workspace, knowledge bases, GitHub App-based Copilot Extensions and the old `gh-copilot` extension), so treat any study source that leans on them as out of date.
 
-**What to Study:**
-- Differences in features between Individual, Business, and Enterprise
-- Which features are GA vs in public preview
-- How context is collected from open files, tabs, and the repo
+### 1. Use GitHub Copilot responsibly (15-20%)
 
-### Domain 2: Responsible Use of GitHub Copilot (15%)
+This area is about judgment rather than features. You need to describe the risks and limitations of generative AI tools (confident but wrong code, insecure patterns, outdated APIs, bias, suggestions that match public code), describe what ethical and responsible use looks like, and identify harms with their mitigations. The second objective group, "validate and operate AI tools", is the practical core: explain why every piece of AI output must be validated (read it, test it, scan it, review it like a colleague's code) and how to operate Copilot responsibly day to day, which means the developer stays accountable for what gets committed. Expect scenario questions where the right answer is "review and test before merging" rather than any product setting.
 
-Covers responsible AI, limitations, bias, accuracy, and mitigation strategies.
+### 2. Use GitHub Copilot features (25-30%)
 
-**Key Topics:**
-- Common AI limitations: hallucinations, outdated suggestions, bias, security vulnerabilities
-- Verification workflows (review, test, scan before commit)
-- Duplicate detection filter and public code matching
-- Content exclusions (path-based exclusion of files from context and suggestions)
-- IP indemnification for Business/Enterprise with duplicate detection enabled
-- Accessibility features and settings
+The largest area, with four objective groups.
 
-**What to Study:**
-- How and where to configure content exclusions (repo, org, enterprise levels)
-- What the duplicate detection filter blocks and when
-- The shared responsibility model for AI-generated code
+**Copilot in the IDE.** Enable Copilot in the editor, trigger it through inline suggestions, chat, the CLI and agent mode, and configure content exclusions for specific files or repositories from the application's point of view (what a developer sees when a file is excluded).
 
-### Domain 3: GitHub Copilot Plans and Features (15%)
+**Copilot CLI.** Define what the Copilot CLI is and why developers use it, install it, describe its key features and commands, use it interactively and in sessions, and use it to generate scripts and manage files. This is the current agentic CLI started with `copilot`, not the retired `gh copilot suggest` and `gh copilot explain` extension.
 
-Covers the feature matrix, billing, and seat management.
+**Features and capabilities.** Use agent mode, Copilot Edits and MCP; manage agent sessions and delegate tasks to sub-agents to keep context focused; use Copilot for code review and coding help; use Spaces, Spark, pull request summaries and review standards set through instructions files; and know the limits, options, feedback mechanisms and commands of Copilot Chat, including reusing prompt files for consistent responses.
 
-**Key Topics:**
-- Copilot Free, Individual, Business, Enterprise feature differences
-- Chat in IDE, chat in GitHub.com, PR summaries, code review, knowledge bases
-- Copilot in the CLI (`gh copilot suggest`, `gh copilot explain`)
-- Copilot Extensions (Marketplace, custom extensions via GitHub Apps)
-- Copilot Workspace (task-centric development)
-- Seat assignment, unassignment, and billing cycles
+**Organization settings and policies.** Configure organization-wide policies (including Copilot code review policies and which features are available in IDEs and on github.com), use audit log events, and manage subscriptions through the REST API.
 
-**What to Study:**
-- Which chat features require Business or Enterprise
-- How seats are assigned by admins and how users activate them
-- What knowledge bases do and which SKU includes them (Enterprise)
+### 3. GitHub Copilot features (25-30%)
 
-### Domain 4: Using GitHub Copilot (25%)
+Listed in the skills at a glance and on the certification page, but with no objectives in the study guide. Prepare for it by covering area 2 thoroughly.
 
-Largest domain. Covers day-to-day usage across IDE, chat, CLI, and PR workflows.
+### 4. Understand GitHub Copilot data and architecture (10-15%)
 
-**Key Topics:**
-- Inline code completions and ghost text acceptance (Tab, Alt+] / Alt+[)
-- Copilot Chat: inline, panel, quick chat, slash commands (`/explain`, `/fix`, `/tests`, `/doc`)
-- Agents and participants: `@workspace`, `@terminal`, `@vscode`, `@github`
-- Context providers: `#file`, `#selection`, `#codebase`, `#terminalLastCommand`
-- Copilot in VS Code, Visual Studio, JetBrains IDEs, Neovim, Xcode, Eclipse
-- Copilot in GitHub Mobile and GitHub.com
-- Copilot pull request summaries and code review
-- Copilot in the CLI
+How a request travels. You need to explain how data is used, where it flows and with whom it is shared; how Copilot processes input and builds a prompt from the code around the cursor, open files and chat history; and how the proxy filters requests and post-processes responses (content exclusions, harmful-content filtering, the public code filter). The second group asks you to describe the lifecycle of a code suggestion from keystroke to accepted code, and to describe the limitations of LLMs and of Copilot specifically.
 
-**What to Study:**
-- All common chat slash commands and what they do
-- Keyboard shortcuts for accepting, rejecting, and cycling suggestions
-- How to attach context explicitly and when context is implicit
+### 5. Apply prompt engineering and context crafting (10-15%)
 
-### Domain 5: Prompt Engineering for GitHub Copilot (10%)
+Describe how a prompt is structured and how Copilot decides what context to include, use zero-shot and few-shot prompting, and apply prompt-crafting best practice (clear goal, specific detail, examples, breaking work into steps). The second group covers the principles behind prompt engineering and the prompt process flow, including how chat history is carried into later turns and why a fresh thread helps when a conversation drifts.
 
-Covers writing effective prompts, comments, and chat messages.
+### 6. Improve developer productivity with GitHub Copilot (10-15%)
 
-**Key Topics:**
-- The 4 S's: Single, Specific, Short, Surround
-- Providing examples, expected inputs and outputs
-- Breaking large tasks into smaller steps
-- Using neighbor tabs and open files as implicit context
-- Zero-shot, one-shot, few-shot prompting with Copilot Chat
-- Iterative refinement and conversational follow-ups
+Use Copilot to generate, refactor and document code; accelerate learning and reduce context switching; generate sample data; and modernize legacy code. The testing and security group asks you to generate unit and integration tests, identify edge cases and write assertions, and have Copilot suggest security improvements and performance optimizations, always with the developer checking the result.
 
-**What to Study:**
-- How naming, comments, and docstrings influence suggestions
-- How to seed a prompt with types, schemas, and imports
-- When to use chat vs inline completions
+### 7. Configure privacy, content exclusions, and safeguards (10-15%)
 
-### Domain 6: Developer Use Cases for AI (15%)
-
-Covers practical and enterprise scenarios where Copilot adds value.
-
-**Key Topics:**
-- Writing new code, refactoring, writing tests, writing documentation
-- Learning new languages and frameworks
-- Debugging and explaining unfamiliar code
-- Generating boilerplate (API clients, DTOs, migrations)
-- Legacy code modernization
-- DevOps scenarios (workflow YAML, Dockerfiles, Terraform, shell scripts)
-- Limitations in regulated industries and what controls exist
-
-**What to Study:**
-- How Copilot helps with test generation and code review
-- Where Copilot is weakest (proprietary DSLs, very recent frameworks)
-- Enterprise scenarios requiring content exclusions or air-gapped workflows
-
-## Key Concepts to Master
-
-### Product Knowledge
-1. Plan tiers and the feature matrix across Free, Individual, Business, Enterprise
-2. Which features require organization-level policies to be enabled
-3. How models are selected and switched in Copilot Chat
-
-### Usage Skills
-1. Effective prompt patterns and iterative refinement
-2. Context building with files, selections, and participants
-3. Slash commands, agents, and Copilot Extensions
-
-### Responsible AI
-1. Duplicate detection and IP indemnity requirements
-2. Content exclusions and how context gathering is affected
-3. Data retention, prompt logging, and telemetry controls
-
-### Administration
-1. Enabling Copilot at the org or enterprise level
-2. Setting content exclusions at repo, org, and enterprise scope
-3. Policy controls: suggestions matching public code, chat, network, MCP servers
-4. Audit log events and seat assignment reporting
+Configure content exclusions and editor settings, and describe who owns Copilot's output and what its limits are. Then apply safeguards: enable the filter that blocks suggestions matching public code, and resolve problems with suggestions and with content exclusions (for example, an exclusion that has not reached an IDE yet; changes can take up to 30 minutes and a window reload applies them sooner).
 
 ## Study Approach
 
 ### Recommended Path
-1. **Week 1:** Fundamentals and plans (Domains 1, 3)
-2. **Week 2:** Using Copilot in the IDE and chat (Domain 4)
-3. **Week 3:** Prompt engineering and developer use cases (Domains 5, 6)
-4. **Week 4:** Responsible use, administration, and review (Domains 2, plus admin cross-cutting)
+1. **Week 1:** Responsible use, data flow and the suggestion lifecycle (areas 1 and 4)
+2. **Week 2:** The IDE, chat, agent mode, Copilot Edits and MCP (area 2)
+3. **Week 3:** The Copilot CLI, customization files, Spaces, code review and organization policies (area 2)
+4. **Week 4:** Prompt engineering and productivity, including tests and security (areas 5 and 6)
+5. **Week 5:** Privacy, content exclusions and safeguards, then review and the free practice assessment (area 7)
 
 ### Hands-On Practice
-- Install the Copilot extension in at least two IDEs (VS Code plus one more)
-- Enable a Copilot Free or Individual trial and use it daily
-- Try chat, inline, CLI, and GitHub.com chat surfaces
-- Configure content exclusions on a test repository
-- Create a workflow YAML and a test file with Copilot assistance
+- Use Copilot daily in VS Code plus one other IDE, in ask, edit and agent modes
+- Install the Copilot CLI, run an interactive session, then a programmatic one with `-p`
+- Add a `.github/copilot-instructions.md`, one path-specific `.instructions.md` and one `.prompt.md` to a test repository
+- Configure an MCP server in the IDE and in the CLI
+- Create a Copilot Space from a repository and some notes
+- Request a Copilot code review on a pull request
+- Configure a content exclusion on a test repository and watch it take effect
+- Call the Copilot seat management REST endpoints against a test organization if you have one
 
 ### Study Materials
-- **[Copilot Docs](https://docs.github.com/en/copilot)** - Primary reference
-- **[Copilot Quickstart](https://docs.github.com/en/copilot/quickstart)** - Fast introduction
-- **[Copilot Best Practices](https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot)** - Official guidance
-- **[Copilot Trust Center](https://resources.github.com/copilot-trust-center/)** - Privacy and IP
-- **[GitHub Blog - Copilot](https://github.blog/tag/github-copilot/)** - Latest features
+- **[GH-300 study guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-300)** - the authoritative outline
+- **[Copilot Docs](https://docs.github.com/en/copilot)** - primary reference
+- **[Copilot customization cheat sheet](https://docs.github.com/en/copilot/reference/customization-cheat-sheet)** - instructions, prompt files, agents, skills, hooks, MCP
+- **[About Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli)** - the CLI objective group
+- **[Content exclusions](https://docs.github.com/en/copilot/how-tos/configure-content-exclusion/exclude-content-from-copilot)** - configuration and troubleshooting
+- **[GitHub Changelog - Copilot](https://github.blog/changelog/label/copilot/)** - features move fast; check what has been retired
 
 ### Tips for Success
-- Focus heavily on Domain 4 (Using Copilot) and Domain 1 (Fundamentals)
-- Memorize the feature matrix by plan, especially Business vs Enterprise
-- Learn the exact names of slash commands, agents, and context providers
-- Understand content exclusions vs duplicate detection; these are easy to confuse
-- Practice chat and inline daily for at least two weeks before the exam
+- Spend the most time on area 2; it is the largest by weight and the most changed
+- Know the agentic features by name: agent mode, Copilot Edits, coding agent, sub-agents, MCP
+- Know where each customization file lives and what it does
+- Separate content exclusions (keep files out of context) from the public code filter (block suggestions that match public code)
+- Check every study source's date; anything built around `gh copilot suggest`, knowledge bases or Copilot Extensions predates the current outline
+- Take Microsoft's free practice assessment on the certification page

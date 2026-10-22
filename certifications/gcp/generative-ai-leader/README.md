@@ -49,10 +49,12 @@ The recurring wrong answer is fine-tuning applied to a knowledge problem.
 
 ## Study sequence
 
-1. Fundamentals, which most readers of this repo will already know
-2. Google's product portfolio, which is the main memorization load
-3. Techniques for improving output
-4. Business strategy and responsible AI, which is more heavily weighted than a technical reader expects
+The exam guide weights the four sections at about 30% fundamentals, 35% Google Cloud's gen AI offerings, 20% techniques to improve output, and 15% business strategy. Spend your hours in roughly that proportion, with extra time on whichever section is furthest from your own background.
+
+1. Fundamentals (~30%), which most readers of this repo will already know
+2. Google's product portfolio (~35%), the largest section and the main memorization load
+3. Techniques for improving output (~20%)
+4. Business strategy and responsible AI (~15%), the smallest section by weight, but the one where a technical reader most often over-thinks a question that wants the business answer
 
 Schedule in the [practice plan](practice-plan.md).
 

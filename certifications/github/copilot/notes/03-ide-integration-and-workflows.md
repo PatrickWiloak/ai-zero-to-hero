@@ -59,37 +59,17 @@ General steps (VS Code shown):
 
 ## Copilot CLI
 
-### Installation
+The current Copilot CLI is an agent in the terminal, started with `copilot`. It replaced the `gh copilot suggest` / `gh copilot explain` extension, which stopped working on 2025-10-25.
 
 ```bash
-gh extension install github/gh-copilot
+npm install -g @github/copilot      # Node.js 22 or later; or Homebrew, WinGet, the install script, or `gh copilot`
+copilot                              # interactive session; use /login on first run
+copilot -p "list files changed in the last 24 hours and summarize them"   # programmatic: run and exit
 ```
 
-Confirm:
+Inside a session, Shift+Tab toggles plan mode, and slash commands such as `/model`, `/mcp`, `/context` and `/compact` manage the session. Tools that modify or execute files need approval. Full detail is in [note 07](07-agents-cli-and-customization.md).
 
-```bash
-gh copilot --version
-```
-
-### Commands
-
-```bash
-# Natural language to command
-gh copilot suggest "how do I list all files modified in the last 24 hours?"
-
-# Explain an existing command
-gh copilot explain "grep -Rni --include='*.py' 'TODO' ."
-```
-
-Use flags to force shell, git, or gh CLI target:
-
-```bash
-gh copilot suggest -t shell "unzip all .gz files in a folder"
-gh copilot suggest -t git "squash the last 3 commits into one"
-gh copilot suggest -t gh "list my open PRs"
-```
-
-**[Copilot in the CLI](https://docs.github.com/en/copilot/github-copilot-in-the-cli/about-github-copilot-in-the-cli)** - CLI docs
+**[About Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli)** - CLI docs
 
 ## Copilot on GitHub.com
 
@@ -104,25 +84,12 @@ On a repository page, chat is scoped to that repo and can reason about its struc
 ### Issues and PRs
 
 - Summarize a long issue thread
-- Draft a PR description based on the diff (Enterprise)
-- Comment on PRs where Copilot is a reviewer (Enterprise)
+- Draft a PR description based on the diff (pull request summaries)
+- Comment on PRs where Copilot is requested as a reviewer (Copilot code review)
 
-## Copilot Extensions
+## Retired: Copilot Extensions and Copilot Workspace
 
-Copilot Extensions extend chat with third-party or internal services. They are installed from the Copilot Extensions Marketplace.
-
-Examples:
-- `@sentry` - Query Sentry errors from chat
-- `@mongodb` - Query MongoDB docs and sample data
-- `@stripe` - Generate Stripe API code and answer billing questions
-
-Custom extensions are built as GitHub Apps exposing an Agent endpoint.
-
-**[Copilot Extensions](https://github.com/marketplace?type=apps&copilot_app=true)** - Marketplace
-
-## Copilot Workspace
-
-A task-centric environment (currently preview/limited) that takes an issue and drafts a plan, implementation, and PR. Designed for end-to-end issue-to-PR workflows.
+Older study material describes **Copilot Extensions** (chat agents such as `@sentry` installed from the Marketplace as GitHub Apps) and **Copilot Workspace** (a task-centric issue-to-PR environment). GitHub sunset GitHub App-based Copilot Extensions in November 2025 in favour of MCP servers, and Copilot Workspace ended as a technical preview in 2025; its issue-to-pull-request role is now filled by the Copilot coding agent. Neither appears in the 2026-08-07 skills outline. See [note 07](07-agents-cli-and-customization.md) for MCP and the coding agent.
 
 ## Typical Workflows
 
@@ -154,7 +121,7 @@ A task-centric environment (currently preview/limited) that takes an issue and d
 1. Ask chat to generate a GitHub Actions workflow for CI
 2. Ask for a multi-stage Dockerfile
 3. Ask for Terraform for a specific cloud resource
-4. Explain complex shell pipelines with `gh copilot explain`
+4. Explain complex shell pipelines with the Copilot CLI (`copilot`)
 
 ## MCP (Model Context Protocol) Support
 
@@ -163,15 +130,15 @@ Copilot Chat supports the Model Context Protocol, letting local MCP servers prov
 ## Key Exam Facts
 
 - Install order: Copilot extension, then Copilot Chat extension, then sign in
-- `gh copilot` requires `gh extension install github/gh-copilot`
+- The Copilot CLI starts with `copilot`; the old `gh-copilot` extension is retired
 - Copilot on GitHub.com has global, repo, issue, and PR contexts
-- Copilot Extensions are installed via the Marketplace as GitHub Apps
+- MCP servers replaced GitHub App-based Copilot Extensions (November 2025)
 - MCP is policy-controlled in Business and Enterprise
 
 ## Study Checklist
 
 - [ ] I can install Copilot in VS Code end to end
-- [ ] I can install and use `gh copilot suggest` and `gh copilot explain`
+- [ ] I can install the Copilot CLI and use it interactively and with `-p`
 - [ ] I can describe the chat surfaces on github.com
-- [ ] I know what Copilot Extensions are and where to find them
+- [ ] I know which older features (Extensions, Workspace, knowledge bases) are retired and what replaced them
 - [ ] I can run a full feature workflow (issue to PR) using Copilot

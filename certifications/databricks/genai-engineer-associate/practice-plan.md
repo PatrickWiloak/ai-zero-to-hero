@@ -1,8 +1,8 @@
 # Databricks GenAI Engineer Associate - Practice Plan
 
-A 5-week study plan assuming 1-2 hours of theory + 1-2 hours of hands-on lab per day. Adjust if you have less time available.
+A 6-week study plan assuming 1-2 hours of theory + 1-2 hours of hands-on lab per day. Adjust if you have less time available.
 
-The exam tests applied judgment on RAG design, evaluation, governance, and production GenAI patterns on Databricks. Hands-on with Mosaic AI / Vector Search / MLflow Evaluation is essential.
+The exam tests applied judgment across the six sections of the guide live since 2026-03-18: design, data preparation, application development, assembling and deploying, governance, and evaluation and monitoring. Databricks publishes no weights, so this plan gives the most time to the sections with the most objectives (application development and deployment). Hands-on with Vector Search, Agent Framework, MLflow evaluation and the Prompt Registry is essential.
 
 ---
 
@@ -20,7 +20,8 @@ The exam tests applied judgment on RAG design, evaluation, governance, and produ
 ### Reading
 - [ ] [README.md](README.md) full read
 - [ ] [fact-sheet.md](fact-sheet.md) skim
-- [ ] [notes/01-rag-design.md](notes/01-rag-design.md) deep read
+- [ ] [notes/01-rag-design.md](notes/01-rag-design.md) deep read (Section 2)
+- [ ] [notes/04-design-applications-and-agent-bricks.md](notes/04-design-applications-and-agent-bricks.md) deep read (Section 1)
 - [ ] Databricks RAG documentation
 - [ ] Pinecone, Weaviate, or other vendor's RAG tutorial for cross-reference
 
@@ -29,12 +30,15 @@ The exam tests applied judgment on RAG design, evaluation, governance, and produ
 - [ ] Try at least 3 chunking strategies (fixed-size, recursive, semantic)
 - [ ] Compare retrieval quality with cosine vs hybrid (BM25 + dense)
 - [ ] Implement a basic re-ranker
+- [ ] Parse one scanned image with `pytesseract` and one PDF with a PDF library; write the chunks to a Unity Catalog Delta table with a primary key and Change Data Feed
+- [ ] Measure retrieval with precision@k and recall@k on 20 labelled queries
 
 ### Self-check
 - [ ] Can I describe when to use a vector DB vs full-text search?
 - [ ] Do I know the tradeoffs between dense, sparse, and hybrid retrieval?
 - [ ] Can I explain how chunking strategy affects retrieval quality?
 - [ ] Do I know the major Databricks Vector Search features (DBSQL integration, automated sync)?
+- [ ] Can I say which Agent Brick fits cited Q&A, structured extraction and multi-agent routing?
 
 ---
 
@@ -72,7 +76,9 @@ The exam tests applied judgment on RAG design, evaluation, governance, and produ
 
 ### Hands-on
 - [ ] Build an evaluation set for your RAG (100+ question-answer pairs with expected answers)
-- [ ] Use MLflow Evaluation with LLM judges to score responses
+- [ ] Read [notes/06-evaluation-monitoring-and-governance.md](notes/06-evaluation-monitoring-and-governance.md)
+- [ ] Use `mlflow.genai.evaluate()` with built-in judges, including one that needs ground truth (`Correctness`) and one that does not (`RetrievalGroundedness`)
+- [ ] Write one code-based custom scorer
 - [ ] Track multiple eval runs in MLflow Experiments
 - [ ] Try at least 2 prompt variations and measure quality delta
 - [ ] Implement a simple regression gate: if eval score drops below baseline, fail the deployment
@@ -85,7 +91,27 @@ The exam tests applied judgment on RAG design, evaluation, governance, and produ
 
 ---
 
-## Week 4 - Production, Monitoring, and Governance
+## Week 4 - Agents, Assembly and Deployment
+
+### Reading
+- [ ] [notes/05-assembling-deploying-and-mcp.md](notes/05-assembling-deploying-and-mcp.md) deep read (Section 4)
+- [ ] Prompt Registry, MCP on Databricks and Vector Search endpoint docs
+
+### Hands-on
+- [ ] Wrap a chain as a pyfunc model with pre- and post-processing, log it with a signature and input example, and register it to Unity Catalog
+- [ ] Register a prompt, create `staging` and `production` aliases, promote a new version and roll it back
+- [ ] Run `ai_query()` over a table of a few thousand rows
+- [ ] Add a Genie space and one MCP server as tools for an agent
+- [ ] Put a simple Databricks App in front of the agent endpoint
+
+### Self-check
+- [ ] Can I choose between standard and storage-optimized Vector Search endpoints from the numbers?
+- [ ] Can I explain managed versus external versus custom MCP servers?
+- [ ] Do I know how a serving endpoint gets permission to reach a Vector Search index?
+
+---
+
+## Week 5 - Production, Monitoring, and Governance
 
 ### Reading
 - [ ] [notes/03-governance-evaluation.md](notes/03-governance-evaluation.md) re-read governance sections
@@ -95,7 +121,7 @@ The exam tests applied judgment on RAG design, evaluation, governance, and produ
 - [ ] Responsible AI guidelines (Microsoft / Anthropic / Google all publish good ones)
 
 ### Hands-on
-- [ ] Configure AI Gateway with rate limits and PII redaction
+- [ ] Configure AI Gateway with inference tables, usage tracking, rate limits and PII guardrails
 - [ ] Set up Lakehouse Monitoring on the inference logs
 - [ ] Build a dashboard tracking: latency p50/p95/p99, token usage, eval scores over time, refusal rate
 - [ ] Configure alerting (CloudWatch / equivalent) for quality drift
@@ -109,11 +135,11 @@ The exam tests applied judgment on RAG design, evaluation, governance, and produ
 
 ---
 
-## Week 5 - Practice Exams and Weak Areas
+## Week 6 - Practice Exams and Weak Areas
 
 ### Reading
 - [ ] Re-read [fact-sheet.md](fact-sheet.md) end to end
-- [ ] Re-read all 3 notes files
+- [ ] Re-read all 6 notes files
 - [ ] Browse the Databricks GenAI Engineer Associate exam guide (official)
 
 ### Practice exams

@@ -205,7 +205,7 @@ Good for: scaffolding new projects or files.
 
 ### Shell
 
-- Use `gh copilot suggest` rather than fighting completions in a text editor
+- Use the Copilot CLI (`copilot`) in the terminal rather than fighting completions in a text editor
 - Describe the OS (GNU vs BSD) if tooling differs
 
 ## Anti-Patterns

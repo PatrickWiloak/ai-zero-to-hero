@@ -1,12 +1,12 @@
 ---
-last-updated: 2026-10-16
+last-updated: 2026-10-22
 exam-version: DP-100
 exam-retires: 2026-06-01
 ---
 
 # Microsoft Azure Data Scientist Associate (DP-100) - Fact Sheet
 
-> ⚠️ **RETIRED June 1, 2026.** No longer available to new candidates. Kept as historical reference.
+> ⚠️ **RETIRED June 1, 2026.** No longer available to new candidates. Kept as historical reference. Domains below follow the final skills outline (skills measured as of 2025-04-11), which added "Optimize language models for AI applications" at 25-30%; older material shows a four-domain outline without it.
 
 ## Quick Reference
 
@@ -23,10 +23,10 @@ exam-retires: 2026-06-01
 
 | Domain | Weight | Key Focus |
 |--------|--------|-----------|
-| Design and prepare a machine learning solution | 20-25% | Workspace setup, compute, datastores, security |
-| Explore data and train models | 35-40% | Data prep, feature engineering, training, AutoML |
-| Prepare models for deployment | 20-25% | Model evaluation, interpretation, responsible AI, registration |
-| Deploy and retrain models | 20-25% | Deployment targets, monitoring, MLOps pipelines |
+| Design and prepare a machine learning solution | 20-25% | Dataset format, compute, development approach, workspace, datastores, compute targets, Git, data assets, environments, registries |
+| Explore data, and run experiments | 20-25% | AutoML (tabular, vision, NLP), notebooks, Spark wrangling, feature store, MLflow tracking, hyperparameter sweeps |
+| Train and deploy models | 25-30% | Command jobs, pipelines and components, MLmodel signature, registration, responsible AI, online and batch endpoints |
+| Optimize language models for AI applications | 25-30% | Model catalog and benchmarks, playground, prompt flow and variants, RAG with Azure AI Search, fine-tuning |
 
 ## Key Services by Domain
 
@@ -92,7 +92,7 @@ exam-retires: 2026-06-01
 - **[📖 Customer Managed Keys](https://learn.microsoft.com/en-us/azure/machine-learning/concept-customer-managed-keys)** - Encryption keys
 - **[📖 Azure Policy for ML](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-integrate-azure-policy)** - Governance
 
-### Explore Data and Train Models (35-40%)
+### Explore Data, and Run Experiments (20-25%)
 
 **Data Exploration and Preparation**
 - Data profiling: Statistical analysis and visualization
@@ -164,7 +164,7 @@ exam-retires: 2026-06-01
 - **[📖 Custom Components](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-create-component-pipeline-python)** - Create components
 - **[📖 Designer Pipelines](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-create-component-pipelines-ui)** - Build pipelines
 
-### Prepare Models for Deployment (20-25%)
+### Train and Deploy Models (25-30%): evaluation and model management
 
 **Model Evaluation**
 - Classification metrics: Accuracy, precision, recall, F1, AUC
@@ -224,7 +224,7 @@ exam-retires: 2026-06-01
 - **[📖 Inference Configuration](https://learn.microsoft.com/en-us/azure/machine-learning/v1/how-to-deploy-and-where)** - Deployment config
 - **[📖 ONNX Models](https://learn.microsoft.com/en-us/azure/machine-learning/concept-onnx)** - ONNX overview
 
-### Deploy and Retrain Models (20-25%)
+### Train and Deploy Models (25-30%): deployment
 
 **Online Endpoints (Real-time Inference)**
 - Managed online endpoints: Serverless real-time inference
@@ -290,6 +290,38 @@ exam-retires: 2026-06-01
 - **[📖 Retraining Models](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-retrain-designer)** - Retraining strategies
 - **[📖 Pipeline Schedules](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-schedule-pipeline-job)** - Automated scheduling
 - **[📖 Event-driven Retraining](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-use-event-grid)** - Event triggers
+
+### Optimize Language Models for AI Applications (25-30%)
+
+Full teaching notes: [language-model-optimization.md](notes/language-model-optimization.md)
+
+**Prepare for model optimization**
+- Model catalog: model cards list tasks, context length, languages, licence and limits
+- Deployment: serverless API (pay per token, no infrastructure) or managed compute (VMs billed by the hour)
+- Benchmarks compare quality, cost and throughput; still test on your own task
+- Playground: try system messages and parameters (temperature, top-p, max tokens, stop sequences)
+- Order of approaches: prompt engineering, then RAG (missing knowledge), then fine-tuning (behaviour, format, style)
+
+**Prompt engineering and prompt flow**
+- Manual evaluation on representative inputs; prompt variants tracked side by side
+- Prompt templates with placeholders such as `{{question}}` and `{{context}}`
+- Prompt flow: a graph of LLM, Python and prompt nodes; author visually or with the SDK; run in bulk; deploy as an endpoint
+- Tracing records each node's inputs, outputs, latency and tokens; evaluation flows score groundedness, relevance, coherence, fluency
+
+**Retrieval Augmented Generation**
+- Prepare data: clean, chunk (a few hundred tokens with overlap), embed
+- Vector store or Azure AI Search index with text, vector and metadata fields
+- Hybrid search (vector plus keyword) with the semantic ranker is the strong default
+- Evaluate retrieval and generation separately; groundedness checks claims against retrieved context
+
+**Fine-tuning**
+- Training data in JSONL conversations; quality over quantity; hold out validation data
+- Pick a base model that supports fine-tuning; smaller fine-tuned models can match larger general ones on narrow tasks
+- Hyperparameters: epochs, batch size, learning rate multiplier
+- Rising validation loss with falling training loss means overfitting; compare against the base model with a good prompt
+- **[📖 Prompt flow](https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/overview-what-is-prompt-flow)** - Flows and tracing
+- **[📖 RAG with Azure AI Search](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)** - Retrieval
+- **[📖 Fine-tuning](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/fine-tuning)** - Fine-tuning jobs
 
 ### MLOps and Automation
 
@@ -758,6 +790,9 @@ az ml online-endpoint get-logs --name my-endpoint --deployment blue
 - Configure compute for different workloads
 - Troubleshoot deployment failures
 - Implement MLOps workflows
+- Choose between prompt engineering, RAG and fine-tuning
+- Configure an Azure AI Search index for RAG
+- Prepare data and evaluate a fine-tuning job
 
 ### Question Keywords
 - **"Most cost-effective"** → Use compute clusters with auto-scaling, serverless compute, spot instances

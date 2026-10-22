@@ -1,5 +1,5 @@
 ---
-last-updated: 2026-08-09
+last-updated: 2026-10-22
 difficulty: beginner
 reading-time: 9 min
 ---
@@ -48,7 +48,7 @@ The repo carried twelve GCP certifications and neither of the two newest ones. M
 
 The exam guide organizes content into four areas.
 
-### 1. Fundamentals of generative AI
+### 1. Fundamentals of generative AI (~30%)
 
 **Key Concepts:**
 - AI, machine learning, deep learning, and generative AI, and how they nest
@@ -62,7 +62,7 @@ The exam guide organizes content into four areas.
 - Agents and tool use at a conceptual level
 - Limitations: knowledge cutoff, reasoning limits, bias, and non-determinism
 
-### 2. Google Cloud's generative AI offerings
+### 2. Google Cloud's generative AI offerings (~35%)
 
 **Key Concepts:**
 - **Agent Platform (formerly Vertex AI)** as the platform: Model Garden, Agent Studio, training, deployment, evaluation
@@ -78,7 +78,7 @@ The exam guide organizes content into four areas.
 - Where to build versus where to buy: platform, pre-built API, or applied assistant
 - Data residency, sovereignty, and enterprise controls
 
-### 3. Techniques to improve generative AI output
+### 3. Techniques to improve generative AI output (~20%)
 
 **Key Concepts:**
 - Prompt engineering: zero-shot, few-shot, chain-of-thought, role and system instructions
@@ -91,7 +91,7 @@ The exam guide organizes content into four areas.
 - Guardrails and safety filters
 - The cost and effort ladder: prompting, then grounding and RAG, then fine-tuning
 
-### 4. Business strategies for a successful generative AI solution
+### 4. Business strategies for a successful generative AI solution (~15%)
 
 **Key Concepts:**
 - Identifying use cases with genuine value, and recognizing ones that do not need AI

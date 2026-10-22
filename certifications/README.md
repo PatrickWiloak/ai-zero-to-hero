@@ -54,7 +54,7 @@ Not sure which one to take? Start with the [AI certifications guide](../careers/
 | [Microsoft Azure AI Fundamentals (AI-901)](azure/ai-901/README.md) | AI-901 | Foundational | Ready | 4 | [23](azure/ai-901/flashcards.csv) | [Questions](practice-questions/azure-ai-fundamentals-ai-901.md) |
 | [Microsoft Azure AI Apps and Agents Developer Associate (AI-103)](azure/ai-103/README.md) | AI-103 | Associate | Ready | 5 | [51](azure/ai-103/flashcards.csv) | [Questions](practice-questions/azure-ai-apps-agents-developer-ai-103.md) |
 | [Microsoft Azure AI Engineer Associate (AI-102)](azure/ai-102/README.md) | AI-102 | Associate | Retired | 5 | - | [Questions](practice-questions/azure-ai-engineer-ai-102.md) |
-| [Microsoft Azure Data Scientist Associate (DP-100)](azure/dp-100/README.md) | DP-100 | Associate | Retired | 3 | - | [Questions](practice-questions/azure-data-scientist-dp-100.md) |
+| [Microsoft Azure Data Scientist Associate (DP-100)](azure/dp-100/README.md) | DP-100 | Associate | Retired | 4 | - | [Questions](practice-questions/azure-data-scientist-dp-100.md) |
 | [Azure Generative AI - Self-Directed Study Track](azure/genai/README.md) | - | - | Study track | 3 | [32](azure/genai/flashcards.csv) | [Questions](practice-questions/azure-generative-ai-track.md) |
 
 ## Google Cloud
@@ -73,7 +73,7 @@ Not sure which one to take? Start with the [AI certifications guide](../careers/
 
 | Cert | Code | Level | Status | Notes | Flashcards | Practice questions |
 |------|------|-------|--------|------:|-----------:|--------------------|
-| [Databricks Certified Generative AI Engineer Associate](databricks/genai-engineer-associate/README.md) | - | Associate | Ready | 3 | - | [Questions](practice-questions/databricks-genai-engineer-associate.md) |
+| [Databricks Certified Generative AI Engineer Associate](databricks/genai-engineer-associate/README.md) | - | Associate | Ready | 6 | - | [Questions](practice-questions/databricks-genai-engineer-associate.md) |
 | [Databricks Certified Machine Learning Associate](databricks/ml-associate/README.md) | - | Associate | Ready | 5 | - | [Questions](practice-questions/databricks-ml-associate.md) |
 | [Databricks Certified Machine Learning Professional](databricks/ml-professional/README.md) | - | Professional | Ready | 5 | - | [Questions](practice-questions/databricks-ml-professional.md) |
 
@@ -83,7 +83,7 @@ Not sure which one to take? Start with the [AI certifications guide](../careers/
 
 | Cert | Code | Level | Status | Notes | Flashcards | Practice questions |
 |------|------|-------|--------|------:|-----------:|--------------------|
-| [GitHub Copilot Certification Exam Guide](github/copilot/README.md) | - | - | Ready | 6 | [43](github/copilot/flashcards.csv) | [Questions](practice-questions/github-copilot.md) |
+| [GitHub Copilot Certification Exam Guide (GH-300)](github/copilot/README.md) | - | - | Ready | 9 | [54](github/copilot/flashcards.csv) | [Questions](practice-questions/github-copilot.md) |
 
 ## Oracle
 

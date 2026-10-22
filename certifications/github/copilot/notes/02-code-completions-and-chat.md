@@ -81,7 +81,7 @@ Agents route the request to a specialized assistant.
 | `@terminal` | Help with shell and terminal commands |
 | `@github` | Query GitHub.com data (issues, PRs, repos) |
 
-Extensions installed from the Copilot Extensions marketplace can add custom agents.
+GitHub App-based Copilot Extensions, which used to add chat agents, were sunset in November 2025; MCP servers and custom agents now fill that role (see [note 07](07-agents-cli-and-customization.md)).
 
 ## Context Variables
 
@@ -145,13 +145,13 @@ Open an issue or PR and chat becomes context-aware:
 - "What files are affected?"
 - "Explain the failure in this check."
 
-## Copilot Code Review (Enterprise)
+## Copilot Code Review
 
 Copilot can be requested as a reviewer on a pull request. It produces comments and suggestions inline, similar to a human reviewer. This is an Enterprise feature.
 
 **[Copilot Code Review](https://docs.github.com/en/copilot/using-github-copilot/code-review/using-copilot-code-review)** - Review feature
 
-## PR Summaries (Enterprise)
+## PR Summaries
 
 Copilot can draft a pull request description using the diff as context. Admins enable this at the org level.
 
