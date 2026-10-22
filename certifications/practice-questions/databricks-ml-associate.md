@@ -1,11 +1,11 @@
 ---
-last-updated: 2026-08-09
+last-updated: 2026-10-22
 difficulty: intermediate
 ---
 
 # Databricks Certified Machine Learning Associate - Practice Questions
 
-15 questions for the ML Associate exam, weighted toward ML workloads on Databricks (29%) and the ML workflow (29%), then Spark ML (17%), deep learning (13%), and scaling (12%).
+30 questions for the ML Associate exam, weighted toward ML workloads on Databricks (29%) and the ML workflow (29%), then Spark ML (17%), deep learning (13%), and scaling (12%).
 
 > **Cert page:** [exams/databricks/ml-associate/](../databricks/ml-associate/README.md)
 
@@ -279,6 +279,276 @@ D. The standard runtime, which has Spark and Delta Lake but ships without the co
 **Correct: A**
 
 **Why:** The ML runtime ships with tested versions of scikit-learn, PyTorch, TensorFlow, XGBoost, MLflow, and CUDA where applicable. Installing ad hoc on the standard runtime produces version conflicts and cluster start times that grow with every added package.
+</details>
+
+---
+
+### Question 16
+**Scenario:** A batch scoring notebook must always load whichever version of `main.fraud.classifier` is currently marked as the production model in Unity Catalog, without editing the notebook on each promotion.
+
+A. Load the model from the run ID of the training run that produced the current production version
+B. Load `models:/main.fraud.classifier/latest`, which always returns the version in production use
+C. Load `models:/main.fraud.classifier@champion`, and move the alias when a new version is promoted
+D. Copy the model files to a fixed DBFS path on each promotion and load the files from that path
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** An alias is a mutable pointer to a model version, so code that loads by alias picks up a promotion as soon as the alias moves. A run ID hard-codes one version. The newest version is not necessarily the approved one, and copying files outside the registry loses lineage and access control.
+</details>
+
+---
+
+### Question 17
+**Scenario:** A churn model uses customer features stored in a Unity Catalog feature table. The team wants batch scoring to look up the same features automatically, given only customer IDs.
+
+A. Build the training set with `FeatureLookup` and log the model with the Feature Engineering client
+B. Export the feature table to CSV after each training run and join it to the scoring data by hand
+C. Recompute every feature inside the scoring notebook using a copy of the training notebook's code
+D. Store the feature values inside the model artifact so that they travel with the model to scoring
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** When a model is trained on a training set built from feature lookups and logged through the Feature Engineering client, the model carries its feature metadata, so scoring can fetch features by key automatically. Manual joins and copied code are where training-serving skew creeps in, and features frozen in the artifact go stale.
+</details>
+
+---
+
+### Question 18
+**Scenario:** An experiment has 300 MLflow runs. A data scientist needs the run with the highest validation AUC programmatically, to register its model.
+
+A. Open each run in the UI in turn and write down its AUC, then pick the highest one by hand
+B. Register every run's model and keep the version that the serving endpoint scores best on
+C. Rerun the training for every configuration so that the AUC values can be compared together
+D. Use `mlflow.search_runs` on the experiment, ordered by `metrics.val_auc DESC`, and take the first
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** `mlflow.search_runs` returns runs as a DataFrame and supports filters and ordering on metrics and parameters, so selecting the best run is one call. Checking 300 runs by hand is slow and error-prone, rerunning wastes compute, and registering every model clutters the registry.
+</details>
+
+---
+
+### Question 19
+**Scenario:** A model served from Unity Catalog accepts requests with misnamed or wrongly typed columns and returns nonsense instead of a clear error.
+
+A. Add a try and except block in the client code that retries any request that returns odd values
+B. Log the model with a signature and an input example so the expected schema is recorded
+C. Write the expected column names in the model's description field in Unity Catalog
+D. Retrain the model on a wider range of inputs so that it can handle wrongly typed columns
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** An MLflow model signature records the expected input and output schema, so input that does not match can be checked and rejected, and the input example documents valid requests. Retries repeat the same bad input, a description is not enforced, and retraining does not make a model understand misnamed columns.
+</details>
+
+---
+
+### Question 20
+**Scenario:** A team has only 2,000 labeled rows. A single 80/20 train-test split gives accuracy that swings by several points depending on the random seed.
+
+A. Use the same random seed every time so that the accuracy figure stays stable between runs
+B. Train on all 2,000 rows and report training accuracy, since no data is wasted on a test set
+C. Increase the test share to 50% so that the test set is large enough to give a stable estimate
+D. Use k-fold cross-validation to average performance across folds for a more stable estimate
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Cross-validation trains and evaluates on several splits and averages the results, which reduces the variance of the estimate on small datasets. Fixing the seed hides the variance rather than reducing it, training accuracy overstates performance, and a bigger test set leaves less data to train on.
+</details>
+
+---
+
+### Question 21
+**Scenario:** A fraud dataset has 1% positive labels. After a random split, one validation set contains almost no fraud cases.
+
+A. Use a stratified split so each split keeps roughly the same share of fraud cases
+B. Drop the validation set and judge the model only on its training metrics instead
+C. Remove most of the non-fraud rows from the validation set so it has more fraud cases
+D. Shuffle the data again and keep re-splitting until the validation set looks balanced
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Stratified splitting preserves the class proportions in each split, so validation reflects the real class mix and contains enough positives to measure. Training metrics overstate performance, rebalancing the validation set distorts the metrics, and re-splitting until it looks right is an unprincipled version of stratification.
+</details>
+
+---
+
+### Question 22
+**Scenario:** A Spark ML pipeline fails because a numeric column has nulls. The column is skewed, and the team wants a fill value that is not distorted by outliers.
+
+A. Use `VectorAssembler` with `handleInvalid` set to keep, which fills each null with zero
+B. Drop the column from the pipeline, since columns with nulls cannot be used in Spark ML
+C. Add an `Imputer` stage with `strategy` set to `median` before assembling the features
+D. Use `StringIndexer` on the column so that the nulls become their own category index
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Spark ML's `Imputer` fills missing numeric values with the mean, median or mode, and the median is robust to skew. Placing it in the pipeline means the same fill values are learned on training data and reapplied at inference. Dropping the column loses information, and `StringIndexer` is for categorical strings, not numeric columns.
+</details>
+
+---
+
+### Question 23
+**Scenario:** A gradient-boosted model has eight hyperparameters to tune, and each training run takes 20 minutes. A full grid search would need thousands of runs.
+
+A. Run the full grid search anyway, since only a grid is certain to find the best combination
+B. Use random or Bayesian search (for example Optuna), which explores the space in fewer trials
+C. Tune one hyperparameter at a time and keep the others at their default values throughout
+D. Skip tuning and use the defaults, since boosted trees do not benefit from hyperparameter tuning
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** With many hyperparameters, random search and Bayesian optimization such as Optuna find good regions with far fewer trials than a grid, and can run trials in parallel. A full grid is impractical here, one-at-a-time tuning misses interactions, and boosted trees are sensitive to settings like depth and learning rate.
+</details>
+
+---
+
+### Question 24
+**Scenario:** A new team member asks what `LogisticRegression().fit(train_df)` returns in Spark ML, and how it is then used.
+
+A. It returns a DataFrame of predictions for the training data, which is then written to a Delta table
+B. It returns nothing, and the estimator object itself is updated in place with the learned weights
+C. It returns a Pipeline, which must be fitted a second time before it can be used for predictions
+D. It returns a fitted model, which is a Transformer that adds predictions with `transform()`
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** In Spark ML an Estimator's `fit()` returns a Model, and that Model is a Transformer whose `transform()` adds prediction columns to a DataFrame. Estimators are not modified in place, `fit()` does not return predictions, and a Pipeline is something you build from stages, not the output of fitting one.
+</details>
+
+---
+
+### Question 25
+**Scenario:** A Spark ML regression fails with an error that the input column `features` does not exist. The DataFrame has twelve separate numeric columns.
+
+A. Combine the columns into a single vector column with `VectorAssembler` before the estimator
+B. Rename one of the numeric columns to `features`, since the estimator needs only one column
+C. Convert the DataFrame to pandas, since Spark ML estimators cannot read numeric columns
+D. Set the estimator's `featuresCol` to a comma-separated list of the twelve column names
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Spark ML estimators expect all features in one vector column, which `VectorAssembler` builds from the individual columns. Renaming one column would train on one feature only, `featuresCol` takes a single column name, and converting to pandas gives up distributed training.
+</details>
+
+---
+
+### Question 26
+**Scenario:** A team tunes a Spark ML pipeline with `CrossValidator` over a parameter grid of 24 combinations and 3 folds. The cluster sits mostly idle while models train one after another.
+
+A. Reduce the folds to one so that each combination trains only a single model on the cluster
+B. Set the `parallelism` parameter on `CrossValidator` so several models train at the same time
+C. Replace `CrossValidator` with a loop on the driver that trains each combination in pandas
+D. Increase the number of partitions in the data so that each single model trains faster
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** `CrossValidator` and `TrainValidationSplit` have a `parallelism` setting that fits multiple models concurrently, which uses idle cluster capacity. One fold is no longer cross-validation, a driver loop in pandas abandons the cluster, and repartitioning does not change the one-at-a-time evaluation order.
+</details>
+
+---
+
+### Question 27
+**Scenario:** A manufacturer has 3,000 labeled images of product defects and wants an image classifier. Training a deep network from scratch overfits badly.
+
+A. Train a much deeper network from scratch, since a bigger model learns more from small data
+B. Convert the images to tabular pixel columns and train a linear model with Spark ML
+C. Start from a pretrained image model and fine-tune it, at first training only the top layers
+D. Duplicate each image ten times so that the training set has 30,000 images to learn from
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Transfer learning reuses features learned on a large dataset, so a small labeled set is enough to adapt the final layers, and more layers can be unfrozen later. A deeper model from scratch overfits more, raw pixels in a linear model lose spatial structure, and exact duplicates add no new information.
+</details>
+
+---
+
+### Question 28
+**Scenario:** During deep learning training, validation loss starts rising after epoch 12 while training loss keeps falling. The job is set to run 100 epochs.
+
+A. Increase the learning rate after epoch 12 so that the model escapes the rising validation loss
+B. Remove the validation set, since rising validation loss means the validation data is noisy
+C. Keep training for all 100 epochs, since training loss is still falling and the model is improving
+D. Use early stopping on validation loss and keep the best checkpoint, logged to MLflow
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Diverging training and validation loss is overfitting, and early stopping halts training when validation loss stops improving while keeping the best weights. Continuing to 100 epochs makes it worse, a higher learning rate does not fix overfitting, and the validation set is what detected the problem.
+</details>
+
+---
+
+### Question 29
+**Scenario:** A scikit-learn model logged with MLflow must score 2 billion rows in a Delta table each night. A single-node loop takes far too long.
+
+A. Collect the table to the driver in chunks and call `model.predict` on each chunk in turn
+B. Load the model with `mlflow.pyfunc.spark_udf` and apply it to the Spark DataFrame in parallel
+C. Retrain the model in Spark ML from scratch, since scikit-learn models cannot be used on Spark
+D. Deploy the model to a serving endpoint and send it 2 billion requests from a notebook loop
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** `mlflow.pyfunc.spark_udf` wraps any MLflow model as a Spark UDF, so scoring runs in parallel across the cluster's workers. Collecting to the driver keeps the bottleneck, a real-time endpoint is the wrong tool for bulk scoring, and retraining in another library is unnecessary.
+</details>
+
+---
+
+### Question 30
+**Scenario:** A retailer needs a separate demand-forecast model for each of 5,000 stores, using a single-node Python library. Training them one by one on the driver takes days.
+
+A. Group by store and use `applyInPandas` so each store's model trains in parallel on the workers
+B. Train one global model on all stores together, since per-store models cannot be parallelized
+C. Start 5,000 separate jobs at once, each on its own cluster, to train one store per job
+D. Increase the driver's memory so that the loop runs faster when training each store's model
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** `groupBy(...).applyInPandas(...)` hands each group's data to a pandas function on the workers, which is the standard pattern for training many independent single-node models in parallel. A global model changes the requirement, 5,000 clusters waste startup time and cost, and more driver memory does not parallelize a loop.
 </details>
 
 ---

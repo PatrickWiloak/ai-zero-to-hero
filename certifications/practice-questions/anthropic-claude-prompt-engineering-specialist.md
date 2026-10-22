@@ -1,11 +1,11 @@
 ---
-last-updated: 2026-08-09
+last-updated: 2026-10-22
 difficulty: intermediate
 ---
 
 # Claude Prompt Engineering Specialist (Self-Directed Track) - Practice Questions
 
-15 questions for the Claude Prompt Engineering Specialist track, weighted toward prompt fundamentals (18%), system prompts and role (16%), reasoning elicitation (16%), then structure, examples, and evaluation.
+30 questions for the Claude Prompt Engineering Specialist track, weighted toward prompt fundamentals (18%), system prompts and role (16%), reasoning elicitation (16%), then structure, examples, evaluation, and cache-aware prompt design.
 
 This is a self-directed study track rather than an Anthropic exam. Prompting guidance shifts between model generations, so verify against current documentation.
 
@@ -279,6 +279,276 @@ D. Always lengthen it, because newer models can use more detail, and adding extr
 **Correct: B**
 
 **Why:** Matching a prompt to a new model sometimes means adding text, not only cutting it. A line that is load-bearing on one generation is cruft on the next, and the reverse, which is why each model release is a trigger to re-audit rather than a reason to reuse.
+</details>
+
+---
+
+### Question 16
+**Scenario:** A voice assistant's prompt says "Never use ellipses." Claude follows it most of the time, but still uses other symbols that the text-to-speech engine reads aloud badly.
+
+A. Repeat the rule three times in capital letters so that it carries more weight in the prompt
+B. Add a list of every symbol that should not appear, and update the list after each new failure
+C. Explain why: the output is read aloud by a speech engine, so it should avoid symbols it cannot say
+D. Move the rule to the very end of the prompt, since the last instruction is the one followed most
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Giving the reason behind an instruction lets Claude generalize to cases the rule did not name, here any symbol a speech engine handles badly. Capitals and repetition add emphasis, not understanding, and can cause overreaction elsewhere. A growing blocklist only covers failures already seen, and position alone does not supply the missing context.
+</details>
+
+---
+
+### Question 17
+**Scenario:** A data-cleaning prompt describes five operations in one long paragraph. Claude sometimes runs them in the wrong order, and the order matters.
+
+A. Write the operations as a numbered list in the order they must run, and say that order matters
+B. Put the most important operation first in the paragraph and leave the rest of it unchanged
+C. Split the paragraph into five separate requests sent in parallel and merge the results afterwards
+D. Ask Claude to choose the best order itself, since it can see which operations depend on others
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** When sequence matters, numbered steps make the order explicit instead of leaving it to be inferred from prose. Moving one operation forward leaves the rest ambiguous. Parallel requests cannot respect an order, and handing the ordering decision to Claude reintroduces the guess that caused the problem.
+</details>
+
+---
+
+### Question 18
+**Scenario:** A legal-review prompt asks Claude to flag risky clauses in vendor contracts. The flags are generic and miss issues that an experienced lawyer would raise.
+
+A. Ask for a longer answer, since a longer review covers more clauses and so catches more problems
+B. Lower the effort setting, so that Claude focuses only on the clauses that matter most
+C. Add "be accurate" and "be thorough" to the end of the prompt, so Claude takes the task seriously
+D. Give Claude a specific role in the system prompt, such as general counsel reviewing for a buyer
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** A specific role in the system prompt sets the perspective, priorities and domain vocabulary Claude applies, which is what generic flags lack. Length does not add expertise. "Be accurate" is a wish rather than guidance, and lowering effort trades depth away on a task that needs it.
+</details>
+
+---
+
+### Question 19
+**Scenario:** An app sends one long user message on each call that mixes the assistant's standing rules with the specific customer question for that call.
+
+A. Move everything into the system prompt, including the customer question, so all text has the same weight
+B. Keep the standing rules in the system prompt and put each call's question and data in the user turn
+C. Put the rules after the customer question in the user turn, so Claude reads them most recently
+D. Send the rules in a separate request first, then send the question in a second request
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** The system prompt is the place for stable operator instructions such as role, rules and format, while the user turn carries what varies per call. That split is clearer for the model and keeps the stable prefix identical between calls, which also makes it cacheable. Separate requests share no context, so rules sent earlier are simply gone.
+</details>
+
+---
+
+### Question 20
+**Scenario:** A team enables adaptive thinking for a hard planning task, then adds a 30-line script telling Claude exactly which steps to think through and in what order. Quality goes down.
+
+A. Lengthen the script with more steps, since the model needs more guidance when it is thinking
+B. Turn thinking off and keep the script, since scripts and thinking are not meant to be combined
+C. Replace the script with a high-level instruction to think carefully, then read the thinking to refine it
+D. Move the script into the user message, since thinking only reads instructions from the user turn
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Anthropic's guidance is that with thinking enabled, Claude usually does better with a high-level instruction to think deeply than with prescriptive step-by-step direction, and that you can then steer from what the thinking shows. A longer script tightens the constraint that hurt quality. Turning thinking off removes the capability the task needs, and where the script sits is not the issue.
+</details>
+
+---
+
+### Question 21
+**Scenario:** A coding prompt asks Claude to write a date-parsing function. The functions look right but sometimes fail on edge cases that would have been caught by simply running a few inputs.
+
+A. Ask Claude to verify its work before finishing, for example by writing and running test cases
+B. Tell Claude that the function will be reviewed by a senior engineer, so that it writes more carefully
+C. Ask Claude to explain each line of the function in comments, so mistakes are easier to see later
+D. Ask Claude to produce three versions of the function and choose the longest one to use
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Asking Claude to check its own work against concrete tests before finishing catches errors in the same turn, and is a documented technique for coding and analysis. Mentioning a reviewer is pressure, not a check. Comments document the code without testing it, and length has no relation to correctness.
+</details>
+
+---
+
+### Question 22
+**Scenario:** A prompt includes a contract and a policy, each in its own XML tags. The instructions say "check the document against the rules," and Claude sometimes treats the policy as the document.
+
+A. Remove the tags so that both texts read as one continuous section and Claude sees the whole picture
+B. Rename both tags to `<document>` so that Claude treats them the same and compares them evenly
+C. Put both texts inside one `<data>` tag, so that Claude knows the contents are not instructions
+D. Refer to each by its tag name, such as "check the contract in `<contract>` against `<policy>`"
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Tags work best when they have clear, distinct names and the instructions refer to them by name, which removes any doubt about which text plays which part. Removing tags, giving both the same name, or merging them under one tag all make the two inputs harder to tell apart.
+</details>
+
+---
+
+### Question 23
+**Scenario:** An old prompt gets JSON back by prefilling the assistant turn with an opening brace. After moving to a current Claude model, those requests return a 400 error.
+
+A. Prefill the assistant turn with a longer partial object instead of only the opening brace
+B. Move the opening brace into the system prompt, so that the model starts its response with it
+C. Remove the prefill and use structured outputs with a JSON schema to get the format reliably
+D. Add the opening brace to the end of the user message, so that the model carries it on as JSON
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Prefilling the last assistant turn is not supported on current models, so any prefill, long or short, still fails. Structured outputs replace the technique and constrain the response to a schema rather than nudging it. Moving a brace into the system or user text is only a hint and gives no format guarantee.
+</details>
+
+---
+
+### Question 24
+**Scenario:** A support-ticket prompt includes four examples, all short password-reset tickets. Claude now answers billing disputes with the same short, password-focused style.
+
+A. Remove all examples, since examples always cause the model to copy their content too closely
+B. Use varied examples that cover different ticket types and lengths, including tricky edge cases
+C. Add ten more password-reset examples, since more examples make the pattern easier to follow
+D. Move the examples to the end of the prompt, since examples placed last have less influence
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Claude picks up patterns from examples, including ones you did not intend, so examples should be relevant and diverse enough that the intended pattern is the only consistent one. More of the same strengthens the wrong pattern. Removing examples loses the format guidance, and moving them does not change what they teach.
+</details>
+
+---
+
+### Question 25
+**Scenario:** A prompt mixes three sample answers into the middle of its instructions with no markers. Claude sometimes treats lines from the samples as rules to follow.
+
+A. Wrap each sample in `<example>` tags, grouped in `<examples>`, so they are clearly marked as samples
+B. Rewrite the samples as instructions, so that every line in the prompt is a rule Claude must follow
+C. Delete the samples and describe the desired output in a single long sentence instead of showing it
+D. Put each sample in bold so that it stands out visually from the surrounding instruction text
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Anthropic recommends wrapping examples in `<example>` tags (with several grouped in `<examples>`) so they are distinct from instructions. Turning samples into rules changes their meaning, deleting them loses the demonstration, and bold text is formatting, not structure.
+</details>
+
+---
+
+### Question 26
+**Scenario:** A product manager asks a prompt engineer to "make the summaries better" and wants to start editing the prompt straight away.
+
+A. Start with small wording changes and ask the product manager whether each version looks better
+B. Switch to a more capable model first, since a stronger model is the fastest way to improve quality
+C. First agree measurable success criteria, such as required facts and a length limit, and a test set
+D. Copy a published summarization prompt from the prompt library, since it was already tested
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Prompt work starts with defining success in specific, measurable terms and building tests against them; without that, "better" is opinion and changes cannot be compared. A library prompt was not tested on this product's criteria. A model switch may help, but there is still no way to tell.
+</details>
+
+---
+
+### Question 27
+**Scenario:** A team builds its prompt test set from 20 inputs it wrote by hand. The prompt scores well, but users still report failures on real messages.
+
+A. Lower the pass mark on the test set until it reflects how often users report failures in production
+B. Rewrite the 20 hand-written inputs so that they are harder and test the prompt more strictly
+C. Ask Claude to generate 200 more synthetic inputs in the same style as the original 20
+D. Add a sample of real production inputs, including the reported failures, to the test set
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** A test set only predicts production if it looks like production, so real traffic and known failures belong in it. Synthetic inputs in the same style repeat the same blind spots, harder hand-written cases still come from the authors' assumptions, and moving the pass mark hides the gap instead of measuring it.
+</details>
+
+---
+
+### Question 28
+**Scenario:** A prompt has a 6,000-token block of reference material that never changes, followed by a short user question that changes on every call. The team wants to use prompt caching.
+
+A. Put the user question first so that it is cached, and the reference material after it
+B. Keep the reference material first and place the cache breakpoint at the end of it
+C. Cache only the user question, since the reference material is already short enough
+D. Place a cache breakpoint inside the user question so that its common words are reused
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Caching reuses an exact prefix, so stable content goes first and the breakpoint marks the end of the part that never changes. Anything that varies, like the question, comes after it. Putting the question first, or inside the cached part, makes every prefix different, so nothing is ever reused.
+</details>
+
+---
+
+### Question 29
+**Scenario:** To keep outputs fresh, a prompt picks five few-shot examples at random from a pool of 50 on every call. The examples sit in the system prompt, and cache hits are near zero.
+
+A. Move the examples into a separate request so that they no longer count toward the prompt's tokens
+B. Increase the cache time-to-live so that each random set of examples stays cached for longer
+C. Use a fixed set and order of examples in the cached prefix, and add variety elsewhere if needed
+D. Add a cache breakpoint before each example so that at least some of them are reused on each call
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Any change in the prefix invalidates everything after it, so randomly chosen examples in the system prompt make each request unique. A fixed, ordered example set keeps the prefix stable. A longer TTL or more breakpoints cannot help when the content differs, and examples in a separate request are not in the conversation at all.
+</details>
+
+---
+
+### Question 30
+**Scenario:** A prompt passes a 150-page annual report and asks one detailed question. Answers are often vague and mix up figures from different sections.
+
+A. Ask Claude to first pull the relevant passages into `<quotes>` tags, then answer from those quotes
+B. Ask the question twice in the same prompt, once before and once after the report text
+C. Lower the effort setting so that Claude spends less time reading parts of the report that do not matter
+D. Ask Claude to answer in one sentence so that it has less room to mix up the figures
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** For long documents, asking Claude to extract the relevant quotes first helps it cut through the rest of the text and grounds the answer in specific passages, which can also be checked. Repeating the question adds nothing new, lowering effort reduces the attention the task needs, and a one-sentence limit hides errors rather than preventing them.
 </details>
 
 ---

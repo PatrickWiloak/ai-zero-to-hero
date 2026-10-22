@@ -1,11 +1,11 @@
 ---
-last-updated: 2026-08-11
+last-updated: 2026-10-22
 difficulty: advanced
 ---
 
 # Claude Certified Architect - Professional (CCAR-P) - Practice Questions
 
-15 questions for the Claude Certified Architect - Professional (CCAR-P) exam, weighted toward the heavier blueprint domains: Integration (19%), Solution Design and Architecture (17%), Evaluation, Testing and Optimization (16%), Governance, Safety and Risk Management (14%), Stakeholder Communication and Lifecycle Management (14%), Claude Models, Prompting and Context Engineering (13%), and Developer Productivity and Operational Enablement (7%).
+30 questions for the Claude Certified Architect - Professional (CCAR-P) exam, weighted toward the heavier blueprint domains: Integration (19%), Solution Design and Architecture (17%), Evaluation, Testing and Optimization (16%), Governance, Safety and Risk Management (14%), Stakeholder Communication and Lifecycle Management (14%), Claude Models, Prompting and Context Engineering (13%), and Developer Productivity and Operational Enablement (7%).
 
 These are practice questions written for this repo, not real exam items. Verify API details against the current documentation.
 
@@ -279,6 +279,276 @@ D. Shorter responses, since a brief reply gives the agent less room to produce a
 **Correct: B**
 
 **Why:** Safety is a trade-off curve, so measuring only violations optimizes toward an over-blocking product that fails a different way. Blocklists sit badly on both axes: trivially evaded, and prone to catching benign text.
+</details>
+
+---
+
+### Question 16
+**Scenario:** Claude returns three `tool_use` blocks in one assistant turn. The integration runs the tools concurrently, one of them fails, and the client sends each result back in its own user message, dropping the failed one. Over time the agent stops making parallel calls.
+
+A. Retry the failed tool silently until it succeeds, then send all three results back in separate user messages
+B. Disable parallel tool use for the whole agent, so each turn produces only one call and one result
+C. Return only the two successful results in one message, and describe the failure in a text block
+D. Send all three `tool_result` blocks in one user message, marking the failed one with `is_error: true`
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Every `tool_use` needs a matching `tool_result`, and parallel results belong together in a single user message. Splitting them across messages teaches the model to stop calling in parallel, and dropping a result breaks the pairing. A failure is reported with `is_error: true` so Claude can react. Silent retries hide a real fault, and turning parallelism off throws away latency gains to fix a client bug.
+</details>
+
+---
+
+### Question 17
+**Scenario:** A platform team is publishing one MCP server for a ticketing system so that dozens of agents running in different services and regions can share it.
+
+A. Expose it over the Streamable HTTP transport as a remote server with authentication
+B. Ship it over the stdio transport and have each agent host connect to the team's copy across the network
+C. Copy the server's tool definitions into every agent's tool array so no transport is needed at all
+D. Run it over stdio inside the platform team's own laptop session and share the session with each agent
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** The MCP specification defines stdio for a server launched as a local subprocess of the client, and Streamable HTTP for a server reached over the network. A shared, multi-consumer server is the remote case, so it needs HTTP with proper authorization. stdio cannot be reached across the network, and copying tool definitions duplicates the schemas without the server that executes them.
+</details>
+
+---
+
+### Question 18
+**Scenario:** Each night a compliance job must classify 200,000 archived emails. Results are needed by the next morning, and finance wants the run to cost as little as possible.
+
+A. Send the requests through streaming calls so that the output arrives faster and is billed at a lower rate
+B. Split the work across several API keys so that each key stays under its rate limit during the run
+C. Submit them through the Message Batches API and match each result to its request by `custom_id`
+D. Use the largest model at maximum effort so that no email ever needs a second pass in the morning
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Batch processing suits work that is not latency sensitive and is billed at half the standard rate. Results can come back in any order, so they must be joined on `custom_id`, never by position. Streaming changes delivery, not price. Spreading load over keys dodges limits without cutting cost, and maximum effort raises the bill on a task that rarely needs it.
+</details>
+
+---
+
+### Question 19
+**Scenario:** A pipeline parses Claude's JSON output into a typed object. About one response in 300 has a missing required field or a trailing comment, and the parser fails in production.
+
+A. Add a second prompt that asks Claude to check its own JSON, and retry whenever the parser still fails
+B. Use structured outputs with a JSON schema, or `strict: true` on the tool, so the response is constrained
+C. Raise the temperature slightly so that the model is less likely to repeat the same broken output pattern
+D. Write a regular expression that strips comments and fills in any missing fields with default values
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Structured outputs (`output_config.format`) and strict tool use constrain generation to the schema, which removes the parse failure class rather than catching it later. A self-check prompt and retries still fail some of the time and cost extra calls. Regex repair silently invents values for required fields, which is worse than an error.
+</details>
+
+---
+
+### Question 20
+**Scenario:** A SaaS vendor builds one RAG assistant that serves 400 customer tenants from a shared vector store. A security review asks how one tenant is kept from seeing another tenant's documents.
+
+A. Tell the model in the system prompt which tenant it is serving and to ignore other tenants' content
+B. Give each tenant a different model so that its answers can only come from its own fine-tuned weights
+C. Rely on embedding similarity, since documents from other tenants will rarely be close to the question
+D. Apply the tenant ID as a mandatory filter in the retrieval layer, set from the authenticated session
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Isolation has to happen before content reaches the model: the retrieval query is filtered by a tenant ID taken from the verified session, not from anything the user or model can change. A prompt instruction is not an access control, since the leaked text is already in context. Similarity is a ranking signal, not a boundary, and per-tenant models do not address the shared store at all.
+</details>
+
+---
+
+### Question 21
+**Scenario:** A European bank using the first-party Claude API requires that model inference for a specific workload run only in the United States, and that it can prove where each request ran.
+
+A. Add a system prompt line that tells Claude it is operating under US data rules for that workload
+B. Deploy the client SDK on servers in a US region, since inference runs wherever the caller is hosted
+C. Set the `inference_geo` request parameter, then confirm the location in `usage.inference_geo`
+D. Use a model alias without a version, since aliases are routed to US capacity by default
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** `inference_geo` is a top-level Messages API parameter that controls where inference runs, and the response usage block reports the geography actually used, which gives the evidence the bank needs. Where the client runs does not decide where the model runs. A prompt line changes wording, not infrastructure, and aliases say nothing about location.
+</details>
+
+---
+
+### Question 22
+**Scenario:** A team wants to use Claude as an LLM judge to grade 10,000 support answers per week against a rubric, replacing most human review.
+
+A. First grade a sample with both humans and the judge, measure agreement, and fix the rubric until it holds
+B. Ask the judge to give a score from 1 to 100 so that its ratings have finer detail than a pass or fail
+C. Use the same prompt that produced the answers, so the judge shares the context the writer had
+D. Trust the judge from the start, since a capable model grades more consistently than people do
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** A judge is a measuring instrument, so it must be calibrated against human labels before its numbers drive decisions, and rechecked when the rubric or model changes. Fine-grained scales usually reduce agreement rather than add precision; clear criteria with discrete outcomes grade more reliably. Reusing the writer's prompt invites the judge to share its blind spots.
+</details>
+
+---
+
+### Question 23
+**Scenario:** An agent sends the same 30,000-token system prompt and tool set on every request with a cache breakpoint, yet `usage.cache_read_input_tokens` is zero on every call. The system prompt starts with the current time.
+
+A. Add more cache breakpoints throughout the system prompt so that at least one of them is always matched
+B. Switch to a model with a larger context window, since the cache only works on smaller prompts
+C. Increase the cache time-to-live so that the cached prefix survives until the next request arrives
+D. Move the timestamp after the last breakpoint, because any change in the prefix invalidates the cache
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Caching is an exact prefix match over tools, then system, then messages. A value that changes every call at the top of the system prompt means no request ever shares a prefix with the one before. Volatile content goes after the last breakpoint. Extra breakpoints and longer TTLs cannot help when the bytes differ, and context size has nothing to do with it.
+</details>
+
+---
+
+### Question 24
+**Scenario:** To cut cost, an architect proposes a cascade: a small model answers first, and a larger model retries whenever the small one seems unsure. The workload is long multi-turn sessions with a large cached system prompt.
+
+A. Build the cascade, since a cheaper first attempt always lowers the cost per completed task
+B. Measure the larger model at a lower effort setting first, since caches are model-scoped
+C. Send every request to both models and keep whichever answer is shorter, to save output tokens
+D. Use the smallest model for every turn and accept a lower success rate as the price of savings
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Lower effort on a capable model often holds quality at a fraction of the token spend, and a single model keeps one cache namespace. A cascade loses cache reuse across models, and retries add turns, so it can cost more per completed task even when each request is cheaper. Calling both models doubles the bill, and accepting lower success is a quality decision, not an optimization.
+</details>
+
+---
+
+### Question 25
+**Scenario:** A finance agent can call a `send_payment` tool. Policy says no payment above $10,000 may leave without a named human approving it.
+
+A. Add a sentence to the system prompt telling the agent to ask for approval before large payments
+B. Lower the agent's effort for payment tasks, so it is more cautious with high-value transfers
+C. Gate the tool in code: pause above the threshold until an approver confirms, and log the decision
+D. Ask the agent to describe each payment in its final answer so a reviewer can reverse it later
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** A hard policy needs a hard control at the tool boundary, where code can refuse regardless of what the model was persuaded to do. The approval and its result go into the audit trail. A prompt instruction can be skipped or injected around, effort does not create caution, and after-the-fact review cannot recall money already sent.
+</details>
+
+---
+
+### Question 26
+**Scenario:** A customer of a Claude-based assistant files a GDPR erasure request. The assistant stores conversation logs, embeds user notes in a vector index, and lets the agent write memory files.
+
+A. Delete the user's account record, since the logs and other stores point to it and become anonymous
+B. Ask Anthropic to retrain the model without this user's data, since the model has learned from it
+C. Wait for the log retention window to expire, since that satisfies erasure for every store in time
+D. Use a data map to find and delete the user's data in logs, vector index and memory, then record it
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Erasure applies to every place the application stored personal data, so the design needs a map of those stores and a way to delete from each, including derived data like embeddings and memory files. API traffic is not used to train the model by default, so retraining is not the issue. Deleting only the account leaves identifiable content behind, and waiting does not meet the response deadline.
+</details>
+
+---
+
+### Question 27
+**Scenario:** A CFO asks whether a Claude-based contract review tool is worth renewing. The team's dashboard shows cost per million tokens and total tokens used.
+
+A. Report cost per completed review against the current cost of human review, with quality and error rates
+B. Report total token usage for the year, since a high number shows that the tool was used heavily
+C. Report the model's public benchmark scores, since a higher score shows the tool is good value
+D. Report the per-token price trend, since falling prices show the tool is becoming cheaper each quarter
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Executives decide on business outcomes: what a unit of work costs, what it replaces, and whether quality holds. Token counts and per-token prices are inputs, not results, and heavy usage can mean waste as easily as value. Benchmarks describe the model in general, not this workflow's accuracy.
+</details>
+
+---
+
+### Question 28
+**Scenario:** A sales lead promises a client that the Claude-based claims assistant will "never make a mistake." The architect is asked to support that statement in the proposal.
+
+A. Support it, since a well-tested prompt makes the model's behavior fixed and fully predictable
+B. Replace it with the measured error rate, the review steps that catch errors, and how they escalate
+C. Remove all mention of errors from the proposal, so the client is not alarmed during the sale
+D. Support it but add a footnote saying that the model's outputs are the client's responsibility
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Model output is probabilistic, so honest expectation setting gives the measured error rate from evals and describes the controls that catch the remainder. An absolute promise sets up a breach of trust the first time an error ships. Silence and fine-print disclaimers hide the risk instead of managing it.
+</details>
+
+---
+
+### Question 29
+**Scenario:** A prompt includes three long policy documents (about 60,000 tokens in total) and one question. The question and instructions currently sit at the top, before the documents, and answers miss details.
+
+A. Shorten each document to its first page, since the model reads only the start of long inputs
+B. Repeat the question before each document, so that each one is read with the question in mind
+C. Put the documents first in tags with metadata, and the question and instructions at the end
+D. Move the documents into separate API calls and merge the three answers with a fourth call
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Anthropic's long-context guidance is to place long material at the top, wrapped in tags with source metadata, and to put the query at the end, which measurably improves answer quality. Truncating loses the detail that was missing. Splitting into separate calls removes the cross-document view, and repeating the question adds noise without fixing the order.
+</details>
+
+---
+
+### Question 30
+**Scenario:** A team adopting Claude Code wants every agent edit to be run through the code formatter, with no exceptions, across all developers' machines.
+
+A. Write the rule in CLAUDE.md in capital letters so that the agent treats it as a strict requirement
+B. Ask each developer to remind Claude to format files at the start of every session they open
+C. Add a line to the README asking contributors to run the formatter before they open a pull request
+D. Configure a hook in the shared project settings that runs the formatter after each file edit
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Hooks run deterministically on lifecycle events, so they are the tool for things that must always happen; checked-in project settings share them with the whole team. CLAUDE.md is guidance the model reads and usually follows, which is right for conventions but not for guarantees. Reminders and README notes depend on people remembering.
 </details>
 
 ---
