@@ -22,7 +22,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] 2026-10-21 Six guide pillars shipped (98 pages: learn, work, build, tools, safety, careers); site renamed "AI Zero to Hero". Plan: `~/.cache/ai-z2h/PLAN.md`.
 - [x] 2026-10-21 Repo renamed `ai-zero-to-hero`; site on `ai.noblerworks.com` (Route 53 CNAME, NW) + robots.txt; no redirects from older names.
 - [ ] 2026-10-28 Patrick: Search Console `sc-domain:noblerworks.com` (add if missing) -> submit `https://ai.noblerworks.com/sitemap.xml`, Request indexing on `/`. Replaces the old URL-prefix steps below.
-- [ ] 2026-10-28 Patrick: upload `assets/brand/social-preview-1280x640.png` at GitHub Settings > General > Social preview (no API). Card is the shared Zero to Hero template (`assets/brand/social-preview.html`, 2026-10-21).
+- [x] 2026-10-27 (custom preview set) Patrick: upload `assets/brand/social-preview-1280x640.png` at GitHub Settings > General > Social preview (no API). Card is the shared Zero to Hero template (`assets/brand/social-preview.html`, 2026-10-21).
 - [ ] 2026-11-01: verify secondary-sourced facts - ChatGPT/M365 Copilot prices, Cursor-SpaceX and OpenAI-Promptfoo deals (`grep -rln 'Cursor\|Promptfoo\|Copilot' work tools`).
 - [ ] 2026-11-08: run the untested code in `build/projects/{chatbot-in-an-afternoon,structured-extraction-pipeline,voice-agent,prompt-injection-red-team}.md`.
 - [ ] 2026-11-08: run `build/projects/{build-a-coding-agent-loop,evaluate-an-agent-end-to-end}.md` against the live API (tested with a scripted stand-in model only) and replace the illustrative output.
@@ -194,3 +194,4 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] ~~Add Nobler Works + gitGood.dev promo block to the README, matching the zero-to-hero repo~~ ✅ done 2026-08-18
 - [x] ~~Gap analysis pass: 19 summaries added (69-87) covering the modern diffusion pipeline, ResNet/U-Net/GQA, training systems, instruction tuning, retrieval, evaluation, interpretability and safety~~ ✅ done 2026-08-18
 - [x] ~~Publish `docs/GAPS.md` so the collection's boundaries and queue are explicit~~ ✅ done 2026-08-18
+- [ ] Community health 71%: no CODE_OF_CONDUCT.md or PR template (the cloud/data/security siblings have both) - copy them over.
