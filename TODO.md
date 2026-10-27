@@ -194,4 +194,4 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] ~~Add Nobler Works + gitGood.dev promo block to the README, matching the zero-to-hero repo~~ ✅ done 2026-08-18
 - [x] ~~Gap analysis pass: 19 summaries added (69-87) covering the modern diffusion pipeline, ResNet/U-Net/GQA, training systems, instruction tuning, retrieval, evaluation, interpretability and safety~~ ✅ done 2026-08-18
 - [x] ~~Publish `docs/GAPS.md` so the collection's boundaries and queue are explicit~~ ✅ done 2026-08-18
-- [ ] Community health 71%: no CODE_OF_CONDUCT.md or PR template (the cloud/data/security siblings have both) - copy them over.
+- [x] 2026-10-27 CODE_OF_CONDUCT.md + PR template added (community health was 71%).
