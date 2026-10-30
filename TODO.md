@@ -92,8 +92,11 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
       impressions 09-15..10-14. The sitemap itself is fine (200, `application/xml`, 189 `<loc>`). Read via the GSC
       API as `nobler-reporting` (WIF, gitgood.dev `scripts/analytics/wif-auth.ts`). Next (Pat, 2026-10-28, browser):
       URL Inspection -> Request indexing on the home page, and resubmit the sitemap; then re-check 2026-11-01.
-- [ ] **2026-10-30 judge**: re-pull the referrers above; target Google + Bing referrals up versus the
+- [ ] **2026-11-06 judge**: re-pull the referrers above; target Google + Bing referrals up versus the
       2026-09-30 baseline, and search queries appearing in Search Console -> Performance.
+      ✏️ 2026-10-30 (todo-sweep): re-dated 2026-11-06 - `gh api` (GitHub referrers) is blocked by this
+      loop's Bash permissions, and Search Console Performance needs the GSC WIF script (node), which
+      this loop can't run; needs a session with `gh`/node access, or Patrick.
 - [ ] **Patrick: Bing Webmaster Tools** -> Import from Google Search Console (IndexNow already pings Bing;
       Webmaster Tools shows what it did with them).
 - [x] 2026-10-21 Custom domain decided: `ai.noblerworks.com`; zero-to-hero moved to `cloud.noblerworks.com` the same day.
