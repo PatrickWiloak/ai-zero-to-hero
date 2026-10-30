@@ -30,6 +30,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_certs  # noqa: E402  certification guides: hub, provider tables, nav, flashcard pages
+
+# Repo-internal docs in docs/ that are not published guides.
+REPO_DOCS = {"FEATURES.md"}
 PAPERS_DIR = ROOT / "papers"
 
 # Display order + pretty names for categories.
@@ -620,7 +623,9 @@ def render_home(papers: list[dict], explainers: list[dict] | None = None,
 
     years = [p["year"] for p in papers if p["year"]]
     topics = sorted({t for p in papers for t in p["topics"]})
-    guides = sorted((ROOT / "docs").glob("*.md")) if (ROOT / "docs").exists() else []
+    # docs/FEATURES.md is the repo's own feature catalogue (excluded from the site in
+    # mkdocs.yml), not a reader guide - it must not move the guide or word counts.
+    guides = sorted(g for g in (ROOT / "docs").glob("*.md") if g.name not in REPO_DOCS) if (ROOT / "docs").exists() else []
 
     # The written material: summary prose plus the guides. Deliberately not the
     # generated list pages (INDEX, TAGS, BROWSE) - counting a generated index of
