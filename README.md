@@ -125,6 +125,7 @@ Study guides for the AI and machine learning certifications, one folder per exam
 - 🛠️ **[scripts/build_manifest.py](./scripts/build_manifest.py)** - regenerates frontmatter, the manifest, `INDEX.md`, and the site nav
 - 🌐 **Docs site** - read it all at **[ai.noblerworks.com](https://ai.noblerworks.com/)** - searchable, dark mode, no signup. See [CONTRIBUTING.md](./CONTRIBUTING.md#previewing-the-site-locally) to build it locally.
 - 🤝 **[CONTRIBUTING.md](./CONTRIBUTING.md)** - how to add a paper, house style, and the build workflow
+- 🧩 **[Feature Catalogue](./docs/FEATURES.md)** - every reader-facing section and capability of the site, and the generators that keep it current
 
 ---
 
