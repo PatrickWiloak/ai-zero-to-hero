@@ -4,7 +4,7 @@
 
 <a href="https://noblerworks.com/"><img src="./assets/brand/nobler-works-banner.jpg" alt="Nobler Works" width="240"></a>
 
-### Built by [Patrick Wiloak](https://patricklukewilson.com) at [Nobler Works](https://noblerworks.com/)
+### Built by [Patrick Wiloak](https://patrickwiloak.com) at [Nobler Works](https://noblerworks.com/)
 
 We build custom software and products at Nobler Works. Open source projects and research libraries like this one are our way of giving back - we're nothing without the community that supports us.<br>
 If you need custom software built, [get in touch](https://noblerworks.com/).
@@ -900,7 +900,7 @@ Free, open-source projects from the [Nobler Works](https://noblerworks.com/) tea
 
 **Follow Patrick Wiloak**, founder
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/patricklukewilson) [![X](https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/PatrickWiloak) [![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/@patrickwiloak) [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/patrickwiloak) [![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=googlechrome&logoColor=white)](https://patricklukewilson.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/patricklukewilson) [![X](https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/PatrickWiloak) [![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/@patrickwiloak) [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/patrickwiloak) [![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=googlechrome&logoColor=white)](https://patrickwiloak.com)
 
 **Need something like this built for your domain? [Get in touch →](https://noblerworks.com/)**
 
