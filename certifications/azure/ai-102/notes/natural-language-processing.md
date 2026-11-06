@@ -58,7 +58,7 @@ This domain covers text analysis, speech processing, language translation, langu
 - Azure AI Language (formerly Text Analytics)
 - Azure AI Speech
 - Azure AI Translator
-- Azure AI Language Understanding (LUIS)
+- Azure AI Language Understanding (LUIS): retired 2026-03-31, use CLU below
 - Azure AI Question Answering (QnA Maker)
 - Azure AI Conversational Language Understanding (CLU)
 
@@ -158,7 +158,7 @@ This domain covers text analysis, speech processing, language translation, langu
 - Understand sentiment analysis scores and interpretation
 - Hands-on experience with Speech Studio
 - Learn SSML tags for speech customization
-- Practice creating and training LUIS apps
+- Practice creating and training CLU projects (LUIS was retired 2026-03-31)
 - Understand intent and entity design patterns
 - Study question answering knowledge base creation
 - Learn multi-turn conversation design

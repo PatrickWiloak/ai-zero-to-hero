@@ -253,6 +253,6 @@ Then answer three questions in a paragraph each: Which family was hardest to sto
 - Simon Willison, "The lethal trifecta for AI agents" (June 2025): https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/
 - Hines et al., "Defending Against Indirect Prompt Injection Attacks With Spotlighting" (2024): https://arxiv.org/abs/2403.14720
 - NVIDIA garak: https://github.com/NVIDIA/garak ; promptfoo: https://github.com/promptfoo/promptfoo ; Microsoft PyRIT: https://github.com/Azure/PyRIT
-- Promptfoo acquisition by OpenAI announced March 2026, core remains open source: https://finance.yahoo.com/news/openai-acquires-promptfoo-secure-ai-174904138.html
+- Promptfoo agreed to be acquired by OpenAI, announced March 2026, and says it will remain open source: https://www.promptfoo.dev/blog/promptfoo-joining-openai/
 - Anthropic, Pricing (Sonnet 5.5, Haiku 5.5 rates as of 2026-10): https://platform.claude.com/docs/en/about-claude/pricing
 - Anthropic, Tool use docs: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview

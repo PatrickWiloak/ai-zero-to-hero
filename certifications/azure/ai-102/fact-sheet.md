@@ -194,6 +194,8 @@ The AI-102 certification validates your ability to design and implement Azure AI
 
 ### Language Understanding (LUIS)
 
+> LUIS was retired on 2026-03-31 ([Microsoft](https://learn.microsoft.com/en-us/azure/ai-services/luis/what-is-luis)). New work uses Conversational Language Understanding (CLU); the links below are kept for legacy context.
+
 **[📖 LUIS Overview](https://learn.microsoft.com/en-us/azure/ai-services/luis/what-is-luis)** - Legacy language understanding service (migrating to CLU)
 
 **[📖 LUIS Intents](https://learn.microsoft.com/en-us/azure/ai-services/luis/concepts/intents)** - Define user intentions in conversational applications

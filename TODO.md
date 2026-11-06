@@ -23,7 +23,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] 2026-10-21 Repo renamed `ai-zero-to-hero`; site on `ai.noblerworks.com` (Route 53 CNAME, NW) + robots.txt; no redirects from older names.
 - [x] ✅ 2026-10-31 sitemap submitted via API (read, 712 URLs, 0 errors; Request indexing skipped, UI only); 2026-11-01 Patrick (moved from 10-28): Search Console `sc-domain:noblerworks.com` (add if missing) -> submit `https://ai.noblerworks.com/sitemap.xml`, Request indexing on `/`. Replaces the old URL-prefix steps below.
 - [x] 2026-10-27 (custom preview set) Patrick: upload `assets/brand/social-preview-1280x640.png` at GitHub Settings > General > Social preview (no API). Card is the shared Zero to Hero template (`assets/brand/social-preview.html`, 2026-10-21).
-- [ ] 2026-11-01: verify secondary-sourced facts - ChatGPT/M365 Copilot prices, Cursor-SpaceX and OpenAI-Promptfoo deals (`grep -rln 'Cursor\|Promptfoo\|Copilot' work tools`).
+- [ ] 2026-12-01 verify ChatGPT Business prices in `work/enablement/choosing-enterprise-ai-tools.md`: openai.com 403s curl and a headless browser (11-06). M365 Copilot prices, Cursor and Promptfoo deals verified at primary sources 11-06.
 - [ ] 2026-11-08: run the untested code in `build/projects/{chatbot-in-an-afternoon,structured-extraction-pipeline,voice-agent,prompt-injection-red-team}.md`.
 - [ ] 2026-11-08: run `build/projects/{build-a-coding-agent-loop,evaluate-an-agent-end-to-end}.md` against the live API (tested with a scripted stand-in model only) and replace the illustrative output.
 - [x] 2026-10-21 Refreshed the gen-AI table, prices and SDK samples in `tools/comparisons/cloud-ai-ml-services.md` from vendor pages.
@@ -58,7 +58,8 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] 2026-10-22 GAL README, strategy, notes 04 and fact sheet now give the guide's 30/35/20/15 weights.
 - [ ] 2026-11-01: check the official Databricks ML Associate guide (third parties show 4 domains 38/19/31/12; README has the old 5) and align `certifications/azure/genai/README.md` (AI-102 domains, old names) with its fact sheet.
 - [ ] 2027-02-01: re-check GH-300 outline (Spark retired 2026-08-31 but listed; duplicate "GitHub Copilot features" line) and Databricks guide (KA, Supervisor now legacy).
-- [ ] 2026-10-31 spot-check retired-product replacements: LUIS (`certifications/azure/ai-102`), PaLM and AutoML (GCP ML notes).
+- [x] ✅ 2026-11-06 spot-check: LUIS notes moved to CLU; PaLM + AutoML banners added (Microsoft/Google pages). Rewrite below.
+- [ ] 2026-11-29 rewrite `certifications/gcp/genai` notes off PaLM/Codey: code and tables still teach models retired 2025-04-21; banners only for now.
 - [ ] Distribution: submit to awesome-llm-security.
 
 ## Open

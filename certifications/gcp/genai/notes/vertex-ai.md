@@ -1,5 +1,7 @@
 # Agent Platform Fundamentals
 
+> **Stale models, checked 2026-11-06:** Google retired PaLM 2 (`text-bison`, `chat-bison`, `code-gecko`) on 2025-04-21 and lists Gemini as the migration path ([model lifecycle](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions)). Code and model tables here that name them will not run as written; read them as concepts and use a current Gemini model.
+
 ## What is Agent Platform?
 
 Agent Platform (formerly Vertex AI) is Google Cloud's unified machine learning platform that combines AutoML and AI Platform into a unified API, client library, and user interface, providing tools for every step of the ML workflow.

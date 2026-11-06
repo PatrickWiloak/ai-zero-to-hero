@@ -4,6 +4,8 @@ last-updated: 2026-10-22
 
 # Google Cloud Professional Machine Learning Engineer - Fact Sheet
 
+> **Older product names:** AutoML Tables, Vision and Natural Language are the pre-Vertex names. Google now documents one AutoML under its [agent platform docs](https://cloud.google.com/automl-tables/docs), so check the current page before relying on a per-product detail here.
+
 ## Quick Reference
 
 **Exam Code:** Professional Machine Learning Engineer

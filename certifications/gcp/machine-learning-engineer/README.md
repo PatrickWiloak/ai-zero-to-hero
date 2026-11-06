@@ -1,5 +1,7 @@
 # Google Cloud Professional Machine Learning Engineer Certification
 
+> **Older product names:** AutoML Tables, Vision and Natural Language are the pre-Vertex names. Google now documents one AutoML under its [agent platform docs](https://cloud.google.com/automl-tables/docs), so check the current page before relying on a per-product detail here.
+
 ## Exam Overview
 
 The Google Cloud Professional Machine Learning Engineer certification demonstrates your ability to design, build, and productionize ML models to solve business challenges using Google Cloud technologies and knowledge of proven ML models and techniques.

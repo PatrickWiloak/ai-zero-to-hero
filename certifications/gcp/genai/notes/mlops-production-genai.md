@@ -1,5 +1,7 @@
 # MLOps and Production Generative AI on Google Cloud
 
+> **Stale models, checked 2026-11-06:** Google retired PaLM 2 (`text-bison`, `chat-bison`, `code-gecko`) on 2025-04-21 and lists Gemini as the migration path ([model lifecycle](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions)). Code and model tables here that name them will not run as written; read them as concepts and use a current Gemini model.
+
 ## Generative AI MLOps Overview
 
 ### MLOps for GenAI

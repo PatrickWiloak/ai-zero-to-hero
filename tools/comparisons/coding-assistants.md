@@ -37,7 +37,7 @@ Moving right, the tool does more on its own, saves more time on well-specified t
 
 Notes on the table:
 
-- **Cursor ownership changed in 2026.** Press reports say SpaceX's AI unit (which absorbed xAI) completed an acquisition of Cursor's parent Anysphere in August 2026, and Cursor's current plans centre on Grok models with other models billed at API rates. If you chose Cursor for access to a particular non-Grok model, re-check what your plan includes.
+- **Cursor ownership changed in 2026.** [Cursor announced](https://cursor.com/blog/joining-spacex) on 14 August 2026 that SpaceX had completed its acquisition. Press reports say Cursor's current plans centre on Grok models with other models billed at API rates. If you chose Cursor for access to a particular non-Grok model, re-check what your plan includes.
 - **Google** notes on the Gemini CLI repository that the CLI is not optimised for its newest Gemini 4 model and points users to a newer "Antigravity" CLI. Expect Google's lineup here to keep shifting.
 - Copilot's free and paid quotas, and every plan above, change often. Check the source links before buying for a team.
 
