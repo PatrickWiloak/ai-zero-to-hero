@@ -86,7 +86,7 @@ Searchable, dark mode, no signup.
 
 ## 🚀 Quick Start
 
-**Starting from zero?** Follow the [Zero to Hero path](./learn/start-here/zero-to-hero-path.md), or pick a path for [everyone](./learn/start-here/ai-for-everyone.md), [leaders](./learn/start-here/ai-for-leaders.md) or [engineers](./learn/start-here/ai-engineer-path.md)
+**Starting from zero?** Follow the [Zero to Hero path](./learn/start-here/zero-to-hero-path.md), or pick a path for [everyone](./learn/start-here/ai-for-everyone.md), [leaders](./learn/start-here/ai-for-leaders.md) or [engineers](./learn/start-here/ai-engineer-path.md); already in another field? Try the [cross-site learning paths](./learn/start-here/learning-paths.md)
 **Using AI at work or rolling it out?** See [AI at Work](./work/README.md) - playbooks by role and the team-enablement kit
 **Want to build?** Pick a [project](./build/README.md) - chatbot, RAG, agents with MCP, evals, fine-tuning, voice
 **Reading the research?** Start with the [Learning Roadmap](./docs/ROADMAP.md), or the [Timeline of AI](./explainers/history/timeline-of-ai.md) for the whole story in one page

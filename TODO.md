@@ -19,6 +19,8 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 
 ## AI Zero to Hero (2026-10-21)
 
+- [x] 2026-11-07 Cross-site learning paths (7 routes, `learn/start-here/learning-paths.md`, byte-identical in all four repos, linked from which-site, learn hub and home). Not pushed or deployed: ships with the train.
+- [ ] 2026-12-07 re-verify every link in `learn/start-here/learning-paths.md` against each repo's `git ls-files` (script: loop the URLs through the four trees) and the matching certs against current exam codes.
 - [x] 2026-10-21 Six guide pillars shipped (98 pages: learn, work, build, tools, safety, careers); site renamed "AI Zero to Hero". Plan: `~/.cache/ai-z2h/PLAN.md`.
 - [x] 2026-10-21 Repo renamed `ai-zero-to-hero`; site on `ai.noblerworks.com` (Route 53 CNAME, NW) + robots.txt; no redirects from older names.
 - [x] ✅ 2026-10-31 sitemap submitted via API (read, 712 URLs, 0 errors; Request indexing skipped, UI only); 2026-11-01 Patrick (moved from 10-28): Search Console `sc-domain:noblerworks.com` (add if missing) -> submit `https://ai.noblerworks.com/sitemap.xml`, Request indexing on `/`. Replaces the old URL-prefix steps below.

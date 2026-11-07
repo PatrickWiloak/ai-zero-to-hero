@@ -227,6 +227,7 @@ Every major paper from the Transformer to today's reasoning models, read in full
 <div class="home-links" markdown>
 
 - [Which Zero to Hero site?](learn/start-here/which-site.md) - cloud, data, security or AI: pick by goal
+- [Cross-site learning paths](learn/start-here/learning-paths.md) - seven routes that span cloud, data, security and AI
 - [Explainers](EXPLAINERS.md) - model families, benchmarks, compute, policy, open questions
 - [Timeline of AI](explainers/history/timeline-of-ai.md) - 1950 to today, milestone by milestone
 - [Learning Roadmap](docs/ROADMAP.md) - the staged order to read them in
