@@ -208,7 +208,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 
 Plan: [docs/CONTENT-GAPS.md](docs/CONTENT-GAPS.md) (pillars + certs; papers stay in GAPS.md). Wave 1 (run untested code) and the cert items are already listed above.
 
-- [ ] Wave 2: maths-for-ML day-one page; concept pages for trees/boosting, CNNs, RL basics, forecasting, feature engineering; tabular scikit-learn project.
+- [x] 2026-11-07 Wave 2: maths-for-ML day-one page; concept pages for trees/boosting, CNNs, RL basics, forecasting, feature engineering; tabular scikit-learn project (code run in a venv, output pasted; deploy step described, not run).
 - [ ] Wave 3: careers - ML engineer, data scientist, AI PM, researcher roles; AI portfolio guide; AI PM interview.
 - [ ] Wave 4: playbooks (HR, legal, finance, product, design); use cases (healthcare, education); comparisons (image/video, speech, embeddings, no-code automation); multi-agent + guardrails patterns.
 - [ ] Wave 4: safety - AI privacy, AI incident response, deepfakes, bias testing, US state AI laws.
