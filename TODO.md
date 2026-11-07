@@ -54,7 +54,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [ ] 2026-12-01: NCP-AIN gaps to fill from NVIDIA docs: DSX Air user guide, ibdiagnet manual, SuperNIC congestion control, OpenSM SM priority, PFC watchdog, cl-resource-query sample output (`certifications/nvidia/ai-networking-professional/README.md` lists them); recheck exam page for price and lab detail.
 - [x] 2026-11-07 NCP-AIN price ($500) and lab ("Hands-on lab: Yes") confirmed on the nvidia.com exam page (https://www.nvidia.com/en-us/learn/certification/ai-networking-professional/); README, fact sheet, flashcards, careers guide updated.
 - [x] 2026-10-22 MLA-C01 guide: real logistics (130 min, 65 q) and verified MLA-C02 beta facts (ME1-C02, $75, 170 min, 85 q, GA TBD).
-- [ ] 2026-12-01: MLA-C02 GA date on aws.amazon.com? If announced, build `aws/associate/ml-engineer-mla-c02` from the exam guide [H].
+- [ ] 2026-12-01: MLA-C02 GA date on aws.amazon.com? Rechecked 2026-11-07: still "TBD: GA registration opens / GA delivery begins" (beta ME1-C02, $75, 170 min, 85 q; exam guide at docs.aws.amazon.com/aws-certification/latest/machine-learning-engineer-associate-02/). If announced, build `aws/associate/ml-engineer-mla-c02` from that guide [H].
 - [x] 2026-10-22 Anthropic: CPES confirmed not an exam (study track, invented logistics removed); CCAO-F and CCAR-P weights match the v1.0 exam guide PDFs.
 - [ ] New-guide candidates (verify codes): AWS AI Business Strategist (beta), NVIDIA NCA-ADS, NCP-ARI.
 - [x] 2026-10-22 Vertex AI -> Agent Platform names swept in `certifications/gcp/` (PMLE + GAL exam guides use only new names); PMLE domains set to the 2026-06-01 guide.

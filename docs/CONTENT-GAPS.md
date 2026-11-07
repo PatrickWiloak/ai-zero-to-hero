@@ -64,7 +64,7 @@ costs more than a missing guide.
 - NVIDIA NCP-AIN rewritten to the blueprint 2026-11-07 (done); NCP-OUSD rewritten 2026-11-07 (done); NCA-GENM rewritten 2026-11-07 (done).
 - Databricks ML Associate rebuilt on the 4-section outline, 2026-11-07 (done).
 - Flashcard decks: generator ported 2026-11-07 (`scripts/build_flashcards.py`); CCDV-F and Databricks GenAI now have decks. Still no deck: NVIDIA ADS and GenAI LLMs Professional (waiting on the rewrite), Databricks ML Associate/Professional (add `Key terms` lines, then verify against the docs), retired AI-102 and DP-100, the prompt-engineering study track. Plus PMLE monitoring / Model Garden / Model Armor cards.
-- New guides once codes are verified: AWS AI Business Strategist, NVIDIA NCA-ADS, NCP-ARI, MLA-C02 at GA.
+- New guides once codes are verified: AWS AI Business Strategist, NVIDIA NCA-ADS, NCP-ARI, MLA-C02 at GA (not announced as of 2026-11-07).
   The AI governance certs (AIGP, AAISM) are planned for the security site with a link here.
 
 ## How to do each item
