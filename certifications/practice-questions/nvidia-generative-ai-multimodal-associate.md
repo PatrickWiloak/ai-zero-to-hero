@@ -32,7 +32,7 @@ D. The average of the row
 ### Question 2
 **Section: Core ML. Scenario:** A 40-layer network without skip connections trains badly while the same network with residual connections trains well. What is the best explanation?
 
-A. Residual connections reduce the number of parameters to zero
+A. Residual connections reduce the number of parameters, so the 40-layer network has far less to fit and overfits less
 B. Residual connections give gradients a direct path, avoiding vanishing gradients
 C. They remove the need for a loss function
 D. They convert the network into a single linear layer
@@ -50,7 +50,7 @@ D. They convert the network into a single linear layer
 ### Question 3
 **Section: Core ML. Scenario:** What does torch.nn.utils.clip_grad_norm_ return?
 
-A. The clipped parameters
+A. The clipped gradients, returned as a new list of tensors that replaces the originals
 B. The learning rate
 C. The loss value
 D. The total norm of the gradients, computed before clipping
@@ -69,7 +69,7 @@ D. The total norm of the gradients, computed before clipping
 **Section: Core ML. Scenario:** A team has 200 labeled images in a niche domain and a pretrained image encoder. Which approach is the cheapest reasonable start?
 
 A. Freeze the pretrained encoder and train a small head on the new labels
-B. Train the full encoder from random weights
+B. Train the full encoder from random weights on the 200 images so it learns features specific to the niche domain
 C. Skip training and use random labels
 D. Double the image resolution and train nothing
 
@@ -86,8 +86,8 @@ D. Double the image resolution and train nothing
 ### Question 5
 **Section: Core ML. Scenario:** Why is one train-validation split a weak basis for a model comparison on a small dataset?
 
-A. Because validation sets cannot be used for scoring
-B. The score depends on which rows landed in which part, so repeating with cross-validation gives a more reliable estimate
+A. Because validation sets cannot be used for scoring once the data has been split, so a model must be scored on its training rows
+B. The score depends on which rows land in each part, so cross-validation gives a steadier estimate
 C. Because splits always leak labels
 D. Because cross-validation is faster than a single split
 
@@ -104,9 +104,9 @@ D. Because cross-validation is faster than a single split
 ### Question 6
 **Section: Core ML. Scenario:** Which statement describes zero-shot classification with CLIP?
 
-A. Training a new classifier head on every class
+A. Training a new linear classifier head on labeled images of every class so that each category gets its own learned output unit
 B. Classifying images using only pixel counts
-C. Classifying images into categories given as text, by comparing the image embedding with text embeddings, without training on those labels
+C. Classifying images into categories given as text, by comparing image and text embeddings, with no training on those labels
 D. Generating labels with a diffusion model
 
 <details>
@@ -122,7 +122,7 @@ D. Generating labels with a diffusion model
 ### Question 7
 **Section: Data analysis. Scenario:** An audit of an image-caption table reports 1 duplicate, 1 empty caption and 2 zero-width images in 5 rows. What is the right action before training?
 
-A. Train anyway because averages hide it
+A. Train anyway because averaged statistics over a large dataset hide a handful of broken rows
 B. Fix or drop the broken rows and block training until the checks pass
 C. Delete the whole dataset
 D. Add more captions at random
@@ -158,10 +158,10 @@ D. The gradient norm
 ### Question 9
 **Section: Data analysis. Scenario:** Permutation importance gives [0.0, 0.005, 0.075, 0.0, 0.001, 0.513] on six features. What does it indicate?
 
-A. The model relies mostly on the last feature and somewhat on the third; the others barely matter
+A. Mostly the last feature, somewhat the third; the others barely matter
 B. All six features matter equally
 C. The model ignores every feature
-D. The last feature has a data leak by definition
+D. The last feature has a data leak by definition, because any feature with a high importance score must be leaking the label
 
 <details>
 <summary>Answer</summary>
@@ -176,8 +176,8 @@ D. The last feature has a data leak by definition
 ### Question 10
 **Section: Experimentation. Scenario:** A diffusion model's training loss falls from 0.95 to 0.08, but samples from pure noise are not clean images. What is the right conclusion?
 
-A. The model is perfect because the loss is low
-B. Training loss is a diagnostic, not a measure of sample quality; evaluate generated outputs separately
+A. The model is perfect because the loss is low, so the sampling code must be producing clean images from the noise
+B. Training loss is a diagnostic, not a measure of sample quality; evaluate samples separately
 C. Diffusion models cannot generate from noise
 D. The test set must be wrong
 
@@ -212,7 +212,7 @@ D. The next token
 ### Question 12
 **Section: Experimentation. Scenario:** How does generation start in a diffusion model?
 
-A. From a blank white image with no noise
+A. From a blank white image with no noise, then repeatedly nudging pixels toward the caption until a picture appears
 B. From a fully trained classifier output
 C. From the training set's mean image
 D. From random noise, applying the model repeatedly to update the input slightly each time
@@ -248,8 +248,8 @@ D. Retrain with a larger batch size
 ### Question 14
 **Section: Experimentation. Scenario:** A team compares early fusion and late fusion. Which description is correct?
 
-A. Early fusion joins the modalities' features before one model; late fusion trains a model per modality and combines outputs
-B. Early fusion trains one model per modality; late fusion joins raw files
+A. Early fusion joins modality features before one model; late fusion trains one model per modality and combines outputs
+B. Early fusion trains one model per modality and combines outputs; late fusion joins the raw files into one tensor before any model sees them
 C. Both are the same
 D. Early fusion cannot use more than one modality
 
@@ -284,9 +284,9 @@ D. The file sizes are all different
 ### Question 16
 **Section: Multimodal data. Scenario:** What are the steps of a RAG loop?
 
-A. Fine-tune the LLM on the query, then delete the index
+A. Fine-tune the LLM on the query and its expected answer, then delete the index so the model relies on its new weights
 B. Retrieve the answer from the LLM's weights only
-C. Embed the query, search the knowledge-base index, retrieve matches, augment the prompt, generate the answer
+C. Embed the query, search the index, retrieve matches, augment the prompt, generate the answer
 D. Translate the query to pixels, then classify
 
 <details>
@@ -320,8 +320,8 @@ D. It is cheaper and faster, and sources can be hot-swapped without retraining
 ### Question 18
 **Section: Multimodal data. Scenario:** In my TF-IDF retrieval example, why did only one document get a nonzero score for 'which tool does speech recognition'?
 
-A. Only that document shared words with the query; dense embeddings would also match paraphrases
-B. TF-IDF ignores all words
+A. Only that document shared words with the query; dense embeddings match paraphrases too
+B. TF-IDF ignores words that appear in the query and scores only words that appear in the documents' titles
 C. The other documents were deleted
 D. Cosine similarity cannot be negative
 
@@ -356,7 +356,7 @@ D. GPU acceleration
 ### Question 20
 **Section: Performance optimization. Scenario:** Under torch.autocast on CPU with bfloat16, which dtypes appeared in my check?
 
-A. float16 weights and a bfloat16 loss
+A. float16 weights and a bfloat16 loss, because autocast converts the stored weights into the lower precision type
 B. int8 everything
 C. float64 weights
 D. bfloat16 linear output, float32 loss, float32 stored weights
@@ -394,8 +394,8 @@ D. Never
 
 A. Deletes the layer
 B. Doubles the weight values
-C. Converts weights to strings
-D. Replaces weight with weight_orig and adds a weight_mask buffer; prune.remove makes the pruning permanent
+C. Converts the weights to a sparse tensor format that is stored in place of the original dense weight parameter
+D. Replaces weight with weight_orig and adds a weight_mask buffer; prune.remove makes it permanent
 
 <details>
 <summary>Answer</summary>
@@ -446,10 +446,10 @@ D. A sentence
 ### Question 25
 **Section: Software development. Scenario:** How can a CLIP text embedding be used to build a text-to-image diffusion model?
 
-A. Replace the images with the text
+A. Replace the images with the text and train the denoiser to predict the next word from a noisy sentence
 B. Delete the noise schedule
 C. Use the embedding as the learning rate
-D. Give the embedding to the denoiser as conditioning input so it predicts noise given the prompt
+D. Give the embedding to the denoiser as conditioning input so it predicts noise for the prompt
 
 <details>
 <summary>Answer</summary>
@@ -500,9 +500,9 @@ D. Version the code and data, test the data and the model, and monitor after dep
 ### Question 28
 **Section: Trustworthy AI. Scenario:** Which is one of NVIDIA's four stated trustworthy AI principles?
 
-A. Maximum model size
+A. Maximum model size, so the largest model the hardware can hold is always the most trustworthy
 B. Secrecy of training data
-C. Nondiscrimination: minimize bias and give all groups an equal opportunity to benefit
+C. Nondiscrimination: minimize bias and give all groups equal opportunity
 D. Latency
 
 <details>
@@ -536,10 +536,10 @@ D. MANAGE only
 ### Question 30
 **Section: Experimentation. Scenario:** A new image generator is compared with the old one by one number from one run. What is a more sound way to test accuracy and effectiveness?
 
-A. Pick the best single run and report only that
+A. Pick the best single run and report only that, since it shows what the new generator can reach at its best
 B. Use the training set as the test set
 C. Compare only the training loss
-D. Repeat runs or folds, report mean and spread on held-out data, and keep a fixed set of test prompts for regression checks
+D. Repeat runs or folds, report mean and spread on held-out data, and keep a fixed set of test prompts
 
 <details>
 <summary>Answer</summary>

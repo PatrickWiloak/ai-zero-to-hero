@@ -14,9 +14,9 @@ difficulty: advanced
 ### Question 1
 **Section: Composition. Scenario:** A prim has size=1 from a reference and size=2 from a sublayer of the root layer, and nothing is authored on the prim itself. What does the composed stage report?
 
-A. 1, because references are always stronger than sublayers
+A. 1, because references are always stronger than sublayers and win whenever both supply a value
 B. The stage reports an error because two opinions conflict
-C. 2, because local layer-stack opinions (including sublayers) are stronger than references
+C. 2, because local layer-stack opinions, including sublayers, beat references
 D. 3, the average of both values
 
 <details>
@@ -35,7 +35,7 @@ D. 3, the average of both values
 A. References, Payload, Local, Inherits, VariantSets, Specializes
 B. Local, Inherits, VariantSets, Relocates, References, Payload, Specializes
 C. Specializes, Payload, References, Local, Inherits, VariantSets
-D. Local, References, Payload, Inherits, VariantSets, Specializes
+D. Local, References, Payload, Inherits, VariantSets, Relocates, Specializes, with Local as the strongest arc
 
 <details>
 <summary>Answer</summary>
@@ -69,7 +69,7 @@ D. A layer offset on the reference or sublayer
 **Section: Composition. Scenario:** A very large environment should only be loaded when the artist asks for it. Which arc supports that?
 
 A. A payload, which is a reference that can be loaded and unloaded
-B. A sublayer, which is always loaded with the layer stack
+B. A sublayer, which is always loaded together with the layer stack that contains it and cannot be unloaded on demand
 C. An inherits arc
 D. A specializes arc
 
@@ -88,7 +88,7 @@ D. A specializes arc
 
 A. References, because they always rename the prims
 B. Sublayers, one layer per department in the same namespace
-C. Variants, one per department
+C. Variants, one per department, so each team selects its own alternative and edits inside it
 D. A single monolithic layer with comments
 
 <details>
@@ -105,8 +105,8 @@ D. A single monolithic layer with comments
 **Section: Composition. Scenario:** An override authored in a layer does not show on the composed stage. Which is a likely cause?
 
 A. The stage's meters-per-unit is not 1
-B. The mesh uses the usdc format
-C. The layer is muted, or a stronger opinion exists elsewhere in the prim stack
+B. The mesh uses the usdc format, which stores overrides in a binary crate that the composed stage reads later
+C. The layer is muted, or a stronger opinion exists elsewhere
 D. The prim's kind is component
 
 <details>
@@ -122,7 +122,7 @@ D. The prim's kind is component
 ### Question 7
 **Section: Composition. Scenario:** A pipeline lead wants a deliverable that has no composition arcs and no dependencies on internal layers. What do they produce?
 
-A. A stage with all payloads unloaded
+A. A stage with all payloads unloaded, which removes the payload arcs and leaves only the references
 B. A flattened copy of the stage (UsdStage::Flatten or usdcat --flatten)
 C. A set of variants named external
 D. A copy with kind set to assembly
@@ -176,8 +176,8 @@ D. Variants, one per copy
 ### Question 10
 **Section: Content aggregation. Scenario:** A PointInstancer should show a second kind of object. What is the correct change?
 
-A. Add a second PointInstancer prim and delete the first
-B. Add a target to its prototypes relationship and point entries of protoIndices at the new index
+A. Add a second PointInstancer prim for the new object and delete the first one so only one instancer remains
+B. Add a target to prototypes and point entries of protoIndices at the new index
 C. Change the instancer's kind to assembly
 D. Set instanceable on every instance
 
@@ -195,7 +195,7 @@ D. Set instanceable on every instance
 **Section: Content aggregation. Scenario:** A user tries to set a different display color on a mesh beneath an instanceable prim and the API raises an error. What is the documented way to customize an instance's contents?
 
 A. Switch the stage to usdc
-B. Raise the payload's load rule
+B. Raise the payload's load rule so the prototype is fully loaded before overrides below it are allowed
 C. Make it non-instanceable, or add an inherits or specializes arc and edit the class
 D. Delete the prototype
 
@@ -213,9 +213,9 @@ D. Delete the prototype
 **Section: Customizing USD. Scenario:** Which statement about custom asset resolvers is correct?
 
 A. They are written as USD layers
-B. They are Python classes registered with the stage
+B. They are Python classes registered with the stage at open time and called back whenever an asset path is resolved
 C. They are configured with usdGenSchema
-D. They are C++ ArResolver plug-ins registered through plugInfo.json; Python resolvers are not supported
+D. C++ ArResolver plug-ins registered through plugInfo.json, with no Python resolvers
 
 <details>
 <summary>Answer</summary>
@@ -230,9 +230,9 @@ D. They are C++ ArResolver plug-ins registered through plugInfo.json; Python res
 ### Question 13
 **Section: Customizing USD. Scenario:** What is a codeless schema?
 
-A. A schema generated with skipCodeGeneration that produces only generatedSchema.usda and plugInfo.json
+A. A schema built with skipCodeGeneration, so no C++ or Python code is generated
 B. A schema with no properties
-C. A schema written directly in a USD layer with no schema.usda
+C. A schema written directly in a USD layer with no schema.usda, so it can be applied without any plug-in registration
 D. A schema that cannot be applied to prims
 
 <details>
@@ -266,8 +266,8 @@ D. usdc for both because usda cannot be diffed
 ### Question 15
 **Section: Data exchange. Scenario:** An OBJ importer produces geometry that matches the source exactly but the scene is rotated and the wrong size in another tool. What is the likely reason?
 
-A. The mesh must use faceVarying primvars
-B. OBJ carries no up axis or units, so the importer had to choose them and the stage metadata must be set deliberately
+A. The mesh must use faceVarying primvars, because OBJ stores texture coordinates per face corner and the importer flips them
+B. OBJ carries no up axis or units, so the importer chose them and the stage metadata must be set deliberately
 C. The importer must write a payload
 D. usdz files cannot hold meshes
 
@@ -284,9 +284,9 @@ D. usdz files cannot hold meshes
 ### Question 16
 **Section: Data exchange. Scenario:** Why is USD described as more than another file format?
 
-A. It stores only flat cached geometry
+A. It stores only flat cached geometry, so scenes are rebuilt from scratch in each tool that reads them
 B. It is a binary-only format
-C. Its main function is composing scene description from many files into a single scenegraph
+C. Its main function is composing scene description from many files into one scenegraph
 D. It is a rendering engine
 
 <details>
@@ -304,8 +304,8 @@ D. It is a rendering engine
 
 A. Only the file size
 B. Only the number of materials
-C. Nothing, because USD always validates itself
-D. Unresolvable references, required metadata such as default prim and units, and non-portable asset paths
+C. Nothing, because USD always validates itself when a layer is saved and rejects any layer that has broken references
+D. Unresolvable references, missing default prim or units, and non-portable asset paths
 
 <details>
 <summary>Answer</summary>
@@ -358,8 +358,8 @@ D. faceVarying with one value total
 
 A. The reverse
 B. Only relationships
-C. The properties of the parent prim
-D. Only the properties some layer actually wrote, whereas GetPropertyNames also includes unauthored schema properties
+C. The properties of the parent prim that were authored in the strongest layer of the stack rather than this prim's own
+D. Only the properties some layer actually wrote; GetPropertyNames also lists unauthored schema properties
 
 <details>
 <summary>Answer</summary>
@@ -466,8 +466,8 @@ D. /mnt/studio/assets/chair.usd
 
 A. It sets the stage's up axis
 B. It selects the first variant
-C. It names the prim used when the layer is referenced without an explicit prim path
-D. It marks the layer as flattened
+C. It names the prim used when the layer is referenced without a prim path
+D. It marks the layer as flattened, so composition tools skip its arcs when the stage is opened
 
 <details>
 <summary>Answer</summary>
@@ -482,10 +482,10 @@ D. It marks the layer as flattened
 ### Question 27
 **Section: Pipeline development. Scenario:** How is a DCC-to-USD round trip best verified in a pipeline?
 
-A. By opening the file once and looking at it
+A. By opening the file once in the destination tool and looking at it to confirm the scene appears correct
 B. By checking only the file extension
 C. By flattening and deleting the original
-D. Export, import and compare the results automatically, such as with usddiff or a script
+D. Export, import and compare automatically, such as with usddiff or a script
 
 <details>
 <summary>Answer</summary>
@@ -500,7 +500,7 @@ D. Export, import and compare the results automatically, such as with usddiff or
 ### Question 28
 **Section: Pipeline development. Scenario:** What is lost when you flatten an asset for delivery?
 
-A. The composed values
+A. The composed values, since a flattened stage keeps only the layer structure and drops the opinions
 B. The mesh points
 C. Composition structure such as variants, references and layered overrides
 D. The material bindings' targets
@@ -518,7 +518,7 @@ D. The material bindings' targets
 ### Question 29
 **Section: Visualization. Scenario:** A parent prim's material binding is set strongerThanDescendants and a child mesh has its own binding. Which material does the child resolve to?
 
-A. The child's, because lower bindings always win
+A. The child's, because lower bindings always win even over a binding marked strongerThanDescendants
 B. The parent's, because strongerThanDescendants wins over the child's binding
 C. Neither; the binding is an error
 D. The material with the higher roughness
@@ -537,9 +537,9 @@ D. The material with the higher roughness
 **Section: Visualization. Scenario:** How should diffuseColor in a UsdPreviewSurface read per-vertex colors from a mesh's displayColor primvar?
 
 A. Set diffuseColor to the primvar's path as a string
-B. Use a UsdUVTexture with the file set to displayColor
+B. Use a UsdUVTexture with the file set to displayColor and wire its rgb output into diffuseColor
 C. Bind the mesh to a collection named displayColor
-D. Connect a UsdPrimvarReader_float3 shader (varname displayColor) result output to diffuseColor
+D. Connect a UsdPrimvarReader_float3 (varname displayColor) result output to diffuseColor
 
 <details>
 <summary>Answer</summary>

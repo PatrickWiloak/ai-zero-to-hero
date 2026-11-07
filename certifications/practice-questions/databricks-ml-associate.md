@@ -14,7 +14,7 @@ difficulty: intermediate
 ### Question 1
 **Section 1. Scenario:** A team's inference job must start using a newly validated model version without anyone editing the job's code.
 
-A. Hard-code the new version number in the job and redeploy the job each time
+A. Hard-code the new version number in the job configuration and redeploy the job each time a version is approved, so every promotion is a reviewed change
 B. Delete the old model version so the new one is the only one that remains
 C. Load the model by alias (for example models:/main.ml.churn@champion) and move the alias to the new version
 D. Set a tag named production on the new version and have the job search for it by hand
@@ -35,7 +35,7 @@ D. Set a tag named production on the new version and have the job search for it 
 A. The workspace registry cannot store more than one version of a model
 B. Unity Catalog adds centralized access control, auditing, lineage and model discovery across workspaces
 C. Unity Catalog registers models without needing a signature or any logging
-D. The workspace registry is the only one that supports aliases
+D. The workspace registry is the only one that supports aliases, so teams that want to promote versions by pointing a name at them must stay in it
 
 <details>
 <summary>Answer</summary>
@@ -68,8 +68,8 @@ D. Call search_runs on the experiment with order_by=["metrics.f1 DESC"] and take
 ### Question 4
 **Section 1. Scenario:** Which statement best describes the main advantage of a Databricks Runtime for Machine Learning over building a cluster environment by hand?
 
-A. It ships with machine learning and deep learning libraries pre-installed and tested together
-B. It removes the need to choose evaluation metrics
+A. It ships with ML and deep learning libraries pre-installed
+B. It removes the need to choose evaluation metrics because it picks and applies the best metric for the task automatically
 C. It guarantees every model trained on it will be accurate
 D. It trains models without any cluster compute
 
@@ -104,7 +104,7 @@ D. Export the data to a spreadsheet and fit a trend line
 ### Question 6
 **Section 1. Scenario:** A data scientist is creating a feature table in a Unity Catalog workspace. Which is the correct creation path?
 
-A. Run CREATE FEATURE TABLE in SQL, which is the only supported route
+A. Run CREATE FEATURE TABLE in SQL with a primary key constraint, which is the only supported way to create a feature table in Unity Catalog
 B. Create any Delta table without a primary key and call it a feature table
 C. Call create_table on FeatureEngineeringClient with a name, primary keys and a schema or DataFrame, then write data with write_table
 D. Save a CSV in the workspace files and register it with register_table
@@ -122,7 +122,7 @@ D. Save a CSV in the workspace files and register it with register_table
 ### Question 7
 **Section 1. Scenario:** A model was trained with fe.log_model using a training set built from feature lookups. A batch job has only the customer ids. How does it score?
 
-A. Join every feature table by hand first, because the model stores no feature information
+A. Join every feature table by hand first, because the logged model stores only feature names and keeps no record of where each feature came from
 B. Call fe.score_batch with the model uri and a DataFrame of the keys, and the model looks up its own features
 C. Retrain the model with the keys as the only inputs
 D. Load the offline table into memory and replace the ids with random values
@@ -141,7 +141,7 @@ D. Load the offline table into memory and replace the ids with random values
 **Section 1. Scenario:** A fraud model needs customer features at single-digit millisecond latency inside a real-time endpoint. Which data structure supports this?
 
 A. An online feature store holding the latest values for lookup by key
-B. The offline Delta feature table, queried with a full scan on each request
+B. The offline Delta feature table, queried with a full scan on each request, since Delta reads are fast enough for real-time serving
 C. A CSV file loaded on every request
 D. A tag on the registered model
 
@@ -176,7 +176,7 @@ D. Give data scientists write access in production so they can fix quickly
 ### Question 10
 **Section 1. Scenario:** The model registry choice matters for lifecycle. A team still calls transition_model_version_stage to move a Unity Catalog model to Production. What is the issue?
 
-A. Nothing, stages are the recommended Unity Catalog approach
+A. Nothing, stages are the recommended Unity Catalog approach and the call is the standard way to move a model version to Production
 B. Stages are not supported for models in Unity Catalog; use aliases and three-level names for environments
 C. The call works only for tag-based models
 D. The call is correct but must be run twice
@@ -212,7 +212,7 @@ D. A stage transition to Staging
 ### Question 12
 **Section 2. Scenario:** A Spark DataFrame column shows count 9,200 for 10,000 rows, a mean of 480, a median of 55 and a max of 99,000. What does summary() tell you?
 
-A. The column is symmetric and ready to use
+A. The column is symmetric and ready to use, because the mean and median are both reported and the count is close to the number of rows
 B. There are no missing values because count is positive
 C. The standard deviation must be zero
 D. There are about 800 nulls and the column is strongly right-skewed with extreme values
@@ -249,7 +249,7 @@ D. Never remove anything, since outliers cannot be identified
 **Section 2. Scenario:** A numeric feature has a long right tail with some very large values and 5 percent nulls. Which fill is the most defensible?
 
 A. The median, because it is not pulled by the extreme values
-B. The mean, because it always represents the typical value
+B. The mean, because it uses every observation and therefore always represents the typical value of a numeric feature
 C. The mode, because the feature is numeric
 D. Zero, since zero never affects a model
 
@@ -266,7 +266,7 @@ D. Zero, since zero never affects a model
 ### Question 15
 **Section 2. Scenario:** A text column 'plan' with three values (basic, plus, pro) and no order is fed to logistic regression. Which preprocessing is appropriate?
 
-A. Replace the values with 1, 2 and 3 and use them as one number
+A. Replace the values with 1, 2 and 3 and use them as one number, since logistic regression handles numeric codes for categories natively
 B. One-hot encode it, so the model does not read a false numeric order into the plans
 C. Drop the column because text cannot be used
 D. Take the log of the string length
@@ -302,7 +302,7 @@ D. A product category with four values used in a logistic regression
 ### Question 17
 **Section 2. Scenario:** A target that spans several orders of magnitude and is right-skewed, such as sale price, is being fitted by linear regression. Which transformation is typically useful?
 
-A. Replacing the target with its rank and discarding units forever
+A. Replacing the target with its rank, which removes the skew but discards the original units and the size of differences between values
 B. Subtracting the minimum from every value
 C. One-hot encoding the target
 D. A log transformation of the target, then exponentiate predictions to return to the original units
@@ -320,10 +320,10 @@ D. A log transformation of the target, then exponentiate predictions to return t
 ### Question 18
 **Section 3. Scenario:** A churn dataset has a 4 percent positive class and the first model has 96 percent accuracy and almost no recall on churners. What is the most direct fix?
 
-A. Weight the minority class more in training (or resample), and evaluate with recall, F1 or a precision-recall measure
+A. Weight the minority class more or resample, and judge with recall or F1
 B. Standardize every feature to zero mean and unit variance
 C. Double the number of majority-class rows
-D. Switch the metric to accuracy at a higher threshold
+D. Switch the metric to accuracy at a higher threshold, so the model is rewarded for the 96 percent of predictions it already gets right
 
 <details>
 <summary>Answer</summary>
@@ -338,8 +338,8 @@ D. Switch the metric to accuracy at a higher threshold
 ### Question 19
 **Section 3. Scenario:** In Spark ML, which statement about estimators and transformers is correct?
 
-A. An estimator's fit() produces a model that is itself a transformer, and a pipeline is an estimator whose fit() returns a PipelineModel
-B. A transformer learns parameters from data, and an estimator only applies them
+A. An estimator's fit() produces a model that is itself a transformer
+B. A transformer learns parameters from data by calling fit(), and an estimator only applies those learned parameters to new data
 C. A pipeline is a transformer that cannot be fitted
 D. Estimators and transformers are the same, only the name differs
 
@@ -410,8 +410,8 @@ D. It trains the model k times per parameter setting, so it costs about k times 
 ### Question 23
 **Section 3. Scenario:** A lender needs a classifier whose predicted probabilities are well calibrated, because they will be used directly to price risk. Which metric focuses on that?
 
-A. Log loss, which scores the probability estimates and punishes confident wrong predictions
-B. Accuracy at a threshold of 0.5
+A. Log loss, which scores the probability estimates directly
+B. Accuracy at a threshold of 0.5, because it checks that the predicted class matches the label for every borrower
 C. Recall alone
 D. The number of features used
 
@@ -428,7 +428,7 @@ D. The number of features used
 ### Question 24
 **Section 3. Scenario:** A regression model for delivery times has a few very large mistakes that are especially costly. Which metric is most sensitive to those?
 
-A. MAE, since it squares errors
+A. MAE, since it squares the errors before averaging and so weights large misses most heavily
 B. RMSE, since squaring the errors penalizes large misses more heavily than MAE
 C. R-squared, since it equals the largest error
 D. Accuracy, since it counts every error equally
@@ -446,7 +446,7 @@ D. Accuracy, since it counts every error equally
 ### Question 25
 **Section 3. Scenario:** A model predicts log(price). The team computes RMSE directly between its output and the raw price column and gets a huge value. What should they do?
 
-A. Apply log to the raw price column a second time
+A. Apply log to the predictions a second time so that both sides of the comparison are on the same scale
 B. Delete the largest prices
 C. Switch to accuracy
 D. Apply exp to the predictions before calculating RMSE against raw price
@@ -464,7 +464,7 @@ D. Apply exp to the predictions before calculating RMSE against raw price
 ### Question 26
 **Section 3. Scenario:** A model has a training RMSE of 0.5 and a validation RMSE of 3.8. What does the bias-variance tradeoff suggest?
 
-A. High bias (underfitting); add more layers or depth
+A. High bias (underfitting); add more layers or depth, because a model this far from its training targets is too simple
 B. The model is ideal because training error is low
 C. High variance (overfitting); reduce complexity, add regularization or get more data
 D. The validation set is too small to say anything, so nothing can be concluded
@@ -482,7 +482,7 @@ D. The validation set is too small to say anything, so nothing can be concluded
 ### Question 27
 **Section 4. Scenario:** A bank scores a risk model once each night across all accounts and writes the results to a table that analysts read the next morning. Which approach fits?
 
-A. A low-latency real-time endpoint called once per account
+A. A low-latency real-time endpoint called once per account, so each score is returned within milliseconds as the account is processed
 B. A streaming pipeline that never stops
 C. A GPU endpoint sized for the lowest latency
 D. Batch inference on a schedule, writing predictions to a Delta table
@@ -518,7 +518,7 @@ D. Retrain the model on the DataFrame first
 ### Question 29
 **Section 4. Scenario:** A client sends feature rows to a custom model endpoint as JSON. Which input format does Databricks recommend for tabular data?
 
-A. dataframe_records, because it guarantees column order
+A. dataframe_records, because it guarantees column order and is the format Databricks recommends for tabular data
 B. dataframe_split, a pandas DataFrame in split orientation with columns and data
 C. A CSV string in the URL
 D. A pickled file in the request body

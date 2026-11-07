@@ -35,7 +35,7 @@ D. Storage access for all nodes
 A. All eight GPUs inside one server
 B. The GPUs in the same position (index) in each server
 C. GPUs chosen at random by the scheduler
-D. Only GPUs attached to the same storage array
+D. Only GPUs attached to the same storage array through the storage fabric, whatever their position in the server
 
 <details>
 <summary>Answer</summary>
@@ -69,7 +69,7 @@ D. nv set qos roce, followed by nv config apply
 **Section 2. Scenario:** Which pair of mechanisms does lossless RoCE mode combine?
 
 A. PFC on the RoCE priority together with ECN
-B. ECN only, with PFC disabled
+B. ECN only, with PFC disabled so congestion is signaled to senders but no pause frames are ever sent
 C. BGP graceful restart and MLAG
 D. PKeys and service levels
 
@@ -141,7 +141,7 @@ D. One physical switch per tenant
 **Section 2. Scenario:** A switch runs the NetQ agent. What must be done about the on-switch WJH service?
 
 A. Disable it, because the NetQ agent exports WJH data itself
-B. Run both services at once for redundancy
+B. Run both services at once for redundancy, since the two collect the same drop data independently and give a second copy
 C. Enable more WJH channels
 D. Replace it with an ECN threshold
 
@@ -231,7 +231,7 @@ D. The subnet manager
 **Section 3. Scenario:** UFM is deployed in high availability mode. What happens if the active server fails?
 
 A. The standby server takes over fabric management
-B. The fabric stops forwarding traffic
+B. The fabric stops forwarding traffic until an administrator restarts the failed active server by hand
 C. All PKeys are deleted
 D. Adaptive routing is permanently disabled
 
@@ -303,7 +303,7 @@ D. Run ibnodes on every host
 **Section 3. Scenario:** Which opensm.conf settings does the bring-up guide recommend for QoS?
 
 A. qos FALSE and max_op_vls 0
-B. routing_engine torus-2QoS only
+B. routing_engine torus-2QoS only, which is the one setting the guide lists for a QoS configuration
 C. shield_mode off
 D. qos TRUE and max_op_vls 2, with an SL-to-VL map
 
@@ -393,7 +393,7 @@ D. Disable RDMA in the NicClusterPolicy
 **Section 5. Scenario:** An engineer wants to know why packets are being dropped on a Spectrum switch right now, by layer and reason. Which tool?
 
 A. ibnodes
-B. cl-resource-query
+B. cl-resource-query, which reports how full the switch's hardware routing and ACL tables are
 C. nvidia.nvue
 D. What Just Happened (WJH)
 
@@ -411,7 +411,7 @@ D. What Just Happened (WJH)
 **Section 5. Scenario:** A host-memory ib_write_bw test shows good bandwidth but a GPU-memory test is far lower. What does the NCCL troubleshooting guide suggest?
 
 A. A GPUDirect RDMA path problem worth investigating
-B. The Network Operator is not installed
+B. The Network Operator is not installed on the Kubernetes cluster that runs the benchmark pods
 C. The subnet manager is the standby
 D. PFC is set to priority 0
 
@@ -482,7 +482,7 @@ D. cl-resource-query
 ### Question 27
 **Section 5. Scenario:** In UFM, where do you run a Fabric Health report?
 
-A. Fabric Segmentation
+A. Fabric Segmentation, under the Network Management menu, with Create New Segment to generate the report
 B. The NVUE REST API
 C. The Network Operator Helm chart
 D. System Health, under Fabric Health, with Run New Report
