@@ -74,7 +74,6 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 
 ## Open
 
-- [ ] 2026-11-07: length-tell fail (correct option longest in far more than chance): azure-ai-apps-agents-developer-ai-103 (83% longest), azure-ai-fundamentals-ai-901 (60%); rebalance distractors, check with balance-answer-positions.py --check-length.
 
 ### 🟠 Discoverability (added 2026-08-31)
 
