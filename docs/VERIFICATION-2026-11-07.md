@@ -71,3 +71,49 @@ Method: for each page the checkable claims (statutes and dates, product behaviou
 - Time-series and library defaults beyond the scikit-learn docs sections cited: `TimeSeriesSplit` described, not run. The pages state Python 3.14 for their runs; the re-run here used Python 3.12 and reproduced every number.
 - Genie space definition (Databricks note 04) was not fetched; "Python 3.14" run environment claims.
 - Body text of the CCDV-F note 03 still shows forced tool choice in a worked example (line 149) and in the exam-topic list; the example is valid on models that allow it, but it needs the same model caveat if reworked.
+
+## Cert guides pass
+
+Second pass over the cert guides rebuilt on 2026-11-07: exam logistics re-fetched from the vendor pages, every bank question decided against vendor docs, and the claim-dense notes checked. Counts are of items examined. Logistics, questions and claims are shown as checked / fixed (claims: verified / fixed / unverifiable).
+
+| Guide | Logistics (checked / fixed) | Questions (checked / wrong keys) | Claims (verified / fixed / unverifiable) |
+|---|---|---|---|
+| databricks/ml-associate | 13 / 0 | 30 / 0 | 52 / 3 / 0 |
+| nvidia/ai-networking-professional (NCP-AIN) | 12 / 0 | 30 / 0 | 22 / 3 / 5 |
+| nvidia/openusd-development-professional (NCP-OUSD) | 12 / 0 | 30 / 0 | 38 / 5 / 6 |
+| nvidia/generative-ai-multimodal-associate (NCA-GENM) | 13 / 0 | 30 / 0 | 24 / 3 / 3 |
+| azure/ai-103 | 17 / 3 | 30 / 0 | about 55 / 8 / 7 |
+| azure/ai-901 | 10 / 0 | 20 / 0 | about 24 / 6 / 2 |
+
+No keyed answer was wrong in any bank, so nothing was re-lettered and the balancer check still passes. Distractor and explanation fixes: AI-901 Q9 (two distractors and the explanation), AI-103 Q22 and Q28, NCP-AIN Q7, Databricks Q6.
+
+### Cert guide fixes
+
+| Page | Old | New | Source |
+|---|---|---|---|
+| Databricks fact-sheet, note 01, scenarios | `fe.score_batch` needs only the keys | needs primary keys plus any external columns the model was trained with | https://docs.databricks.com/aws/en/machine-learning/feature-store/train-models-with-feature-store |
+| Databricks note 01, bank Q6 | `create_table` implied the only route | any Unity Catalog Delta table with a primary key constraint can be a feature table | https://docs.databricks.com/aws/en/machine-learning/feature-store/uc/feature-tables-uc |
+| NCP-AIN note 02, bank Q7 | Cumulus does not support L3 VNI on the default VRF | one L3 VNI per tenant VRF; default-VRF claim marked unverified | https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing/ |
+| NCP-AIN note 05 | cl-resource-query sample not reproduced | sample lines and NVUE forwarding-profile commands added | https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-59/Monitoring-and-Troubleshooting/Resource-Diagnostics-Using-cl-resource-query/ |
+| NCP-AIN note 03 | SM priority rule not covered | priority 0 (default) to 15, master chosen by priority and GUID; tie-break marked unverified | https://www.mankier.com/8/opensm |
+| NCP-OUSD notes 01, 02 | misquoted instancing, glossary and Kind page text | actual page wording or unquoted paraphrase | https://openusd.org/release/api/_usd__page__scenegraph_instancing.html |
+| NCP-OUSD note 08 | UsdPreviewSurface spec 2.5 | page header 2.5, changelog lists 2.6 | https://openusd.org/release/spec_usdpreviewsurface.html |
+| NCA-GENM note 01 | CLIP misquote | "predicting which caption goes with which image", 400M pairs | https://arxiv.org/abs/2103.00020 |
+| NCA-GENM note 07, flashcard | NeMo Guardrails "accurate, on topic and secure"; confidential computing "protects data during processing" | "accurate, appropriate, on topic and secure"; confidential computing only listed as a security feature | https://www.nvidia.com/en-us/ai-data-science/trustworthy-ai/ |
+| AI-103 fact-sheet, README | "Microsoft says most exams have 40-60 questions" | not published for AI-103, marked unverified | https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ai-103 |
+| AI-103 fact-sheet, note 03, flashcard | DALL-E 3 retired 2026-03-04 | retired, date unverified | https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule |
+| AI-103 note 03 | Sora 2 with no caveat | schedule lists sora-2 retirements 2026-07-15 and 2026-10-15 | same |
+| AI-103 bank Q22, Q28 | confidence claimed for image analyzers; unfound quote | scenario reworded, hedged explanation; verified quote | https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-query |
+| AI-901 bank Q9 C, D | Standard "no pooled capacity"; provisioned "any region" | Standard stays in one Azure geography; Global Provisioned may process anywhere | https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/deployment-types |
+| AI-901 note 01, flashcard | Data Zone "within a geography" | Data Zone is a Microsoft-defined zone (US/EU/APAC) | same |
+| AI-901 notes 01, 03 | Face identification and verification limited | whole Face service is access-limited | https://learn.microsoft.com/en-us/azure/ai-services/face/overview-identity |
+| AI-901 notes 02, 03, 04, fact-sheet | Claude via Marketplace; phrase list without limit; CU as successor to Document Intelligence; Foundry IQ "built on" AI Search | partner models incl. Anthropic; phrase lists need real-time or fast transcription; CU Studio transition path; AI Search provides indexing and retrieval | https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/overview |
+
+### Still unverifiable
+
+- NCA-GENM: 50 versus 50-60 questions (the exam page states both); the unread reading-list items; the CLIP-in-diffusion sentence (OpenAI page 403).
+- NCP-OUSD: file-format plug-in, ASWF and Scalable Asset Structure pages (404), SceneIndex plug-ins, in-memory resolvers, Conceptual Data Mapping; "Certiverse account" is not on the fetched page; hands-on lab not stated.
+- NCP-AIN: limited-PKey rule (InfiniBand spec, not NVIDIA pages), OpenSM tie-break, L3 VNI on default VRF, ibdiagnet, SuperNIC congestion control, DSX Air, PFC watchdog.
+- AI-103: DALL-E 3 date, question count, price, image-analyzer confidence, Custom Translator with document translation, azure-ai-projects 2.x vs 1.x, Q7/Q18/Q24 rest on design practice.
+- AI-901: lab yes/no (not stated), Azure OpenAI and Agent Service renames, speech WER and diarisation claims.
+- Databricks: promote-code-versus-model exceptions are labelled "my reading" in note 01 (the MLOps page lists none).
