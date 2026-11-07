@@ -46,7 +46,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] 2026-10-22 AI-901 duration added (45 min, Microsoft's Fundamentals figure); question count is not published by Microsoft.
 - [x] 2026-10-22 NVIDIA codes confirmed on nvidia.com: NCP-NET -> NCP-AIN, NCP-USD -> NCP-OUSD, NCA-MMGA -> NCA-GENM; names, logistics, blueprints and dirs fixed.
 - [ ] 2026-11-15: rewrite notes + banks for NCP-AIN, NCP-OUSD, NCA-GENM to NVIDIA's blueprints (gaps: Kubernetes, debugging, data analysis); see each README table.
-- [ ] 2026-11-02: confirm NCP-AIN labs + $500 price took effect 11-01 (nvidia.com exam page); update README, fact sheet, flashcards, careers guide.
+- [ ] 2026-11-14: confirm NCP-AIN labs + $500 price took effect 11-01 (nvidia.com exam page); update README, fact sheet, flashcards, careers guide. ✏️ 2026-11-07 re-dated 2026-11-14: nvidia.com exam page not reachable by curl (404 to a guessed URL); needs the real page URL or a browser
 - [x] 2026-10-22 MLA-C01 guide: real logistics (130 min, 65 q) and verified MLA-C02 beta facts (ME1-C02, $75, 170 min, 85 q, GA TBD).
 - [ ] 2026-12-01: MLA-C02 GA date on aws.amazon.com? If announced, build `aws/associate/ml-engineer-mla-c02` from the exam guide [H].
 - [x] 2026-10-22 Anthropic: CPES confirmed not an exam (study track, invented logistics removed); CCAO-F and CCAR-P weights match the v1.0 exam guide PDFs.
@@ -97,7 +97,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
       impressions 09-15..10-14. The sitemap itself is fine (200, `application/xml`, 189 `<loc>`). Read via the GSC
       API as `nobler-reporting` (WIF, gitgood.dev `scripts/analytics/wif-auth.ts`). Next (Pat, 2026-10-28, browser):
       URL Inspection -> Request indexing on the home page, and resubmit the sitemap; then re-check 2026-11-01.
-- [ ] **2026-11-06 judge**: re-pull the referrers above; target Google + Bing referrals up versus the
+- [ ] **2026-11-15 judge**: re-pull the referrers above; target Google + Bing referrals up versus the ✏️ 2026-11-07 re-dated 2026-11-15: Search Console/Bing referrer pull is Patrick's console step
       2026-09-30 baseline, and search queries appearing in Search Console -> Performance.
       ✏️ 2026-10-30 (todo-sweep): re-dated 2026-11-06 - `gh api` (GitHub referrers) is blocked by this
       loop's Bash permissions, and Search Console Performance needs the GSC WIF script (node), which
