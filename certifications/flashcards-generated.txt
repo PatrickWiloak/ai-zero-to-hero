@@ -1,0 +1,4 @@
+# Decks written by scripts/build_flashcards.py (refreshed on every run, checked by --check).
+# A deck not listed here is hand-written and is never touched. One cert path per line.
+anthropic/claude-certified-developer-foundations
+databricks/genai-engineer-associate

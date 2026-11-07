@@ -24,6 +24,7 @@ History: on 2026-10-21 the combined `cloud-data-ai-security-zero-to-hero` repo s
 - `papers.json` / `papers.csv` - Generated machine-readable manifest
 - `scripts/build_manifest.py` - Regenerates frontmatter, manifest, INDEX.md, TAGS.md, `mkdocs.generated.yml`, and the `site-build/` tree (stdlib only, idempotent)
 - `scripts/build_certs.py` - Certifications: hub, provider tables, the "Certifications" nav section and the per-deck flashcard pages (imported by `build_manifest.py`; stdlib only)
+- `scripts/build_flashcards.py` - Fills `flashcards.csv` for certs with NO deck (exam logistics from `fact-sheet.md` + `- **Term** - definition` lines in `notes/`; 15 cards minimum, 300 max). Hand-written decks are never touched; only certs listed in `certifications/flashcards-generated.txt` are owned and refreshed. Run by `build_manifest.py`; `--report` lists certs still without a deck, `--check` fails on a stale owned deck (stdlib only)
 - `scripts/add_cross_links.py` - Regenerates the "Related in This Collection" footer on each summary (stdlib only, idempotent)
 - `scripts/check_links.py` - Validates relative Markdown links (used by CI)
 - `scripts/check_counts.py` - Fails CI when a hand-typed count drifts from `papers.json`: BROWSE.md's per-category and badge tallies, the glossary term count in `docs/GLOSSARY.md` and README, `docs/GAPS.md`'s coverage map (which must account for every paper), and `certifications/certs.json` against the tree plus README's Certifications badge

@@ -34,7 +34,8 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] 2026-10-21 Ten new concept pages in `learn/concepts/` (classic ML, overfitting/metrics, LLM training, coding/computer-use agents, agent memory, speech, SLMs, recommenders, cost) and two agent projects in `build/projects/`.
 - [ ] Next pillar page: AI news digest + RSS. (Paper lineage graph skipped 2026-10-21: `papers.json` has no builds-on/citation field, so it could only be hand-typed; add that field first.)
 - [x] 2026-10-21 Split from cloud-data-ai-security-zero-to-hero on 2026-10-21; AI cert guides wired in as `certifications/` (index `certs.json`, generated hub + nav, flashcard pages).
-- [ ] Certs: some guides have no flashcard deck (hub shows "-"); no CSV generator here yet - port cloud-zero-to-hero `build-flashcards.py` if decks need adding.
+- [x] 2026-11-07 Flashcard generator ported (`scripts/build_flashcards.py`, runs in `build_manifest.py`); decks added for CCDV-F (35) and Databricks GenAI Associate (20).
+- [ ] 2026-11-15 Flashcards still missing (hub shows "-"): add `- **Term** - definition` Key terms to Databricks ML Associate/Professional notes (verify vs docs), NVIDIA ADS + GenAI LLMs Professional after the rewrite; `python3 scripts/build_flashcards.py --report` lists them.
 - [ ] 2027-04-19: re-review every guide page (180-day stale warning starts).
 
 ## Certifications (moved in from the old cloud repo TODO, 2026-10-21)

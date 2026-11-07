@@ -11,6 +11,7 @@ and (re)generates:
   - INDEX.md       human browse index, grouped by category
   - mkdocs.generated.yml  hand-maintained mkdocs.yml + auto-generated nav
   - site-build/    the staged docs_dir the site is built from
+  - flashcards.csv for certs with no deck (via build_flashcards.py)
   - certifications/README.md and the provider tables (via build_certs.py)
 
 Run from anywhere:  python3 scripts/build_manifest.py
@@ -29,6 +30,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import build_flashcards  # noqa: E402  fills certs that have no flashcard deck
 import build_certs  # noqa: E402  certification guides: hub, provider tables, nav, flashcard pages
 
 # Repo-internal docs in docs/ that are not published guides.
@@ -894,6 +896,7 @@ def main() -> None:
 
     explainers = parse_explainers()
     pillars = parse_pillars()
+    build_flashcards.generate()
     certs = build_certs.build()
 
     changed = write_frontmatter(papers)
