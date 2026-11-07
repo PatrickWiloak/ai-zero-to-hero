@@ -18,6 +18,8 @@ This guide covers:
 
 ## Exam Focus Areas
 
+**Exam sections**: 1.1 (BigQuery ML, AutoML), 2.2 and 2.3 (notebooks, experiments) and all of Section 3 (~21%). Foundation model tuning and Model Garden are in [ML Foundation Models and Tuning](ml-foundation-models-and-tuning.md), and evaluating generative solutions is in [Monitoring AI Solutions](ml-monitoring-ai-solutions.md#the-gen-ai-evaluation-service).
+
 **For Professional ML Engineer Exam**:
 1. **Framework Selection**: When to use TensorFlow vs PyTorch vs AutoML vs BigQuery ML
 2. **Training Infrastructure**: GPU vs TPU, distributed strategies, cost optimization
@@ -787,6 +789,12 @@ model = job.run(
     environment_variables={'TF_GPU_THREAD_MODE': 'gpu_private'}
 )
 ```
+
+### Colab Enterprise or Workbench
+
+Objective 2.2 names both notebook products, and the choice comes down to how much of the environment you want to manage. [Google's decision guide](https://docs.cloud.google.com/gemini-enterprise-agent-platform/notebooks/workbench/notebook-solution) describes Colab Enterprise as a collaborative, managed notebook environment that suits projects prioritising teamwork and not managing infrastructure. It provisions a runtime when you need one and starts and stops it for you. A runtime template sets the machine type, accelerators, disk and network, so an administrator can give a team a consistent and secure setup through a single template.
+
+Workbench gives each user a Jupyter environment on a VM instance. That costs more upkeep but gives more control over the environment, and it can run notebooks on a schedule. Choose Colab Enterprise when the scenario stresses sharing and low administration, and Workbench when it stresses a customised long-lived environment.
 
 ## Distributed Training
 
@@ -3050,6 +3058,10 @@ SELECT *
 FROM ML.EXPLAIN_PREDICT(MODEL `dataset.churn_model`,
   (SELECT * FROM `dataset.test_data` LIMIT 10));
 ```
+
+### Fine-tuning Gemini in BigQuery
+
+Objective 1.1 also covers fine-tuning Gemini models using BigQuery, through a remote model. The walkthrough is in [ML Foundation Models and Tuning](ml-foundation-models-and-tuning.md#fine-tuning-gemini-in-bigquery).
 
 ## Feature Engineering
 

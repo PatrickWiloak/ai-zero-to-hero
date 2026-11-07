@@ -92,6 +92,7 @@
 ### Week 4: Pre-trained APIs and Model Serving
 
 #### Day 1-2: Vision and Language APIs
+- [ ] Read [ML Foundation Models and Tuning](notes/ml-foundation-models-and-tuning.md) (Model Garden, Gemini tuning in BigQuery)
 - [ ] Study Vision API capabilities
 - [ ] Learn Natural Language API features
 - [ ] Understand API integration patterns
@@ -178,8 +179,11 @@
 ### Week 7: Model Monitoring and Management
 
 #### Day 1-2: Model Monitoring
+- [ ] Read [Monitoring AI Solutions](notes/ml-monitoring-ai-solutions.md) (Section 6, ~13%)
 - [ ] Study model performance monitoring
-- [ ] Learn drift detection (data and concept drift)
+- [ ] Learn drift detection (skew, data drift, concept drift, feature attribution drift)
+- [ ] Study Model Armor, safety filters and monitoring for bias
+- [ ] Evaluate generative output with the Gen AI evaluation service
 - [ ] Understand prediction quality metrics
 - [ ] Practice with monitoring setup
 - [ ] **Lab:** Configure model monitoring

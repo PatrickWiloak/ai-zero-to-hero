@@ -1,14 +1,14 @@
 ---
-last-updated: 2026-05-03
+last-updated: 2026-11-06
 ---
 
 # GCP Professional Machine Learning Engineer (PMLE) - Exam Scenarios
 
-> Six worked scenarios mirroring PMLE question style. PMLE tests ML problem framing, data engineering for ML, model development, MLOps, and Agent Platform (formerly Vertex AI) specifically.
+> Six worked scenarios mirroring PMLE question style. Each is labelled with its section in the current exam guide. PMLE tests low-code AI, data and model collaboration, scaling prototypes, serving, pipelines and monitoring, on Agent Platform (formerly Vertex AI) specifically.
 
 ---
 
-## Scenario 1 - Pre-built model vs custom (Domain: Architecture)
+## Scenario 1 - Pre-built model vs custom (Section 1.2)
 
 A team needs to extract entities and sentiment from product reviews. They have no labeled data and want to ship in 2 weeks.
 
@@ -22,7 +22,7 @@ A team needs to extract entities and sentiment from product reviews. They have n
 
 ---
 
-## Scenario 2 - Training-serving skew (Domain: MLOps)
+## Scenario 2 - Training-serving skew (Sections 2.1 and 5.1)
 
 A team's online inference quality degrades over weeks. Training data is processed differently than inference data; features differ.
 
@@ -36,7 +36,7 @@ A team's online inference quality degrades over weeks. Training data is processe
 
 ---
 
-## Scenario 3 - Distributed training cost (Domain: Modeling)
+## Scenario 3 - Distributed training cost (Section 3.3)
 
 Training a 1B-param model takes 14 days on a single A100. Cost matters; some interruption is acceptable.
 
@@ -50,7 +50,7 @@ Training a 1B-param model takes 14 days on a single A100. Cost matters; some int
 
 ---
 
-## Scenario 4 - Model monitoring (Domain: MLOps)
+## Scenario 4 - Model monitoring (Section 6.2)
 
 A deployed model needs alerts when input feature distribution drifts or prediction quality drops.
 
@@ -64,7 +64,7 @@ A deployed model needs alerts when input feature distribution drifts or predicti
 
 ---
 
-## Scenario 5 - Hyperparameter tuning (Domain: Modeling)
+## Scenario 5 - Hyperparameter tuning (Section 3.2)
 
 A team has 6 hyperparameters and 100-run budget. They want maximum quality.
 
@@ -78,7 +78,7 @@ A team has 6 hyperparameters and 100-run budget. They want maximum quality.
 
 ---
 
-## Scenario 6 - Pipeline orchestration (Domain: MLOps)
+## Scenario 6 - Pipeline orchestration (Section 5.1)
 
 A team needs reproducible ML pipelines: data prep → train → eval → register → deploy, with conditional logic and observability.
 

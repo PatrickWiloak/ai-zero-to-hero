@@ -9,7 +9,7 @@ Study guides for the GCP AI and machine learning certifications. Every provider 
 | Cert | Code | Level | Status | Notes |
 |------|------|-------|--------|------:|
 | [Google Cloud Generative AI Leader](generative-ai-leader/README.md) | - | Foundational | Ready | 4 |
-| [Google Cloud Professional Machine Learning Engineer Certification](machine-learning-engineer/README.md) | Professional Machine Learning Engineer | Professional | Ready | 3 |
+| [Google Cloud Professional Machine Learning Engineer Certification](machine-learning-engineer/README.md) | Professional Machine Learning Engineer | Professional | Ready | 5 |
 | [Google Cloud Generative AI - Self-Directed Study Track](genai/README.md) | - | - | Study track | 3 |
 
 Other Google Cloud certifications are covered on the sibling Zero to Hero sites:

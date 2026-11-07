@@ -1,5 +1,5 @@
 ---
-last-updated: 2026-10-22
+last-updated: 2026-11-06
 ---
 
 # Google Cloud Professional Machine Learning Engineer - Fact Sheet
@@ -22,14 +22,29 @@ last-updated: 2026-10-22
 
 | Section (exam guide as of 2026-06-01) | Weight | Key Focus |
 |--------|--------|-----------|
-| 1. Architecting low-code AI solutions | ~13% | BigQuery ML, AutoML on Agent Platform, Model Garden, Google Cloud AI APIs, Gemini cost and latency |
-| 2. Collaborating within and across teams to manage data and models | ~16% | Data exploration and preprocessing, Feature Store, Workbench and Colab Enterprise, experiment tracking |
-| 3. Scaling prototypes into ML models | ~21% | Model choice by cost and latency, training, hardware selection |
-| 4. Serving and scaling models | ~20% | Model Registry, online and batch inference, scaling endpoints |
-| 5. Automating and orchestrating ML pipelines | ~18% | Agent Platform Pipelines, Airflow, Ray, CI/CD/CT retraining |
-| 6. Monitoring AI solutions | ~13% | Risks to AI solutions, Model Monitoring, testing and troubleshooting |
+| 1. Architecting low-code AI solutions | ~13% | BigQuery ML, AutoML on Agent Platform, Gemini tuning in BigQuery, Model Garden, Google Cloud AI APIs, Gemini cost, latency and availability |
+| 2. Collaborating within and across teams to manage data and models | ~16% | Data exploration and preprocessing, PII, Feature Store, Workbench and Colab Enterprise, experiment tracking, predictive and generative evaluation |
+| 3. Scaling prototypes into ML models | ~21% | Model choice by cost and latency, training, foundation model tuning, hardware selection |
+| 4. Serving and scaling models | ~20% | Model Registry, online and batch inference, Model Garden deployment, rollouts, scaling endpoints |
+| 5. Automating and orchestrating ML pipelines | ~18% | Agent Platform Pipelines, Airflow, Ray, consistent preprocessing, CI/CD/CT retraining |
+| 6. Monitoring AI solutions | ~13% | Security risks and Model Armor, bias, explainability, Model Monitoring, skew and drift types, generative AI evaluation |
 
-Google updated the exam for the rename of Vertex AI to Gemini Enterprise Agent Platform (2026-04-22); the guide uses only the new names. The topic sections further down this page predate the June 2026 guide and are organised differently.
+The guide uses only the Gemini Enterprise Agent Platform names (formerly Vertex AI). The certification page links two different PDFs, and only `professional_machine_learning_engineer_exam_guide_english.pdf` is current. Its "See current exam guide" link opens a September 2024 version with older weights.
+
+### Where each section is on this page
+
+The topic sections below are organised by subject, so use this map.
+
+| Exam section | Sections on this page |
+|---|---|
+| 1. Low-code AI | [AutoML](#automl), [BigQuery for ML](#bigquery-for-ml), [Foundation Models and Tuning](#foundation-models-and-tuning), [Pre-trained AI Services](#pre-trained-ai-services) |
+| 2. Data and models | [Data Engineering for ML](#data-engineering-for-ml), [Agent Platform Workbench](#agent-platform-workbench), [Generative AI evaluation](#generative-ai-evaluation) |
+| 3. Scaling prototypes | [TensorFlow and Deep Learning](#tensorflow-and-deep-learning), [Model Building and Training](#model-building-and-training) |
+| 4. Serving and scaling | [Agent Platform Inference](#agent-platform-inference), [Model Deployment Strategies](#model-deployment-strategies), [Prediction Latency Optimization](#prediction-latency-optimization) |
+| 5. Pipelines | [ML Pipeline Automation and MLOps](#ml-pipeline-automation-and-mlops) |
+| 6. Monitoring AI | [Model Monitoring and Optimization](#model-monitoring-and-optimization), [Securing AI applications](#securing-ai-applications), [Responsible AI](#responsible-ai) |
+
+"ML Problem Framing" below is useful background, but it is no longer a named objective in the guide.
 
 ## ML Problem Framing
 
@@ -505,7 +520,48 @@ Google updated the exam for the rename of Vertex AI to Gemini Enterprise Agent P
 - **[📖 Pre-built Containers](https://cloud.google.com/vertex-ai/docs/training/pre-built-containers)** - Available containers
 - **[📖 Custom Containers](https://cloud.google.com/vertex-ai/docs/training/create-custom-container)** - Building custom containers
 
+## Foundation Models and Tuning
+
+Full teaching notes: [ML Foundation Models and Tuning](notes/ml-foundation-models-and-tuning.md).
+
+**Model Garden** is the library for finding, testing, customising and deploying models. An open model can run through Model as a Service, a serverless API with nothing to deploy, or be self-deployed to an endpoint in your own project and VPC. Self-deployment suits custom or fine-tuned weights, predictable high-volume traffic and strict compliance needs.
+
+**Tune last.** Start with prompting, and tune when advanced prompting is not enough and you can show the behaviour through labelled examples. Tuning teaches behaviour rather than facts, so answers that depend on changing documents need grounding or RAG.
+
+**Tuning in BigQuery** suits a SQL team whose examples are already in a table: `CREATE MODEL ... REMOTE WITH CONNECTION DEFAULT` with options `endpoint` and `max_iterations`, and a query returning `prompt` and `label`. Evaluate with `ML.EVALUATE` using `STRUCT('text_generation' AS task_type)`, and call the result with `AI.GENERATE_TEXT`.
+
+**Gemini cost, latency and availability:** context caching for repeated content placed first in the prompt, batch inference for large non-urgent work, and Provisioned Throughput for steady workloads that need an SLA.
+
+- **[📖 Model Garden](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-garden/explore-models)** - Overview
+- **[📖 Open model serving options](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/open-models/choose-serving-option)** - MaaS and self-deployment
+- **[📖 Tuning](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/tuning)** - When and how to tune
+- **[📖 Tune Gemini in BigQuery](https://docs.cloud.google.com/bigquery/docs/generate-text-tuning)** - SQL walkthrough
+
 ## Model Monitoring and Optimization
+
+Full teaching notes: [Monitoring AI Solutions](notes/ml-monitoring-ai-solutions.md).
+
+### Skew and drift at a glance
+
+Training-serving skew compares serving inputs with the training data. Data drift compares serving inputs with earlier production data. Concept drift is a change in what the right answer is, so input monitoring cannot see it, and you need delayed labels and continuous evaluation metrics. Feature attribution drift tracks how much each feature drives predictions.
+
+Model Monitoring v1 is generally available and attaches to an endpoint, with email alerts and a default threshold of 0.3. Model Monitoring v2 is in Preview, attaches to a model version and can cover models outside the platform. Both use L-infinity distance for categorical features and Jensen-Shannon divergence for numerical features. Google's overview scopes the product to tabular models.
+
+- **[📖 Introduction to Model Monitoring](https://docs.cloud.google.com/gemini-enterprise-agent-platform/machine-learning/model-monitoring/overview)** - v1 and v2
+- **[📖 Attribution monitoring](https://docs.cloud.google.com/gemini-enterprise-agent-platform/machine-learning/model-monitoring/monitor-explainable-ai)** - Requirements and baselines
+
+### Securing AI applications
+
+The guide names three risks: data exfiltration, malicious prompting, and sensitive data shared with LLMs. Regex is a cheap layer for fixed formats, but it cannot catch a paraphrase. Gemini safety filters block content in harm categories at thresholds you set. Model Armor screens prompts and responses for prompt injection, jailbreaks, sensitive data and malicious URLs, using templates through `SanitizeUserPrompt` and `SanitizeModelResponse`, and it can run inspect-only before you enforce.
+
+- **[📖 Model Armor](https://docs.cloud.google.com/model-armor/overview)** - Overview
+- **[📖 Safety filters](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/capabilities/configure-safety-filters)** - Categories and thresholds
+
+### Generative AI evaluation
+
+The Gen AI evaluation service supports rubric-based metrics judged by an LLM ("LLM-as-a-judge"), computation-based metrics such as ROUGE and BLEU that need references, and custom Python functions. Run a fixed dataset after each prompt or model change, and sample production logs to keep it realistic.
+
+- **[📖 Gen AI evaluation service](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/evaluation-overview)** - Overview
 
 ### Production Model Monitoring
 

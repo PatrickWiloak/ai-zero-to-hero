@@ -1,5 +1,5 @@
 ---
-last-updated: 2026-05-03
+last-updated: 2026-11-06
 ---
 
 # GCP Professional Machine Learning Engineer (PMLE) - Exam Strategy
@@ -7,14 +7,14 @@ last-updated: 2026-05-03
 ## Format reminder
 
 - 50-60 questions, 120 minutes
-- Pass mark ~70-75%
+- Pass mark not published by Google (commonly estimated around 70%)
 - Multiple choice + multiple response
 
 ## Top traps
 
 1. **GCP ML service ladder**: pre-trained APIs (Vision, NL, Speech, Translate, Document AI) → AutoML (your data, no code) → custom training on Agent Platform (formerly Vertex AI) → on-prem / Anthos. Climb only when needed.
 
-2. **Agent Platform vs legacy AI Platform**: Agent Platform is the unified platform (renamed in 2021). AI Platform is legacy. Pick Agent Platform in modern questions.
+2. **Agent Platform vs legacy AI Platform**: Agent Platform is the unified platform (launched as Vertex AI in 2021, renamed in 2026). AI Platform is legacy. Pick Agent Platform in modern questions.
 
 3. **AutoML vs Custom Training on Agent Platform**: AutoML for tabular / image / text / video without writing model code. Custom for full control with TensorFlow / PyTorch / XGBoost / scikit-learn.
 
@@ -65,7 +65,7 @@ last-updated: 2026-05-03
 
 **Pass:** Cert valid 2 years.
 
-**Fail:** Most failures are on Modeling (~25%) or MLOps (~25%). Re-review Agent Platform components, Feature Store, Model Monitoring.
+**Fail:** Re-review your weakest sections first. By weight, the largest are Scaling prototypes (~21%), Serving and scaling (~20%) and Pipelines (~18%). Do not skip Monitoring AI solutions (~13%), which now includes security and generative AI evaluation.
 
 ## PMLE patterns
 
@@ -79,3 +79,9 @@ last-updated: 2026-05-03
 - "Cheap large-scale training" = Spot + checkpointing + distributed
 - "Per-prediction explanation" = Agent Platform Explainable AI
 - "Foundation model + RAG" = Agent Search + Agent Studio
+- "SQL team tunes Gemini on a BigQuery table" = BigQuery remote model with `prompt` and `label`
+- "Open model, no capacity to manage" = Model as a Service in Model Garden
+- "Custom weights in our own VPC" = self-deploy from Model Garden
+- "Prompt injection or jailbreak" = Model Armor
+- "Inputs stable, accuracy falling" = concept drift, found with delayed labels
+- "Score generative output after each prompt change" = Gen AI evaluation service on a fixed dataset

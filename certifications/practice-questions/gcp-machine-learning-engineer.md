@@ -1,13 +1,26 @@
 ---
-last-updated: 2026-10-22
+last-updated: 2026-11-06
 difficulty: advanced
 ---
 
 # Google Cloud Professional Machine Learning Engineer - Practice Questions
 
-30 questions for the Professional ML Engineer exam, covering problem framing, data and model development on Agent Platform (formerly Vertex AI), pipeline automation, serving, and monitoring. Questions 16-30 are weighted by the six sections of the current exam guide: scaling prototypes (~21%), serving and scaling (~20%), pipelines (~18%), collaborating on data and models (~16%), low-code AI (~13%) and monitoring AI solutions (~13%).
+36 questions for the Professional ML Engineer exam, mapped below to the six sections of the current exam guide: scaling prototypes (~21%), serving and scaling (~20%), pipelines (~18%), collaborating on data and models (~16%), low-code AI (~13%) and monitoring AI solutions (~13%). Products use the guide's names: Agent Platform is the former Vertex AI. Questions 31-36 fill objectives that had no question: Gemini tuning in BigQuery, Model Garden serving, Model Armor, feature attribution drift, concept drift and bias monitoring.
 
 > **Cert page:** [exams/gcp/machine-learning-engineer/](../gcp/machine-learning-engineer/README.md)
+
+## Questions by exam section
+
+| Section | Weight | Questions |
+|---|---|---|
+| 1. Architecting low-code AI solutions | ~13% | 1.1: 3, 16, 31. 1.2: 11, 17 |
+| 2. Collaborating to manage data and models | ~16% | 2.1: 9, 13. 2.2: 19. 2.3: 18, 28 |
+| 3. Scaling prototypes into ML models | ~21% | 3.1: 1 (framing, background only). 3.2: 10, 12, 22. 3.3: 20, 21 |
+| 4. Serving and scaling models | ~20% | 4.1: 5, 6, 32. 4.2: 2, 23, 25 |
+| 5. Automating and orchestrating ML pipelines | ~18% | 5.1: 4, 24, 26. 5.2: 14, 27 |
+| 6. Monitoring AI solutions | ~13% | 6.1: 8, 15, 33, 36. 6.2: 7, 29, 30, 34, 35 |
+
+Question 2 also touches 2.1 (Feature Store), and question 30 also touches 2.3 (evaluating generative solutions).
 
 ---
 
@@ -517,6 +530,102 @@ D. The Gen AI evaluation service on a fixed dataset
 **Correct: D**
 
 **Why:** The evaluation service scores generative output against criteria such as groundedness, fluency and safety, and a fixed dataset makes results comparable between versions. Ten manual reads do not repeat reliably. Exact match fails for free-form summaries. Latency says nothing about quality.
+</details>
+
+### Question 31
+**Scenario:** An analytics team works only in SQL. Thousands of approved input and output pairs for product descriptions sit in a BigQuery table, and well-crafted prompts have not reached the house style. They want a tuned Gemini model without leaving BigQuery.
+
+A. Export the table as JSONL and write a custom Python training job on a GPU cluster
+B. Train a BigQuery ML logistic regression model on the pairs and generate text from its predictions
+C. Create a remote model with an `endpoint` and `max_iterations`, using a query that returns `prompt` and `label`, then compare it with the base model using `ML.EVALUATE`
+D. Put every pair into one long prompt sent with `AI.GENERATE_TEXT` on each request
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** BigQuery can run supervised tuning through a remote model, so a SQL team tunes Gemini where its examples already live. Evaluating the base and tuned models on held-out data shows whether tuning earned its cost. A custom job abandons the team's skills and the requirement. Logistic regression classifies and does not generate text. A huge prompt raises the cost of every request and may not fit.
+</details>
+
+### Question 32
+**Scenario:** A regulated company fine-tuned an open model and needs it served with its custom weights inside its own VPC. Traffic is steady and high.
+
+A. Self-deploy the model to an endpoint through Model Garden
+B. Call the open model through Model as a Service, its serverless API
+C. Replace it with the Translate API
+D. Retrain it from scratch with AutoML
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** Self-deployment runs the model in your project and VPC, and Google names custom or fine-tuned weights, predictable high-volume traffic and strict compliance as its use cases. Model as a Service is the right call for uneven traffic with no capacity to manage, but it does not fit custom weights in a private network. The Translate API solves a different task. AutoML would discard the tuned model the company already has.
+</details>
+
+### Question 33
+**Scenario:** Users of a support chatbot paste in text such as "ignore your previous instructions", and some also paste card numbers. The team needs prompts and responses screened by one policy, across the two different models it uses.
+
+A. Lower the Gemini content filter thresholds to `BLOCK_LOW_AND_ABOVE`
+B. Write a regex list of known attack phrases and card formats
+C. Tune the models on examples of refusals
+D. Model Armor templates with prompt injection and sensitive data filters, called on prompts and responses
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** Model Armor screens prompts and responses for injection, jailbreaks and sensitive data, and it wraps the LLM rather than belonging to one model. Content filters target harm categories, and a polite injection is not hate speech or harassment. Regex handles the card format but misses any reworded attack. Tuning makes refusals more likely but is not a security control.
+</details>
+
+### Question 34
+**Scenario:** A tabular fraud model on an Agent Platform endpoint leans heavily on a few features. Input drift alerts fire often on unimportant features and get ignored. The team wants an alert tied to how much each feature actually drives predictions.
+
+A. Tighten the input drift thresholds on every feature
+B. Enable feature attribution monitoring against a training baseline
+C. Alert on endpoint CPU utilisation
+D. Retrain the model every day whether or not anything changed
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Attribution monitoring tracks the contribution of each feature, so a shift in an influential feature stands out and a shift in an unused one does not. It requires explanations configured on the model, and a training baseline can come from a batch explanation job. Tighter thresholds make the noise worse. CPU says nothing about prediction behaviour. Blind daily retraining costs money and does not tell you what changed.
+</details>
+
+### Question 35
+**Scenario:** Input feature and prediction distributions have stayed stable for months with no monitoring alerts. Confirmed fraud labels, which arrive weeks later, show that precision has fallen sharply because fraudsters changed tactics.
+
+A. Concept drift: join logged predictions to the delayed labels and alert on a continuous evaluation metric
+B. Training-serving skew: compare serving inputs with the training data
+C. Data drift: lower the distance threshold on input features
+D. An infrastructure fault: add replicas to the endpoint
+
+<details>
+<summary>Answer</summary>
+
+**Correct: A**
+
+**Why:** The relationship between inputs and the right answer moved while the inputs themselves did not, which is concept drift. Distribution checks compare inputs and predictions with a baseline, so they stay quiet here. Only ground truth reveals it, which is why logged predictions must be joined to outcomes. Skew and data drift are ruled out by the stable distributions, and more replicas would not improve precision.
+</details>
+
+### Question 36
+**Scenario:** A lending model passed a fairness review before launch. Six months later overall AUC is unchanged, but complaints suggest it has become less accurate for applicants in one region.
+
+A. Keep watching overall AUC, since it has not moved
+B. Delete the region feature and close the issue
+C. Compute performance per group on labelled production data on a schedule, and alert on the gap between groups
+D. Republish the original model card with a new date
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** A small group can get much worse while the average barely moves, so bias monitoring repeats the launch review on production data, slice by slice. Removing a feature does not remove proxies for it, and it does not measure whether anything improved. A refreshed model card changes the document but not the model's behaviour.
 </details>
 
 ---

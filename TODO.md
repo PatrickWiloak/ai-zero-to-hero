@@ -50,7 +50,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] 2026-10-22 Anthropic: CPES confirmed not an exam (study track, invented logistics removed); CCAO-F and CCAR-P weights match the v1.0 exam guide PDFs.
 - [ ] New-guide candidates (verify codes): AWS AI Business Strategist (beta), NVIDIA NCA-ADS, NCP-ARI.
 - [x] 2026-10-22 Vertex AI -> Agent Platform names swept in `certifications/gcp/` (PMLE + GAL exam guides use only new names); PMLE domains set to the 2026-06-01 guide.
-- [ ] 2026-11-22: re-map PMLE notes + bank to the 6-section guide (new: Section 6 Monitoring AI solutions, Gemini tuning in BigQuery, Model Garden).
+- [x] 2026-11-06 PMLE on the June 2026 guide: README, fact sheet, notes (new `ml-monitoring-ai-solutions`, `ml-foundation-models-and-tuning`), bank re-mapped to 6 sections, 36 questions.
 - [x] 2026-10-22 Banks for CCAR-F, CCDV-F, AIP-C01, GAL, Databricks GenAI, DP-100, Copilot, PMLE expanded to 30 questions (new ones weighted by current guides).
 - [x] 2026-10-22 Copilot page rebuilt to GH-300 skills 2026-08-07 (7 areas, 100 min, Pearson VUE); notes 07-09 added (`certifications/github/copilot/`).
 - [x] 2026-10-22 Databricks GenAI page mapped to the 6-section guide (no official weights, objective counts instead); notes 04-06 added.

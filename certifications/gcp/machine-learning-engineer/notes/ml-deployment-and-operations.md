@@ -4,6 +4,8 @@
 
 Model deployment, serving, monitoring, MLOps practices, and production ML systems for the Professional Machine Learning Engineer certification.
 
+**Exam sections**: Section 4 (~20%), Section 5 (~18%), and the explainability and Model Monitoring code for Section 6 (~13%). Section 6's security, bias and generative AI objectives, and the v1 and v2 monitoring comparison, are in [Monitoring AI Solutions](ml-monitoring-ai-solutions.md). Deploying through Model Garden is in [ML Foundation Models and Tuning](ml-foundation-models-and-tuning.md#serving-routes-the-decision-that-matters).
+
 ## Model Deployment
 
 ### Agent Platform Endpoints
@@ -505,6 +507,8 @@ deployed_model_config = {
 ```
 
 ## Model Monitoring
+
+The code below shows endpoint monitoring jobs, which are Model Monitoring v1. For the concepts, the difference between v1 and v2, and generative AI, read [Monitoring AI Solutions](ml-monitoring-ai-solutions.md) first.
 
 ### Model Monitoring on Agent Platform
 
@@ -1305,6 +1309,16 @@ def run_pipeline():
 
     return job
 ```
+
+### Choosing an orchestrator: Pipelines, Airflow or Ray
+
+Objective 5.1 names three services, and they do different jobs, so the scenario's main requirement usually picks one.
+
+**Agent Platform Pipelines** is the default for ML workflows. It runs serverless Kubeflow or TFX pipelines and records artifacts and lineage for you, as the code above shows.
+
+**[Managed Service for Apache Airflow](https://docs.cloud.google.com/composer/docs)** (formerly Cloud Composer) is a managed Airflow installation for creating, scheduling and monitoring workflows. It fits when ML is one step in a wider data workflow across many systems, or when the team already runs Airflow DAGs. It can start an Agent Platform pipeline as one of its tasks. Each environment runs on a managed GKE cluster, so it has an always-on footprint that a serverless pipeline does not.
+
+**[Ray on Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/machine-learning/open-source/ray)** runs the open-source Ray framework on a managed cluster, and scales Python and AI applications across many nodes. It suits teams with Ray code, or distributed work that fits Ray's model better than a sequence of containers. A trained model can be deployed to an online endpoint. You are charged while the cluster is running or updating, so a cluster left idle still costs money.
 
 ### Continuous Training
 

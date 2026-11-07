@@ -4,7 +4,7 @@
 
 Comprehensive guide to data preparation, feature engineering, TensorFlow Transform, Agent Platform Feature Store (formerly Vertex AI Feature Store), data validation, and ML data pipelines for the Professional Machine Learning Engineer exam.
 
-**Exam Weight**: Data preparation and feature engineering account for approximately 25-30% of the exam questions.
+**Exam sections**: mainly objective 2.1 in Section 2 (~16% for the whole section), plus Feature Store serving in 4.2 and data validation and consistent preprocessing in 5.1.
 
 **Key Topics**:
 - Data profiling, cleaning, and preparation
