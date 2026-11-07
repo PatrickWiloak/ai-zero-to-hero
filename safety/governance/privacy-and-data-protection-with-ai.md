@@ -12,7 +12,7 @@
 - Start with a **data map**: what personal data enters prompts, retrieval stores, logs, fine-tuning sets and outputs.
 - **Minimise first.** The safest personal data is data you never sent. Remove names, IDs and free-text details the task does not need.
 - **Check the vendor terms**: is your data retained, who can see it, is it used for training, where is it stored, which subprocessors touch it. Consumer apps and enterprise APIs often differ; read the actual terms.
-- **Mask before sending** where you can. Managed tools exist: Amazon Bedrock Guardrails sensitive information filters can block or mask PII (SSN, date of birth, address and custom regex patterns) in inputs and model responses; detection is probabilistic, so it reduces risk and does not remove it. (AWS docs, read 2026-11-07)
+- **Mask before sending** where you can. Managed tools exist: Amazon Bedrock Guardrails sensitive information filters can block or mask PII (SSN, date of birth, address and custom regex patterns, per the Guardrails overview page) in inputs and model responses; detection is probabilistic, so it reduces risk and does not remove it. (AWS docs, read 2026-11-07)
 - Sector rules still apply: health data, student records and financial data have their own laws. See [healthcare](../../work/use-cases/healthcare-ai.md), [education](../../work/use-cases/education-ai.md) and [finance](../../work/playbooks/for-finance.md).
 
 ## Where personal data leaks in AI systems

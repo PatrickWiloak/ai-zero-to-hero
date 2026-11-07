@@ -243,4 +243,4 @@ In production you would add streaming, observability, retries, and budget enforc
 - **tool_use block** - the content block in an assistant message where Claude asks you to run a tool; it carries an id, a name and an input.
 - **tool_result block** - your answer to a tool_use, sent in a user message with a matching tool_use_id.
 - **tool_choice** - sets whether Claude may call tools: auto (Claude decides), any (must call one), tool (must call a named tool) or none.
-- **Forced tool choice** - the cleanest way to extract structured data: force one tool and read its input field as the output.
+- **Forced tool choice** - tool_choice any or tool, which forces a tool call; on Claude Opus 5.5, Sonnet 5.5, Fable 5.1 and Mythos 5.1 it returns a 400 error, so use auto with strict tool use or structured outputs there.

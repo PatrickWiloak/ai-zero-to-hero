@@ -41,7 +41,7 @@ C2PA is an open standards effort (a project of the Joint Development Foundation,
 - Choosing on a demo reel instead of running your own 10 real prompts.
 - Assuming an editing model will follow an exact mask.
 - Shipping output without checking the vendor's terms for commercial use and likeness.
-- Treating a model name as permanent. Two names on the Google video page were already shut down.
+- Treating a model name as permanent. The Veo 3.1 preview names on the Google video page were already retired.
 
 ## Next steps
 

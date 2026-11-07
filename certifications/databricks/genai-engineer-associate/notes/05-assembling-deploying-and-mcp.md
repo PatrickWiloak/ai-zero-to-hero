@@ -72,9 +72,9 @@ Know the two Vector Search endpoint types and their numbers (about 320 million v
 
 ## Key terms
 
-- **Vector Search endpoint** - the compute that serves vector queries; an index lives on an endpoint.
-- **Delta Sync index** - a Vector Search index kept in step with a source Delta table, with embeddings computed for you or supplied by you.
-- **Direct Vector Access index** - a Vector Search index where you write the vectors through the API yourself.
+- **Vector Search endpoint** - the compute that serves vector queries (the docs now say AI Search endpoint, formerly Vector Search endpoint); an index lives on an endpoint.
+- **Delta Sync index** - a Vector Search index kept in step with a source Delta table, with embeddings computed by Databricks or supplied by you (self-managed).
+- **Direct Vector Access index** - a Vector Search index that is not synced automatically: you update it yourself through the REST API.
 - **Prompt Registry** - the MLflow tool that stores a prompt as a named Unity Catalog object and creates an immutable, numbered version each time it changes.
-- **Managed MCP server** - an MCP server provided and hosted by Databricks that exposes platform capabilities, such as Databricks SQL and Genie, as tools.
+- **Managed MCP server** - an MCP server provided and hosted by Databricks that exposes platform capabilities, such as Databricks SQL and Genie One, as tools.
 - **Custom MCP server** - an MCP server you build, typically from Databricks Apps templates, to expose your own logic or wrap an internal REST API.

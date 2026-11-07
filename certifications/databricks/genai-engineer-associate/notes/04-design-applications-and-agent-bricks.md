@@ -62,7 +62,7 @@ The most reliable way through a design question is to restate the required outpu
 
 ## Key terms
 
-- **Knowledge Assistant** - takes a set of documents and produces a question-answering chat agent that cites its sources; it does not fill a table or take actions.
+- **Knowledge Assistant** - takes a set of documents and produces a question-answering chat agent that cites its sources; it does not fill a table or take actions. The Agent Bricks FAQ now lists it as legacy, pointing new low-code agents to Genie Agents.
 - **Information Extraction** - takes unstructured documents or text and returns structured fields that follow a schema you define, as JSON.
-- **Multiagent Supervisor** - coordinates several existing agents and tools and routes each part of a request to the right one; the docs call it Supervisor Agent.
+- **Multiagent Supervisor** - coordinates several existing agents and tools and routes each part of a request to the right one; the docs call it Supervisor Agent and the FAQ lists it as legacy.
 - **Genie space** - a curated natural-language interface over a set of Unity Catalog tables: you ask in plain English, Genie writes and runs the SQL, and returns the answer.

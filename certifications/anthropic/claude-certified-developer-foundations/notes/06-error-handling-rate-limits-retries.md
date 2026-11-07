@@ -50,7 +50,7 @@ On every successful response and on 429s:
 - `anthropic-ratelimit-input-tokens-*`
 - `anthropic-ratelimit-output-tokens-*`
 
-On 429 and 529: `retry-after` (seconds or HTTP date).
+On 429 responses, `retry-after` when present (a tier spend-cap 429 has none).
 
 Use these to implement proactive throttling: if remaining < threshold, slow down before getting blocked.
 
@@ -245,6 +245,6 @@ def call_with_retry(messages, max_attempts=5):
 ## Key terms
 
 - **429 rate_limit_error** - you hit a requests-per-minute or tokens-per-minute ceiling; retryable with backoff.
-- **retry-after header** - sent on 429 and 529 responses; honor it before falling back to your own backoff calculation.
+- **retry-after header** - the official SDK honors it when present on a retried error; a tier spend-cap 429 has no retry-after and keeps failing until access resumes.
 - **Circuit breaker** - after N consecutive failures, stop sending requests for a cooldown and test occasionally with a single request.
 - **Exponential backoff with jitter** - the retry pattern for retryable errors, with capped attempts.

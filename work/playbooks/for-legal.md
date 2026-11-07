@@ -10,7 +10,7 @@
 - Good uses: summarising long documents, comparing a contract to your standard playbook, drafting routine clauses and plain-language explanations, organising discovery material, preparing deposition outlines.
 - **Never file or send anything citing a case, statute or quote you have not opened yourself.** Models can produce convincing citations that do not exist. See [hallucinations](../../learn/concepts/hallucinations.md).
 - **Confidentiality comes first.** Do not paste client or privileged material into a tool unless you know where the data goes, who can see it, and whether it is kept or used for training.
-- Professional-conduct rules apply to lawyers who use these tools (competence, confidentiality, supervision, candour to the court). Read your own jurisdiction's bar guidance. The American Bar Association published formal ethics guidance on generative AI in July 2024; its page could not be fetched for this review, so read it directly and do not rely on this page for its content.
+- Professional-conduct rules apply to lawyers who use these tools (competence, confidentiality, supervision, candour to the court). Read your own jurisdiction's bar guidance. The American Bar Association issued Formal Opinion 512 on generative AI on July 29, 2024; it applies existing Model Rules (competence, confidentiality, supervision, candour to the tribunal) and is not binding. Read it directly.
 - This is a judgment guide for working with AI, not legal advice.
 
 ## Where it fits
@@ -64,4 +64,4 @@ statutes; I will find those in a legal database. Question: [question]
 
 ## Sources
 
-- No page for the ABA guidance could be fetched on 2026-11-07 (HTTP 403). The claims about professional-conduct duties above are general and unverified here; check your jurisdiction's bar guidance.
+- ABA news, first ethics guidance on a lawyer's use of AI tools (Formal Opinion 512): https://www.americanbar.org/news/abanews/aba-news-archives/2024/07/aba-issues-first-ethics-guidance-ai-tools/ (checked 2026-11-07 via search summary; the opinion page itself returned HTTP 403 earlier)

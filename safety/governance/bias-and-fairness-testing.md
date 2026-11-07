@@ -12,7 +12,7 @@
 - Bias is not only a data problem. NIST notes that biases "remain endemic across technology processes and can lead to harmful impacts regardless of intent" (NIST SP 1270 abstract, read 2026-11-07). Intent is not a defence in practice; measure outcomes.
 - Fairness has no single definition. You must **choose** what to measure (for example, selection rates, error rates, or calibration by group) and be able to justify the choice for your use case.
 - You usually cannot fix what you cannot measure. That means sometimes needing group data to test, collected and handled lawfully. See [privacy and data protection](privacy-and-data-protection-with-ai.md).
-- Regulators already expect it for consequential decisions. The EEOC said in 2021 that AI tools in employment decisions may perpetuate bias and that anti-discrimination laws still apply (read 2026-11-07). Colorado's AI act requires developers and deployers of high-risk systems to use reasonable care against algorithmic discrimination (see [US state AI laws](us-state-ai-laws.md)).
+- Regulators already expect it for consequential decisions. The EEOC said in 2021 that AI tools in employment decisions may perpetuate bias and that anti-discrimination laws still apply (read 2026-11-07). Colorado replaced its 2024 AI act with SB26-189 in May 2026, which covers automated decision-making in consequential decisions (see [US state AI laws](us-state-ai-laws.md)).
 - Test generative systems too: chat answers, summaries, and image output can differ in quality or tone by name, dialect, gender or language.
 
 ## The method
@@ -29,7 +29,7 @@
 | Score or quality gap on paired prompts | Does the output change when only the group signal changes? |
 | Refusal or toxicity rate by group | Does the system treat some groups' requests differently? |
 
-5. **Set thresholds in advance.** In US employment practice, a common screening heuristic compares group selection rates (the "four-fifths" or 80 percent rule). The regulation page for it could not be fetched, so confirm the rule with counsel before using it. A heuristic is a flag to investigate, not a pass or fail.
+5. **Set thresholds in advance.** In US employment practice, a common screening heuristic compares group selection rates (the "four-fifths" or 80 percent rule). 29 CFR 1607.4(D) says a selection rate for any group below four-fifths (80 percent) of the highest group's rate will generally be regarded as evidence of adverse impact; confirm its use with counsel. A heuristic is a flag to investigate, not a pass or fail.
 6. **Investigate gaps**: data coverage, labels, features that act as proxies (such as postcode), prompt wording, thresholds.
 7. **Mitigate and re-test**: rebalance data, change features, adjust thresholds, add human review, or decide not to automate.
 8. **Document and monitor.** Keep results, decisions and owners. Re-test on every model, prompt or data change, and on a schedule.
@@ -56,4 +56,5 @@ You run a resume-summary tool. Take 100 resumes, create two copies of each that 
 
 - NIST, Towards a Standard for Identifying and Managing Bias in AI (SP 1270): https://www.nist.gov/publications/towards-standard-identifying-and-managing-bias-artificial-intelligence (fetched 2026-11-07; abstract only, the page did not give the bias categories)
 - EEOC, AI and Algorithmic Fairness initiative: https://www.eeoc.gov/newsroom/eeoc-launches-initiative-artificial-intelligence-and-algorithmic-fairness (fetched 2026-11-07)
-- Colorado SB24-205: https://leg.colorado.gov/bills/sb24-205 (fetched 2026-11-07)
+- Colorado SB26-189: https://leg.colorado.gov/bills/sb26-189 (fetched 2026-11-07)
+- eCFR, 29 CFR 1607.4: https://www.ecfr.gov/current/title-29/part-1607/section-1607.4 (fetched 2026-11-07)

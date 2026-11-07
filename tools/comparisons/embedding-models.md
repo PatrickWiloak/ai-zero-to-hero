@@ -18,8 +18,8 @@
 | Provider | Models named | Dimensions | Context / input | Notes |
 |---|---|---|---|---|
 | **OpenAI** | `text-embedding-3-small`, `text-embedding-3-large`, `text-embedding-ada-002` | 1536, 3072, not stated | 8192 tokens | v3 models take a `dimensions` parameter; the page lists MTEB scores of 62.3%, 64.6% and 61.0%. If you shorten manually, normalise to unit length |
-| **Cohere** | `embed-v5.0-pro`, `embed-v5.0-fast`, `embed-v4.0`, v3 English/multilingual and light variants | v5: 256 to 2048 (default 2048); v4: 256 to 1536; v3: 1024 or 384 | not stated | v5 and v4 handle text, images and mixed; v5 models share an embedding space so you can index with Pro and query with Fast; 100+ languages on v5 |
-| **Voyage AI** | `voyage-4-large`, `voyage-4`, `voyage-4-lite`, `voyage-code-4`, `voyage-finance-2`, `voyage-law-2`; open-weight `voyage-4-nano` | 1024 default (256, 512, 2048 for the 4 series) | 32,000 tokens (16,000 for law-2) | Domain models for code, finance and law; 4-series models are mutually compatible |
+| **Cohere** | `embed-v5.0-pro`, `embed-v5.0-fast`, `embed-v4.0`, v3 English/multilingual and light variants | v5: 256 to 2048 (default 2048); v4: 256 to 1536; v3: 1024 or 384 | 128k tokens for v5 and v4; 512 for v3 | v5 and v4 handle text, images and mixed; v5 models share an embedding space so you can index with Pro and query with Fast; 100+ languages on v5 |
+| **Voyage AI** | `voyage-4-large`, `voyage-4`, `voyage-4-lite`, `voyage-code-4`, `voyage-finance-2`, `voyage-law-2`; open-weight `voyage-4-nano` | 1024 default (256, 512, 2048 for the 4 series) | 32,000 tokens (16,000 for law-2) | Domain models for code, finance and law; voyage-4, voyage-4-large, voyage-4-lite and voyage-4-nano are compatible with each other (voyage-code-4 not stated) |
 
 Open-source models (for example those on Hugging Face) are another route when you must run on your own hardware; none were fetched for this page.
 
@@ -34,7 +34,7 @@ Open-source models (for example those on Hugging Face) are another route when yo
 ## Common mistakes
 
 - Picking the top leaderboard model without a test on your content.
-- Mixing vectors from different models in one index. Only compatible families (Voyage 4 series, Cohere v5 per their docs) can mix.
+- Mixing vectors from different models in one index. Only compatible families (Voyage 4 series except voyage-code-4 which the page does not state, Cohere v5 per their docs) can mix.
 - Forgetting that queries and documents may need different input settings; check the vendor's reference.
 - Chunking badly and blaming the model. See [advanced RAG patterns](../../build/patterns/advanced-rag-patterns.md).
 

@@ -202,5 +202,5 @@ If you understand this note, you can call Claude. The rest is composition.
 
 - **max_tokens** - the required cap on response length, including thinking and text.
 - **Content block** - a typed piece of a message: text, image, document, tool_use, tool_result or thinking.
-- **stop_reason** - the field that says why generation ended: end_turn, max_tokens, stop_sequence, tool_use, pause_turn or refusal.
+- **stop_reason** - the field that says why generation ended: end_turn, max_tokens, stop_sequence, tool_use, pause_turn, refusal or model_context_window_exceeded.
 - **anthropic-version header** - pins the API contract so old behavior keeps working; new behavior lands behind new versions or opt-in beta headers.
