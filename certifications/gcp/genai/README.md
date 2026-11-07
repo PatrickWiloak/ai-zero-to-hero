@@ -1,8 +1,6 @@
 # Google Cloud Generative AI - Self-Directed Study Track
 
-> **Stale models, checked 2026-11-06:** Google retired PaLM 2 (`text-bison`, `chat-bison`, `code-gecko`) on 2025-04-21 and lists Gemini as the migration path ([model lifecycle](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions)). Code and model tables here that name them will not run as written; read them as concepts and use a current Gemini model.
-
-> ℹ️ **Generative-AI-focused study track, not a discrete certification.** Google announced the **Generative AI Leader** cert in late 2024 and continues to evolve its GenAI offerings. This dir is a focused study guide for GenAI on GCP (Agent Platform (formerly Vertex AI), Gemini, Imagen, MLOps for GenAI) that complements:
+> ℹ️ **Generative-AI-focused study track, not a discrete certification.** Google announced the **Generative AI Leader** cert in late 2024 and continues to evolve its GenAI offerings. This dir is a focused study guide for GenAI on GCP (Agent Platform (formerly Vertex AI), Gemini, MLOps for GenAI) that complements:
 >
 > - **ML cert coverage:** [exams/gcp/machine-learning-engineer/](../machine-learning-engineer/README.md)
 > - **Architect coverage:** [exams/gcp/cloud-architect/](https://cloud.noblerworks.com/exams/gcp/cloud-architect/) (PCA touches GenAI patterns)
@@ -15,7 +13,7 @@
 ## 📚 Study Materials
 
 ### Core Notes
-- [Generative AI Fundamentals](notes/generative-ai-fundamentals.md) - PaLM, Gemini, foundation model concepts
+- [Generative AI Fundamentals](notes/generative-ai-fundamentals.md) - Gemini models, foundation model concepts
 - [Agent Platform](notes/vertex-ai.md) - Google Cloud's unified ML platform
 - [MLOps for Production GenAI](notes/mlops-production-genai.md) - Production ML and GenAI workflows
 
@@ -83,8 +81,7 @@ The Professional ML Engineer exam covers:
 
 ### Generative AI
 - **Agent Studio**: Experiment with foundation models
-- **PaLM API**: Large language model access
-- **Gemini Pro**: Multimodal AI capabilities
+- **Gemini**: Multimodal foundation models, called through the Google Gen AI SDK
 - **Model Garden**: Pre-trained and foundation models
 
 ### Supporting Services

@@ -1,6 +1,6 @@
 # MLOps and Production Generative AI on Google Cloud
 
-> **Stale models, checked 2026-11-06:** Google retired PaLM 2 (`text-bison`, `chat-bison`, `code-gecko`) on 2025-04-21 and lists Gemini as the migration path ([model lifecycle](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions)). Code and model tables here that name them will not run as written; read them as concepts and use a current Gemini model.
+Code samples here use the Google Gen AI SDK (`google-genai`) for Gemini calls and `google-cloud-aiplatform` for endpoints and pipelines. They assume `GOOGLE_CLOUD_PROJECT`, `GOOGLE_CLOUD_LOCATION=global` and `GOOGLE_GENAI_USE_ENTERPRISE=True` are set; see [the SDK setup](vertex-ai.md#the-sdk-these-notes-use). Model IDs and prices were checked on 2026-11-06. Google retires Gemini versions on a published schedule, so keep IDs in configuration as these samples do.
 
 ## Generative AI MLOps Overview
 
@@ -84,19 +84,20 @@ def tune_model(
     tuned_model: dsl.Output[dsl.Model]
 ):
     """Tune foundation model"""
-    from google.cloud import aiplatform
-    from vertexai.preview.language_models import TextGenerationModel
+    from google import genai
+    from google.genai import types
 
-    base = TextGenerationModel.from_pretrained(base_model)
+    # Gemini 3 and later tune on the us or eu multi-region
+    client = genai.Client(enterprise=True, location="us")
 
-    tuning_job = base.tune_model(
-        training_data=training_data.path,
-        train_steps=100,
-        learning_rate=0.001
+    # training_data.path must be a gs:// URI to a JSONL file
+    tuning_job = client.tunings.tune(
+        base_model=base_model,
+        training_dataset=types.TuningDataset(gcs_uri=training_data.path),
     )
 
     # Save model info
-    tuned_model.metadata["model_id"] = tuning_job.tuned_model_name
+    tuned_model.metadata["model_id"] = tuning_job.name
 
 @dsl.component
 def evaluate_model(
@@ -126,7 +127,7 @@ def deploy_model(
 )
 def genai_pipeline(
     source_data: str,
-    base_model: str = "text-bison@002",
+    base_model: str = "gemini-3.5-flash",
     endpoint_name: str = "genai-endpoint"
 ):
     prepare_task = prepare_training_data(source_data=source_data)
@@ -157,7 +158,7 @@ pipeline = aiplatform.PipelineJob(
     template_path="genai_pipeline.json",
     parameter_values={
         "source_data": "gs://my-bucket/training-data.jsonl",
-        "base_model": "text-bison@002"
+        "base_model": "gemini-3.5-flash"
     }
 )
 
@@ -231,7 +232,10 @@ prompt = pm.render_prompt(
 import pytest
 from dataclasses import dataclass
 from typing import List
-from vertexai.preview.language_models import TextGenerationModel
+from google import genai
+from google.genai import types
+
+client = genai.Client()
 
 @dataclass
 class PromptTest:
@@ -243,14 +247,17 @@ class PromptTest:
 
 class PromptTester:
     def __init__(self):
-        self.model = TextGenerationModel.from_pretrained("text-bison@002")
+        self.model = "gemini-3.8-flash"
 
     def run_test(self, test: PromptTest) -> dict:
         """Run single prompt test"""
-        response = self.model.predict(
-            test.prompt,
-            temperature=test.temperature,
-            max_output_tokens=test.max_length
+        response = client.models.generate_content(
+            model=self.model,
+            contents=test.prompt,
+            config=types.GenerateContentConfig(
+                temperature=test.temperature,
+                max_output_tokens=test.max_length,
+            ),
         )
 
         results = {
@@ -420,6 +427,9 @@ def check_canary_metrics(endpoint) -> dict:
 from google.cloud import aiplatform, monitoring_v3
 from google.cloud.monitoring_v3 import query
 import time
+from google import genai
+
+client = genai.Client()
 
 class GenAIMonitor:
     def __init__(self, project_id: str):
@@ -486,13 +496,16 @@ monitor = GenAIMonitor("my-project")
 
 # Log each prediction
 start = time.time()
-response = model.predict(prompt)
+response = client.models.generate_content(
+    model=model,
+    contents=prompt,
+)
 latency = (time.time() - start) * 1000
 
 monitor.log_prediction(
     prompt=prompt,
     response=response.text,
-    model_id="text-bison@002",
+    model_id="gemini-3.8-flash",
     latency=latency,
     token_count=len(response.text.split())
 )
@@ -583,14 +596,9 @@ class TokenTracker:
     def estimate_cost(self, model_id: str) -> dict:
         """Estimate cost based on pricing"""
         pricing = {
-            "text-bison@002": {
-                "input": 0.00025,  # per 1K tokens
-                "output": 0.0005
-            },
-            "gemini-pro": {
-                "input": 0.000125,
-                "output": 0.000375
-            }
+            # USD per 1M tokens, global endpoint, standard rates (checked 2026-11-06)
+            "gemini-3.8-flash": {"input": 1.50, "output": 7.50},
+            "gemini-3.5-flash-lite": {"input": 0.30, "output": 2.50},
         }
 
         if model_id not in pricing:
@@ -599,8 +607,8 @@ class TokenTracker:
         usage = self.usage[model_id]
         prices = pricing[model_id]
 
-        input_cost = (usage["input_tokens"] / 1000) * prices["input"]
-        output_cost = (usage["output_tokens"] / 1000) * prices["output"]
+        input_cost = (usage["input_tokens"] / 1_000_000) * prices["input"]
+        output_cost = (usage["output_tokens"] / 1_000_000) * prices["output"]
 
         return {
             "input_cost": input_cost,
@@ -623,13 +631,13 @@ input_tokens = len(prompt.split()) * 1.3  # Rough estimate
 output_tokens = len(response.text.split()) * 1.3
 
 tracker.track_usage(
-    model_id="text-bison@002",
+    model_id="gemini-3.8-flash",
     input_tokens=int(input_tokens),
     output_tokens=int(output_tokens)
 )
 
 # Get cost estimate
-costs = tracker.estimate_cost("text-bison@002")
+costs = tracker.estimate_cost("gemini-3.8-flash")
 print(f"Estimated cost: ${costs['total_cost']:.4f}")
 ```
 
@@ -639,6 +647,10 @@ print(f"Estimated cost: ${costs['total_cost']:.4f}")
 import hashlib
 from google.cloud import memorystore_v1
 import redis
+from google import genai
+from google.genai import types
+
+client = genai.Client()
 
 class ResponseCache:
     def __init__(self, redis_host: str, redis_port: int = 6379):
@@ -696,7 +708,13 @@ if cached_response:
     response = cached_response
     print("Cache hit!")
 else:
-    response = model.predict(prompt, **params).text
+    response = client.models.generate_content(
+        model=model,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            **params,
+        ),
+    ).text
     cache.set(prompt, model_id, params, response)
     print("Cache miss, generated new response")
 ```
@@ -741,7 +759,7 @@ else:
 **Serving Infrastructure**
 ```python
 from google.cloud import aiplatform
-from vertexai.preview.generative_models import GenerativeModel
+from google import genai
 
 class GenAIServingManager:
     def __init__(self, project_id: str, location: str):
@@ -781,9 +799,13 @@ class GenAIServingManager:
         accelerator_type: str = None,
         accelerator_count: int = 0
     ):
-        """Deploy model with auto-scaling configuration"""
+        """Deploy your own or an open-weight model with auto-scaling.
 
-        model = GenerativeModel(model_name)
+        Managed Gemini models are not deployed: Google serves them, and you call
+        them by ID through the Gen AI SDK. This applies to registered models.
+        """
+
+        model = aiplatform.Model(model_name)
 
         # Configure auto-scaling
         deployed_model = endpoint.deploy(
@@ -840,7 +862,7 @@ endpoint = manager.create_endpoint(
 # Deploy with auto-scaling
 manager.deploy_with_autoscaling(
     endpoint=endpoint,
-    model_name="gemini-pro",
+    model_name="projects/my-project/locations/us-central1/models/my-model",
     min_replicas=2,
     max_replicas=20,
     machine_type="n1-standard-8"
@@ -876,7 +898,7 @@ class MultiRegionDeployment:
             )
 
             # Deploy model
-            model = GenerativeModel(model_name)
+            model = aiplatform.Model(model_name)
             endpoint.deploy(
                 model=model,
                 machine_type="n1-standard-4",
@@ -922,7 +944,7 @@ multi_region = MultiRegionDeployment("my-project")
 
 # Deploy globally
 endpoints = multi_region.deploy_globally(
-    model_name="gemini-pro",
+    model_name="projects/my-project/locations/us-central1/models/my-model",
     endpoint_name="genai-global"
 )
 
@@ -939,6 +961,8 @@ import json
 from google.cloud import memorystore_v1, redis_v1
 from typing import Optional, Dict, Any
 import time
+
+client = genai.Client()
 
 class AdvancedResponseCache:
     def __init__(
@@ -978,10 +1002,11 @@ class AdvancedResponseCache:
             return None
 
         # Use text embeddings for semantic matching
-        from vertexai.language_models import TextEmbeddingModel
+        from google import genai
+        from google.genai import types
 
-        model = TextEmbeddingModel.from_pretrained("textembedding-gecko@003")
-        embedding = model.get_embeddings([prompt])[0]
+        model = "gemini-embedding-001"
+        embedding = client.models.embed_content(model=model, contents=[prompt]).embeddings[0]
 
         # Create approximate key from embedding
         return hashlib.sha256(str(embedding.values[:10]).encode()).hexdigest()
@@ -1104,19 +1129,25 @@ params = {
     "top_p": 0.95
 }
 
-cached_response = cache.get(prompt, "gemini-pro", params)
+cached_response = cache.get(prompt, "gemini-3.8-flash", params)
 
 if cached_response:
     response = cached_response
     print("Cache hit!")
 else:
     # Generate new response
-    response = model.predict(prompt, **params).text
+    response = client.models.generate_content(
+        model=model,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            **params,
+        ),
+    ).text
 
     # Cache with metadata
     cache.set(
         prompt=prompt,
-        model_id="gemini-pro",
+        model_id="gemini-3.8-flash",
         parameters=params,
         response=response,
         ttl=7200,
@@ -1160,28 +1191,12 @@ class ComprehensiveTokenMonitor:
         self.bq_client = bigquery.Client(project=project_id)
         self.project_name = f"projects/{project_id}"
 
-        # Token pricing per 1K tokens (USD)
+        # USD per 1M tokens, global endpoint, standard rates (checked 2026-11-06)
         self.pricing = {
-            "gemini-pro": {
-                "input": 0.000125,
-                "output": 0.000375
-            },
-            "gemini-pro-vision": {
-                "input": 0.00025,
-                "output": 0.00047
-            },
-            "text-bison@002": {
-                "input": 0.00025,
-                "output": 0.0005
-            },
-            "chat-bison@002": {
-                "input": 0.00025,
-                "output": 0.0005
-            },
-            "text-unicorn@001": {
-                "input": 0.0005,
-                "output": 0.0015
-            }
+            "gemini-4-argon": {"input": 4.00, "output": 20.00},
+            "gemini-3.8-flash": {"input": 1.50, "output": 7.50},
+            "gemini-3.5-flash": {"input": 1.50, "output": 9.00},
+            "gemini-3.5-flash-lite": {"input": 0.30, "output": 2.50},
         }
 
     def track_token_usage(self, usage: TokenUsage):
@@ -1235,8 +1250,8 @@ class ComprehensiveTokenMonitor:
 
         # Calculate cost
         model_pricing = self.pricing.get(usage.model_id, {})
-        input_cost = (usage.prompt_tokens / 1000) * model_pricing.get("input", 0)
-        output_cost = (usage.completion_tokens / 1000) * model_pricing.get("output", 0)
+        input_cost = (usage.prompt_tokens / 1_000_000) * model_pricing.get("input", 0)
+        output_cost = (usage.completion_tokens / 1_000_000) * model_pricing.get("output", 0)
 
         rows_to_insert = [{
             "request_id": usage.request_id,
@@ -1385,7 +1400,7 @@ usage = TokenUsage(
     prompt_tokens=150,
     completion_tokens=300,
     total_tokens=450,
-    model_id="gemini-pro",
+    model_id="gemini-3.8-flash",
     timestamp=datetime.now(),
     user_id="user-123",
     request_id="req-abc-123"
@@ -1415,6 +1430,9 @@ import time
 from dataclasses import dataclass
 from typing import Optional, List
 import statistics
+from google import genai
+
+client = genai.Client()
 
 @dataclass
 class PredictionMetrics:
@@ -1628,12 +1646,15 @@ quality_monitor = QualityAndLatencyMonitor("my-project")
 
 # Track prediction
 start_time = time.time()
-response = model.predict(prompt)
+response = client.models.generate_content(
+    model=model,
+    contents=prompt,
+)
 latency = (time.time() - start_time) * 1000
 
 metrics = PredictionMetrics(
     request_id="req-xyz-789",
-    model_id="gemini-pro",
+    model_id="gemini-3.8-flash",
     latency_ms=latency,
     prompt_length=len(prompt),
     response_length=len(response.text),
@@ -1644,7 +1665,7 @@ metrics = PredictionMetrics(
 quality_monitor.track_prediction(metrics)
 
 # Get latency statistics
-stats = quality_monitor.get_latency_percentiles("gemini-pro", hours=24)
+stats = quality_monitor.get_latency_percentiles("gemini-3.8-flash", hours=24)
 print(f"Latency percentiles: {stats}")
 
 # Create SLO
@@ -1660,15 +1681,13 @@ quality_monitor.create_slo(
 ### Content Filtering and Safety
 
 ```python
-from vertexai.preview.generative_models import (
-    GenerativeModel,
-    HarmCategory,
-    HarmBlockThreshold,
-    SafetySetting
-)
+from google import genai
+from google.genai import types
 from google.cloud import dlp_v2
 from typing import List, Dict, Tuple
 import re
+
+client = genai.Client()
 
 class SafetyAndModerationManager:
     def __init__(self, project_id: str):
@@ -1679,20 +1698,20 @@ class SafetyAndModerationManager:
         # Safety settings for Gemini
         self.safety_settings = [
             SafetySetting(
-                category=HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-                threshold=HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE
+                category=types.HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+                threshold=types.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE
             ),
             SafetySetting(
-                category=HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-                threshold=HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE
+                category=types.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+                threshold=types.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE
             ),
             SafetySetting(
-                category=HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-                threshold=HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE
+                category=types.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+                threshold=types.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE
             ),
             SafetySetting(
-                category=HarmCategory.HARM_CATEGORY_HARASSMENT,
-                threshold=HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE
+                category=types.HarmCategory.HARM_CATEGORY_HARASSMENT,
+                threshold=types.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE
             )
         ]
 
@@ -1858,7 +1877,7 @@ class SafetyAndModerationManager:
 
     def safe_predict(
         self,
-        model: GenerativeModel,
+        model: str,
         prompt: str,
         redact_prompt: bool = True
     ) -> Dict:
@@ -1879,13 +1898,16 @@ class SafetyAndModerationManager:
 
         try:
             # Generate with safety settings
-            response = model.generate_content(
-                safe_prompt,
-                safety_settings=self.safety_settings
+            response = client.models.generate_content(
+                model=model,
+                contents=safe_prompt,
+                config=types.GenerateContentConfig(
+                    safety_settings=self.safety_settings,
+                ),
             )
 
-            # Check safety attributes
-            if response.candidates[0].finish_reason != 1:  # FINISH_REASON_STOP
+            # A blocked response has no text; check why generation stopped
+            if response.candidates[0].finish_reason != types.FinishReason.STOP:
                 return {
                     "success": False,
                     "error": "Response blocked by safety filters",
@@ -1921,7 +1943,7 @@ class SafetyAndModerationManager:
 safety_manager = SafetyAndModerationManager("my-project")
 
 # Initialize model
-model = GenerativeModel("gemini-pro")
+model = "gemini-3.8-flash"
 
 # Safe prediction with PII detection and content moderation
 result = safety_manager.safe_predict(
@@ -1943,16 +1965,18 @@ else:
 
 ```python
 from google.cloud import aiplatform
-from vertexai.preview.language_models import TextEmbeddingModel
+from google import genai
 import numpy as np
 from typing import List, Dict
+
+client = genai.Client()
 
 class CustomSafetyClassifier:
     def __init__(self, project_id: str, location: str):
         self.project_id = project_id
         self.location = location
         aiplatform.init(project=project_id, location=location)
-        self.embedding_model = TextEmbeddingModel.from_pretrained("textembedding-gecko@003")
+        self.embedding_model = "gemini-embedding-001"
 
         # Custom safety categories with examples
         self.safety_categories = {
@@ -1990,7 +2014,7 @@ class CustomSafetyClassifier:
             # Get embeddings for all examples
             example_embeddings = []
             for example in examples:
-                embedding = self.embedding_model.get_embeddings([example])[0]
+                embedding = client.models.embed_content(model=self.embedding_model, contents=[example]).embeddings[0]
                 example_embeddings.append(embedding.values)
 
             # Average embeddings for category
@@ -2006,7 +2030,7 @@ class CustomSafetyClassifier:
         """Classify text against custom safety categories"""
 
         # Get text embedding
-        text_embedding = self.embedding_model.get_embeddings([text])[0]
+        text_embedding = client.models.embed_content(model=self.embedding_model, contents=[text]).embeddings[0]
         text_vector = np.array(text_embedding.values)
 
         # Compare with category embeddings
@@ -2043,7 +2067,7 @@ class CustomSafetyClassifier:
         # Compute embedding for new category
         example_embeddings = []
         for example in examples:
-            embedding = self.embedding_model.get_embeddings([example])[0]
+            embedding = client.models.embed_content(model=self.embedding_model, contents=[example]).embeddings[0]
             example_embeddings.append(embedding.values)
 
         self.category_embeddings[category_name] = np.mean(example_embeddings, axis=0)
@@ -2117,6 +2141,8 @@ from typing import List, Dict
 import numpy as np
 from collections import Counter
 import re
+
+client = genai.Client()
 
 class GenAIEvaluationMetrics:
     """Comprehensive evaluation metrics for Gen AI responses"""
@@ -2195,15 +2221,15 @@ class GenAIEvaluationMetrics:
     def semantic_similarity(
         text1: str,
         text2: str,
-        model_name: str = "textembedding-gecko@003"
+        model_name: str = "gemini-embedding-001"
     ) -> float:
         """Calculate semantic similarity using embeddings"""
 
-        from vertexai.language_models import TextEmbeddingModel
+        from google import genai
+        
+        model = model_name
 
-        model = TextEmbeddingModel.from_pretrained(model_name)
-
-        embeddings = model.get_embeddings([text1, text2])
+        embeddings = client.models.embed_content(model=model, contents=[text1, text2]).embeddings
         vec1 = np.array(embeddings[0].values)
         vec2 = np.array(embeddings[1].values)
 
@@ -2257,13 +2283,12 @@ class GenAIEvaluationMetrics:
     def factual_consistency(
         source: str,
         generated: str,
-        model_name: str = "gemini-pro"
+        model_name: str = "gemini-3.8-flash"
     ) -> Dict[str, any]:
         """Check factual consistency using LLM-as-judge"""
 
-        from vertexai.preview.generative_models import GenerativeModel
 
-        model = GenerativeModel(model_name)
+        model = model_name
 
         prompt = f"""You are an expert fact-checker. Compare the generated text with the source text and determine if the generated text contains any factual inconsistencies or hallucinations.
 
@@ -2279,7 +2304,10 @@ Confidence: [0-1]
 Issues: [List any factual inconsistencies found]
 Explanation: [Brief explanation]"""
 
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model=model,
+            contents=prompt,
+        )
 
         # Parse response
         response_text = response.text
@@ -2430,15 +2458,17 @@ print(f"Dataset performance: {dataset_results['metrics']}")
 ### LLM-as-Judge Evaluation
 
 ```python
-from vertexai.preview.generative_models import GenerativeModel
+from google import genai
 from typing import List, Dict
 import json
+
+client = genai.Client()
 
 class LLMJudge:
     """Use LLM as a judge for evaluating Gen AI outputs"""
 
-    def __init__(self, judge_model: str = "gemini-pro"):
-        self.judge = GenerativeModel(judge_model)
+    def __init__(self, judge_model: str = "gemini-3.8-flash"):
+        self.judge = judge_model
 
     def evaluate_quality(
         self,
@@ -2486,7 +2516,10 @@ Format your response as JSON with this structure:
     "improvements": ["...", "..."]
 }}"""
 
-        judge_response = self.judge.generate_content(evaluation_prompt)
+        judge_response = client.models.generate_content(
+            model=self.judge,
+            contents=evaluation_prompt,
+        )
 
         try:
             # Extract JSON from response
@@ -2546,7 +2579,10 @@ Format as JSON:
     "response_b_advantages": ["...", "..."]
 }}"""
 
-        judge_response = self.judge.generate_content(comparison_prompt)
+        judge_response = client.models.generate_content(
+            model=self.judge,
+            contents=comparison_prompt,
+        )
 
         try:
             json_match = re.search(r'\{.*\}', judge_response.text, re.DOTALL)
@@ -2601,7 +2637,7 @@ Format as JSON:
         return wins / len(comparison_results) if comparison_results else 0.0
 
 # Usage
-judge = LLMJudge(judge_model="gemini-pro")
+judge = LLMJudge(judge_model="gemini-3.8-flash")
 
 # Evaluate single response
 prompt = "Explain quantum computing in simple terms"
@@ -2620,8 +2656,8 @@ comparison = judge.compare_responses(
     prompt=prompt,
     response_a=response_a,
     response_b=response_b,
-    model_a_name="gemini-pro",
-    model_b_name="text-bison"
+    model_a_name="gemini-3.8-flash",
+    model_b_name="gemini-3.5-flash-lite"
 )
 
 print(f"Winner: {comparison.get('winner')}")
@@ -2635,10 +2671,13 @@ print(f"Confidence: {comparison.get('confidence')}")
 ```python
 from google.cloud import aiplatform, storage, bigquery, firestore
 from kfp import dsl, compiler
-from vertexai.preview.generative_models import GenerativeModel
+from google import genai
+from google.genai import types
 from typing import Dict, List
 import time
 import json
+
+client = genai.Client()
 
 @dsl.component(
     base_image="python:3.10",
@@ -2646,7 +2685,7 @@ import json
         "google-cloud-aiplatform",
         "google-cloud-storage",
         "google-cloud-bigquery",
-        "vertexai"
+        "google-genai"
     ]
 )
 def prepare_training_data(
@@ -2684,49 +2723,55 @@ def prepare_training_data(
 
 @dsl.component(
     base_image="python:3.10",
-    packages_to_install=["google-cloud-aiplatform", "vertexai"]
+    packages_to_install=["google-genai"]
 )
 def tune_foundation_model(
     training_data_path: dsl.InputPath(str),
     base_model: str,
-    tuning_steps: int,
-    learning_rate: float,
+    tuning_epochs: int,
+    learning_rate_multiplier: float,
     tuned_model_output: dsl.OutputPath(str)
 ):
     """Tune foundation model"""
-    from vertexai.preview.language_models import TextGenerationModel
     import json
+    import time
 
-    # Load base model
-    model = TextGenerationModel.from_pretrained(base_model)
+    from google import genai
+    from google.genai import types
 
-    # Start tuning job
-    tuning_job = model.tune_model(
-        training_data=training_data_path,
-        train_steps=tuning_steps,
-        learning_rate=learning_rate,
-        tuning_job_location="us-central1"
+    client = genai.Client(enterprise=True, location="us")
+
+    # training_data_path must be a gs:// URI to a JSONL file
+    tuning_job = client.tunings.tune(
+        base_model=base_model,
+        training_dataset=types.TuningDataset(gcs_uri=training_data_path),
+        config=types.CreateTuningJobConfig(
+            epoch_count=tuning_epochs,
+            learning_rate_multiplier=learning_rate_multiplier,
+        ),
     )
 
-    # Wait for completion
-    print(f"Tuning job started: {tuning_job.tuning_job_id}")
-    tuning_job.wait()
+    print(f"Tuning job started: {tuning_job.name}")
+    while tuning_job.state in ("JOB_STATE_PENDING", "JOB_STATE_RUNNING"):
+        time.sleep(60)
+        tuning_job = client.tunings.get(name=tuning_job.name)
 
     # Save model info
     model_info = {
-        "tuned_model_name": tuning_job.tuned_model_name,
-        "tuning_job_id": tuning_job.tuning_job_id,
+        "tuned_model_name": tuning_job.tuned_model.model,
+        "tuned_endpoint": tuning_job.tuned_model.endpoint,
+        "tuning_job_id": tuning_job.name,
         "base_model": base_model
     }
 
     with open(tuned_model_output, 'w') as f:
         json.dump(model_info, f)
 
-    print(f"Tuning complete: {tuning_job.tuned_model_name}")
+    print(f"Tuning complete: {tuning_job.tuned_model.model}")
 
 @dsl.component(
     base_image="python:3.10",
-    packages_to_install=["google-cloud-aiplatform", "vertexai", "numpy"]
+    packages_to_install=["google-genai", "numpy"]
 )
 def evaluate_tuned_model(
     tuned_model_path: dsl.InputPath(str),
@@ -2734,7 +2779,6 @@ def evaluate_tuned_model(
     metrics_output: dsl.OutputPath(str)
 ):
     """Evaluate tuned model"""
-    from vertexai.preview.language_models import TextGenerationModel
     import json
     import numpy as np
 
@@ -2742,7 +2786,7 @@ def evaluate_tuned_model(
     with open(tuned_model_path, 'r') as f:
         model_info = json.load(f)
 
-    model = TextGenerationModel.from_pretrained(model_info["tuned_model_name"])
+    model = model_info["tuned_endpoint"]
 
     # Load evaluation data
     with open(eval_data_path, 'r') as f:
@@ -2752,9 +2796,12 @@ def evaluate_tuned_model(
     scores = []
     for item in eval_data[:100]:  # Sample for speed
         try:
-            response = model.predict(
-                item["input_text"],
-                max_output_tokens=256
+            response = client.models.generate_content(
+                model=model,
+                contents=item["input_text"],
+                config=types.GenerateContentConfig(
+                    max_output_tokens=256,
+                ),
             )
 
             # Simple scoring (in practice, use more sophisticated metrics)
@@ -2877,9 +2924,9 @@ def genai_production_pipeline(
     location: str,
     source_bucket: str,
     source_prefix: str,
-    base_model: str = "text-bison@002",
-    tuning_steps: int = 100,
-    learning_rate: float = 0.001,
+    base_model: str = "gemini-3.5-flash",
+    tuning_epochs: int = 100,
+    learning_rate_multiplier: float = 0.001,
     endpoint_name: str = "genai-production",
     traffic_percentage: int = 100,
     alert_threshold_latency: float = 1000.0,
@@ -2898,8 +2945,8 @@ def genai_production_pipeline(
     tune_task = tune_foundation_model(
         training_data_path=prepare_task.outputs["output_jsonl_path"],
         base_model=base_model,
-        tuning_steps=tuning_steps,
-        learning_rate=learning_rate
+        tuning_epochs=tuning_epochs,
+        learning_rate_multiplier=learning_rate_multiplier
     )
 
     # Step 3: Evaluate model
@@ -2950,8 +2997,8 @@ def run_production_pipeline(
             "location": location,
             "source_bucket": "my-training-data",
             "source_prefix": "genai-training/",
-            "base_model": "text-bison@002",
-            "tuning_steps": 100,
+            "base_model": "gemini-3.5-flash",
+            "tuning_epochs": 100,
             "learning_rate": 0.001,
             "endpoint_name": "genai-production",
             "traffic_percentage": 10,  # Start with canary
@@ -2989,9 +3036,12 @@ if __name__ == "__main__":
 
 ```python
 from google.cloud import aiplatform, dlp_v2
-from vertexai.preview.generative_models import GenerativeModel
+from google import genai
+from google.genai import types
 import redis
 import time
+
+client = genai.Client()
 
 class CustomerSupportChatbot:
     def __init__(self, project_id: str, location: str):
@@ -2999,7 +3049,7 @@ class CustomerSupportChatbot:
         self.location = location
 
         # Initialize model
-        self.model = GenerativeModel("gemini-pro")
+        self.model = "gemini-3.8-flash"
 
         # Initialize cache
         self.cache = redis.Redis(host="10.0.0.3", decode_responses=True)
@@ -3080,13 +3130,14 @@ class CustomerSupportChatbot:
         # Generate response
         full_prompt = f"{context}\nUser: {safe_message}\nAssistant:"
 
-        response = self.model.generate_content(
-            full_prompt,
-            generation_config={
-                "max_output_tokens": 256,
-                "temperature": 0.7,
-                "top_p": 0.9
-            }
+        response = client.models.generate_content(
+            model=self.model,
+            contents=full_prompt,
+            config=types.GenerateContentConfig(
+                max_output_tokens=256,
+                temperature=0.7,
+                top_p=0.9,
+            ),
         )
 
         response_text = response.text
@@ -3136,14 +3187,17 @@ print(f"PII detected: {result['had_input_pii']}")
 
 ```python
 from google.cloud import storage, bigquery
-from vertexai.preview.generative_models import GenerativeModel
+from google import genai
+from google.genai import types
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
+
+client = genai.Client()
 
 class DocumentSummarizationPipeline:
     def __init__(self, project_id: str):
         self.project_id = project_id
-        self.model = GenerativeModel("gemini-pro")
+        self.model = "gemini-3.8-flash"
         self.storage_client = storage.Client()
         self.bq_client = bigquery.Client()
 
@@ -3191,12 +3245,13 @@ Document:
 Summary:"""
 
         try:
-            response = self.model.generate_content(
-                prompt,
-                generation_config={
-                    "max_output_tokens": max_summary_length * 2,
-                    "temperature": 0.3
-                }
+            response = client.models.generate_content(
+                model=self.model,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    max_output_tokens=max_summary_length * 2,
+                    temperature=0.3,
+                ),
             )
 
             summary = response.text
@@ -3204,7 +3259,7 @@ Summary:"""
             # Calculate costs (approximate)
             input_tokens = len(prompt.split()) * 1.3
             output_tokens = len(summary.split()) * 1.3
-            cost = (input_tokens / 1000 * 0.000125) + (output_tokens / 1000 * 0.000375)
+            cost = (input_tokens / 1_000_000 * 1.50) + (output_tokens / 1_000_000 * 7.50)  # gemini-3.8-flash standard rates
 
             latency = (time.time() - start_time) * 1000
 
@@ -3342,10 +3397,12 @@ print(f"Total cost: ${results['total_cost']:.4f}")
 
 ```python
 from google.cloud import aiplatform
-from vertexai.preview.language_models import TextEmbeddingModel
-from vertexai.preview.generative_models import GenerativeModel
+from google import genai
+from google.genai import types
 from typing import List, Dict
 import numpy as np
+
+client = genai.Client()
 
 class RAGSystem:
     def __init__(self, project_id: str, location: str):
@@ -3353,9 +3410,9 @@ class RAGSystem:
         self.location = location
 
         # Initialize models
-        self.embedding_model = TextEmbeddingModel.from_pretrained("textembedding-gecko@003")
-        self.primary_model = GenerativeModel("gemini-pro")
-        self.fallback_model = GenerativeModel("gemini-pro")
+        self.embedding_model = "gemini-embedding-001"
+        self.primary_model = "gemini-3.8-flash"
+        self.fallback_model = "gemini-3.5-flash-lite"
 
         # Initialize vector search
         aiplatform.init(project=project_id, location=location)
@@ -3364,7 +3421,7 @@ class RAGSystem:
     def embed_query(self, query: str) -> List[float]:
         """Generate embedding for query"""
 
-        embedding = self.embedding_model.get_embeddings([query])[0]
+        embedding = client.models.embed_content(model=self.embedding_model, contents=[query]).embeddings[0]
         return embedding.values
 
     def retrieve_context(
@@ -3418,25 +3475,29 @@ Answer:"""
 
         try:
             # Try primary model
-            response = self.primary_model.generate_content(
-                prompt,
-                generation_config={
-                    "max_output_tokens": 512,
-                    "temperature": 0.2,
-                    "top_p": 0.9
-                }
+            response = client.models.generate_content(
+                model=self.primary_model,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    max_output_tokens=512,
+                    temperature=0.2,
+                    top_p=0.9,
+                ),
             )
 
             answer = response.text
-            model_used = "gemini-pro (primary)"
+            model_used = self.primary_model
 
         except Exception as e:
             print(f"Primary model failed: {e}, trying fallback")
 
             # Fallback model
-            response = self.fallback_model.generate_content(prompt)
+            response = client.models.generate_content(
+                model=self.fallback_model,
+                contents=prompt,
+            )
             answer = response.text
-            model_used = "gemini-pro (fallback)"
+            model_used = self.fallback_model
 
         # Extract citations
         citations = []
@@ -3484,7 +3545,10 @@ Is the answer fully supported by the context? Respond with:
 
 Also explain your reasoning briefly."""
 
-        verification = self.primary_model.generate_content(verification_prompt)
+        verification = client.models.generate_content(
+            model=self.primary_model,
+            contents=verification_prompt,
+        )
 
         return {
             "verification_result": verification.text,
@@ -3563,7 +3627,7 @@ Track these metrics:
 
 **3. Cost Optimization:**
 - Cache common queries (Redis/Memorystore)
-- Use smaller models when possible (text-bison vs gemini-pro)
+- Use smaller models when possible (`gemini-3.5-flash-lite` instead of `gemini-3.8-flash`)
 - Implement request batching
 - Set quota limits per user
 - Monitor and alert on cost thresholds
@@ -3604,7 +3668,7 @@ Answer: Use canary deployment starting at 10% traffic, monitor latency and error
 Answer: Track user feedback scores, implement automated evaluation metrics, use LLM-as-judge for quality assessment, monitor safety filter triggers, log all requests to BigQuery
 
 **Scenario: Ensure content safety**
-Answer: Configure safety settings (BLOCK_MEDIUM_AND_ABOVE), use Cloud DLP for PII detection, implement toxicity checking, add custom safety classifiers, audit all responses
+Answer: Turn on safety settings (BLOCK_MEDIUM_AND_ABOVE; current models default to OFF), use Cloud DLP for PII detection, implement toxicity checking, add custom safety classifiers, audit all responses
 
 **Scenario: Scale globally with low latency**
 Answer: Deploy to multiple regions (us-central1, europe-west4, asia-southeast1), use load balancing, implement regional caching, optimize model selection by region
@@ -3675,13 +3739,13 @@ Answer: Use Cloud DLP to detect PII, redact before sending to model, audit PII d
 
 ### Exam Tips
 
-1. **Understand token pricing**: Input vs output tokens have different costs, Gemini is cheaper than PaLM 2
-2. **Know safety levels**: BLOCK_NONE, BLOCK_ONLY_HIGH, BLOCK_MEDIUM_AND_ABOVE, BLOCK_LOW_AND_ABOVE
+1. **Understand token pricing**: Input and output tokens have different costs, and thinking is billed as output
+2. **Know safety levels**: OFF (default on current models), BLOCK_NONE, BLOCK_ONLY_HIGH, BLOCK_MEDIUM_AND_ABOVE, BLOCK_LOW_AND_ABOVE
 3. **Caching strategies**: Exact match (Redis) vs semantic similarity (vector search)
 4. **Deployment patterns**: Canary (gradual), A/B testing (comparison), Blue/Green (instant switch)
 5. **Monitoring metrics**: Latency P95 < 1s, error rate < 1%, user satisfaction > 4.0/5.0
 6. **Cost optimization**: Cache hit rate > 30%, smaller models for 70% of requests, batch when possible
-7. **Model selection**: Use Gemini for multimodal, PaLM for text generation, embeddings for search
+7. **Model selection**: `gemini-3.8-flash` by default, `gemini-3.5-flash-lite` for high volume, `gemini-embedding-001` for search
 8. **Prompt management**: Version control, A/B testing, automated testing, template management
 9. **Evaluation**: BLEU/ROUGE for generation, semantic similarity for retrieval, LLM-as-judge for quality
 10. **Compliance**: PII detection mandatory, audit logging required, data retention policies, model cards

@@ -60,7 +60,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [ ] Rebuild Databricks ML Associate notes, fact-sheet body, practice plan and scenarios on the 4-section outline (still the old 5 domains, incl. deep learning and scaling); README flags it.
 - [ ] 2027-02-01: re-check GH-300 outline (Spark retired 2026-08-31 but listed; duplicate "GitHub Copilot features" line) and Databricks guide (KA, Supervisor now legacy).
 - [x] ✅ 2026-11-06 spot-check: LUIS notes moved to CLU; PaLM + AutoML banners added (Microsoft/Google pages). Rewrite below.
-- [ ] 2026-11-29 rewrite `certifications/gcp/genai` notes off PaLM/Codey: code and tables still teach models retired 2025-04-21; banners only for now.
+- [x] 2026-11-06 rewrote `certifications/gcp/genai` off PaLM/Codey onto Gemini 3.8 Flash and `google-genai`; banners removed; PaLM/Codey kept as one history note.
 - [ ] Distribution: submit to awesome-llm-security.
 
 ## Open

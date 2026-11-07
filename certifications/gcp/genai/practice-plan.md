@@ -96,7 +96,7 @@
 
 #### Day 1-2: Agent Studio
 - [ ] Study foundation models on Agent Platform
-- [ ] Learn PaLM 2 and Gemini capabilities
+- [ ] Learn Gemini tiers, capabilities and retirement dates
 - [ ] Understand Model Garden
 - [ ] Study prompt design and tuning
 - [ ] Lab: Experiment with foundation models

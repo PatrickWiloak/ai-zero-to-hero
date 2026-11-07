@@ -1,6 +1,6 @@
 # Generative AI Fundamentals on Google Cloud
 
-> **Stale models, checked 2026-11-06:** Google retired PaLM 2 (`text-bison`, `chat-bison`, `code-gecko`) on 2025-04-21 and lists Gemini as the migration path ([model lifecycle](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions)). Code and model tables here that name them will not run as written; read them as concepts and use a current Gemini model.
+Code samples in these notes use the Google Gen AI SDK (`pip install --upgrade google-genai`) and assume `GOOGLE_CLOUD_PROJECT`, `GOOGLE_CLOUD_LOCATION=global` and `GOOGLE_GENAI_USE_ENTERPRISE=True` are set, so `genai.Client()` needs no arguments; see [the SDK setup](vertex-ai.md#the-sdk-these-notes-use). A sample that starts without imports continues from an earlier one, with `client` and `model` already defined. Model IDs were checked on 2026-11-06.
 
 ## Introduction to Generative AI
 
@@ -22,13 +22,13 @@
 **Large Language Models (LLMs)**
 - Generate human-like text
 - Trained on massive text corpora
-- Examples: PaLM 2, Gemini, GPT, Claude
+- Examples: Gemini, GPT, Claude
 - Capabilities: Writing, coding, analysis, translation
 
 **Image Generation Models**
 - Create images from text descriptions
 - Diffusion models, GANs, VAEs
-- Examples: Imagen, Stable Diffusion, DALL-E
+- Examples: Gemini image models (Nano Banana), Stable Diffusion, DALL-E
 - Use cases: Art, design, product visualization
 
 **Multimodal Models**
@@ -40,7 +40,7 @@
 **Code Generation Models**
 - Generate code from natural language
 - Complete code snippets
-- Examples: Codey, GitHub Copilot, CodeWhisperer
+- Examples: Gemini, GitHub Copilot, Amazon Q Developer
 - Use cases: Developer productivity, code completion
 
 ## Foundation Models
@@ -67,129 +67,38 @@
 
 ### Google's Foundation Models
 
-**PaLM 2 (Pathways Language Model)**
-- State-of-the-art language understanding
-- Multilingual capabilities (100+ languages)
-- Reasoning and code generation
-- Powers Bard and other Google products
+Google's current models are all members of the Gemini family, and the family is organized by job rather than by input type. Every text model accepts text, images, audio, video and PDFs as input, so there is no longer a separate vision or code model to choose. You pick a tier by how hard the task is and how much you want to pay.
 
-**Capabilities**
-- Advanced reasoning
-- Multilingual translation
-- Code generation and debugging
-- Mathematical problem-solving
-- Document understanding
+**`gemini-4-argon`** is the frontier model, aimed at deep work in coding, finance, legal, cybersecurity and science. Its 1,048,576-token limit is shared by input and output. It behaves differently from the Flash models: it ignores custom `temperature`, `top_p` and `top_k`, and it cannot be tuned.
 
-**Technical Details**
-- Compute-optimal scaling approach
-- Improved dataset mixture (multilingual, code, math)
-- Enhanced reasoning through chain-of-thought training
-- More efficient than predecessor (PaLM)
-- Better performance on logical reasoning benchmarks
+**`gemini-3.8-flash`** is the workhorse and the default in this guide. Google describes it as often approaching the performance of higher-cost frontier models. It has a 1,048,576-token context window and a 65,536-token output limit, and handles chat, coding, multimodal input and function calling. It also cannot be tuned.
 
-**PaLM 2 Variants**
-- **Gecko**: Lightweight, mobile/IoT deployment
-- **Otter**: Standard tasks, balanced performance
-- **Bison**: Enhanced capabilities, most common
-- **Unicorn**: Most capable, complex reasoning
+**`gemini-3.5-flash`** and **`gemini-3.5-flash-lite`** cover the tasks the workhorse does not. Both support supervised tuning. Flash-Lite is the low-cost line for high-volume classification, routing and extraction.
 
-**Gemini**
-- Multimodal foundation model
-- Native understanding of text, images, audio, video
-- Multiple sizes: Ultra, Pro, Nano
-- State-of-the-art performance
+**Image and video.** Image generation runs through Gemini image models such as `gemini-3.1-flash-image` (Nano Banana 2), which replaced Imagen when it retired on June 30, 2026. Video generation is `veo-3.1-generate-001`. Imagen's underlying technique, cascaded diffusion with a text encoder, is still worth knowing as a concept.
 
-**Gemini Variants**
-- **Gemini Ultra**: Most capable, complex tasks
-  - Best performance on MMLU, Big-Bench
-  - Advanced reasoning and problem-solving
-  - Multimodal understanding at scale
+**Embeddings.** `gemini-embedding-001` produces text vectors of up to 3,072 dimensions; `gemini-embedding-2` extends that to images, audio, video and PDFs.
 
-- **Gemini Pro**: Best performance/cost balance
-  - Production workloads
-  - General-purpose applications
-  - Balanced latency and capability
+**Gemini Nano** is a separate, on-device model that runs on Android devices through AICore rather than through Agent Platform ([Android docs](https://developer.android.com/ai/gemini-nano)). It comes up when the requirement is offline or on-device inference.
 
-- **Gemini Nano**: On-device, efficient
-  - Mobile and edge deployment
-  - Privacy-preserving inference
-  - Optimized for resource constraints
-
-**Gemini Architecture**
-- Trained jointly on text, images, audio, video
-- Native multimodal understanding (not bolted-on)
-- Enhanced cross-modal reasoning
-- State-of-the-art on 30+ benchmarks
-
-**Imagen**
-- Text-to-image generation
-- Photorealistic image synthesis
-- High resolution outputs
-- Style control and editing
-
-**Imagen Technical Details**
-- Diffusion-based architecture
-- Cascaded diffusion models
-- Text understanding via T5 encoder
-- Progressive upsampling for high resolution
-- DrawBench evaluation benchmark
-
-**Imagen Capabilities**
-- Text-to-image generation
-- Image editing (inpainting, outpainting)
-- Style transfer and customization
-- Subject-driven generation
-- Photorealistic rendering
-
-**Codey**
-- Code generation and completion
-- Based on PaLM 2
-- Multiple programming languages
-- Code explanation and debugging
-
-**Codey Models**
-- **code-bison**: Code generation from natural language
-- **code-gecko**: Code completion and suggestions
-- **codechat-bison**: Conversational code assistance
-
-**Codey Capabilities**
-- Code generation (20+ languages)
-- Code completion and snippets
-- Code explanation and documentation
-- Unit test generation
-- Code translation between languages
-- Bug detection and fixing suggestions
+**A note on history.** PaLM 2 (`text-bison`, `chat-bison`) and the Codey code models were the first generation on this platform. They retired on April 21, 2025 and Gemini replaced them. Older material that teaches their size names or their 8K context windows is out of date.
 
 ### Foundation Model Comparison
 
-| Model | Type | Strengths | Use Cases | Context Window |
-|-------|------|-----------|-----------|----------------|
-| PaLM 2 | Text | Multilingual, reasoning, code | Translation, analysis, coding | 8K tokens |
-| Gemini Pro | Multimodal | Balanced, versatile, fast | General tasks, chat, vision | 32K tokens |
-| Gemini Ultra | Multimodal | Maximum capability, reasoning | Complex tasks, research | 32K tokens |
-| Gemini Nano | Multimodal | Efficient, on-device | Mobile, edge, privacy | 4K tokens |
-| Codey | Code | Programming, debugging | Developer tools, automation | 6K tokens |
-| Imagen | Image | Photorealistic, artistic | Design, marketing, content | N/A |
+| Model | Strengths | Use Cases | Context Window |
+|-------|-----------|-----------|----------------|
+| `gemini-4-argon` | Maximum capability, long outputs | Hard reasoning, research, complex agents | 1,048,576 (input + output) |
+| `gemini-3.8-flash` | Balanced, fast, multimodal | Default: chat, code, documents, tools | 1,048,576 |
+| `gemini-3.5-flash` | Tunable | Tasks that need a tuned model | 1,048,576 |
+| `gemini-3.5-flash-lite` | Lowest cost, fast, tunable | Classification, routing, extraction | 1,048,576 |
+| `gemini-3.1-flash-image` | Image generation and editing | Design, marketing, content | See model page |
+| `gemini-embedding-001` | Text vectors, up to 3,072 dimensions | Search, RAG, clustering | 2,048 per input |
+
+Limits and retirement dates come from the [model lifecycle page](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-versions) and each model's page, checked 2026-11-06. Pin them yourself before relying on them, because Google retires Gemini versions on a published schedule.
 
 ### Open Source Models on Agent Platform
 
-**Llama 2**
-- Meta's open-source LLM
-- Available on Model Garden (formerly Vertex AI Model Garden)
-- 7B, 13B, 70B parameter variants
-- Commercial usage allowed
-
-**Llama 2 Capabilities**
-- General text generation
-- Conversational AI
-- Content creation
-- Fine-tuning for custom tasks
-
-**Stable Diffusion**
-- Open-source image generation
-- Available on Agent Platform
-- Customizable and fine-tunable
-- Community-driven improvements
+Model Garden also carries open-weight models you can deploy to your own endpoint, such as Llama, DeepSeek, Qwen and Google's Gemma family, and partner models you call as managed APIs, such as Anthropic Claude, Grok and Mistral AI. Use an open-weight model when you need to control the weights, the serving stack or the tuning process. Check the catalog for current versions, since they change quickly.
 
 **Model Garden Access**
 ```python
@@ -197,7 +106,7 @@ from google.cloud import aiplatform
 
 aiplatform.init(project='my-project', location='us-central1')
 
-# Access Llama 2 from Model Garden
+# Call an open-weight model you deployed from Model Garden
 endpoint = aiplatform.Endpoint(
     endpoint_name='projects/PROJECT_ID/locations/us-central1/endpoints/ENDPOINT_ID'
 )
@@ -252,7 +161,7 @@ Where:
 | Architecture | Examples | Strengths | Use Cases |
 |--------------|----------|-----------|-----------|
 | Encoder-Decoder | T5, BART | Translation, summarization | Seq2seq tasks |
-| Decoder-Only | GPT, PaLM, Gemini | Generation, completion | Text generation, chat |
+| Decoder-Only | GPT, Gemini | Generation, completion | Text generation, chat |
 | Encoder-Only | BERT | Understanding, classification | Embeddings, classification |
 
 ### Tokenization
@@ -272,7 +181,7 @@ Where:
 
 **WordPiece**
 - Google's tokenization method
-- Used by BERT, PaLM
+- Used by BERT
 - Likelihood-based merging
 
 **SentencePiece**
@@ -293,10 +202,9 @@ text = "Generative AI is transforming technology"
 ```
 
 **Token Limits**
-- PaLM 2: 8,192 tokens
-- Gemini Pro: 32,768 tokens
-- Gemini 1.5 Pro: 1,000,000+ tokens (preview)
-- Both input and output count toward limit
+- Flash and Flash-Lite models: 1,048,576 tokens of context, 65,536 maximum output
+- `gemini-4-argon`: 1,048,576 tokens shared by input and output
+- Thinking is billed as output, so count it when you estimate cost
 
 **Exam Tip**: 1 token ≈ 4 characters or ≈ 0.75 words in English
 
@@ -319,8 +227,7 @@ text = "Generative AI is transforming technology"
 ### Language Models
 
 **Text Generation**
-- PaLM 2 for Text
-- Gemini Pro for text
+- `gemini-3.8-flash` as the default, `gemini-3.5-flash-lite` for high volume
 - Adjustable parameters (temperature, top-k, top-p)
 - Safety filters and content moderation
 
@@ -344,16 +251,22 @@ text = "Generative AI is transforming technology"
 
 **Example Configuration**
 ```python
-from vertexai.preview.language_models import TextGenerationModel
+from google import genai
+from google.genai import types
 
-model = TextGenerationModel.from_pretrained("text-bison@002")
+client = genai.Client()
 
-response = model.predict(
-    prompt="Write a short story about AI",
-    temperature=0.7,
-    max_output_tokens=1024,
-    top_k=40,
-    top_p=0.95
+model = "gemini-3.8-flash"
+
+response = client.models.generate_content(
+    model=model,
+    contents="Write a short story about AI",
+    config=types.GenerateContentConfig(
+        temperature=0.7,
+        max_output_tokens=1024,
+        top_k=40,
+        top_p=0.95,
+    ),
 )
 
 print(response.text)
@@ -374,15 +287,21 @@ print(response.text)
 - Messages: Conversation history
 
 ```python
-from vertexai.preview.language_models import ChatModel
+from google import genai
 
-chat_model = ChatModel.from_pretrained("chat-bison@002")
+client = genai.Client()
 
-chat = chat_model.start_chat(
-    context="You are a helpful Python programming tutor",
-    examples=[
-        ["What is a list?", "A list in Python is an ordered, mutable collection..."],
-    ]
+chat_model = "gemini-3.8-flash"
+
+chat = client.chats.create(
+    model=chat_model,
+    config=types.GenerateContentConfig(
+        system_instruction="You are a helpful Python programming tutor",
+    ),
+    history=[
+        types.Content(role="user", parts=[types.Part.from_text(text="What is a list?")]),
+        types.Content(role="model", parts=[types.Part.from_text(text="A list in Python is an ordered, mutable collection...")]),
+    ],
 )
 
 response = chat.send_message("How do I create a dictionary?")
@@ -392,10 +311,10 @@ response = chat.send_message("Can you show an example?")
 print(response.text)
 ```
 
-### Code Models
+### Code Tasks
 
 **Code Generation**
-- Codey for code generation
+- `gemini-3.8-flash` handles code through the same API as text; there is no separate code model
 - Code completion
 - Code explanation
 - Unit test generation
@@ -407,46 +326,44 @@ print(response.text)
 - Best practices
 
 ```python
-from vertexai.preview.language_models import CodeGenerationModel
+from google import genai
 
-code_model = CodeGenerationModel.from_pretrained("code-bison@002")
+client = genai.Client()
 
-response = code_model.predict(
-    prefix="Write a Python function to calculate fibonacci numbers"
+code_model = "gemini-3.8-flash"
+
+response = client.models.generate_content(
+    model=code_model,
+    contents="Write a Python function to calculate fibonacci numbers",
 )
 
 print(response.text)
 ```
 
-### Image Generation (Imagen)
+### Image Generation
 
-**Text-to-Image**
-- Generate images from descriptions
-- Style control
-- Aspect ratio selection
-- Negative prompts
-
-**Image Editing**
-- Inpainting: Fill masked regions
-- Outpainting: Extend images
-- Style transfer
-- Image-to-image translation
+Image generation runs through Gemini image models and the normal `generate_content` call, with the response modalities set to include images. To edit an image, you send the source image along with an instruction in `contents`.
 
 ```python
-from vertexai.preview.vision_models import ImageGenerationModel
+from io import BytesIO
 
-imagen = ImageGenerationModel.from_pretrained("imagegeneration@005")
+from PIL import Image
+from google import genai
+from google.genai import types
 
-images = imagen.generate_images(
-    prompt="A futuristic city at sunset, cyberpunk style",
-    number_of_images=4,
-    aspect_ratio="1:1",
-    safety_filter_level="block_few",
-    person_generation="allow_adult"
+client = genai.Client()
+
+response = client.models.generate_content(
+    model="gemini-3.1-flash-image",
+    contents="Generate an image of a futuristic city at sunset, cyberpunk style",
+    config=types.GenerateContentConfig(
+        response_modalities=[types.Modality.TEXT, types.Modality.IMAGE],
+    ),
 )
 
-for i, image in enumerate(images):
-    image.save(f"generated_image_{i}.png")
+for part in response.candidates[0].content.parts:
+    if part.inline_data:
+        Image.open(BytesIO(part.inline_data.data)).save("generated_image.png")
 ```
 
 ## Prompt Engineering
@@ -529,9 +446,12 @@ Sentiment:
 
 **Few-Shot Complete Example**
 ```python
-from vertexai.preview.language_models import TextGenerationModel
+from google import genai
+from google.genai import types
 
-model = TextGenerationModel.from_pretrained("text-bison@002")
+client = genai.Client()
+
+model = "gemini-3.8-flash"
 
 prompt = """
 Extract the product name and price from the following text:
@@ -547,7 +467,14 @@ Price: $849.99
 Text: "MacBook Air M2 available for $1199"
 Product:"""
 
-response = model.predict(prompt, temperature=0.2, max_output_tokens=50)
+response = client.models.generate_content(
+    model=model,
+    contents=prompt,
+    config=types.GenerateContentConfig(
+        temperature=0.2,
+        max_output_tokens=50,
+    ),
+)
 print(response.text)
 # Output: MacBook Air M2
 # Price: $1199
@@ -609,12 +536,15 @@ Provide a professional response including:
 
 **Role-Based Complete Example**
 ```python
-chat_model = ChatModel.from_pretrained("chat-bison@002")
+chat_model = "gemini-3.8-flash"
 
-chat = chat_model.start_chat(
-    context="""You are a senior DevOps engineer specializing in Kubernetes
+chat = client.chats.create(
+    model=chat_model,
+    config=types.GenerateContentConfig(
+        system_instruction="""You are a senior DevOps engineer specializing in Kubernetes
     and cloud-native architectures. You provide practical, production-ready
-    advice with security best practices in mind."""
+    advice with security best practices in mind.""",
+    ),
 )
 
 response = chat.send_message(
@@ -770,19 +700,25 @@ Project: Building a customer data platform
 **Combining Parameters**
 ```python
 # Factual, consistent output
-response = model.predict(
-    prompt="What is the capital of France?",
-    temperature=0.2,
-    top_k=40,
-    top_p=0.8
+response = client.models.generate_content(
+    model=model,
+    contents="What is the capital of France?",
+    config=types.GenerateContentConfig(
+        temperature=0.2,
+        top_k=40,
+        top_p=0.8,
+    ),
 )
 
 # Creative, diverse output
-response = model.predict(
-    prompt="Write a creative story about space exploration",
-    temperature=0.9,
-    top_k=100,
-    top_p=0.95
+response = client.models.generate_content(
+    model=model,
+    contents="Write a creative story about space exploration",
+    config=types.GenerateContentConfig(
+        temperature=0.9,
+        top_k=100,
+        top_p=0.95,
+    ),
 )
 ```
 
@@ -791,14 +727,9 @@ response = model.predict(
 - Reduce unwanted elements
 - Improve quality
 
-**Imagen Negative Prompt Example**
-```python
-images = imagen.generate_images(
-    prompt="A beautiful mountain landscape at sunset",
-    negative_prompt="people, buildings, cars, roads, text, watermark",
-    number_of_images=4
-)
-```
+**Describing what to exclude**
+
+Gemini image models take instructions in the prompt, so state exclusions there in plain language, such as "a portrait of a person, no text or watermarks". Check the [image generation guide](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/capabilities/image-generation) for the options each model supports.
 
 ### Prompt Engineering Best Practices
 
@@ -936,7 +867,7 @@ Translation:
 1. **Zero-shot vs Few-shot**: Few-shot improves accuracy but uses more tokens
 2. **Chain-of-thought**: Use for reasoning tasks, math problems, multi-step logic
 3. **Temperature**: Low for factual/deterministic, high for creative tasks
-4. **Context window**: Monitor token usage, PaLM 2 = 8K, Gemini Pro = 32K
+4. **Context window**: Monitor token usage; current Flash models take about 1M tokens of input and 65,536 of output
 5. **System instructions**: Set behavior and constraints for chat models
 6. **Structured output**: Use JSON format with explicit schema definition
 7. **Iteration**: Prompt engineering is iterative - test and refine
@@ -982,21 +913,23 @@ Translation:
 
 **1. Prepare Data**
 ```json
-{"input_text": "Translate: Hello", "output_text": "Hola"}
-{"input_text": "Translate: Goodbye", "output_text": "Adiós"}
+{"contents": [{"role": "user", "parts": [{"text": "Translate: Hello"}]}, {"role": "model", "parts": [{"text": "Hola"}]}]}
+{"contents": [{"role": "user", "parts": [{"text": "Translate: Goodbye"}]}, {"role": "model", "parts": [{"text": "Adiós"}]}]}
 ```
 
 **2. Create Tuning Job**
 ```python
-from vertexai.preview.language_models import TextGenerationModel
+from google import genai
+from google.genai import types
 
-base_model = TextGenerationModel.from_pretrained("text-bison@002")
+# Tuning for Gemini 3 and later runs on the us or eu multi-region.
+# gemini-3.8-flash cannot be tuned, so this uses gemini-3.5-flash.
+client = genai.Client(enterprise=True, project="my-project", location="us")
 
-tuning_job = base_model.tune_model(
-    training_data="gs://my-bucket/training_data.jsonl",
-    train_steps=100,
-    learning_rate=0.001,
-    tuned_model_location="gs://my-bucket/tuned_models"
+tuning_job = client.tunings.tune(
+    base_model="gemini-3.5-flash",
+    training_dataset=types.TuningDataset(gcs_uri="gs://my-bucket/training_data.jsonl"),
+    config=types.CreateTuningJobConfig(tuned_model_display_name="translator-v1"),
 )
 ```
 
@@ -1039,7 +972,14 @@ Structure: Introduction, 3 main sections, conclusion
 Include: Code examples, specific tools, actionable tips
 """
 
-response = model.predict(prompt, temperature=0.7, max_output_tokens=1024)
+response = client.models.generate_content(
+    model=model,
+    contents=prompt,
+    config=types.GenerateContentConfig(
+        temperature=0.7,
+        max_output_tokens=1024,
+    ),
+)
 ```
 
 ### Code Generation
@@ -1060,9 +1000,11 @@ response = model.predict(prompt, temperature=0.7, max_output_tokens=1024)
 
 **Example: Function Generation**
 ```python
-from vertexai.preview.language_models import CodeGenerationModel
+from google import genai
 
-code_model = CodeGenerationModel.from_pretrained("code-bison@002")
+client = genai.Client()
+
+code_model = "gemini-3.8-flash"
 
 prompt = """
 Write a Python function that:
@@ -1073,7 +1015,10 @@ Write a Python function that:
 5. Include type hints and docstring
 """
 
-response = code_model.predict(prefix=prompt)
+response = client.models.generate_content(
+    model=code_model,
+    contents=prompt,
+)
 print(response.text)
 ```
 
@@ -1117,13 +1062,20 @@ Provide:
 Summary:
 """
 
-response = model.predict(prompt, temperature=0.3, max_output_tokens=256)
+response = client.models.generate_content(
+    model=model,
+    contents=prompt,
+    config=types.GenerateContentConfig(
+        temperature=0.3,
+        max_output_tokens=256,
+    ),
+)
 ```
 
 ### Translation
 
 **Capabilities**
-- 100+ language support (PaLM 2)
+- Broad multilingual support across current Gemini models
 - Context-aware translation
 - Technical terminology preservation
 - Cultural adaptation
@@ -1210,23 +1162,26 @@ Think step by step:
 
 **Agent Platform text embeddings**
 ```python
-from vertexai.language_models import TextEmbeddingModel
+from google import genai
+from google.genai import types
 
-embedding_model = TextEmbeddingModel.from_pretrained("textembedding-gecko@003")
+client = genai.Client()
+
+embedding_model = "gemini-embedding-001"
 
 # Single text embedding
 text = "What is machine learning?"
-embeddings = embedding_model.get_embeddings([text])
+embeddings = client.models.embed_content(model=embedding_model, contents=[text], config=types.EmbedContentConfig(output_dimensionality=768)).embeddings
 vector = embeddings[0].values  # 768-dimensional vector
 
 # Batch embeddings
 texts = ["AI is transforming industries", "Machine learning enables predictions"]
-embeddings = embedding_model.get_embeddings(texts)
+embeddings = client.models.embed_content(model=embedding_model, contents=texts, config=types.EmbedContentConfig(output_dimensionality=768)).embeddings
 ```
 
 **Embedding Dimensions**
-- textembedding-gecko: 768 dimensions
-- textembedding-gecko-multilingual: 768 dimensions
+- `gemini-embedding-001`: up to 3,072 dimensions by default; the samples here request 768 with `output_dimensionality`
+- Older `text-embedding-005` models produce up to 768 and retire on April 1, 2027
 - Optimized for semantic similarity
 
 **Similarity Calculation**
@@ -1250,15 +1205,20 @@ similarity = cosine_similarity(embeddings[0].values, embeddings[1].values)
 
 **Gemini Vision Example**
 ```python
-import vertexai
-from vertexai.preview.generative_models import GenerativeModel, Part
+from google import genai
+from google.genai import types
 
-model = GenerativeModel("gemini-pro-vision")
+client = genai.Client()
 
-image_part = Part.from_uri("gs://my-bucket/image.jpg", mime_type="image/jpeg")
+model = "gemini-3.8-flash"
+
+image_part = types.Part.from_uri(file_uri="gs://my-bucket/image.jpg", mime_type="image/jpeg")
 text_part = "What objects are in this image? Describe their arrangement."
 
-response = model.generate_content([image_part, text_part])
+response = client.models.generate_content(
+    model=model,
+    contents=[image_part, text_part],
+)
 print(response.text)
 ```
 
@@ -1270,10 +1230,13 @@ print(response.text)
 
 **Video Understanding**
 ```python
-video_part = Part.from_uri("gs://my-bucket/video.mp4", mime_type="video/mp4")
+video_part = types.Part.from_uri(file_uri="gs://my-bucket/video.mp4", mime_type="video/mp4")
 prompt = "Summarize the key events in this video."
 
-response = model.generate_content([video_part, prompt])
+response = client.models.generate_content(
+    model=model,
+    contents=[video_part, prompt],
+)
 ```
 
 ## Responsible AI
@@ -1352,38 +1315,53 @@ response = model.generate_content([video_part, prompt])
 
 **Harm Categories in Agent Platform**
 ```python
-from vertexai.preview.generative_models import HarmCategory, HarmBlockThreshold
+from google import genai
+from google.genai import types
 
-safety_settings = {
-    HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_ONLY_HIGH,
-    HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-}
+client = genai.Client()
 
-response = model.generate_content(
-    prompt,
-    safety_settings=safety_settings
+safety_settings = [
+    types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold=types.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE),
+    types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold=types.HarmBlockThreshold.BLOCK_ONLY_HIGH),
+    types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold=types.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE),
+    types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_HARASSMENT, threshold=types.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE),
+]
+
+response = client.models.generate_content(
+    model=model,
+    contents=prompt,
+    config=types.GenerateContentConfig(
+        safety_settings=safety_settings,
+    ),
 )
 ```
 
 **Filter Levels**
-- **BLOCK_NONE**: No filtering
-- **BLOCK_ONLY_HIGH**: Block high-probability harmful content
-- **BLOCK_MEDIUM_AND_ABOVE**: Block medium+ harmful content (default)
-- **BLOCK_LOW_AND_ABOVE**: Block low+ harmful content (most restrictive)
+
+The default changed, and older material gets this wrong. For `gemini-3.5-flash` and later models the default threshold is **`OFF`**: no automated blocking and no safety metadata in the response. If your application needs filtering, you must now ask for it ([safety filters](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/capabilities/configure-safety-filters)).
+
+- **OFF**: No blocking and no metadata (default on current models)
+- **BLOCK_NONE**: No blocking, but scores are still returned so you can apply your own rules
+- **BLOCK_ONLY_HIGH**: Block when the score is high
+- **BLOCK_MEDIUM_AND_ABOVE**: Block when the score is medium or high
+- **BLOCK_LOW_AND_ABOVE**: Block when the score is low, medium or high (most restrictive)
 
 **Handling Blocked Responses**
 ```python
-try:
-    response = model.generate_content(prompt, safety_settings=safety_settings)
+# A block does not raise an exception: check the response.
+response = client.models.generate_content(
+    model=model,
+    contents=prompt,
+    config=types.GenerateContentConfig(safety_settings=safety_settings),
+)
+
+if response.prompt_feedback and response.prompt_feedback.block_reason:
+    print(f"Prompt blocked: {response.prompt_feedback.block_reason}")
+elif response.candidates[0].finish_reason == types.FinishReason.SAFETY:
+    print("Response blocked by safety filters")
+    # Implement fallback logic
+else:
     print(response.text)
-except Exception as e:
-    if "blocked" in str(e).lower():
-        print("Response blocked by safety filters")
-        # Implement fallback logic
-    else:
-        raise
 ```
 
 ### Bias Detection and Mitigation
@@ -1497,9 +1475,12 @@ def safe_generate(prompt, model):
         return "Error: Request violates content policy"
 
     # Generate with safety settings
-    response = model.predict(
-        prompt,
-        safety_settings=STRICT_SAFETY_SETTINGS
+    response = client.models.generate_content(
+        model=model,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            safety_settings=STRICT_SAFETY_SETTINGS,
+        ),
     )
 
     # Output moderation
@@ -1557,7 +1538,10 @@ def redact_pii(text):
 
 # Use before sending to model
 safe_prompt = redact_pii(user_input)
-response = model.predict(safe_prompt)
+response = client.models.generate_content(
+    model=model,
+    contents=safe_prompt,
+)
 ```
 
 ### Responsible AI Checklist
@@ -1608,27 +1592,25 @@ response = model.predict(safe_prompt)
 curl -X POST \
   -H "Authorization: Bearer $(gcloud auth print-access-token)" \
   -H "Content-Type: application/json" \
-  https://us-central1-aiplatform.googleapis.com/v1/projects/PROJECT_ID/locations/us-central1/publishers/google/models/text-bison:predict \
+  https://aiplatform.googleapis.com/v1/projects/PROJECT_ID/locations/global/publishers/google/models/gemini-3.8-flash:generateContent \
   -d '{
-    "instances": [{
-      "prompt": "What is machine learning?"
-    }],
-    "parameters": {
-      "temperature": 0.7,
-      "maxOutputTokens": 256
-    }
+    "contents": [{"role": "user", "parts": [{"text": "What is machine learning?"}]}],
+    "generationConfig": {"temperature": 0.7, "maxOutputTokens": 1024}
   }'
 ```
 
 **Python SDK**
 ```python
-import vertexai
-from vertexai.preview.language_models import TextGenerationModel
+from google import genai
 
-vertexai.init(project="my-project", location="us-central1")
+client = genai.Client()
 
-model = TextGenerationModel.from_pretrained("text-bison@002")
-response = model.predict("Explain quantum computing")
+
+model = "gemini-3.8-flash"
+response = client.models.generate_content(
+    model=model,
+    contents="Explain quantum computing",
+)
 ```
 
 ### Deployment Options
@@ -1692,12 +1674,15 @@ response = model.predict("Explain quantum computing")
 
 **Implementation Example**
 ```python
-from vertexai.preview.generative_models import GenerativeModel
+from google import genai
+from google.genai import types
 
-model = GenerativeModel("gemini-pro-vision")
+client = genai.Client()
+
+model = "gemini-3.8-flash"
 
 # Process invoice image
-invoice_image = Part.from_uri("gs://bucket/invoice.pdf", mime_type="application/pdf")
+invoice_image = types.Part.from_uri(file_uri="gs://bucket/invoice.pdf", mime_type="application/pdf")
 
 prompt = """
 Extract the following information from this invoice:
@@ -1710,12 +1695,15 @@ Extract the following information from this invoice:
 Return as structured JSON.
 """
 
-response = model.generate_content([invoice_image, prompt])
+response = client.models.generate_content(
+    model=model,
+    contents=[invoice_image, prompt],
+)
 print(response.text)
 ```
 
 **Best Practices**
-- Use vision models for scanned documents
+- Current Gemini models read scanned documents directly
 - Specify output format (JSON, CSV)
 - Include validation rules
 - Handle multi-page documents
@@ -1734,13 +1722,17 @@ print(response.text)
 
 **Implementation Example**
 ```python
-from vertexai.preview.language_models import ChatModel
+from google import genai
 
-chat_model = ChatModel.from_pretrained("chat-bison@002")
+client = genai.Client()
+
+chat_model = "gemini-3.8-flash"
 
 # Configure chatbot with context
-chat = chat_model.start_chat(
-    context="""You are a customer service agent for TechCorp, a cloud services company.
+chat = client.chats.create(
+    model=chat_model,
+    config=types.GenerateContentConfig(
+        system_instruction="""You are a customer service agent for TechCorp, a cloud services company.
     You help customers with:
     - Account issues
     - Billing questions
@@ -1749,12 +1741,13 @@ chat = chat_model.start_chat(
 
     Be helpful, professional, and concise. Escalate complex issues to human agents.
     """,
-    examples=[
-        ["How do I reset my password?",
-         "To reset your password: 1) Go to techcorp.com/login 2) Click 'Forgot Password' 3) Enter your email 4) Follow the link in your email. Let me know if you need help!"],
-        ["What's the status of my ticket #12345?",
-         "Let me check that for you. Could you please provide your account email address so I can look up your ticket?"]
-    ]
+    ),
+    history=[
+        types.Content(role="user", parts=[types.Part.from_text(text="How do I reset my password?")]),
+        types.Content(role="model", parts=[types.Part.from_text(text="To reset your password: 1) Go to techcorp.com/login 2) Click 'Forgot Password' 3) Enter your email 4) Follow the link in your email. Let me know if you need help!")]),
+        types.Content(role="user", parts=[types.Part.from_text(text="What's the status of my ticket #12345?")]),
+        types.Content(role="model", parts=[types.Part.from_text(text="Let me check that for you. Could you please provide your account email address so I can look up your ticket?")]),
+    ],
 )
 
 # Multi-turn conversation
@@ -1804,7 +1797,14 @@ def generate_product_description(product_info):
     Description:
     """
 
-    response = model.predict(prompt, temperature=0.8, max_output_tokens=512)
+    response = client.models.generate_content(
+        model=model,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            temperature=0.8,
+            max_output_tokens=512,
+        ),
+    )
     return response.text
 
 # Example usage
@@ -1839,7 +1839,13 @@ def generate_content_variations(base_content, num_variations=3):
         Rewritten version:
         """
 
-        response = model.predict(prompt, temperature=0.9)
+        response = client.models.generate_content(
+            model=model,
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                temperature=0.9,
+            ),
+        )
         variations.append(response.text)
 
     return variations
@@ -1859,10 +1865,12 @@ def generate_content_variations(base_content, num_variations=3):
 
 **Implementation Example**
 ```python
-from vertexai.preview.language_models import CodeGenerationModel, CodeChatModel
+from google import genai
 
-code_model = CodeGenerationModel.from_pretrained("code-bison@002")
-codechat_model = CodeChatModel.from_pretrained("codechat-bison@002")
+client = genai.Client()
+
+code_model = "gemini-3.8-flash"
+codechat_model = "gemini-3.8-flash"
 
 # Generate function
 function_prompt = """
@@ -1873,7 +1881,10 @@ Create a Python function that implements a rate limiter using the token bucket a
 - Include type hints and docstring
 """
 
-code = code_model.predict(prefix=function_prompt)
+code = client.models.generate_content(
+    model=code_model,
+    contents=function_prompt,
+)
 print(code.text)
 
 # Generate unit tests
@@ -1889,11 +1900,14 @@ Include tests for:
 - Time-based refill
 """
 
-tests = code_model.predict(prefix=test_prompt)
+tests = client.models.generate_content(
+    model=code_model,
+    contents=test_prompt,
+)
 print(tests.text)
 
 # Code review
-codechat = codechat_model.start_chat()
+codechat = client.chats.create(model=codechat_model)
 review = codechat.send_message(f"""
 Review this code for:
 - Security vulnerabilities
@@ -1937,10 +1951,13 @@ def generate_training_data(category, num_examples, existing_examples=None):
     Generate examples as JSON array:
     """
 
-    response = model.predict(
-        prompt,
-        temperature=0.9,  # High creativity for diversity
-        max_output_tokens=2048
+    response = client.models.generate_content(
+        model=model,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            temperature=0.9,
+            max_output_tokens=2048,
+        ),
     )
 
     return response.text
@@ -1978,7 +1995,13 @@ def augment_dataset(examples, variations_per_example=3):
         Variations:
         """
 
-        response = model.predict(prompt, temperature=0.8)
+        response = client.models.generate_content(
+            model=model,
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                temperature=0.8,
+            ),
+        )
         augmented_data.extend([example] + response.text.split('\n'))
 
     return augmented_data
@@ -1997,16 +2020,19 @@ def augment_dataset(examples, variations_per_example=3):
 
 **Implementation Example**
 ```python
-from vertexai.language_models import TextEmbeddingModel, TextGenerationModel
+from google import genai
+from google.genai import types
 import numpy as np
 
+client = genai.Client()
+
 # Initialize models
-embedding_model = TextEmbeddingModel.from_pretrained("textembedding-gecko@003")
-generation_model = TextGenerationModel.from_pretrained("text-bison@002")
+embedding_model = "gemini-embedding-001"
+generation_model = "gemini-3.8-flash"
 
 def create_knowledge_base(documents):
     """Create embeddings for document corpus"""
-    embeddings = embedding_model.get_embeddings(documents)
+    embeddings = client.models.embed_content(model=embedding_model, contents=documents).embeddings
     return {
         'documents': documents,
         'embeddings': [emb.values for emb in embeddings]
@@ -2014,7 +2040,7 @@ def create_knowledge_base(documents):
 
 def semantic_search(query, knowledge_base, top_k=3):
     """Find most relevant documents"""
-    query_embedding = embedding_model.get_embeddings([query])[0].values
+    query_embedding = client.models.embed_content(model=embedding_model, contents=[query]).embeddings[0].values
 
     # Calculate similarities
     similarities = []
@@ -2046,7 +2072,13 @@ def answer_with_rag(question, knowledge_base):
     Answer:
     """
 
-    response = generation_model.predict(prompt, temperature=0.3)
+    response = client.models.generate_content(
+        model=generation_model,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            temperature=0.3,
+        ),
+    )
     return response.text
 
 # Example usage
@@ -2088,7 +2120,13 @@ def localize_content(content, target_language, target_region):
     Localized content:
     """
 
-    response = model.predict(prompt, temperature=0.3)
+    response = client.models.generate_content(
+        model=model,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            temperature=0.3,
+        ),
+    )
     return response.text
 ```
 
@@ -2134,10 +2172,13 @@ def analyze_review_batch(reviews):
     }
     """
 
-    response = model.predict(
-        prompt,
-        temperature=0.2,  # Low for consistency
-        max_output_tokens=2048
+    response = client.models.generate_content(
+        model=model,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            temperature=0.2,
+            max_output_tokens=2048,
+        ),
     )
 
     return response.text
@@ -2166,9 +2207,11 @@ analysis = analyze_review_batch(reviews)
 
 **Solution**
 ```python
-from vertexai.preview.language_models import CodeChatModel
+from google import genai
 
-codechat = CodeChatModel.from_pretrained("codechat-bison@002").start_chat()
+client = genai.Client()
+
+codechat = client.chats.create(model="gemini-3.8-flash")
 
 def generate_documentation(code):
     """Generate comprehensive code documentation"""
@@ -2239,7 +2282,13 @@ def multilingual_support_bot(customer_message, knowledge_base):
     Return as JSON.
     """
 
-    intent_response = model.predict(intent_prompt, temperature=0.2)
+    intent_response = client.models.generate_content(
+        model=model,
+        contents=intent_prompt,
+        config=types.GenerateContentConfig(
+            temperature=0.2,
+        ),
+    )
 
     # Generate response
     support_prompt = f"""
@@ -2259,7 +2308,13 @@ def multilingual_support_bot(customer_message, knowledge_base):
     Response:
     """
 
-    response = chat_model.predict(support_prompt, temperature=0.4)
+    response = client.models.generate_content(
+        model=chat_model,
+        contents=support_prompt,
+        config=types.GenerateContentConfig(
+            temperature=0.4,
+        ),
+    )
     return response.text
 
 # Example
@@ -2269,7 +2324,7 @@ knowledge_base = "Login issues: Check password, clear cache, verify email"
 response = multilingual_support_bot(customer_msg, knowledge_base)
 ```
 
-**Exam Tip**: PaLM 2 supports 100+ languages. No need to explicitly translate; respond in detected language.
+**Exam Tip**: Gemini handles many languages directly. No need to translate first; ask it to respond in the detected language.
 
 ### Scenario 4: Contract Analysis and Extraction
 
@@ -2304,10 +2359,13 @@ def analyze_contract(contract_text):
     Return as structured JSON with confidence scores for each extraction.
     """
 
-    response = model.predict(
-        prompt,
-        temperature=0.1,  # Very low for factual extraction
-        max_output_tokens=2048
+    response = client.models.generate_content(
+        model=model,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            temperature=0.1,
+            max_output_tokens=2048,
+        ),
     )
 
     return response.text
@@ -2315,9 +2373,9 @@ def analyze_contract(contract_text):
 # For multi-page PDFs with Gemini Vision
 def analyze_contract_pdf(pdf_uri):
     """Analyze contract from PDF"""
-    vision_model = GenerativeModel("gemini-pro-vision")
+    vision_model = "gemini-3.8-flash"
 
-    pdf_part = Part.from_uri(pdf_uri, mime_type="application/pdf")
+    pdf_part = types.Part.from_uri(file_uri=pdf_uri, mime_type="application/pdf")
 
     prompt = """Extract key contract terms from this PDF:
     - Parties and roles
@@ -2329,11 +2387,14 @@ def analyze_contract_pdf(pdf_uri):
     Format as JSON.
     """
 
-    response = vision_model.generate_content([pdf_part, prompt])
+    response = client.models.generate_content(
+        model=vision_model,
+        contents=[pdf_part, prompt],
+    )
     return response.text
 ```
 
-**Exam Tip**: Use Gemini Pro Vision for PDF/image documents. Use low temperature (0.1-0.2) for factual extraction.
+**Exam Tip**: Current Gemini models read PDF and image documents directly. Use low temperature (0.1-0.2) for factual extraction.
 
 ### Scenario 5: Content Moderation Pipeline
 
@@ -2348,18 +2409,21 @@ def analyze_contract_pdf(pdf_uri):
 
 **Solution**
 ```python
-from vertexai.preview.generative_models import HarmCategory, HarmBlockThreshold
+from google import genai
+from google.genai import types
+
+client = genai.Client()
 
 def moderate_content(user_content):
     """Multi-stage content moderation"""
 
     # Stage 1: Safety filter check
-    safety_settings = {
-        HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
-        HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
-        HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-        HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    }
+    safety_settings = [
+        types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold=types.HarmBlockThreshold.BLOCK_LOW_AND_ABOVE),
+        types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_HARASSMENT, threshold=types.HarmBlockThreshold.BLOCK_LOW_AND_ABOVE),
+        types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold=types.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE),
+        types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold=types.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE),
+    ]
 
     # Stage 2: Detailed analysis
     analysis_prompt = f"""
@@ -2386,9 +2450,12 @@ def moderate_content(user_content):
     """
 
     try:
-        response = model.generate_content(
-            analysis_prompt,
-            safety_settings=safety_settings
+        response = client.models.generate_content(
+            model=model,
+            contents=analysis_prompt,
+            config=types.GenerateContentConfig(
+                safety_settings=safety_settings,
+            ),
         )
 
         moderation_result = response.text
@@ -2401,7 +2468,7 @@ def moderate_content(user_content):
         return moderation_result
 
     except Exception as e:
-        # Content blocked by safety filters
+        # Fail closed: an API error here means the content went unchecked
         return {
             'is_safe': False,
             'violations': ['safety_filter_triggered'],
@@ -2452,7 +2519,13 @@ def generate_test_suite(feature_description, code=None):
     Test suite:
     """
 
-    response = code_model.predict(prefix=prompt, max_output_tokens=2048)
+    response = client.models.generate_content(
+        model=code_model,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            max_output_tokens=2048,
+        ),
+    )
     return response.text
 
 # Example
@@ -2511,10 +2584,13 @@ def generate_personalized_email(customer_segment, campaign_goal, customer_data):
     Email:
     """
 
-    response = model.predict(
-        prompt,
-        temperature=0.7,  # Balanced for personalization
-        max_output_tokens=512
+    response = client.models.generate_content(
+        model=model,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            temperature=0.7,
+            max_output_tokens=512,
+        ),
     )
 
     return response.text
@@ -2539,7 +2615,13 @@ def generate_ab_variations(base_email, num_variations=3):
         Variation:
         """
 
-        response = model.predict(prompt, temperature=0.8)
+        response = client.models.generate_content(
+            model=model,
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                temperature=0.8,
+            ),
+        )
         variations.append(response.text)
 
     return variations
@@ -2598,10 +2680,13 @@ def summarize_meeting(transcript):
     Summary:
     """
 
-    response = model.predict(
-        prompt,
-        temperature=0.3,  # Low for factual extraction
-        max_output_tokens=1024
+    response = client.models.generate_content(
+        model=model,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            temperature=0.3,
+            max_output_tokens=1024,
+        ),
     )
 
     return response.text
@@ -2633,7 +2718,13 @@ def extract_action_items(transcript):
     ]
     """
 
-    response = model.predict(prompt, temperature=0.2)
+    response = client.models.generate_content(
+        model=model,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            temperature=0.2,
+        ),
+    )
     return response.text
 ```
 
@@ -2675,7 +2766,10 @@ def generate_sql_query(question, schema):
     SQL Query:
     """
 
-    response = code_model.predict(prefix=prompt)
+    response = client.models.generate_content(
+        model=code_model,
+        contents=prompt,
+    )
 
     return response.text
 
@@ -2693,7 +2787,7 @@ question = "What are the top 5 customers by total order value in the last 6 mont
 sql = generate_sql_query(question, schema)
 ```
 
-**Exam Tip**: Include schema in prompt for accurate query generation. Use Codey (code-bison) for SQL generation.
+**Exam Tip**: Include schema in prompt for accurate query generation. `gemini-3.8-flash` handles SQL generation; there is no separate code model.
 
 ### Scenario 10: Image Analysis for Product Defects
 
@@ -2707,14 +2801,17 @@ sql = generate_sql_query(question, schema)
 
 **Solution**
 ```python
-from vertexai.preview.generative_models import GenerativeModel, Part
+from google import genai
+from google.genai import types
+
+client = genai.Client()
 
 def analyze_product_image(image_uri, product_type):
     """Analyze product image for defects"""
 
-    vision_model = GenerativeModel("gemini-pro-vision")
+    vision_model = "gemini-3.8-flash"
 
-    image = Part.from_uri(image_uri, mime_type="image/jpeg")
+    image = types.Part.from_uri(file_uri=image_uri, mime_type="image/jpeg")
 
     prompt = f"""
     Analyze this {product_type} image for quality control:
@@ -2738,7 +2835,10 @@ def analyze_product_image(image_uri, product_type):
     Analysis:
     """
 
-    response = vision_model.generate_content([image, prompt])
+    response = client.models.generate_content(
+        model=vision_model,
+        contents=[image, prompt],
+    )
     return response.text
 
 # Batch processing
@@ -2769,11 +2869,17 @@ def batch_quality_inspection(image_uris, product_type):
     Report:
     """
 
-    summary = model.predict(summary_prompt, temperature=0.3)
+    summary = client.models.generate_content(
+        model=model,
+        contents=summary_prompt,
+        config=types.GenerateContentConfig(
+            temperature=0.3,
+        ),
+    )
     return results, summary.text
 ```
 
-**Exam Tip**: Use Gemini Pro Vision for image analysis. Provide structured output format (JSON) for easy parsing.
+**Exam Tip**: Any current Gemini model can analyze images; `gemini-3.8-flash` is the sensible default. Provide structured output format (JSON) for easy parsing.
 
 ## Best Practices
 
@@ -2785,9 +2891,9 @@ def batch_quality_inspection(image_uris, product_type):
    - Document effective prompts
 
 2. **Use Appropriate Model Size**
-   - Gemini Nano: Simple tasks, on-device
-   - Gemini Pro: General use, best balance
-   - Gemini Ultra: Complex reasoning
+   - `gemini-3.5-flash-lite`: Simple, high-volume tasks
+   - `gemini-3.8-flash`: General use, best balance
+   - `gemini-4-argon`: Hardest reasoning
 
 3. **Optimize Parameters**
    - Temperature for creativity vs consistency
@@ -2831,13 +2937,13 @@ def batch_quality_inspection(image_uris, product_type):
 ### Key Concepts to Master
 
 **Foundation Models**
-- PaLM 2: Best for multilingual text, reasoning, math
-- Gemini Pro: Balanced multimodal, 32K context window
-- Gemini Ultra: Most capable, complex reasoning tasks
-- Gemini Nano: On-device, privacy-preserving
-- Codey: Specialized for code generation (20+ languages)
-- Imagen: Text-to-image, diffusion-based
-- Open source: Llama 2, Stable Diffusion via Model Garden
+- `gemini-3.8-flash`: Default for text, code, chat and multimodal input
+- `gemini-4-argon`: Most capable, complex reasoning
+- `gemini-3.5-flash-lite`: Low cost, high volume
+- `gemini-3.5-flash`: Tunable base model
+- Gemini Nano: On-device, privacy-preserving, not served through Agent Platform
+- `gemini-3.1-flash-image`: Image generation and editing (replaced Imagen)
+- Open models such as Llama and Gemma via Model Garden
 
 **Architecture Knowledge**
 - Understand transformer architecture (attention, encoder/decoder)
@@ -2856,7 +2962,7 @@ def batch_quality_inspection(image_uris, product_type):
 
 **Responsible AI Principles**
 - Know all 7 Google AI Principles
-- Safety filters: 4 harm categories, 4 blocking levels
+- Safety filters: 4 harm categories, blocking thresholds from OFF to BLOCK_LOW_AND_ABOVE, off by default on current models
 - Bias detection and mitigation strategies
 - PII handling with Cloud DLP
 - Content moderation (input, output, context layers)
@@ -2866,46 +2972,40 @@ def batch_quality_inspection(image_uris, product_type):
 
 ```
 Question requires:
-├─ Image understanding/generation
-│  ├─ Text-to-image → Imagen
-│  └─ Image analysis → Gemini Pro Vision
-├─ Code tasks
-│  ├─ Generation → code-bison
-│  ├─ Chat/review → codechat-bison
-│  └─ Completion → code-gecko
-├─ Multimodal (text + image + video)
-│  └─ Gemini (Pro/Ultra)
-├─ Text only
-│  ├─ Multilingual (100+ languages) → PaLM 2
-│  ├─ Long context (>8K tokens) → Gemini Pro
-│  ├─ Complex reasoning → Gemini Ultra
-│  ├─ On-device → Gemini Nano
-│  └─ General text → text-bison or Gemini Pro
-└─ Embeddings/similarity
-   └─ textembedding-gecko
+├─ Generating an image → gemini-3.1-flash-image
+├─ Generating a video → veo-3.1-generate-001
+├─ Understanding images, video, audio or PDFs → gemini-3.8-flash
+├─ Code generation, review or completion → gemini-3.8-flash
+├─ Text
+│  ├─ General, including long context and many languages → gemini-3.8-flash
+│  ├─ High volume, low cost → gemini-3.5-flash-lite
+│  ├─ Hardest reasoning → gemini-4-argon
+│  ├─ Must be tuned → gemini-3.5-flash or gemini-3.5-flash-lite
+│  └─ On-device → Gemini Nano (Android, not Agent Platform)
+└─ Embeddings/similarity → gemini-embedding-001
 ```
 
 ### Service Selection Matrix
 
 | Use Case | Primary Model | Alternative | Key Parameters |
 |----------|--------------|-------------|----------------|
-| Text generation | text-bison@002 | gemini-pro | temp=0.7, max_tokens=1024 |
-| Chatbot | chat-bison@002 | gemini-pro | context + examples |
-| Code generation | code-bison@002 | gemini-pro | temp=0.2-0.4 |
-| Summarization | text-bison@002 | gemini-pro | temp=0.3, concise prompt |
-| Translation | text-bison@002 | gemini-pro | temp=0.3, specify languages |
-| Image generation | imagegeneration@005 | N/A | negative_prompt, safety |
-| Image analysis | gemini-pro-vision | N/A | structured output |
-| Embeddings | textembedding-gecko@003 | N/A | 768 dimensions |
-| Classification | text-bison@002 | gemini-pro | temp=0.1-0.2, few-shot |
-| Q&A with docs | text-bison + embeddings | gemini-pro | RAG pattern |
+| Text generation | gemini-3.8-flash | gemini-3.5-flash-lite | temp=0.7, max_output_tokens=1024 |
+| Chatbot | gemini-3.8-flash | gemini-3.5-flash-lite | system_instruction + history |
+| Code generation | gemini-3.8-flash | gemini-4-argon | temp=0.2-0.4 |
+| Summarization | gemini-3.8-flash | gemini-3.5-flash-lite | temp=0.3, concise prompt |
+| Translation | gemini-3.8-flash | gemini-3.5-flash-lite | temp=0.3, specify languages |
+| Image generation | gemini-3.1-flash-image | gemini-3-pro-image | response_modalities |
+| Image analysis | gemini-3.8-flash | gemini-3.5-flash-lite | structured output |
+| Embeddings | gemini-embedding-001 | gemini-embedding-2 | output_dimensionality |
+| Classification | gemini-3.5-flash-lite | gemini-3.8-flash | temp=0.1-0.2, few-shot |
+| Q&A with docs | gemini-3.8-flash + embeddings | gemini-4-argon | RAG pattern |
 
 ### Common Exam Scenarios and Solutions
 
 **Scenario Type 1: Model Selection**
 - Question: "Need to analyze PDF invoices and extract structured data"
-- Answer: Gemini Pro Vision (handles PDF, multimodal, structured output)
-- Why not others: PaLM 2 (text-only), Codey (code-focused)
+- Answer: `gemini-3.8-flash` (reads PDFs directly, returns structured output)
+- Why not others: an image model generates images, and an embedding model only returns vectors
 
 **Scenario Type 2: Prompt Engineering**
 - Question: "Generate consistent product classifications"
@@ -2924,7 +3024,7 @@ Question requires:
 - Question: "Reduce latency and costs for FAQ chatbot"
 - Answer:
   - Cache common queries (Memorystore)
-  - Use smaller model (Gemini Nano for simple tasks)
+  - Use a smaller model (`gemini-3.5-flash-lite` for simple tasks)
   - Batch requests when possible
   - Implement rate limiting
   - Monitor token usage
@@ -2955,17 +3055,16 @@ Question requires:
 ### Context Window Management
 
 **Token Limits**
-- PaLM 2 (text-bison): 8,192 tokens
-- Gemini Pro: 32,768 tokens
-- Gemini 1.5 Pro: 1,000,000+ tokens (preview)
-- Codey: 6,144 tokens
+- Flash and Flash-Lite models: 1,048,576 tokens of context, 65,536 maximum output
+- `gemini-4-argon`: 1,048,576 tokens shared by input and output
+- `gemini-embedding-001`: 2,048 tokens per input
 - Remember: Input + output counts toward limit
 
 **When Exceeding Context**
 1. Summarize conversation history
 2. Use sliding window (keep recent messages)
 3. Extract and store key information
-4. Switch to longer-context model (Gemini Pro)
+4. Use context caching for a large repeated prefix
 5. Implement RAG pattern with embeddings
 
 ### Safety Filter Configuration
@@ -2998,7 +3097,7 @@ Question requires:
 **RAG Implementation Pattern**
 ```python
 # 1. Create embeddings for knowledge base
-embeddings = embedding_model.get_embeddings(documents)
+embeddings = client.models.embed_content(model=embedding_model, contents=documents).embeddings
 
 # 2. Store vectors (Vector Search, Firestore)
 
@@ -3008,7 +3107,10 @@ embeddings = embedding_model.get_embeddings(documents)
 #    c. Include in prompt as context
 
 # 4. Generate answer with context
-response = model.predict(f"Context: {context}\nQuestion: {query}")
+response = client.models.generate_content(
+    model=model,
+    contents=f"Context: {context}\nQuestion: {query}",
+)
 ```
 
 **Exam Tip**: RAG updates knowledge without retraining. Use for dynamic information.
@@ -3027,9 +3129,9 @@ response = model.predict(f"Context: {context}\nQuestion: {query}")
 ### Code Generation Best Practices
 
 **For Exam**
-- Use code-bison for generation from natural language
-- Use code-gecko for completion/suggestions
-- Use codechat-bison for conversational assistance
+- Use `gemini-3.8-flash` for generation, completion and review alike
+- Use a chat session for conversational assistance
+- Use a lower temperature when you want repeatable output
 - Temperature 0.2-0.4 for correct syntax
 - Include language specification in prompt
 - Request docstrings and type hints
@@ -3079,8 +3181,8 @@ Include:
 ### Common Pitfalls to Avoid
 
 1. **Using wrong model**
-   - Don't use text-bison for images → Use Gemini Pro Vision
-   - Don't use code-bison for general text → Use text-bison
+   - Don't reach for an image model to read an image → Use `gemini-3.8-flash`
+   - Don't plan on tuning `gemini-3.8-flash` → It isn't supported; use `gemini-3.5-flash`
 
 2. **Temperature mistakes**
    - High temp for classification → Inconsistent results
@@ -3110,7 +3212,7 @@ Include:
 ### Exam Question Patterns
 
 **Pattern 1: "Which model should you use for...?"**
-- Look for keywords: multimodal (Gemini), code (Codey), image (Imagen)
+- Look for keywords: generate an image (image model), tune (a tunable model), high volume (Flash-Lite)
 - Consider context window requirements
 - Think about specialized capabilities
 
@@ -3145,47 +3247,77 @@ Include:
 
 **Text Generation**
 ```python
-from vertexai.preview.language_models import TextGenerationModel
-model = TextGenerationModel.from_pretrained("text-bison@002")
-response = model.predict(prompt, temperature=0.7, max_output_tokens=1024)
+from google import genai
+from google.genai import types
+
+client = genai.Client()
+model = "gemini-3.8-flash"
+response = client.models.generate_content(
+    model=model,
+    contents=prompt,
+    config=types.GenerateContentConfig(
+        temperature=0.7,
+        max_output_tokens=1024,
+    ),
+)
 ```
 
 **Chat**
 ```python
-from vertexai.preview.language_models import ChatModel
-chat_model = ChatModel.from_pretrained("chat-bison@002")
-chat = chat_model.start_chat(context="...", examples=[...])
+from google import genai
+
+client = genai.Client()
+chat_model = "gemini-3.8-flash"
+chat = client.chats.create(
+    model=chat_model,
+    config=types.GenerateContentConfig(system_instruction="..."),
+    history=[...],  # few-shot examples as earlier turns
+)
 response = chat.send_message("message")
 ```
 
 **Code Generation**
 ```python
-from vertexai.preview.language_models import CodeGenerationModel
-code_model = CodeGenerationModel.from_pretrained("code-bison@002")
-response = code_model.predict(prefix="prompt")
+from google import genai
+
+client = genai.Client()
+code_model = "gemini-3.8-flash"
+response = client.models.generate_content(
+    model=code_model,
+    contents="prompt",
+)
 ```
 
 **Gemini (Multimodal)**
 ```python
-from vertexai.preview.generative_models import GenerativeModel, Part
-model = GenerativeModel("gemini-pro-vision")
-image = Part.from_uri("gs://bucket/image.jpg", mime_type="image/jpeg")
-response = model.generate_content([image, "prompt"])
+from google import genai
+from google.genai import types
+
+client = genai.Client()
+model = "gemini-3.8-flash"
+image = types.Part.from_uri(file_uri="gs://bucket/image.jpg", mime_type="image/jpeg")
+response = client.models.generate_content(
+    model=model,
+    contents=[image, "prompt"],
+)
 ```
 
 **Embeddings**
 ```python
-from vertexai.language_models import TextEmbeddingModel
-embedding_model = TextEmbeddingModel.from_pretrained("textembedding-gecko@003")
-embeddings = embedding_model.get_embeddings(["text1", "text2"])
+from google import genai
+
+client = genai.Client()
+embedding_model = "gemini-embedding-001"
+embeddings = client.models.embed_content(model=embedding_model, contents=["text1", "text2"]).embeddings
 ```
 
 **Safety Settings**
 ```python
-from vertexai.preview.generative_models import HarmCategory, HarmBlockThreshold
-safety_settings = {
-    HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-}
+from google import genai
+from google.genai import types
+safety_settings = [
+    types.SafetySetting(category=types.HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold=types.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE),
+]
 ```
 
 ### Final Exam Preparation Checklist
@@ -3199,11 +3331,10 @@ safety_settings = {
 - [ ] Temperature and sampling methods
 
 **Google Models**
-- [ ] PaLM 2 capabilities and variants
-- [ ] Gemini family (Ultra, Pro, Nano)
-- [ ] Codey models (generation, chat, completion)
-- [ ] Imagen for image generation
-- [ ] Text embeddings with Gecko
+- [ ] Gemini tiers (Argon, Flash, Flash-Lite) and which ones can be tuned
+- [ ] Model retirement dates and how to check them
+- [ ] Gemini image models for image generation
+- [ ] Text embeddings with `gemini-embedding-001`
 
 **Prompt Engineering**
 - [ ] Zero-shot vs few-shot

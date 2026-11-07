@@ -65,7 +65,7 @@ Not sure which one to take? Start with the [AI certifications guide](../careers/
 |------|------|-------|--------|------:|-----------:|--------------------|
 | [Google Cloud Generative AI Leader](gcp/generative-ai-leader/README.md) | - | Foundational | Ready | 4 | [83](gcp/generative-ai-leader/flashcards.csv) | [Questions](practice-questions/gcp-generative-ai-leader.md) |
 | [Google Cloud Professional Machine Learning Engineer Certification](gcp/machine-learning-engineer/README.md) | Professional Machine Learning Engineer | Professional | Ready | 5 | [26](gcp/machine-learning-engineer/flashcards.csv) | [Questions](practice-questions/gcp-machine-learning-engineer.md) |
-| [Google Cloud Generative AI - Self-Directed Study Track](gcp/genai/README.md) | - | - | Study track | 3 | [81](gcp/genai/flashcards.csv) | [Questions](practice-questions/gcp-generative-ai-track.md) |
+| [Google Cloud Generative AI - Self-Directed Study Track](gcp/genai/README.md) | - | - | Study track | 3 | [78](gcp/genai/flashcards.csv) | [Questions](practice-questions/gcp-generative-ai-track.md) |
 
 ## Databricks
 
