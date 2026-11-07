@@ -30,7 +30,7 @@ Not sure which one to take? Start with the [AI certifications guide](../careers/
 | [NVIDIA Certified Professional - AI Infrastructure (NCP-AII)](nvidia/ai-infrastructure-professional/README.md) | NCP-AII | Professional | Ready | 5 | [43](nvidia/ai-infrastructure-professional/flashcards.csv) | [Questions](practice-questions/nvidia-ai-infrastructure-professional.md) |
 | [NVIDIA Certified Professional - AI Operations (NCP-AIO)](nvidia/ai-operations-professional/README.md) | NCP-AIO | Professional | Ready | 5 | [21](nvidia/ai-operations-professional/flashcards.csv) | [Questions](practice-questions/nvidia-ai-operations-professional.md) |
 | [NVIDIA Certified Professional - Generative AI & LLMs (NCP-GENL)](nvidia/genai-llms-professional/README.md) | NCP-GENL | Professional | Ready | 6 | - | [Questions](practice-questions/nvidia-genai-llms-professional.md) |
-| [NVIDIA-Certified Professional - AI Networking (NCP-AIN)](nvidia/ai-networking-professional/README.md) | NCP-AIN | Professional | Ready | 5 | [27](nvidia/ai-networking-professional/flashcards.csv) | [Questions](practice-questions/nvidia-ai-networking-professional.md) |
+| [NVIDIA-Certified Professional - AI Networking (NCP-AIN)](nvidia/ai-networking-professional/README.md) | NCP-AIN | Professional | Ready | 6 | [59](nvidia/ai-networking-professional/flashcards.csv) | [Questions](practice-questions/nvidia-ai-networking-professional.md) |
 | [NVIDIA-Certified Professional - OpenUSD Development (NCP-OUSD)](nvidia/openusd-development-professional/README.md) | NCP-OUSD | Professional | Ready | 5 | [59](nvidia/openusd-development-professional/flashcards.csv) | [Questions](practice-questions/nvidia-openusd-development-professional.md) |
 
 ## AWS

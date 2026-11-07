@@ -73,7 +73,7 @@ Also here: a [Google Cloud generative AI study track](../../certifications/gcp/g
 | AI Infrastructure Professional (NCP-AII) | Professional | $200 | 2 years | [Guide](../../certifications/nvidia/ai-infrastructure-professional/README.md) |
 | AI Operations Professional (NCP-AIO) | Professional | $200 | 2 years | [Guide](../../certifications/nvidia/ai-operations-professional/README.md) |
 | Accelerated Data Science Professional (NCP-ADS) | Professional | $200 | 2 years | [Guide](../../certifications/nvidia/accelerated-data-science-professional/README.md) |
-| AI Networking Professional (NCP-AIN) | Professional | $400 ($500 from 2026-11-01, when labs are added) | 2 years | [Guide](../../certifications/nvidia/ai-networking-professional/README.md) |
+| AI Networking Professional (NCP-AIN) | Professional | $500 (exam page, 2026-11-07; includes a lab) | 2 years | [Guide](../../certifications/nvidia/ai-networking-professional/README.md) |
 | OpenUSD Development Professional (NCP-OUSD) | Professional | $200 | 2 years | [Guide](../../certifications/nvidia/openusd-development-professional/README.md) |
 
 ### Databricks

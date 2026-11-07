@@ -1,52 +1,16 @@
-# NCP-AIN AI Networking Professional Study Strategy
+# NCP-AIN - Exam Strategy
 
-## Study Approach
+**Last reviewed:** 2026-11-07
 
-### Phase 1: Foundation (1-2 weeks)
-1. **InfiniBand Core**
-   - Protocol stack and speed generations
-   - Subnet management and routing
-   - Partitioning and QoS
-   - **[📖 NVIDIA Networking Docs](https://docs.nvidia.com/networking/)**
+## What the exam looks like
 
-2. **RDMA and RoCE**
-   - RDMA operations and programming model
-   - RoCE v1 vs v2
-   - Lossless Ethernet (PFC, ECN, DCQCN)
-   - GPUDirect RDMA
-   - **[📖 GPUDirect Docs](https://developer.nvidia.com/gpudirect)**
+Two hours, 70 to 75 questions, and a hands-on lab (NVIDIA's exam page says "Hands-on lab: Yes" and gives no detail). Spectrum and InfiniBand together are 60 percent, troubleshooting 20 percent. The blueprint verbs are practical ("configure", "diagnose", "use"), so expect command-level and scenario questions rather than definitions.
 
-### Phase 2: Advanced (2-3 weeks)
-1. **Spectrum Ethernet** - Switch family, Cumulus Linux, DOCA
-2. **Topologies** - Fat-tree, rail-optimized, dragonfly, adaptive routing
-3. **UFM** - Monitoring, telemetry, diagnostics, fabric management
+## Tactics
 
-### Phase 3: Exam Prep (1-2 weeks)
-1. Practice scenarios and troubleshooting
-2. Review specifications and commands
-3. Focus on weak areas
-
-## Recommended Resources
-- **[NVIDIA Networking Documentation](https://docs.nvidia.com/networking/)** - Complete reference
-- **[UFM Documentation](https://docs.nvidia.com/networking/software/management-software/index.html)** - Fabric management
-- **[DGX SuperPOD Guide](https://docs.nvidia.com/dgx-superpod/)** - Reference architecture
-- **[NVIDIA DLI Courses](https://www.nvidia.com/en-us/training/)** - Official training
-- **[NVIDIA Developer Blog](https://developer.nvidia.com/blog/)** - Technical articles
-
-## Exam Tactics
-
-### Keywords
-- "Lossless" - PFC + ECN for RoCE
-- "Isolation" - InfiniBand partitions (P_Keys)
-- "Congestion" - Adaptive routing, ECN, DCQCN
-- "Monitor" or "manage" - UFM
-- "GPU communication" - GPUDirect RDMA, NVLink, NCCL
-- "Large scale" - Dragonfly topology
-- "DGX cluster" - Rail-optimized topology
-
-### Common Pitfalls
-- RoCE v2 is routable (UDP/IP), RoCE v1 is L2 only
-- PFC is per-priority, not per-port
-- Adaptive routing should be per-flow for NCCL, not per-packet
-- GPUDirect RDMA requires nvidia-peermem module
-- InfiniBand uses P_Keys for isolation, not VLANs
+1. **Identify the fabric first.** A question about PKeys, the subnet manager, UFM or `ibstat` is InfiniBand; PFC, ECN, NVUE `nv set qos`, EVPN and WJH are Spectrum Ethernet. Mixing them up is the commonest distractor.
+2. **Know what each tool answers.** WJH says why packets were dropped; `cl-resource-query` says whether table space is the problem; `ibstat` says whether the port is up at the right rate; `ib_write_bw` says bandwidth; `ib_write_lat` says latency; UFM Fabric Health says whether the whole fabric is clean.
+3. **Remember the defaults.** NVUE RoCE defaults to lossless with PFC on priority 3; the default partition is 0x7fff; membership defaults to limited; AR is on by default in opensm.conf with `ar_updn`; WJH runs by default on Cumulus Linux.
+4. **Remember the conflicts.** NetQ agent on the switch means the on-switch WJH service is off; AR and non-AR ports should not share an ECMP route; changing AR state reloads switchd.
+5. **For a lab, read the output.** Do not just type the verification command; check that the mode, priority, thresholds and trust mode match what was asked.
+6. **Check the release.** Command spellings change across Cumulus Linux releases (for example `enable on` versus `state enabled` for adaptive routing). Use the syntax of the release shown in the question.

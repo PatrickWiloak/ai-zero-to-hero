@@ -46,8 +46,10 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [ ] 2026-11-08: run the AI-103 note code (`certifications/azure/ai-103/notes/*.md`) against a Foundry project; samples are copied from Microsoft docs, not executed here.
 - [x] 2026-10-22 AI-901 duration added (45 min, Microsoft's Fundamentals figure); question count is not published by Microsoft.
 - [x] 2026-10-22 NVIDIA codes confirmed on nvidia.com: NCP-NET -> NCP-AIN, NCP-USD -> NCP-OUSD, NCA-MMGA -> NCA-GENM; names, logistics, blueprints and dirs fixed.
-- [ ] 2026-11-15: rewrite notes + banks for NCP-AIN, NCP-OUSD, NCA-GENM to NVIDIA's blueprints (gaps: Kubernetes, debugging, data analysis); see each README table.
-- [ ] 2026-11-14: confirm NCP-AIN labs + $500 price took effect 11-01 (nvidia.com exam page); update README, fact sheet, flashcards, careers guide. ✏️ 2026-11-07 re-dated 2026-11-14: nvidia.com exam page not reachable by curl (404 to a guessed URL); needs the real page URL or a browser
+- [x] 2026-11-07 NCP-AIN rewritten to the 6-section blueprint (notes 01-06, bank 30, generated flashcards).
+- [ ] 2026-11-15: rewrite notes + banks for NCP-OUSD and NCA-GENM to NVIDIA's blueprints (see each README table).
+- [ ] 2026-12-01: NCP-AIN gaps to fill from NVIDIA docs: DSX Air user guide, ibdiagnet manual, SuperNIC congestion control, OpenSM SM priority, PFC watchdog, cl-resource-query sample output (`certifications/nvidia/ai-networking-professional/README.md` lists them); recheck exam page for price and lab detail.
+- [x] 2026-11-07 NCP-AIN price ($500) and lab ("Hands-on lab: Yes") confirmed on the nvidia.com exam page (https://www.nvidia.com/en-us/learn/certification/ai-networking-professional/); README, fact sheet, flashcards, careers guide updated.
 - [x] 2026-10-22 MLA-C01 guide: real logistics (130 min, 65 q) and verified MLA-C02 beta facts (ME1-C02, $75, 170 min, 85 q, GA TBD).
 - [ ] 2026-12-01: MLA-C02 GA date on aws.amazon.com? If announced, build `aws/associate/ml-engineer-mla-c02` from the exam guide [H].
 - [x] 2026-10-22 Anthropic: CPES confirmed not an exam (study track, invented logistics removed); CCAO-F and CCAR-P weights match the v1.0 exam guide PDFs.
