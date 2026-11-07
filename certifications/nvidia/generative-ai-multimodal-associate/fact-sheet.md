@@ -1,5 +1,5 @@
 ---
-last-updated: 2026-10-22
+last-updated: 2026-11-07
 ---
 
 # NVIDIA-Certified Associate - Generative AI Multimodal (NCA-GENM) - Fact Sheet
@@ -7,216 +7,37 @@ last-updated: 2026-10-22
 ## Quick Reference
 
 **Exam code:** NCA-GENM  
+**Exam name:** NVIDIA Generative AI Multimodal Certification Exam  
 **Duration:** 1 hour  
-**Questions:** 50-60 multiple choice  
-**Cost:** $125 USD  
+**Questions:** 50 multiple choice (page also says 50-60 in one place)  
+**Cost:** $125 USD (exam page, 2026-11-07)  
+**Delivery:** Online, remotely proctored  
 **Level:** Associate  
-**Validity:** 2 years from issuance; recertify by retaking the exam  
-**Delivery:** Online, remotely proctored; needs a Certiverse account  
+**Validity:** 2 years from issuance  
+**Language:** English  
 **Prerequisites:** A basic understanding of generative AI  
 **Passing score:** Not published  
 
-**[📖 Official exam page](https://www.nvidia.com/en-us/learn/certification/generative-ai-multimodal-associate/)**
+**[📖 Official exam page](https://www.nvidia.com/en-us/learn/certification/generative-ai-multimodal-associate/)** - Blueprint, price and registration
 
 ## Exam Blueprint
 
-| Topic | Weight | Where in this guide |
+| Topic | Weight | Note |
 |---|---|---|
-| Core Machine Learning and AI Knowledge | 20% | [01 Multimodal fundamentals](notes/01-multimodal-fundamentals.md) |
-| Data Analysis | 10% | Not covered in the notes yet |
-| Experimentation | 25% | [02 Image and video generation](notes/02-image-video-generation.md), [03 Text and speech](notes/03-text-speech.md) |
-| Multimodal Data | 15% | [01 Multimodal fundamentals](notes/01-multimodal-fundamentals.md) |
-| Performance Optimization | 10% | [04 NVIDIA tools](notes/04-nvidia-tools-applications.md) |
-| Software Development | 15% | [04 NVIDIA tools](notes/04-nvidia-tools-applications.md) |
-| Trustworthy AI | 5% | [04 NVIDIA tools](notes/04-nvidia-tools-applications.md) (best practices) |
+| Core Machine Learning and AI Knowledge | 20% | [01](notes/01-core-ml-and-ai-knowledge.md) |
+| Data Analysis | 10% | [02](notes/02-data-analysis.md) |
+| Experimentation | 25% | [03](notes/03-experimentation.md) |
+| Multimodal Data | 15% | [04](notes/04-multimodal-data.md) |
+| Performance Optimization | 10% | [05](notes/05-performance-optimization.md) |
+| Software Development | 15% | [06](notes/06-software-development.md) |
+| Trustworthy AI | 5% | [07](notes/07-trustworthy-ai.md) |
 
-> **Blueprint updated 2026-10-22** from [NVIDIA's exam page](https://www.nvidia.com/en-us/learn/certification/generative-ai-multimodal-associate/) (checked 2026-10-22). The notes below were written in May 2026 against an earlier domain list that NVIDIA no longer publishes, so they do not yet map one-to-one onto these topics; topics marked "not covered" need outside study.
+## Key Facts by Section
 
-## Domain 1: Multimodal AI Fundamentals
-
-### Modality Types
-- **Text** - Natural language input and output
-- **Image** - Still images (photos, illustrations, diagrams)
-- **Audio** - Speech, music, sound effects
-- **Video** - Moving images with temporal dimension
-- **3D** - Point clouds, meshes, volumetric data
-
-### Multimodal Model Architectures
-
-**Vision-Language Models (VLMs):**
-- Process both images and text together
-- Examples: LLaVA, GPT-4V, NVIDIA VILA
-- Image encoder + LLM decoder architecture
-- Applications: image captioning, visual Q&A, document understanding
-- **[📖 NVIDIA VILA](https://docs.nvidia.com/nim/vision-language-models/latest/introduction.html)** - Vision-language research
-
-**Cross-Modal Alignment:**
-- CLIP (Contrastive Language-Image Pre-training)
-- Aligns image and text in a shared embedding space
-- Enables text-to-image search and zero-shot classification
-- Foundation for many multimodal systems
-
-**Fusion Strategies:**
-- **Early fusion** - Combine modalities at input level
-- **Late fusion** - Process modalities separately, combine at decision
-- **Cross-attention fusion** - Attend across modalities during processing
-- **Adapter-based** - Add modality adapters to existing LLMs
-
-### Use Cases
-- Image captioning and visual question answering
-- Text-to-image and text-to-video generation
-- Document understanding (OCR + language)
-- Multimodal search and retrieval
-- Accessibility (image description, speech-to-text)
-
-## Domain 2: Image and Video Generation
-
-### Diffusion Models
-
-**How They Work:**
-1. **Forward process** - Gradually add noise to data until pure noise
-2. **Reverse process** - Learn to gradually remove noise to generate data
-3. **Conditioning** - Guide generation with text prompts or images
-4. **Sampling** - Iteratively denoise from random noise to generate output
-
-**Key Concepts:**
-- **Noise schedule** - How noise is added/removed over steps
-- **Classifier-free guidance** - Balance between prompt adherence and diversity
-- **Sampling steps** - More steps = higher quality but slower
-- **Latent diffusion** - Operate in compressed latent space (faster)
-
-### Text-to-Image
-- Input: text prompt describing desired image
-- Model: Stable Diffusion, DALL-E, Imagen, NVIDIA Picasso
-- Control: guidance scale, negative prompts, seed
-- Resolution: typically 512x512 to 2048x2048
-
-### Image-to-Image
-- Input: source image + text prompt for modification
-- Strength parameter controls how much to change
-- Inpainting: edit specific regions of an image
-- Outpainting: extend image beyond original borders
-- Style transfer: apply artistic style to content
-
-### Video Generation
-- Extension of image generation to temporal domain
-- Temporal consistency between frames
-- Text-to-video and image-to-video
-- Frame interpolation and super-resolution
-
-### NVIDIA Visual AI
-- **NVIDIA Picasso** - Visual content generation service
-- **Edify** - Foundation models for images and video
-- NIM endpoints for image generation models
-- **[📖 NVIDIA Build](https://build.nvidia.com/)** - Try models interactively
-
-## Domain 3: Text and Speech
-
-### LLMs for Multimodal Understanding
-- LLMs serve as the "brain" for multimodal systems
-- Process text descriptions of other modalities
-- Generate text responses to multimodal inputs
-- Function calling for multimodal tool use
-
-### Speech AI
-
-**Text-to-Speech (TTS):**
-- Convert text to natural speech
-- Voice cloning and customization
-- Emotion and prosody control
-- Multi-language support
-
-**Speech-to-Text (STT):**
-- Automatic speech recognition (ASR)
-- Real-time transcription
-- Multi-language recognition
-- Noise robustness
-
-### NVIDIA Riva
-
-**Capabilities:**
-- GPU-accelerated speech AI
-- Streaming and offline ASR
-- High-quality TTS
-- NLP pipeline integration
-- Custom model training
-- **[📖 Riva Documentation](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/index.html)**
-
-**Architecture:**
-- Pre-trained models optimized for GPU
-- TensorRT optimization for low latency
-- gRPC API for integration
-- Kubernetes deployment support
-
-### Audio Processing
-- Mel spectrogram representation
-- Audio embedding models
-- Speaker identification and verification
-- Audio classification (speech, music, noise)
-
-## Domain 4: NVIDIA Multimodal Tools
-
-### NIM for Multimodal
-- Optimized containers for multimodal model serving
-- VLM endpoints (vision + language)
-- Image generation endpoints
-- Speech AI endpoints
-- OpenAI-compatible APIs where applicable
-- **[📖 NIM Documentation](https://docs.nvidia.com/nim/index.html)**
-
-### NeMo for Multimodal Training
-- Training framework for multimodal models
-- Vision-language model fine-tuning
-- Speech model customization
-- Multi-GPU and multi-node training support
-- **[📖 NeMo Framework](https://docs.nvidia.com/nemo-framework/user-guide/latest/index.html)**
-
-### Build.nvidia.com
-- Interactive model testing platform
-- Try multimodal models without setup
-- API access for integration
-- Model cards with capabilities and limitations
-
-### NVIDIA AI Enterprise
-- Enterprise deployment platform
-- Support and security updates
-- Certified containers and models
-- Production-ready infrastructure
-
-## Domain 5: Applications and Best Practices
-
-### Multimodal RAG
-- Retrieve both text and image documents
-- Multimodal embeddings for cross-modal search
-- Visual document understanding with VLMs
-- Combine retrieved images and text for generation
-
-### Content Moderation
-- Filter harmful content across modalities
-- Image safety classification
-- Text content filtering
-- Audio/speech content moderation
-- NeMo Guardrails for multimodal safety
-
-### Evaluation
-- Text quality metrics (BLEU, ROUGE for captions)
-- Image quality metrics (FID, CLIP score)
-- Human evaluation for subjective quality
-- Cross-modal consistency measurement
-
-### Ethical Considerations
-- Bias in generated content
-- Deepfake detection and prevention
-- Copyright and attribution
-- Privacy in multimodal data
-- Responsible use guidelines
-
-## Exam Tips
-
-### Key Concepts to Master
-1. Modality types and fusion strategies
-2. Diffusion model basics (forward/reverse process)
-3. VLM architecture (image encoder + LLM)
-4. NVIDIA Riva for speech AI
-5. NIM endpoints for multimodal models
-6. Multimodal RAG concepts
+- **Core ML:** contrastive loss ([CLIP paper](https://arxiv.org/abs/2103.00020)); residual connections keep gradients alive in deep networks; `clip_grad_norm_` rescales gradients in place and returns the total norm; transfer learning freezes a backbone and trains a head.
+- **Data analysis:** audit data (duplicates, missing, empties, corrupt files); attention maps are row-normalized weight matrices; permutation importance shows which input a model relies on.
+- **Experimentation:** diffusion = noise, predict the noise, sample by repeated denoising ([Hugging Face course](https://huggingface.co/learn/diffusion-course/unit1/1)); training loss is not sample quality; early versus late fusion.
+- **Multimodal data:** RAG = embed query, search index, retrieve, augment prompt, generate ([NVIDIA RAG explainer](https://blogs.nvidia.com/blog/what-is-retrieval-augmented-generation/)); spaCy for tokenization and sentences; NumPy for array math.
+- **Performance optimization:** autocast keeps weights and some ops in float32 ([PyTorch AMP](https://docs.pytorch.org/docs/2.15/amp.html)); GradScaler is for float16; dynamic int8 quantization shrank a model 4.0x; pruning uses `weight_orig` plus `weight_mask`; Triton does dynamic batching ([Triton docs](https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/index.html)).
+- **Software development:** U-Net = encoder-decoder with skip connections, predicts noise at input size; CLIP supplies text embeddings to condition image generation.
+- **Trustworthy AI:** NVIDIA principles: privacy, safety and security, transparency, nondiscrimination ([NVIDIA page](https://www.nvidia.com/en-us/ai-data-science/trustworthy-ai/)); NIST AI RMF functions GOVERN, MAP, MEASURE, MANAGE ([NIST AI 100-1](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf)).

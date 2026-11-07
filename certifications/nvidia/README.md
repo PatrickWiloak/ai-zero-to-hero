@@ -10,7 +10,7 @@ Study guides for the NVIDIA AI and machine learning certifications. Every provid
 |------|------|-------|--------|------:|
 | [NVIDIA Certified Associate - AI Infrastructure Operations (NCA-AIIO)](ai-infrastructure-operations-associate/README.md) | NCA-AIIO | Associate | Ready | 4 |
 | [NVIDIA Certified Associate - Generative AI and LLMs (NCA-GENL)](genai-llms-associate/README.md) | NCA-GENL | Associate | Ready | 6 |
-| [NVIDIA-Certified Associate - Generative AI Multimodal (NCA-GENM)](generative-ai-multimodal-associate/README.md) | NCA-GENM | Associate | Ready | 4 |
+| [NVIDIA-Certified Associate - Generative AI Multimodal (NCA-GENM)](generative-ai-multimodal-associate/README.md) | NCA-GENM | Associate | Ready | 7 |
 | [NVIDIA Certified Professional - Accelerated Data Science (NCP-ADS)](accelerated-data-science-professional/README.md) | NCP-ADS | Professional | Ready | 4 |
 | [NVIDIA Certified Professional - Agentic AI (NCP-AAI)](agentic-ai-professional/README.md) | NCP-AAI | Professional | Ready | 5 |
 | [NVIDIA Certified Professional - AI Infrastructure (NCP-AII)](ai-infrastructure-professional/README.md) | NCP-AII | Professional | Ready | 5 |

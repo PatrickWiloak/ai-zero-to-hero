@@ -1,50 +1,15 @@
-# NCA-GENM Generative AI Multimodal Associate Study Strategy
+# NCA-GENM - Exam Strategy
 
-## Study Approach
+**Last reviewed:** 2026-11-07
 
-### Phase 1: Foundation (1-2 weeks)
-1. **Multimodal concepts** - Modalities, architectures, fusion strategies
-2. **Image generation** - Diffusion models, text-to-image, prompting
-- **[📖 NVIDIA Build](https://build.nvidia.com/)** - Try models interactively
+## What the exam looks like
 
-### Phase 2: Specialized (2-3 weeks)
-1. **Speech AI** - ASR, TTS, NVIDIA Riva
-2. **NVIDIA tools** - NIM, NeMo, AI Enterprise
-3. **Applications** - Multimodal RAG, safety, evaluation
-- **[📖 Riva Docs](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/index.html)**
-- **[📖 NIM Docs](https://docs.nvidia.com/nim/index.html)**
+One hour, about 50 multiple-choice questions, online and remotely proctored. That is roughly 70 seconds a question, so know the vocabulary cold. Experimentation (25%) and Core ML (20%) are almost half the exam.
 
-### Phase 3: Exam Prep (1 week)
-1. Practice scenarios
-2. Review key concepts and metrics
-3. Focus on NVIDIA-specific tools
+## Tactics
 
-## Recommended Resources
-- **[NVIDIA Build](https://build.nvidia.com/)** - Model playground
-- **[NVIDIA Riva](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/index.html)** - Speech AI
-- **[NIM Documentation](https://docs.nvidia.com/nim/index.html)** - Inference microservices
-- **[NVIDIA DLI Courses](https://www.nvidia.com/en-us/training/)** - Official training
-- **[NVIDIA Developer Blog](https://developer.nvidia.com/blog/)** - Technical articles
-
-## Exam Tactics
-
-### Keywords
-- "Image understanding" - Vision-Language Model (VLM)
-- "Generate images" - Diffusion model
-- "Speech" or "voice" - NVIDIA Riva
-- "Prompt adherence" - Classifier-free guidance
-- "Image quality" - FID score
-- "Alignment" - CLIP score
-- "Safety" - NeMo Guardrails, content moderation
-
-### Common Pitfalls
-- Diffusion models generate images; VLMs understand images
-- CFG scale controls prompt adherence, not quality
-- FID is for image quality, CLIP Score is for text-image alignment
-- Riva is for speech AI, NIM is for LLM/VLM inference
-- Multimodal RAG needs both text and image embeddings
-
-### Time Management
-- 60 minutes for 50-60 questions
-- ~1 minute per question
-- Flag uncertain questions and return at end
+1. **Map each question to a blueprint section.** Section names mislead (the "Multimodal Data" section is mostly RAG, chatbots, spaCy and NumPy), so go by the objective wording.
+2. **Know the mechanisms, not just the names.** Contrastive loss pulls matching pairs together; residual connections add the input to the output; diffusion trains a network to predict added noise; mixed precision keeps master weights in float32.
+3. **Training loss is not quality.** If an option says a falling loss proves good samples, it is wrong.
+4. **Match the technique to the goal.** Smaller model for serving: quantization or pruning. Less memory in training: mixed precision. Unstable training: gradient clipping. Few labels: transfer learning. Missing facts in an LLM: RAG.
+5. **Trustworthy AI questions reward the framework words**: NVIDIA's privacy, safety and security, transparency, nondiscrimination; NIST's GOVERN, MAP, MEASURE, MANAGE.
