@@ -21,39 +21,17 @@
 - [Azure AI Apps and Agents Developer (AI-103)](../ai-103/README.md) - The deeper-dive exam after this introduction (replaced AI-102 on 2026-06-30)
 - [Azure AI Fundamentals (AI-900)](../ai-900/README.md) - Foundational pre-requisite
 
-## 🎯 Exam Focus Areas
+## 🎯 Focus Areas
 
-The AI-102 exam measures ability to:
+This track is organised around the same five areas as the [fact sheet](fact-sheet.md):
 
-1. **Plan and Manage an Azure AI Solution** (15-20%)
-   - Select appropriate AI services
-   - Plan for AI solution requirements
-   - Create and configure AI service resources
-   - Manage AI service security and compliance
+1. **Azure OpenAI Service Fundamentals** (25-30%)
+2. **Prompt Engineering and Optimization** (20-25%)
+3. **Azure AI Studio and Model Deployment** (20-25%)
+4. **Responsible AI and Model Safety** (15-20%)
+5. **Integration and Production Scenarios** (15-20%)
 
-2. **Implement Computer Vision Solutions** (20-25%)
-   - Analyze images and videos with Vision services
-   - Extract text from images with Form Recognizer
-   - Implement custom vision models
-   - Integrate vision solutions into applications
-
-3. **Implement Natural Language Processing Solutions** (20-25%)
-   - Analyze text with Language services
-   - Process speech with Speech services
-   - Translate text and speech with Translator
-   - Build and manage conversational AI solutions
-
-4. **Implement Knowledge Mining Solutions** (15-20%)
-   - Create and manage Azure Cognitive Search solutions
-   - Implement data source connections and indexing
-   - Define and implement skillsets for data enrichment
-   - Design and implement search user experiences
-
-5. **Implement Generative AI Solutions** (15-20%)
-   - Use Azure OpenAI Service models
-   - Optimize generative AI solutions
-   - Implement responsible AI practices
-   - Integrate generative AI into applications
+These weights are this track's own study guide, not a Microsoft exam outline. For an exam's official skills measured, see [AI-103](../ai-103/README.md).
 
 ## 🌟 Key Azure AI Services
 
@@ -64,17 +42,17 @@ The AI-102 exam measures ability to:
 - **Embeddings**: Text similarity and semantic search
 - **ChatGPT**: Conversational AI capabilities
 
-### Azure Cognitive Services
+### Azure AI services (formerly Cognitive Services)
 #### Vision Services
 - **Computer Vision**: Image analysis and OCR
 - **Custom Vision**: Custom image classification
 - **Face**: Face detection and recognition
-- **Form Recognizer**: Document analysis and data extraction
+- **Document Intelligence** (formerly Form Recognizer): Document analysis and data extraction
 
 #### Language Services
-- **Text Analytics**: Sentiment analysis and key phrases
-- **Language Understanding (LUIS)**: Intent and entity recognition
-- **QnA Maker**: Question and answer solutions
+- **Language service** (formerly Text Analytics): Sentiment analysis and key phrases
+- **Conversational Language Understanding** (replaced LUIS): Intent and entity recognition
+- **Custom question answering** (replaced QnA Maker): Question and answer solutions
 - **Translator**: Text and document translation
 
 #### Speech Services
@@ -83,12 +61,10 @@ The AI-102 exam measures ability to:
 - **Speech Translation**: Real-time speech translation
 - **Speaker Recognition**: Voice identification
 
-#### Decision Services
-- **Anomaly Detector**: Identify unusual patterns
-- **Content Moderator**: Content filtering
-- **Personalizer**: Personalized recommendations
+#### Content safety
+- **Azure AI Content Safety** (replaced Content Moderator): Content filtering
 
-### Azure Cognitive Search
+### Azure AI Search (formerly Cognitive Search)
 - **AI-powered search**: Intelligent information retrieval
 - **Built-in skills**: Pre-built AI enrichment
 - **Custom skills**: Extensible AI pipeline
@@ -112,7 +88,7 @@ The AI-102 exam measures ability to:
 - Provision and configure Azure AI services
 - Process and analyze text, images, and speech
 - Implement natural language processing solutions
-- Create knowledge mining solutions with Cognitive Search
+- Create knowledge mining solutions with Azure AI Search
 - Build conversational AI solutions
 - Monitor and troubleshoot AI solutions
 
@@ -120,7 +96,7 @@ The AI-102 exam measures ability to:
 
 - Design and implement AI solutions using Azure services
 - Integrate AI capabilities into applications
-- Configure and manage Azure Cognitive Services
-- Build intelligent search solutions with Cognitive Search
+- Configure and manage Azure AI services
+- Build intelligent search solutions with Azure AI Search
 - Implement responsible AI practices and governance
 - Optimize AI solutions for performance and cost

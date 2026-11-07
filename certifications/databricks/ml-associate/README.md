@@ -7,90 +7,48 @@ The Databricks Certified Machine Learning Associate certification validates foun
 **Exam Details:**
 - **Exam Code:** Databricks Certified Machine Learning Associate
 - **Duration:** 90 minutes
-- **Number of Questions:** 45 multiple-choice questions
-- **Passing Score:** 70% (approximately 32 correct answers)
+- **Number of Questions:** 48 scored multiple-choice and multiple-selection questions (up to 10 more unscored)
+- **Passing Score:** Not published by Databricks
 - **Cost:** $200 USD
-- **Delivery:** Online proctored
+- **Delivery:** Online proctored or test center
 - **Validity:** 2 years
 - **Prerequisites:** None (6+ months ML experience on Databricks recommended)
 
 ## Exam Domains
 
-### Domain 1: ML Workloads on Databricks (29%)
-- Understand the Databricks ML ecosystem
-- Use Databricks tools for ML development
-- Manage ML experiments and models
-- Use Feature Store and AutoML
+> **Checked 2026-11-06** against the [official exam page](https://www.databricks.com/learn/certification/machine-learning-associate) and [exam guide](https://www.databricks.com/sites/default/files/2026-10/Databricks-Certified-Machine-Learning-Associate-Exam-Guide-August-2026.pdf). The exam page calls Section 2 "ML Workflows"; the guide calls it "Data Processing". The notes, fact sheet body, practice plan and scenarios in this folder still follow the old five-domain outline, so use the list below as the source of truth for what is tested.
 
-**Key Concepts:**
-- Databricks ML Runtime and included libraries
-- MLflow tracking (experiments, runs, parameters, metrics, artifacts)
-- MLflow Model Registry (model stages, transitions, webhooks)
-- Databricks Feature Store fundamentals
-- AutoML for baseline model creation
-- Notebook-based ML development workflows
-- Databricks Repos for ML code versioning
+### Section 1: Databricks Machine Learning (38%)
+- MLOps strategy best practices and the advantages of ML runtimes
+- AutoML: model and feature selection, and what it adds to model development
+- Feature store tables in Unity Catalog: create, write, train and score; account level vs workspace level; online vs offline tables
+- MLflow: find the best run with the Client API, log metrics, artifacts and models manually, read the MLflow UI
+- Unity Catalog model registry: register a model, why it beats the workspace registry, set or remove tags
+- Promoting code vs promoting models; promoting a challenger to champion with aliases
 
-### Domain 2: ML Workflow (29%)
-- Understand the end-to-end ML lifecycle
-- Perform data preparation for ML
-- Evaluate and select models
-- Handle common ML challenges
+### Section 2: Data Processing (19%)
+- Summary statistics with `.summary()` or dbutils data summaries
+- Removing outliers by standard deviation or IQR
+- Visualizing and comparing categorical and continuous features
+- Imputing missing values with the mean, median or mode, and choosing between them
+- One-hot encoding: how to use it and which models or data sets suit it
+- When a log scale transformation is appropriate
 
-**Key Concepts:**
-- Data exploration and profiling for ML
-- Feature engineering techniques
-- Train/test/validation splits
-- Cross-validation strategies
-- Hyperparameter tuning (grid search, random search, Bayesian)
-- Model evaluation metrics (accuracy, precision, recall, F1, AUC-ROC)
-- Handling imbalanced datasets
-- Bias-variance tradeoff
-- Overfitting and underfitting detection
-- Model selection criteria
+### Section 3: Model Development (31%)
+- Choosing an algorithm for a scenario, and mitigating data imbalance
+- Estimators vs transformers, and building a training pipeline
+- Hyperopt `fmin`; random, grid and Bayesian search; parallelizing single-node models for tuning
+- Cross-validation vs a train-validation split, and counting the models trained by grid search with cross-validation
+- Classification metrics (F1, Log Loss, ROC/AUC) and regression metrics (RMSE, MAE, R-squared); choosing one for a scenario
+- Exponentiating log-transformed variables before calculating metrics or interpreting predictions
+- Model complexity and the bias-variance tradeoff
 
-### Domain 3: Spark ML (17%)
-- Use Spark MLlib for distributed ML
-- Build ML pipelines with Spark
-- Understand distributed computing for ML
-
-**Key Concepts:**
-- Spark MLlib Pipeline API (Transformers, Estimators, Pipelines)
-- Common transformers (VectorAssembler, StringIndexer, OneHotEncoder)
-- Common estimators (LogisticRegression, RandomForestClassifier, GBTClassifier)
-- Pipeline stages and parameter grids
-- CrossValidator and TrainValidationSplit
-- Feature transformation at scale
-- Distributed model training concepts
-
-### Domain 4: Deep Learning (13%)
-- Understand deep learning fundamentals on Databricks
-- Use deep learning frameworks (TensorFlow, PyTorch)
-- Distribute deep learning training
-
-**Key Concepts:**
-- Single-node deep learning on Databricks
-- TensorFlow/Keras and PyTorch on Databricks
-- GPU cluster configuration
-- Transfer learning concepts
-- MLflow integration with deep learning frameworks
-- TensorBoard integration
-- Distributed training basics (Horovod, TorchDistributor)
-- Petastorm for data loading
-
-### Domain 5: Scaling ML (12%)
-- Scale ML workloads on Databricks
-- Optimize ML pipeline performance
-- Use distributed computing for ML
-
-**Key Concepts:**
-- Pandas API on Spark (formerly Koalas)
-- pandas UDFs for distributed inference
-- Spark MLlib vs single-node libraries tradeoffs
-- Model inference at scale (batch and streaming)
-- Hyperparameter tuning at scale (Hyperopt)
-- Feature Store for serving
-- Delta Lake for ML data management
+### Section 4: Model Deployment (12%)
+- Serving approaches: batch, realtime and streaming
+- Deploying a custom model to a model endpoint
+- Batch inference with pandas
+- Streaming inference with Delta Live Tables
+- Deploying and querying a model for realtime inference; splitting data between endpoints
 
 ## Key Concepts to Master
 
@@ -146,14 +104,14 @@ The Databricks Certified Machine Learning Associate certification validates foun
 
 ## Tips for Success
 
-1. **MLflow is central** - Domains 1 and 2 cover 58% of the exam
+1. **Section 1 is the biggest** - Databricks Machine Learning (MLflow, Feature Store, AutoML, Unity Catalog) is 38% of the exam
 2. **Know the Pipeline API** - Transformers, Estimators, and Pipeline stages
 3. **Understand metrics** - Know when to use each evaluation metric
 4. **Feature Store basics** - How to create, read, and use feature tables
 5. **AutoML awareness** - Know what AutoML does and its limitations
 6. **Hyperopt for tuning** - Understand Bayesian optimization basics
-7. **Scaling patterns** - Know when to use pandas UDFs vs Spark MLlib
-8. **Deep learning scope** - Focus on Databricks integration, not DL theory
+7. **Unity Catalog registry** - Know aliases, tags and challenger-to-champion promotion
+8. **Deployment** - Know batch vs realtime vs streaming serving
 9. **Hands-on practice** - Use Databricks Community Edition for experimentation
 10. **Read questions carefully** - Some answers are correct but not the best answer
 

@@ -1,5 +1,5 @@
 ---
-last-updated: 2026-05-03
+last-updated: 2026-11-06
 ---
 
 # Databricks Machine Learning Associate - Fact Sheet
@@ -8,15 +8,17 @@ last-updated: 2026-05-03
 
 **Exam Name:** Databricks Certified Machine Learning Associate
 **Duration:** 90 minutes
-**Questions:** 45 multiple-choice questions
-**Passing Score:** 70% (approximately 32 correct)
+**Questions:** 48 scored multiple-choice and multiple-selection (up to 10 more unscored)
+**Passing Score:** Not published by Databricks
 **Cost:** $200 USD
-**Delivery:** Online proctored
+**Delivery:** Online proctored or test center
 **Valid For:** 2 years
 
 **[📖 Official Exam Page](https://www.databricks.com/learn/certification/machine-learning-associate)** - Registration and exam details
 **[📖 Databricks Academy](https://www.databricks.com/learn)** - ML learning paths
 **[📖 MLflow Documentation](https://mlflow.org/docs/latest/index.html)** - MLflow reference
+
+> **Outline changed.** The official exam now has four sections: Databricks Machine Learning 38%, Data Processing 19%, Model Development 31%, Model Deployment 12%. The domains below are the old outline; [README.md](README.md) has the current one (checked 2026-11-06).
 
 ## Target Audience
 

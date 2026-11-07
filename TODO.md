@@ -56,7 +56,8 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] 2026-10-22 Databricks GenAI page mapped to the 6-section guide (no official weights, objective counts instead); notes 04-06 added.
 - [x] 2026-10-22 DP-100 page on the final outline (LM optimization 25-30%), retired banner; `notes/language-model-optimization.md` added.
 - [x] 2026-10-22 GAL README, strategy, notes 04 and fact sheet now give the guide's 30/35/20/15 weights.
-- [ ] 2026-11-01: check the official Databricks ML Associate guide (third parties show 4 domains 38/19/31/12; README has the old 5) and align `certifications/azure/genai/README.md` (AI-102 domains, old names) with its fact sheet.
+- [x] 2026-11-06 Databricks ML Associate README + fact-sheet header on the official 4 sections (48 scored, pass mark unpublished); genai README aligned with its fact sheet, old service names fixed.
+- [ ] Rebuild Databricks ML Associate notes, fact-sheet body, practice plan and scenarios on the 4-section outline (still the old 5 domains, incl. deep learning and scaling); README flags it.
 - [ ] 2027-02-01: re-check GH-300 outline (Spark retired 2026-08-31 but listed; duplicate "GitHub Copilot features" line) and Databricks guide (KA, Supervisor now legacy).
 - [x] ✅ 2026-11-06 spot-check: LUIS notes moved to CLU; PaLM + AutoML banners added (Microsoft/Google pages). Rewrite below.
 - [ ] 2026-11-29 rewrite `certifications/gcp/genai` notes off PaLM/Codey: code and tables still teach models retired 2025-04-21; banners only for now.
