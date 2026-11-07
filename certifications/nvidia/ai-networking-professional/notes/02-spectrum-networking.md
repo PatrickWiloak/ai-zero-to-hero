@@ -88,7 +88,7 @@ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn state
 nv config apply
 ```
 
-Three rules from the pages: the overlay goes in dedicated VRFs, separate from the underlay in the default VRF; Cumulus Linux does not support L3 VNI mapping for the default VRF; and for layer 2, "there is a direct one-to-one mapping between layer 2 VNIs and VLANs".
+Three rules from the pages: the overlay goes in dedicated VRFs, separate from the underlay in the default VRF; Cumulus Linux maps one L3 VNI to one tenant VRF ("You can configure only one VNI for each VRF"; the claim that the default VRF cannot take an L3 VNI was not found on the pages read, so it is unverified); and for layer 2, "there is a direct one-to-one mapping between layer 2 VNIs and VLANs".
 
 - **EVPN** - the standards-based BGP control plane for VXLAN that distributes MAC and IP reachability between VTEPs.
 - **L3 VNI** - the VXLAN network identifier that maps a tenant VRF so routed traffic stays inside that tenant.

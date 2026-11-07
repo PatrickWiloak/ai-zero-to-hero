@@ -36,7 +36,7 @@ The notes were rewritten on 2026-11-07 to match this blueprint one-to-one. The e
 
 ## What is and is not covered at command level
 
-Everything on this exam needs NVIDIA hardware or a simulator, so no command in these notes was run; each is quoted from NVIDIA documentation and labelled. Gaps the sources could not fill are said in the notes: the DSX Air user guide, `ibdiagnet`'s manual page, SuperNIC congestion-control mechanics, the OpenSM SM-priority election rule, the PFC watchdog, and the `cl-resource-query` sample output (page unreachable).
+Everything on this exam needs NVIDIA hardware or a simulator, so no command in these notes was run; each is quoted from NVIDIA documentation and labelled. Gaps the sources could not fill are said in the notes: the DSX Air user guide, `ibdiagnet`'s manual page, SuperNIC congestion-control mechanics, the PFC watchdog (not on the RoCE page), and the exact OpenSM tie-break between equal priorities (the man page confirms priority and GUID decide the master).
 
 ## NVIDIA's recommended training (as listed on the exam page)
 

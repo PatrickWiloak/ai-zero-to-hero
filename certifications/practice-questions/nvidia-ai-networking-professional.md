@@ -132,7 +132,7 @@ D. One physical switch per tenant
 
 **Correct: B**
 
-**Why:** Each tenant gets a VRF with its own L3 VNI and route targets. Cumulus Linux does not support an L3 VNI for the default VRF, and PKeys belong to InfiniBand.
+**Why:** Cumulus Linux uses a one-to-one mapping between an L3 VNI and a tenant VRF, with route targets keeping tenants separate. PKeys belong to InfiniBand.
 </details>
 
 ---
