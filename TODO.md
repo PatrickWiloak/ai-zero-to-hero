@@ -210,6 +210,7 @@ Plan: [docs/CONTENT-GAPS.md](docs/CONTENT-GAPS.md) (pillars + certs; papers stay
 
 - [x] 2026-11-07 Wave 2: maths-for-ML day-one page; concept pages for trees/boosting, CNNs, RL basics, forecasting, feature engineering; tabular scikit-learn project (code run in a venv, output pasted; deploy step described, not run).
 - [x] 2026-11-07 Wave 3: careers - ML engineer, data scientist, AI PM, researcher roles; AI portfolio guide; AI PM interview (judgment pages, no market stats).
-- [ ] Wave 3 remainder: prompt / applied-AI take-home exercises interview page.
-- [ ] Wave 4: playbooks (HR, legal, finance, product, design); use cases (healthcare, education); comparisons (image/video, speech, embeddings, no-code automation); multi-agent + guardrails patterns.
-- [ ] Wave 4: safety - AI privacy, AI incident response, deepfakes, bias testing, US state AI laws.
+- [x] 2026-11-07 Wave 3 remainder: applied-AI take-home exercises interview page.
+- [x] 2026-11-07 Wave 4: playbooks (HR, legal, finance, product/design); use cases (healthcare, education); comparisons (image/video, speech, embeddings, no-code automation); multi-agent + guardrails patterns. Unverified (fetch blocked): HHS HIPAA, ED AI pages, ABA Op. 512, CFPB, Midjourney, NYC LL144, 29 CFR 1607.4, ICO/EDPB, TAKE IT DOWN text, California SB 53/ADMT. See page Sources.
+- [x] 2026-11-07 Wave 4: safety - AI privacy, AI incident response, deepfakes, bias testing, US state AI laws.
+- [ ] 2026-12-07 Recheck Wave 4 dated facts: Colorado SB24-205 effective date (any delay), California AI bills, vendor model names in tools/comparisons image/speech/embeddings pages.
