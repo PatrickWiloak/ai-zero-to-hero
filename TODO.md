@@ -35,7 +35,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [ ] Next pillar page: AI news digest + RSS. (Paper lineage graph skipped 2026-10-21: `papers.json` has no builds-on/citation field, so it could only be hand-typed; add that field first.)
 - [x] 2026-10-21 Split from cloud-data-ai-security-zero-to-hero on 2026-10-21; AI cert guides wired in as `certifications/` (index `certs.json`, generated hub + nav, flashcard pages).
 - [x] 2026-11-07 Flashcard generator ported (`scripts/build_flashcards.py`, runs in `build_manifest.py`); decks added for CCDV-F (35) and Databricks GenAI Associate (20).
-- [ ] 2026-11-15 Flashcards still missing (hub shows "-"): add `- **Term** - definition` Key terms to Databricks ML Associate/Professional notes (verify vs docs), NVIDIA ADS + GenAI LLMs Professional after the rewrite; `python3 scripts/build_flashcards.py --report` lists them.
+- [ ] 2026-11-15 Flashcards still missing (hub shows "-"): add `- **Term** - definition` Key terms to Databricks ML Professional notes (ML Associate done 2026-11-07) (verify vs docs), NVIDIA ADS + GenAI LLMs Professional after the rewrite; `python3 scripts/build_flashcards.py --report` lists them.
 - [ ] 2027-04-19: re-review every guide page (180-day stale warning starts).
 
 ## Certifications (moved in from the old cloud repo TODO, 2026-10-21)
@@ -60,7 +60,8 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] 2026-10-22 DP-100 page on the final outline (LM optimization 25-30%), retired banner; `notes/language-model-optimization.md` added.
 - [x] 2026-10-22 GAL README, strategy, notes 04 and fact sheet now give the guide's 30/35/20/15 weights.
 - [x] 2026-11-06 Databricks ML Associate README + fact-sheet header on the official 4 sections (48 scored, pass mark unpublished); genai README aligned with its fact sheet, old service names fixed.
-- [ ] Rebuild Databricks ML Associate notes, fact-sheet body, practice plan and scenarios on the 4-section outline (still the old 5 domains, incl. deep learning and scaling); README flags it.
+- [x] 2026-11-07 Databricks ML Associate rebuilt on the 4-section outline (notes 01-04 run locally with real output, fact sheet, plan, scenarios, strategy, 30-question bank at 11/6/9/4, 76 generated flashcards). Unity Catalog feature table and serving code is marked not run.
+- [ ] 2026-12-01: re-check Databricks ML Associate exam guide (its update table still says March 1, 2025 while the title says August 2026) and Hyperopt status (gone from Runtime ML after 16.4 LTS ML).
 - [ ] 2027-02-01: re-check GH-300 outline (Spark retired 2026-08-31 but listed; duplicate "GitHub Copilot features" line) and Databricks guide (KA, Supervisor now legacy).
 - [x] ✅ 2026-11-06 spot-check: LUIS notes moved to CLU; PaLM + AutoML banners added (Microsoft/Google pages). Rewrite below.
 - [x] 2026-11-06 rewrote `certifications/gcp/genai` off PaLM/Codey onto Gemini 3.8 Flash and `google-genai`; banners removed; PaLM/Codey kept as one history note.

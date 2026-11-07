@@ -74,7 +74,7 @@ Not sure which one to take? Start with the [AI certifications guide](../careers/
 | Cert | Code | Level | Status | Notes | Flashcards | Practice questions |
 |------|------|-------|--------|------:|-----------:|--------------------|
 | [Databricks Certified Generative AI Engineer Associate](databricks/genai-engineer-associate/README.md) | - | Associate | Ready | 6 | [20](databricks/genai-engineer-associate/flashcards.csv) | [Questions](practice-questions/databricks-genai-engineer-associate.md) |
-| [Databricks Certified Machine Learning Associate](databricks/ml-associate/README.md) | - | Associate | Ready | 5 | - | [Questions](practice-questions/databricks-ml-associate.md) |
+| [Databricks Certified Machine Learning Associate](databricks/ml-associate/README.md) | - | Associate | Ready | 4 | [76](databricks/ml-associate/flashcards.csv) | [Questions](practice-questions/databricks-ml-associate.md) |
 | [Databricks Certified Machine Learning Professional](databricks/ml-professional/README.md) | - | Professional | Ready | 5 | - | [Questions](practice-questions/databricks-ml-professional.md) |
 
 ## GitHub

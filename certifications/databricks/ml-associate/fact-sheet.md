@@ -1,5 +1,5 @@
 ---
-last-updated: 2026-11-06
+last-updated: 2026-11-07
 ---
 
 # Databricks Machine Learning Associate - Fact Sheet
@@ -10,305 +10,94 @@ last-updated: 2026-11-06
 **Duration:** 90 minutes
 **Questions:** 48 scored multiple-choice and multiple-selection (up to 10 more unscored)
 **Passing Score:** Not published by Databricks
-**Cost:** $200 USD
+**Cost:** $200 USD plus applicable taxes (stated by Databricks, checked 2026-11-07)
 **Delivery:** Online proctored or test center
 **Valid For:** 2 years
 
 **[📖 Official Exam Page](https://www.databricks.com/learn/certification/machine-learning-associate)** - Registration and exam details
-**[📖 Databricks Academy](https://www.databricks.com/learn)** - ML learning paths
-**[📖 MLflow Documentation](https://mlflow.org/docs/latest/index.html)** - MLflow reference
-
-> **Outline changed.** The official exam now has four sections: Databricks Machine Learning 38%, Data Processing 19%, Model Development 31%, Model Deployment 12%. The domains below are the old outline; [README.md](README.md) has the current one (checked 2026-11-06).
+**[📖 Exam Guide PDF](https://www.databricks.com/sites/default/files/2026-10/Databricks-Certified-Machine-Learning-Associate-Exam-Guide-August-2026.pdf)** - The four-section outline with objectives
+**[📖 Databricks documentation](https://docs.databricks.com/)** - The authoritative, current source
 
 ## Target Audience
 
-This certification is designed for:
-- Data scientists building ML models on Databricks
-- ML engineers implementing ML workflows
-- Data engineers adding ML capabilities to pipelines
-- Professionals with 6+ months of ML experience on Databricks
-- Python developers transitioning to ML engineering
+Individuals who use Databricks for basic ML tasks. Databricks recommends six months of hands-on experience with the platform areas in the outline. No prerequisite.
 
-## Domain 1: ML Workloads on Databricks (29%)
+## Section 1: Databricks Machine Learning (38%)
 
-### Databricks ML Runtime
+Full teaching: [notes/01-databricks-machine-learning.md](notes/01-databricks-machine-learning.md).
 
-**[📖 ML Runtime](https://docs.databricks.com/en/release-notes/runtime/index.html)** - Runtime versions and libraries
-**[📖 ML Runtime Libraries](https://docs.databricks.com/en/machine-learning/index.html)** - Included ML libraries
-
-**Key Facts:**
-- ML Runtime includes pre-installed libraries: scikit-learn, TensorFlow, PyTorch, XGBoost
-- GPU-enabled ML Runtime for deep learning workloads
-- Versions aligned with Databricks Runtime (e.g., 14.3 ML, 15.4 ML)
-- Includes MLflow, Hyperopt, and other ML-specific tools
-- Notebooks support `%pip install` for additional packages
-- Cluster libraries vs notebook-scoped libraries
-
-### MLflow Tracking
-
-**[📖 MLflow Tracking](https://docs.databricks.com/en/mlflow/tracking.html)** - Experiment tracking
-**[📖 MLflow APIs](https://mlflow.org/docs/latest/tracking.html)** - Tracking API reference
-**[📖 Autologging](https://docs.databricks.com/en/mlflow/databricks-autologging.html)** - Automatic logging
+**[📖 MLOps workflow](https://docs.databricks.com/aws/en/machine-learning/mlops/mlops-workflow)** - Environments, promote code, retraining
+**[📖 Runtime for ML](https://docs.databricks.com/aws/en/machine-learning/databricks-runtime-ml)** - ML runtime advantages
+**[📖 AutoML](https://docs.databricks.com/aws/en/machine-learning/automl/)** - What AutoML does
+**[📖 Feature tables in Unity Catalog](https://docs.databricks.com/aws/en/machine-learning/feature-store/uc/feature-tables-uc)** - Create and write
+**[📖 Train with feature tables](https://docs.databricks.com/aws/en/machine-learning/feature-store/train-models-with-feature-store)** - Training sets and scoring
+**[📖 Online feature stores](https://docs.databricks.com/aws/en/machine-learning/feature-store/online-feature-stores)** - Real-time features
+**[📖 MLflow tracking](https://docs.databricks.com/aws/en/mlflow/tracking)** - Runs, experiments, search_runs
+**[📖 Models in Unity Catalog](https://docs.databricks.com/aws/en/machine-learning/manage-model-lifecycle/)** - Registry, aliases, tags
 
 **Key Facts:**
-- Experiments organize related runs (training iterations)
-- Runs track parameters, metrics, artifacts, and models
-- Key APIs:
-  - `mlflow.start_run()` - Start a new run
-  - `mlflow.log_param("param_name", value)` - Log a parameter
-  - `mlflow.log_metric("metric_name", value)` - Log a metric
-  - `mlflow.log_artifact("path/to/file")` - Log an artifact
-  - `mlflow.log_model(model, "model_name")` - Log a model
-- Autologging: `mlflow.autolog()` automatically logs params, metrics, and models
-- Autologging supports: sklearn, TensorFlow, PyTorch, XGBoost, LightGBM, Spark
-- Experiment comparison UI for comparing runs side-by-side
-- Nested runs for hyperparameter tuning hierarchies
+- Promote code, not models, "in most situations" (MLOps docs); aliases let pipelines reference Champion without edits
+- AutoML covers classification, regression and forecasting and generates a notebook per trial
+- Feature tables need a primary key and Databricks Runtime 13.2+; create with `FeatureEngineeringClient.create_table`, write with `write_table` (`mode='merge'` upserts)
+- Train on the DataFrame from `TrainingSet.load_df` and log with `fe.log_model`; `fe.score_batch` needs only the keys
+- Best run: `search_runs` with `order_by=["metrics.<name> ASC"]`
+- Unity Catalog models: three-level names, aliases, tags; stages are not supported
+- Promote a challenger with `set_registered_model_alias(name, "champion", version)`
 
-### MLflow Model Registry
+## Section 2: Data Processing (19%)
 
-**[📖 Model Registry](https://docs.databricks.com/en/mlflow/model-registry.html)** - Model lifecycle management
-**[📖 Unity Catalog Models](https://docs.databricks.com/en/mlflow/models-in-uc.html)** - Models in Unity Catalog
+Full teaching: [notes/02-data-processing.md](notes/02-data-processing.md).
+
+**[📖 dbutils.data.summarize](https://docs.databricks.com/aws/en/dev-tools/databricks-utils)** - Notebook data summaries
+**[📖 Spark ML features](https://spark.apache.org/docs/latest/ml-features.html)** - StringIndexer, OneHotEncoder, Imputer
 
 **Key Facts:**
-- Model Registry manages model versions and lifecycle stages
-- Unity Catalog Model Registry (recommended): `models:/catalog.schema.model_name/version`
-- Workspace Model Registry (legacy): `models:/model_name/stage`
-- Stage transitions: None -> Staging -> Production -> Archived
-- Model versions: each registration creates a new version
-- Model descriptions and tags for documentation
-- Permissions control who can transition model stages
-- `mlflow.register_model()` registers a model from a run
+- `df.summary()` returns count, mean, stddev, min, quartiles, max; counts skip nulls
+- Outliers: standard deviation rule (assumes bell shape) or IQR rule (Q1 - 1.5 IQR, Q3 + 1.5 IQR; robust to skew)
+- Impute: mean for symmetric continuous, median for skewed, mode for categorical
+- One-hot encoding: nominal, low-cardinality, numeric models; not for ordinal or very high cardinality
+- Log transform: right-skewed positive data across orders of magnitude
 
-### Feature Store
+## Section 3: Model Development (31%)
 
-**[📖 Feature Store](https://docs.databricks.com/en/machine-learning/feature-store/index.html)** - Feature management
-**[📖 Feature Engineering](https://docs.databricks.com/aws/en/machine-learning/feature-store/)** - Feature engineering client
+Full teaching: [notes/03-model-development.md](notes/03-model-development.md).
 
-**Key Facts:**
-- Feature Store centralizes feature computation and serving
-- Feature tables are Delta tables with a primary key
-- `FeatureEngineeringClient` for creating and managing features
-- `fe.create_table()` creates a feature table
-- `fe.write_table()` writes features to a table
-- `fe.create_training_set()` creates a training dataset with point-in-time lookups
-- Feature lookup: automatically joins features at training and inference time
-- Feature serving for real-time inference
-
-### AutoML
-
-**[📖 AutoML](https://docs.databricks.com/en/machine-learning/automl/index.html)** - Automated model training
+**[📖 Hyperopt concepts](https://docs.databricks.com/aws/en/machine-learning/automl-hyperparam-tuning/hyperopt-concepts)** - fmin, Trials, SparkTrials
+**[📖 ML Pipelines](https://spark.apache.org/docs/latest/ml-pipeline.html)** - Transformer, Estimator, Pipeline
+**[📖 ML Tuning](https://spark.apache.org/docs/latest/ml-tuning.html)** - CrossValidator, TrainValidationSplit
+**[📖 Metrics and scoring](https://scikit-learn.org/stable/modules/model_evaluation.html)** - F1, log loss, ROC AUC
 
 **Key Facts:**
-- AutoML automatically trains and tunes multiple models
-- Supports classification, regression, and forecasting
-- Generates editable notebooks for each trial
-- Uses Spark MLlib and popular libraries
-- Performs automatic feature engineering
-- Provides model leaderboard with metrics
-- `databricks.automl.classify()`, `databricks.automl.regress()`, `databricks.automl.forecast()`
-- Good for establishing baseline models quickly
+- Imbalance: cost-sensitive learning, resampling, better metrics, stratified splits
+- Models trained by grid search with cross-validation = (grid combinations) x (folds); `TrainValidationSplit` = combinations x 1
+- `SparkTrials` parallelizes single-machine models; use `Trials` with distributed algorithms
+- Hyperopt is unmaintained and absent from Databricks Runtime ML after 16.4 LTS ML (Optuna or Ray Tune recommended)
+- Exponentiate predictions from a log-trained model before computing RMSE or interpreting them
+- Overfitting = low training error, high validation error; underfitting = both high
 
-## Domain 2: ML Workflow (29%)
+## Section 4: Model Deployment (12%)
 
-### Data Preparation
+Full teaching: [notes/04-model-deployment.md](notes/04-model-deployment.md).
 
-**[📖 Data Exploration](https://docs.databricks.com/en/notebooks/visualizations/index.html)** - Data visualization in notebooks
-**[📖 Pandas API on Spark](https://docs.databricks.com/en/pandas/pandas-on-spark.html)** - Scalable pandas
-
-**Key Facts:**
-- Train/test split: typically 70-80% train, 20-30% test
-- Stratified split for imbalanced datasets
-- Cross-validation: k-fold (typically 5 or 10 folds)
-- Feature scaling: StandardScaler (z-score), MinMaxScaler (0-1)
-- Missing value handling: imputation (mean, median, mode) or dropping
-- Categorical encoding: one-hot, label encoding, target encoding
-- Feature selection: correlation, mutual information, recursive feature elimination
-
-### Hyperparameter Tuning
-
-**[📖 Hyperopt](https://docs.databricks.com/en/machine-learning/automl-hyperparam-tuning/index.html)** - Distributed tuning
-**[📖 Hyperopt on Databricks](https://docs.databricks.com/en/machine-learning/automl-hyperparam-tuning/hyperopt-concepts.html)** - Hyperopt concepts
+**[📖 ML lifecycle](https://docs.databricks.com/aws/en/machine-learning/concepts/ml-lifecycle)** - Real-time versus batch
+**[📖 Model Serving](https://docs.databricks.com/aws/en/machine-learning/model-serving/)** - Endpoints
+**[📖 Create serving endpoints](https://docs.databricks.com/aws/en/machine-learning/model-serving/create-manage-serving-endpoints)** - UI, REST, SDK
+**[📖 Query custom model endpoints](https://docs.databricks.com/aws/en/machine-learning/model-serving/score-custom-model-endpoints)** - Input formats
+**[📖 Serve multiple models](https://docs.databricks.com/aws/en/machine-learning/model-serving/serve-multiple-models-to-serving-endpoint)** - Traffic split
+**[📖 Pipelines transform](https://docs.databricks.com/en/delta-live-tables/transform.html)** - MLflow models in pipelines
 
 **Key Facts:**
-- Grid search: exhaustive search over all parameter combinations
-- Random search: random sampling from parameter space (often more efficient)
-- Bayesian optimization (Hyperopt): uses past results to guide search
-- Hyperopt key components:
-  - `fmin()` - minimize an objective function
-  - `hp.choice()`, `hp.uniform()`, `hp.loguniform()` - search space definitions
-  - `tpe.suggest` - Tree-structured Parzen Estimator algorithm
-  - `SparkTrials` - distribute tuning across Spark cluster
-  - `Trials` - single-node tuning
-- Hyperopt integrates with MLflow for experiment tracking
-- `max_evals` controls the number of trials
-
-### Model Evaluation
-
-**[📖 Model Evaluation](https://docs.databricks.com/aws/en/mlflow3/genai/eval-monitor/)** - Evaluation techniques
-
-**Key Facts:**
-- Classification metrics:
-  - Accuracy: correct predictions / total predictions
-  - Precision: true positives / (true positives + false positives)
-  - Recall: true positives / (true positives + false negatives)
-  - F1 Score: harmonic mean of precision and recall
-  - AUC-ROC: area under receiver operating characteristic curve
-  - Log loss: penalizes confident wrong predictions
-- Regression metrics:
-  - RMSE: root mean squared error (penalizes large errors)
-  - MAE: mean absolute error (robust to outliers)
-  - R-squared: proportion of variance explained
-  - MAPE: mean absolute percentage error
-- Confusion matrix: visualizes classification performance
-- Overfitting: model performs well on training, poorly on test
-- Underfitting: model performs poorly on both training and test
-- Bias-variance tradeoff: high bias = underfitting, high variance = overfitting
-
-## Domain 3: Spark ML (17%)
-
-### Spark MLlib Pipeline API
-
-**[📖 MLlib Guide](https://spark.apache.org/docs/latest/ml-guide.html)** - Spark ML reference
-**[📖 Pipeline API](https://spark.apache.org/docs/latest/ml-pipeline.html)** - Pipeline components
-**[📖 Feature Transformers](https://spark.apache.org/docs/latest/ml-features.html)** - Feature transformation
-
-**Key Facts:**
-- Transformer: transforms DataFrames (e.g., VectorAssembler, StringIndexer)
-- Estimator: fits on data to produce a Transformer (e.g., LogisticRegression)
-- Pipeline: chain of stages (Transformers and Estimators)
-- `pipeline.fit(train_df)` returns a PipelineModel
-- `pipeline_model.transform(test_df)` makes predictions
-
-**Common Transformers:**
-- `VectorAssembler`: combines multiple columns into a feature vector
-- `StringIndexer`: converts string labels to numeric indices
-- `OneHotEncoder`: converts indices to binary vectors
-- `StandardScaler`: standardizes features (zero mean, unit variance)
-- `MinMaxScaler`: scales features to [0, 1] range
-- `Imputer`: fills missing values with mean/median
-- `Bucketizer`: bins continuous features into buckets
-
-**Common Estimators:**
-- `LogisticRegression`: binary/multiclass classification
-- `RandomForestClassifier`: ensemble classification
-- `GBTClassifier`: gradient-boosted tree classification
-- `LinearRegression`: linear regression
-- `RandomForestRegressor`: ensemble regression
-- `KMeans`: unsupervised clustering
-
-### Model Selection
-
-**[📖 CrossValidator](https://spark.apache.org/docs/latest/ml-tuning.html)** - Cross-validation and tuning
-
-**Key Facts:**
-- `CrossValidator`: k-fold cross-validation with parameter grid
-- `TrainValidationSplit`: single train/validation split (faster)
-- `ParamGridBuilder`: defines hyperparameter search space
-- `evaluator`: metric to optimize (BinaryClassificationEvaluator, etc.)
-- `numFolds`: number of cross-validation folds
-- Save and load pipeline models: `model.save(path)`, `PipelineModel.load(path)`
-
-## Domain 4: Deep Learning (13%)
-
-### Deep Learning on Databricks
-
-**[📖 Deep Learning](https://docs.databricks.com/aws/en/machine-learning/train-model/deep-learning)** - DL overview
-**[📖 TensorFlow on Databricks](https://docs.databricks.com/aws/en/machine-learning/train-model/tensorflow)** - TF integration
-**[📖 PyTorch on Databricks](https://docs.databricks.com/aws/en/machine-learning/train-model/pytorch)** - PyTorch integration
-
-**Key Facts:**
-- Single-node training: run TF/PyTorch on driver node with GPU
-- GPU clusters: select GPU instance types for deep learning
-- MLflow integration: log DL models with `mlflow.tensorflow` or `mlflow.pytorch`
-- TensorBoard: integrated visualization in Databricks notebooks
-- Transfer learning: use pre-trained models (ResNet, BERT) as starting point
-- Fine-tuning: unfreeze layers and train on domain-specific data
-
-### Distributed Deep Learning
-
-**[📖 Distributed Training](https://docs.databricks.com/aws/en/machine-learning/train-model/distributed-training/)** - Distributed DL options
-**[📖 TorchDistributor](https://docs.databricks.com/aws/en/machine-learning/train-model/distributed-training/)** - PyTorch distribution
-
-**Key Facts:**
-- Horovod: distributed training framework (data parallelism)
-- TorchDistributor: native PyTorch distributed training on Spark
-- Data parallelism: replicate model, split data across workers
-- `HorovodRunner`: Databricks integration for Horovod
-- Petastorm: read Parquet data directly into DL frameworks
-- Single-node multi-GPU: use for models that fit in one node
-- Distributed training: for large models or datasets
-
-## Domain 5: Scaling ML (12%)
-
-### Scaling Techniques
-
-**[📖 Pandas API on Spark](https://docs.databricks.com/en/pandas/pandas-on-spark.html)** - Scalable pandas operations
-**[📖 Pandas UDFs](https://docs.databricks.com/en/udf/pandas.html)** - Distributed pandas functions
-**[📖 Batch Inference](https://docs.databricks.com/en/machine-learning/model-inference/index.html)** - Scalable inference
-
-**Key Facts:**
-- Pandas API on Spark: pandas syntax with Spark execution (scalable)
-- pandas UDFs: apply pandas functions distributed across partitions
-- `@pandas_udf("return_type")` decorator for UDF definition
-- Use pandas UDFs for model inference at scale
-- Spark MLlib: native distributed ML (scales automatically)
-- Single-node libraries (sklearn, XGBoost): use for smaller datasets
-- Hyperopt with `SparkTrials`: distribute hyperparameter tuning
-- Feature Store for centralized feature management at scale
-- Delta Lake for versioned ML datasets
-
-### Inference Patterns
-
-**Key Facts:**
-- Batch inference: apply model to large datasets using Spark
-- `mlflow.pyfunc.spark_udf()` creates a Spark UDF from MLflow model
-- Streaming inference: apply model to streaming data
-- Real-time inference: Model Serving endpoints
-- pandas UDFs for custom inference logic
-- Broadcast model for efficient distributed inference
+- Batch for scheduled bulk scoring, real time for per-request latency, streaming for continuous events
+- `mlflow.pyfunc.load_model(...).predict(pandas_df)` for in-memory batch; `mlflow.pyfunc.spark_udf` for Spark
+- Pipelines do not install MLflow by default
+- Query formats: `dataframe_split` (recommended), `dataframe_records`, `instances`, `inputs`
+- Traffic split: `traffic_config.routes` with `served_model_name` and `traffic_percentage`; not across model types
+- Scale to zero is not recommended for production endpoints
 
 ## Exam Tips
 
-1. **MLflow is the backbone** - tracking, registry, and serving appear throughout
-2. **Know the Pipeline API** - Transformers, Estimators, Pipeline stages
-3. **Hyperopt specifics** - `fmin`, search spaces, `SparkTrials` vs `Trials`
-4. **Feature Store workflow** - create, write, training set, inference
-5. **Evaluation metrics** - when to use each metric (precision vs recall vs F1)
-6. **AutoML** - know capabilities and limitations
-7. **pandas UDFs** - key pattern for scaling single-node code
-8. **Cross-validation** - CrossValidator vs TrainValidationSplit
-9. **Deep learning** - focus on Databricks integration, not DL theory
-10. **Autologging** - which frameworks support it and what gets logged
-
-## Quick Reference
-
-### Essential Code Patterns
-```python
-# MLflow Tracking
-with mlflow.start_run():
-    mlflow.log_param("learning_rate", 0.01)
-    mlflow.log_metric("accuracy", 0.95)
-    mlflow.sklearn.log_model(model, "model")
-
-# Hyperopt
-from hyperopt import fmin, tpe, hp, SparkTrials
-best = fmin(fn=objective, space=search_space, algo=tpe.suggest,
-            max_evals=100, trials=SparkTrials(parallelism=4))
-
-# Spark MLlib Pipeline
-from pyspark.ml import Pipeline
-from pyspark.ml.feature import VectorAssembler, StringIndexer
-from pyspark.ml.classification import RandomForestClassifier
-pipeline = Pipeline(stages=[indexer, assembler, rf])
-model = pipeline.fit(train_df)
-predictions = model.transform(test_df)
-
-# Feature Store
-from databricks.feature_engineering import FeatureEngineeringClient
-fe = FeatureEngineeringClient()
-fe.create_table(name="catalog.schema.features", primary_keys=["id"], df=features_df)
-
-# Batch Inference with MLflow
-predict_udf = mlflow.pyfunc.spark_udf(spark, model_uri="models:/my_model/1")
-predictions = df.withColumn("prediction", predict_udf(struct("feature1", "feature2")))
-```
+1. Section 1 plus Section 3 are 69 percent of the exam: platform API names and metric choice
+2. When two answers both "work", pick the one the current docs recommend (aliases over stages, `create_table` over any SQL shortcut)
+3. Count models as combinations x folds
+4. Match the metric to the cost of the mistake, not to habit
+5. Choose the serving pattern from the latency requirement

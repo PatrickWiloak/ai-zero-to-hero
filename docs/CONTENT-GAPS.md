@@ -62,7 +62,7 @@ costs more than a missing guide.
 ### Wave 5 - certifications (already in TODO)
 
 - NVIDIA NCP-AIN, NCP-OUSD, NCA-GENM rewrites to the blueprints (2026-11-15).
-- Databricks ML Associate rebuild on the 4-section outline.
+- Databricks ML Associate rebuilt on the 4-section outline, 2026-11-07 (done).
 - Flashcard decks: generator ported 2026-11-07 (`scripts/build_flashcards.py`); CCDV-F and Databricks GenAI now have decks. Still no deck: NVIDIA ADS and GenAI LLMs Professional (waiting on the rewrite), Databricks ML Associate/Professional (add `Key terms` lines, then verify against the docs), retired AI-102 and DP-100, the prompt-engineering study track. Plus PMLE monitoring / Model Garden / Model Armor cards.
 - New guides once codes are verified: AWS AI Business Strategist, NVIDIA NCA-ADS, NCP-ARI, MLA-C02 at GA.
   The AI governance certs (AIGP, AAISM) are planned for the security site with a link here.

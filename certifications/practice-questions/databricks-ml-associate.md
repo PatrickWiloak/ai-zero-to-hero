@@ -1,554 +1,552 @@
 ---
-last-updated: 2026-10-22
+last-updated: 2026-11-07
 difficulty: intermediate
 ---
 
 # Databricks Certified Machine Learning Associate - Practice Questions
 
-30 questions for the ML Associate exam, weighted toward ML workloads on Databricks (29%) and the ML workflow (29%), then Spark ML (17%), deep learning (13%), and scaling (12%).
+30 original questions on the four sections of the current exam guide, in the guide's weights: Databricks Machine Learning (38%, 11 questions), Data Processing (19%, 6), Model Development (31%, 9) and Model Deployment (12%, 4). They are written for this guide and are not Databricks exam questions. Each answer explains why the other options are wrong.
 
 > **Cert page:** [exams/databricks/ml-associate/](../databricks/ml-associate/README.md)
 
 ---
 
 ### Question 1
-**Scenario:** An experiment's parameters, metrics, and model artifact must be recorded automatically.
+**Section 1. Scenario:** A team's inference job must start using a newly validated model version without anyone editing the job's code.
 
-A. Print statements in the notebook that write each parameter and metric to the cell output after every run
-B. MLflow autologging, or `mlflow.log_param` and `log_metric` calls within a run
-C. A shared spreadsheet where each person pastes the parameters and scores after training finishes
-D. Manual notes in the notebook markdown, listing the settings used and the final score of each attempt
+A. Hard-code the new version number in the job and redeploy the job each time
+B. Delete the old model version so the new one is the only one that remains
+C. Load the model by alias (for example models:/main.ml.churn@champion) and move the alias to the new version
+D. Set a tag named production on the new version and have the job search for it by hand
 
 <details>
 <summary>Answer</summary>
 
-**Correct: B**
+**Correct: C**
 
-**Why:** Autologging captures parameters, metrics, and the model for supported libraries with one line, which means tracking happens by default rather than when someone remembers. Runs are then comparable in the experiment UI without any bookkeeping discipline.
+**Why:** An alias is a mutable named reference to one version, so jobs that load the alias pick up the new version automatically and rollback is just pointing the alias back. Hard-coding versions needs an edit each time, deletion destroys the rollback path, and tags are descriptive only.
 </details>
 
 ---
 
 ### Question 2
-**Scenario:** A model must be promoted from development to production with a clear lifecycle.
+**Section 1. Scenario:** A workspace has Unity Catalog enabled, and a team asks why they should register models there instead of in the workspace model registry.
 
-A. Rename the model artifact with a version suffix such as `_prod` and point the application at that file name
-B. Email the pickle file to the deployment team, who unpack it on the production cluster, test it there, and then replace the previous pickle file by hand
-C. Register the model in Unity Catalog with model versions and aliases such as `champion`, and grant access through the catalog
-D. Copy the model file from the development workspace folder into the production workspace folder
+A. The workspace registry cannot store more than one version of a model
+B. Unity Catalog adds centralized access control, auditing, lineage and model discovery across workspaces
+C. Unity Catalog registers models without needing a signature or any logging
+D. The workspace registry is the only one that supports aliases
 
 <details>
 <summary>Answer</summary>
 
-**Correct: C**
+**Correct: B**
 
-**Why:** The registry keeps lineage back to the producing run and makes promotion an explicit, auditable action. Aliases replaced the older named stages, so applications reference `@champion` and a promotion is an alias move rather than a redeployment.
+**Why:** The Databricks docs describe these governance benefits for models in Unity Catalog, and the workspace registry is the legacy option. Unity Catalog models do require a signature, and aliases are the Unity Catalog promotion mechanism.
 </details>
 
 ---
 
 ### Question 3
-**Scenario:** Hyperparameters must be tuned in parallel across a cluster.
+**Section 1. Scenario:** A data scientist ran 40 MLflow runs in one experiment, each logging an f1 metric, and needs the run with the highest f1 in code.
 
-A. Ray Tune, recommended over Hyperopt
-B. Manual tuning, changing one setting at a time and re-running the notebook until the metric stops improving
-C. A sequential loop over a parameter grid on the driver, which logs each result to MLflow in turn
-D. One configuration chosen from the library defaults, which are tuned for the typical dataset by the maintainers
+A. Sort the runs table in the MLflow UI and copy the run id by hand
+B. Take the run with the latest start time, since later runs are usually better
+C. Call get_experiment, which returns the best run directly
+D. Call search_runs on the experiment with order_by=["metrics.f1 DESC"] and take the first result
 
 <details>
 <summary>Answer</summary>
 
-**Correct: A**
+**Correct: D**
 
-**Why:** Ray Tune runs trials in parallel across the cluster workers and supports smarter search than a grid. Open-source Hyperopt is no longer maintained and is not included in Databricks Runtime ML after 16.4 LTS, so its SparkTrials is no longer the recommended path. Results can still be logged to MLflow.
-
-**Key Concept:** [Hyperparameter tuning on Databricks](https://docs.databricks.com/aws/en/machine-learning/automl-hyperparam-tuning/hyperopt-concepts)
+**Why:** search_runs supports server-side ordering on a metric, so one call returns the best run. The UI is not the client API, the latest run is not necessarily the best, and get_experiment returns experiment metadata, not a ranked run.
 </details>
 
 ---
 
 ### Question 4
-**Scenario:** Features used in training must match those used at inference.
+**Section 1. Scenario:** Which statement best describes the main advantage of a Databricks Runtime for Machine Learning over building a cluster environment by hand?
 
-A. Write the transformations twice, once in the training notebook and once in the serving code, and keep them aligned by review
-B. Databricks Feature Store (Feature Engineering in Unity Catalog), serving the same definitions offline and online
-C. A shared spreadsheet that lists each feature formula so that the training and serving teams can follow it
-D. Copy the training code into the serving application and update the copy whenever the original changes
+A. It ships with machine learning and deep learning libraries pre-installed and tested together
+B. It removes the need to choose evaluation metrics
+C. It guarantees every model trained on it will be accurate
+D. It trains models without any cluster compute
 
 <details>
 <summary>Answer</summary>
 
-**Correct: B**
+**Correct: A**
 
-**Why:** The feature store removes training-serving skew by making one definition authoritative, and it supports point-in-time joins so training does not accidentally use values that were not available at prediction time. Copied code diverges as soon as someone fixes a bug in one place.
+**Why:** The ML runtime automates the creation of compute with pre-built ML and deep learning tooling. It does not choose metrics, guarantee accuracy or remove compute.
 </details>
 
 ---
 
 ### Question 5
-**Scenario:** A scikit-learn model must be trained on data too large for one machine.
+**Section 1. Scenario:** A team wants a fast baseline and a view into how it was built so the data scientists can keep improving it.
 
-A. Use Spark ML for distributed training, or distribute single-node training across the cluster with `applyInPandas` for per-group models
-B. It cannot be done, because scikit-learn trains only on data that fits in the memory of a single machine
-C. Buy a bigger driver node with more memory until the full dataset fits, then train on it as normal
-D. Sample the data down to what fits in memory and accept the loss of accuracy that comes from the sample
+A. Run AutoML and treat the leaderboard as final because the code is hidden
+B. Run AutoML, then open and edit the generated notebook of the best trial
+C. Skip baselines and write a deep network first
+D. Export the data to a spreadsheet and fit a trend line
 
 <details>
 <summary>Answer</summary>
 
-**Correct: A**
+**Correct: B**
 
-**Why:** Spark ML implements distributed versions of common algorithms. The per-group pattern is the other common case: thousands of small models, one per store or customer segment, each fitting comfortably on one worker and trained in parallel.
+**Why:** AutoML trains and tunes several algorithms and generates source code notebooks for the trials, which can be reviewed and modified. It is a glass box, not a hidden result.
 </details>
 
 ---
 
 ### Question 6
-**Scenario:** A Spark ML pipeline includes indexing, assembling, and a classifier.
+**Section 1. Scenario:** A data scientist is creating a feature table in a Unity Catalog workspace. Which is the correct creation path?
 
-A. SQL only, with each transformation written as a view and the classifier called through a SQL function in each query
-B. Separate notebooks for each stage, run in order by a job, with the intermediate data saved to files between them and re-read by the next notebook
-C. Run each step manually in a notebook cell and keep the fitted objects in variables for later use
-D. A `Pipeline` of stages, fit once, producing a `PipelineModel` with the same transformations at inference
+A. Run CREATE FEATURE TABLE in SQL, which is the only supported route
+B. Create any Delta table without a primary key and call it a feature table
+C. Call create_table on FeatureEngineeringClient with a name, primary keys and a schema or DataFrame, then write data with write_table
+D. Save a CSV in the workspace files and register it with register_table
 
 <details>
 <summary>Answer</summary>
 
-**Correct: D**
+**Correct: C**
 
-**Why:** Wrapping the transformations and the estimator into one pipeline means the fitted preprocessing travels with the model, so serving cannot accidentally apply different encoding. This is the Spark ML answer to training-serving skew.
+**Why:** Feature tables are Delta tables with a primary key created through the FeatureEngineeringClient. There is no CREATE FEATURE TABLE statement, and a table without a primary key is not a valid feature table.
 </details>
 
 ---
 
 ### Question 7
-**Scenario:** A classification model on imbalanced data reports 98% accuracy.
+**Section 1. Scenario:** A model was trained with fe.log_model using a training set built from feature lookups. A batch job has only the customer ids. How does it score?
 
-A. Add features until the accuracy climbs past 98%, since more signal always helps the model on skewed labels
-B. Ship it, because 98% accuracy is well over the usual bar for production classification models and further tuning is not worth the delay
-C. Evaluate with precision, recall, F1, and PR-AUC, and consider class weights or resampling
-D. Increase the training epochs so the model sees the rare class more often and its accuracy rises further
+A. Join every feature table by hand first, because the model stores no feature information
+B. Call fe.score_batch with the model uri and a DataFrame of the keys, and the model looks up its own features
+C. Retrain the model with the keys as the only inputs
+D. Load the offline table into memory and replace the ids with random values
 
 <details>
 <summary>Answer</summary>
 
-**Correct: C**
+**Correct: B**
 
-**Why:** With 2% positives, predicting the majority class always scores 98%. Precision and recall on the minority class expose that immediately, and resampling should be applied only to the training split so the evaluation stays honest.
+**Why:** Logging with the feature client stores the feature references, and score_batch uses the primary keys to fetch features. Columns you supply override stored values.
 </details>
 
 ---
 
 ### Question 8
-**Scenario:** A deep learning model must train on multiple GPUs.
+**Section 1. Scenario:** A fraud model needs customer features at single-digit millisecond latency inside a real-time endpoint. Which data structure supports this?
 
-A. CPU training with a larger instance type and more cores, which avoids the need to coordinate between devices
-B. A single GPU only, with a smaller batch size so the model fits
-C. Distributed training with TorchDistributor (or Ray on Databricks), scaling from one node to several
-D. Reduce the model size by pruning layers until it trains on one device
+A. An online feature store holding the latest values for lookup by key
+B. The offline Delta feature table, queried with a full scan on each request
+C. A CSV file loaded on every request
+D. A tag on the registered model
 
 <details>
 <summary>Answer</summary>
 
-**Correct: C**
+**Correct: A**
 
-**Why:** TorchDistributor runs PyTorch distributed training on a Databricks cluster, handling process launch and coordination. Start single-node multi-GPU and move to multi-node only when the model or data genuinely requires it, since inter-node communication adds real cost.
+**Why:** Online feature stores are the low-latency store Databricks recommends for real-time serving. The offline table is for training and bulk scoring.
 </details>
 
 ---
 
 ### Question 9
-**Scenario:** A model must serve real-time predictions with autoscaling.
+**Section 1. Scenario:** An ML platform lead is deciding how to move work from development to production. Which is the usual Databricks recommendation, and a reason for it?
 
-A. A notebook on an always-on cluster, called from the app through a REST request
-B. A cron script on a virtual machine that loads the model and reads requests
-C. A batch job that scores pending requests every few minutes
-D. Mosaic AI Model Serving with a registered model version, scaling on request volume and latency
+A. Promote code, so the same review and integration tests apply and production models are trained by production code
+B. Always copy trained models by hand, because retraining in production is forbidden
+C. Train in production from scratch notebooks that are not under version control
+D. Give data scientists write access in production so they can fix quickly
 
 <details>
 <summary>Answer</summary>
 
-**Correct: D**
+**Correct: A**
 
-**Why:** Model Serving provides an HTTPS endpoint with authentication, autoscaling, and optional scale-to-zero, backed by a registered model version. Batch scoring remains the right answer for high-volume offline work where latency does not matter.
+**Why:** The MLOps docs recommend promoting code in most situations. Models are promoted instead when retraining in the target environment is not possible, and data scientists typically do not have write access in production.
 </details>
 
 ---
 
 ### Question 10
-**Scenario:** Data leakage is suspected because validation performance is suspiciously high.
+**Section 1. Scenario:** The model registry choice matters for lifecycle. A team still calls transition_model_version_stage to move a Unity Catalog model to Production. What is the issue?
 
-A. Accept the result, since a high validation score is expected from a tuned model
-B. Use a smaller model, since fewer parameters cannot memorize leaked rows
-C. Increase regularization until the validation score drops to a believable level, then keep that setting and treat the problem as solved
-D. Check for target leakage: features built after the label, or preprocessing fitted before the split
+A. Nothing, stages are the recommended Unity Catalog approach
+B. Stages are not supported for models in Unity Catalog; use aliases and three-level names for environments
+C. The call works only for tag-based models
+D. The call is correct but must be run twice
 
 <details>
 <summary>Answer</summary>
 
-**Correct: D**
+**Correct: B**
 
-**Why:** Fitting a scaler or an encoder on the full dataset before splitting leaks distributional information into validation. The other classic is a feature that only exists because the outcome already happened. Both produce excellent offline numbers and a useless production model.
+**Why:** The docs state that stages are not supported for Unity Catalog models and recommend the three-level namespace for environments and aliases for promotion.
 </details>
 
 ---
 
 ### Question 11
-**Scenario:** Model training must be reproducible months later.
+**Section 1. Scenario:** After a registered model version passes review, the team wants a note on it that a downstream process reads as 'validation approved', without changing what is served. What do they set?
 
-A. Save only the metrics, since the final scores are what the team compares and the settings are recorded in them
-B. Log the model with signature and environment, pin the runtime version, and version the input data
-C. Remember the settings, and write them in the wiki at handover
-D. Save the notebook, which holds the code and parameters, and rely on the latest data in the source table
+A. The champion alias on that version
+B. A new registered model with a different name
+C. A model version tag such as validation_status=approved
+D. A stage transition to Staging
 
 <details>
 <summary>Answer</summary>
 
-**Correct: B**
+**Correct: C**
 
-**Why:** Code, data, and environment all have to be pinned. Delta time travel supplies the data version, MLflow captures the conda or pip environment and model signature, and the runtime version pins the libraries the notebook assumed.
+**Why:** Tags are key-value labels for classification. They carry information but do not change which version an alias resolves to. Using an alias would change what production reads.
 </details>
 
 ---
 
 ### Question 12
-**Scenario:** A batch scoring job must run nightly on new data.
+**Section 2. Scenario:** A Spark DataFrame column shows count 9,200 for 10,000 rows, a mean of 480, a median of 55 and a max of 99,000. What does summary() tell you?
 
-A. Manual runs by an engineer each evening, started from the notebook once the new data has landed in the table
-B. A notebook someone opens each night and runs, with the results written to a table by hand
-C. A scheduled Databricks job loading the registered model and writing predictions to a Delta table
-D. Real-time serving for all rows, sending each record to the endpoint in a loop from a scheduled job each night
+A. The column is symmetric and ready to use
+B. There are no missing values because count is positive
+C. The standard deviation must be zero
+D. There are about 800 nulls and the column is strongly right-skewed with extreme values
 
 <details>
 <summary>Answer</summary>
 
-**Correct: C**
+**Correct: D**
 
-**Why:** Batch scoring through `mlflow.pyfunc.spark_udf` parallelizes across the cluster and writes results transactionally. Pushing millions of rows through a real-time endpoint pays per-request overhead for every record.
+**Why:** Count excludes nulls, so 9,200 of 10,000 means 800 missing. A mean far above the median and a max far above the 75th percentile signal right skew and outliers.
 </details>
 
 ---
 
 ### Question 13
-**Scenario:** Two models must be compared on the same evaluation data.
+**Section 2. Scenario:** A sensor feature is approximately normally distributed with two obvious glitches. Which outlier rule is suitable, and why?
 
-A. Run them at different times, on whatever data is current at each run, and compare the final numbers they report
-B. Log each model as an MLflow run in one experiment with the same metrics, and compare them in the run UI
-C. Compare the file sizes of the two saved models, since the larger one holds more learned detail and so must perform better on the data
-D. Ask the team which model they prefer, based on the notebooks and what each author remembers
+A. Remove points more than about three standard deviations from the mean, because the data is roughly bell-shaped
+B. Remove every point above the median
+C. Remove points outside the 40th and 60th percentiles
+D. Never remove anything, since outliers cannot be identified
 
 <details>
 <summary>Answer</summary>
 
-**Correct: B**
+**Correct: A**
 
-**Why:** Comparison requires the same metric names on the same data, which is exactly what an experiment groups. Logging the evaluation dataset version alongside the metrics is what makes the comparison defensible later.
+**Why:** On roughly normal data the standard deviation rule is gentle and appropriate. Heavily skewed data is the case where the IQR rule is the better choice.
 </details>
 
 ---
 
 ### Question 14
-**Scenario:** AutoML is used on a tabular dataset.
+**Section 2. Scenario:** A numeric feature has a long right tail with some very large values and 5 percent nulls. Which fill is the most defensible?
 
-A. It produces baseline models plus generated notebooks showing the code, which serve as a starting point for refinement
-B. It only reports metrics for the best model it found and keeps the code and the feature handling hidden
-C. It cannot be inspected, because the trained pipelines are stored in a format that only AutoML can read
-D. It replaces the data scientist, since the best model is selected and deployed with no human review
+A. The median, because it is not pulled by the extreme values
+B. The mean, because it always represents the typical value
+C. The mode, because the feature is numeric
+D. Zero, since zero never affects a model
 
 <details>
 <summary>Answer</summary>
 
 **Correct: A**
 
-**Why:** The generated notebook is the distinguishing feature: nothing is hidden, so you can see the preprocessing and modeling choices and take over from there. What AutoML cannot do is tell you the label is wrong or the problem is badly framed.
+**Why:** With skew and outliers the mean is distorted; the median stays near the typical value. Zero changes the distribution and mode is mostly for categories.
 </details>
 
 ---
 
 ### Question 15
-**Scenario:** A cluster for ML work must have the right libraries.
+**Section 2. Scenario:** A text column 'plan' with three values (basic, plus, pro) and no order is fed to logistic regression. Which preprocessing is appropriate?
 
-A. The Databricks Runtime for Machine Learning, with common ML libraries and GPU support
-B. Build the cluster image from scratch, installing every library and driver by hand with an init script
-C. Install packages in every notebook with `%pip`, so that each notebook carries its own library versions
-D. The standard runtime, which has Spark and Delta Lake but ships without the common ML libraries
+A. Replace the values with 1, 2 and 3 and use them as one number
+B. One-hot encode it, so the model does not read a false numeric order into the plans
+C. Drop the column because text cannot be used
+D. Take the log of the string length
 
 <details>
 <summary>Answer</summary>
 
-**Correct: A**
+**Correct: B**
 
-**Why:** The ML runtime ships with tested versions of scikit-learn, PyTorch, TensorFlow, XGBoost, MLflow, and CUDA where applicable. Installing ad hoc on the standard runtime produces version conflicts and cluster start times that grow with every added package.
+**Why:** One-hot encoding creates one binary column per category for a nominal feature in a linear model. Mapping to 1, 2, 3 would tell the model that pro is three times basic.
 </details>
 
 ---
 
 ### Question 16
-**Scenario:** A batch scoring notebook must always load whichever version of `main.fraud.classifier` is currently marked as the production model in Unity Catalog, without editing the notebook on each promotion.
+**Section 2. Scenario:** For which feature is one-hot encoding a poor choice?
 
-A. Load the model from the run ID of the training run that produced the current production version
-B. Load `models:/main.fraud.classifier/latest`, which always returns the version in production use
-C. Load `models:/main.fraud.classifier@champion`, and move the alias when a new version is promoted
-D. Copy the model files to a fixed DBFS path on each promotion and load the files from that path
+A. A country field with six values used in a neural network
+B. A boolean field stored as yes or no
+C. A user id with two million distinct values
+D. A product category with four values used in a logistic regression
 
 <details>
 <summary>Answer</summary>
 
 **Correct: C**
 
-**Why:** An alias is a mutable pointer to a model version, so code that loads by alias picks up a promotion as soon as the alias moves. A run ID hard-codes one version. The newest version is not necessarily the approved one, and copying files outside the registry loses lineage and access control.
+**Why:** High-cardinality features create millions of sparse columns. Use hashing, target encoding or embeddings instead. The other three are small nominal features that one-hot encoding handles well.
 </details>
 
 ---
 
 ### Question 17
-**Scenario:** A churn model uses customer features stored in a Unity Catalog feature table. The team wants batch scoring to look up the same features automatically, given only customer IDs.
+**Section 2. Scenario:** A target that spans several orders of magnitude and is right-skewed, such as sale price, is being fitted by linear regression. Which transformation is typically useful?
 
-A. Build the training set with `FeatureLookup` and log the model with the Feature Engineering client
-B. Export the feature table to CSV after each training run and join it to the scoring data by hand
-C. Recompute every feature inside the scoring notebook using a copy of the training notebook's code
-D. Store the feature values inside the model artifact so that they travel with the model to scoring
+A. Replacing the target with its rank and discarding units forever
+B. Subtracting the minimum from every value
+C. One-hot encoding the target
+D. A log transformation of the target, then exponentiate predictions to return to the original units
 
 <details>
 <summary>Answer</summary>
 
-**Correct: A**
+**Correct: D**
 
-**Why:** When a model is trained on a training set built from feature lookups and logged through the Feature Engineering client, the model carries its feature metadata, so scoring can fetch features by key automatically. Manual joins and copied code are where training-serving skew creeps in, and features frozen in the artifact go stale.
+**Why:** A log transform compresses the long tail and makes the distribution more symmetric. Predictions must be exponentiated afterwards to interpret them in original units.
 </details>
 
 ---
 
 ### Question 18
-**Scenario:** An experiment has 300 MLflow runs. A data scientist needs the run with the highest validation AUC programmatically, to register its model.
+**Section 3. Scenario:** A churn dataset has a 4 percent positive class and the first model has 96 percent accuracy and almost no recall on churners. What is the most direct fix?
 
-A. Open each run in the UI in turn and write down its AUC, then pick the highest one by hand
-B. Register every run's model and keep the version that the serving endpoint scores best on
-C. Rerun the training for every configuration so that the AUC values can be compared together
-D. Use `mlflow.search_runs` on the experiment, ordered by `metrics.val_auc DESC`, and take the first
+A. Weight the minority class more in training (or resample), and evaluate with recall, F1 or a precision-recall measure
+B. Standardize every feature to zero mean and unit variance
+C. Double the number of majority-class rows
+D. Switch the metric to accuracy at a higher threshold
 
 <details>
 <summary>Answer</summary>
 
-**Correct: D**
+**Correct: A**
 
-**Why:** `mlflow.search_runs` returns runs as a DataFrame and supports filters and ordering on metrics and parameters, so selecting the best run is one call. Checking 300 runs by hand is slow and error-prone, rerunning wastes compute, and registering every model clutters the registry.
+**Why:** Cost-sensitive learning or resampling acts on the imbalance, and accuracy hides it. Scaling, adding majority data and chasing accuracy do not.
 </details>
 
 ---
 
 ### Question 19
-**Scenario:** A model served from Unity Catalog accepts requests with misnamed or wrongly typed columns and returns nonsense instead of a clear error.
+**Section 3. Scenario:** In Spark ML, which statement about estimators and transformers is correct?
 
-A. Add a try and except block in the client code that retries any request that returns odd values
-B. Log the model with a signature and an input example so the expected schema is recorded
-C. Write the expected column names in the model's description field in Unity Catalog
-D. Retrain the model on a wider range of inputs so that it can handle wrongly typed columns
+A. An estimator's fit() produces a model that is itself a transformer, and a pipeline is an estimator whose fit() returns a PipelineModel
+B. A transformer learns parameters from data, and an estimator only applies them
+C. A pipeline is a transformer that cannot be fitted
+D. Estimators and transformers are the same, only the name differs
 
 <details>
 <summary>Answer</summary>
 
-**Correct: B**
+**Correct: A**
 
-**Why:** An MLflow model signature records the expected input and output schema, so input that does not match can be checked and rejected, and the input example documents valid requests. Retries repeat the same bad input, a description is not enforced, and retraining does not make a model understand misnamed columns.
+**Why:** The Spark ML docs define an estimator as an algorithm that can be fit on a DataFrame to produce a transformer, and a Pipeline is an estimator whose fit returns a PipelineModel.
 </details>
 
 ---
 
 ### Question 20
-**Scenario:** A team has only 2,000 labeled rows. A single 80/20 train-test split gives accuracy that swings by several points depending on the random seed.
+**Section 3. Scenario:** A tuning job uses scikit-learn models on a Databricks cluster and wants to run trials in parallel with Hyperopt. Which trials object fits?
 
-A. Use the same random seed every time so that the accuracy figure stays stable between runs
-B. Train on all 2,000 rows and report training accuracy, since no data is wasted on a test set
-C. Increase the test share to 50% so that the test set is large enough to give a stable estimate
-D. Use k-fold cross-validation to average performance across folds for a more stable estimate
+A. Trials, because it automatically distributes work to every worker
+B. SparkTrials is only for MLlib models
+C. No trials object exists; Hyperopt cannot run in parallel
+D. SparkTrials, because the models are single-machine and each trial can run as a Spark task
 
 <details>
 <summary>Answer</summary>
 
 **Correct: D**
 
-**Why:** Cross-validation trains and evaluates on several splits and averages the results, which reduces the variance of the estimate on small datasets. Fixing the seed hides the variance rather than reducing it, training accuracy overstates performance, and a bigger test set leaves less data to train on.
+**Why:** SparkTrials distributes single-machine models. Trials is used when the objective itself uses distributed training such as MLlib. One more fact: Hyperopt is no longer maintained upstream, and Databricks recommends Optuna or Ray Tune.
 </details>
 
 ---
 
 ### Question 21
-**Scenario:** A fraud dataset has 1% positive labels. After a random split, one validation set contains almost no fraud cases.
+**Section 3. Scenario:** A team tunes a model with 4 values of learning rate, 3 values of depth and 5-fold cross-validation. How many models are trained during the search (not counting a final refit)?
 
-A. Use a stratified split so each split keeps roughly the same share of fraud cases
-B. Drop the validation set and judge the model only on its training metrics instead
-C. Remove most of the non-fraud rows from the validation set so it has more fraud cases
-D. Shuffle the data again and keep re-splitting until the validation set looks balanced
+A. 12
+B. 20
+C. 60
+D. 15
 
 <details>
 <summary>Answer</summary>
 
-**Correct: A**
+**Correct: C**
 
-**Why:** Stratified splitting preserves the class proportions in each split, so validation reflects the real class mix and contains enough positives to measure. Training metrics overstate performance, rebalancing the validation set distorts the metrics, and re-splitting until it looks right is an unprincipled version of stratification.
+**Why:** 4 x 3 = 12 hyperparameter combinations, and each is trained once per fold: 12 x 5 = 60.
 </details>
 
 ---
 
 ### Question 22
-**Scenario:** A Spark ML pipeline fails because a numeric column has nulls. The column is skewed, and the team wants a fill value that is not distorted by outliers.
+**Section 3. Scenario:** What is a real downside of k-fold cross-validation compared with a single train-validation split?
 
-A. Use `VectorAssembler` with `handleInvalid` set to keep, which fills each null with zero
-B. Drop the column from the pipeline, since columns with nulls cannot be used in Spark ML
-C. Add an `Imputer` stage with `strategy` set to `median` before assembling the features
-D. Use `StringIndexer` on the column so that the nulls become their own category index
+A. It cannot be used with a grid of parameters
+B. It gives a less reliable estimate on small data
+C. It requires labels to be removed
+D. It trains the model k times per parameter setting, so it costs about k times as much
 
 <details>
 <summary>Answer</summary>
 
-**Correct: C**
+**Correct: D**
 
-**Why:** Spark ML's `Imputer` fills missing numeric values with the mean, median or mode, and the median is robust to skew. Placing it in the pipeline means the same fill values are learned on training data and reapplied at inference. Dropping the column loses information, and `StringIndexer` is for categorical strings, not numeric columns.
+**Why:** The Spark docs note that TrainValidationSplit evaluates each combination once rather than k times, so it is cheaper but less reliable on small data. Cross-validation is the more reliable but more expensive option.
 </details>
 
 ---
 
 ### Question 23
-**Scenario:** A gradient-boosted model has eight hyperparameters to tune, and each training run takes 20 minutes. A full grid search would need thousands of runs.
+**Section 3. Scenario:** A lender needs a classifier whose predicted probabilities are well calibrated, because they will be used directly to price risk. Which metric focuses on that?
 
-A. Run the full grid search anyway, since only a grid is certain to find the best combination
-B. Use random or Bayesian search (for example Optuna), which explores the space in fewer trials
-C. Tune one hyperparameter at a time and keep the others at their default values throughout
-D. Skip tuning and use the defaults, since boosted trees do not benefit from hyperparameter tuning
-
-<details>
-<summary>Answer</summary>
-
-**Correct: B**
-
-**Why:** With many hyperparameters, random search and Bayesian optimization such as Optuna find good regions with far fewer trials than a grid, and can run trials in parallel. A full grid is impractical here, one-at-a-time tuning misses interactions, and boosted trees are sensitive to settings like depth and learning rate.
-</details>
-
----
-
-### Question 24
-**Scenario:** A new team member asks what `LogisticRegression().fit(train_df)` returns in Spark ML, and how it is then used.
-
-A. It returns a DataFrame of predictions for the training data, which is then written to a Delta table
-B. It returns nothing, and the estimator object itself is updated in place with the learned weights
-C. It returns a Pipeline, which must be fitted a second time before it can be used for predictions
-D. It returns a fitted model, which is a Transformer that adds predictions with `transform()`
-
-<details>
-<summary>Answer</summary>
-
-**Correct: D**
-
-**Why:** In Spark ML an Estimator's `fit()` returns a Model, and that Model is a Transformer whose `transform()` adds prediction columns to a DataFrame. Estimators are not modified in place, `fit()` does not return predictions, and a Pipeline is something you build from stages, not the output of fitting one.
-</details>
-
----
-
-### Question 25
-**Scenario:** A Spark ML regression fails with an error that the input column `features` does not exist. The DataFrame has twelve separate numeric columns.
-
-A. Combine the columns into a single vector column with `VectorAssembler` before the estimator
-B. Rename one of the numeric columns to `features`, since the estimator needs only one column
-C. Convert the DataFrame to pandas, since Spark ML estimators cannot read numeric columns
-D. Set the estimator's `featuresCol` to a comma-separated list of the twelve column names
+A. Log loss, which scores the probability estimates and punishes confident wrong predictions
+B. Accuracy at a threshold of 0.5
+C. Recall alone
+D. The number of features used
 
 <details>
 <summary>Answer</summary>
 
 **Correct: A**
 
-**Why:** Spark ML estimators expect all features in one vector column, which `VectorAssembler` builds from the individual columns. Renaming one column would train on one feature only, `featuresCol` takes a single column name, and converting to pandas gives up distributed training.
+**Why:** Log loss (cross-entropy) is defined on probability estimates. Accuracy and recall depend on a threshold and ignore how confident the probabilities are.
 </details>
 
 ---
 
-### Question 26
-**Scenario:** A team tunes a Spark ML pipeline with `CrossValidator` over a parameter grid of 24 combinations and 3 folds. The cluster sits mostly idle while models train one after another.
+### Question 24
+**Section 3. Scenario:** A regression model for delivery times has a few very large mistakes that are especially costly. Which metric is most sensitive to those?
 
-A. Reduce the folds to one so that each combination trains only a single model on the cluster
-B. Set the `parallelism` parameter on `CrossValidator` so several models train at the same time
-C. Replace `CrossValidator` with a loop on the driver that trains each combination in pandas
-D. Increase the number of partitions in the data so that each single model trains faster
+A. MAE, since it squares errors
+B. RMSE, since squaring the errors penalizes large misses more heavily than MAE
+C. R-squared, since it equals the largest error
+D. Accuracy, since it counts every error equally
 
 <details>
 <summary>Answer</summary>
 
 **Correct: B**
 
-**Why:** `CrossValidator` and `TrainValidationSplit` have a `parallelism` setting that fits multiple models concurrently, which uses idle cluster capacity. One fold is no longer cross-validation, a driver loop in pandas abandons the cluster, and repartitioning does not change the one-at-a-time evaluation order.
+**Why:** RMSE squares errors before averaging, so large errors dominate. MAE treats errors in proportion to size and is more robust to outliers.
 </details>
 
 ---
 
-### Question 27
-**Scenario:** A manufacturer has 3,000 labeled images of product defects and wants an image classifier. Training a deep network from scratch overfits badly.
+### Question 25
+**Section 3. Scenario:** A model predicts log(price). The team computes RMSE directly between its output and the raw price column and gets a huge value. What should they do?
 
-A. Train a much deeper network from scratch, since a bigger model learns more from small data
-B. Convert the images to tabular pixel columns and train a linear model with Spark ML
-C. Start from a pretrained image model and fine-tune it, at first training only the top layers
-D. Duplicate each image ten times so that the training set has 30,000 images to learn from
+A. Apply log to the raw price column a second time
+B. Delete the largest prices
+C. Switch to accuracy
+D. Apply exp to the predictions before calculating RMSE against raw price
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** The model's output is on the log scale. It must be exponentiated before comparing with raw values or interpreting predictions in original units.
+</details>
+
+---
+
+### Question 26
+**Section 3. Scenario:** A model has a training RMSE of 0.5 and a validation RMSE of 3.8. What does the bias-variance tradeoff suggest?
+
+A. High bias (underfitting); add more layers or depth
+B. The model is ideal because training error is low
+C. High variance (overfitting); reduce complexity, add regularization or get more data
+D. The validation set is too small to say anything, so nothing can be concluded
 
 <details>
 <summary>Answer</summary>
 
 **Correct: C**
 
-**Why:** Transfer learning reuses features learned on a large dataset, so a small labeled set is enough to adapt the final layers, and more layers can be unfrozen later. A deeper model from scratch overfits more, raw pixels in a linear model lose spatial structure, and exact duplicates add no new information.
+**Why:** A large gap between low training error and high validation error is the signature of overfitting. High bias shows high error on both sets.
 </details>
 
 ---
 
-### Question 28
-**Scenario:** During deep learning training, validation loss starts rising after epoch 12 while training loss keeps falling. The job is set to run 100 epochs.
+### Question 27
+**Section 4. Scenario:** A bank scores a risk model once each night across all accounts and writes the results to a table that analysts read the next morning. Which approach fits?
 
-A. Increase the learning rate after epoch 12 so that the model escapes the rising validation loss
-B. Remove the validation set, since rising validation loss means the validation data is noisy
-C. Keep training for all 100 epochs, since training loss is still falling and the model is improving
-D. Use early stopping on validation loss and keep the best checkpoint, logged to MLflow
+A. A low-latency real-time endpoint called once per account
+B. A streaming pipeline that never stops
+C. A GPU endpoint sized for the lowest latency
+D. Batch inference on a schedule, writing predictions to a Delta table
 
 <details>
 <summary>Answer</summary>
 
 **Correct: D**
 
-**Why:** Diverging training and validation loss is overfitting, and early stopping halts training when validation loss stops improving while keeping the best weights. Continuing to 100 epochs makes it worse, a higher learning rate does not fix overfitting, and the validation set is what detected the problem.
+**Why:** Without a per-request latency need, scheduled batch inference is the simplest and cheapest pattern. The docs describe batch for nightly refreshes and real time for decisions at transaction time.
+</details>
+
+---
+
+### Question 28
+**Section 4. Scenario:** A scientist has a registered model and a 50,000-row pandas DataFrame that fits in driver memory. What is the straightforward batch route?
+
+A. Create a serving endpoint for the single call
+B. Convert the model to a streaming query
+C. Load the model with mlflow.pyfunc.load_model and call predict on the DataFrame
+D. Retrain the model on the DataFrame first
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** pyfunc.load_model loads any logged flavor as a Python function, and predict scores a pandas DataFrame. If the data no longer fits, mlflow.pyfunc.spark_udf distributes the same model over Spark.
 </details>
 
 ---
 
 ### Question 29
-**Scenario:** A scikit-learn model logged with MLflow must score 2 billion rows in a Delta table each night. A single-node loop takes far too long.
+**Section 4. Scenario:** A client sends feature rows to a custom model endpoint as JSON. Which input format does Databricks recommend for tabular data?
 
-A. Collect the table to the driver in chunks and call `model.predict` on each chunk in turn
-B. Load the model with `mlflow.pyfunc.spark_udf` and apply it to the Spark DataFrame in parallel
-C. Retrain the model in Spark ML from scratch, since scikit-learn models cannot be used on Spark
-D. Deploy the model to a serving endpoint and send it 2 billion requests from a notebook loop
+A. dataframe_records, because it guarantees column order
+B. dataframe_split, a pandas DataFrame in split orientation with columns and data
+C. A CSV string in the URL
+D. A pickled file in the request body
 
 <details>
 <summary>Answer</summary>
 
 **Correct: B**
 
-**Why:** `mlflow.pyfunc.spark_udf` wraps any MLflow model as a Spark UDF, so scoring runs in parallel across the cluster's workers. Collecting to the driver keeps the bottleneck, a real-time endpoint is the wrong tool for bulk scoring, and retraining in another library is unnecessary.
+**Why:** The docs recommend dataframe_split; dataframe_records does not guarantee column order. Responses come back under a predictions key.
 </details>
 
 ---
 
 ### Question 30
-**Scenario:** A retailer needs a separate demand-forecast model for each of 5,000 stores, using a single-node Python library. Training them one by one on the driver takes days.
+**Section 4. Scenario:** A team wants 10 percent of live requests to go to a candidate model and 90 percent to the current one, from a single URL. What do they configure?
 
-A. Group by store and use `applyInPandas` so each store's model trains in parallel on the workers
-B. Train one global model on all stores together, since per-store models cannot be parallelized
-C. Start 5,000 separate jobs at once, each on its own cluster, to train one store per job
-D. Increase the driver's memory so that the loop runs faster when training each store's model
+A. Two separate endpoints and a client that flips a coin
+B. A tag with the value 10 on the model version
+C. Scale to zero on the current model
+D. One endpoint with two served entities and traffic_config routes of 90 and 10 percent
 
 <details>
 <summary>Answer</summary>
 
-**Correct: A**
+**Correct: D**
 
-**Why:** `groupBy(...).applyInPandas(...)` hands each group's data to a pandas function on the workers, which is the standard pattern for training many independent single-node models in parallel. A global model changes the requirement, 5,000 clusters waste startup time and cost, and more driver memory does not parallelize a loop.
+**Why:** One Model Serving endpoint can serve several models of the same kind and split traffic by percentage with traffic_config routes. Calling a served model directly bypasses the split.
 </details>
 
 ---

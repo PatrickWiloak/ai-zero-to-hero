@@ -9,7 +9,7 @@ Study guides for the Databricks AI and machine learning certifications. Every pr
 | Cert | Code | Level | Status | Notes |
 |------|------|-------|--------|------:|
 | [Databricks Certified Generative AI Engineer Associate](genai-engineer-associate/README.md) | - | Associate | Ready | 6 |
-| [Databricks Certified Machine Learning Associate](ml-associate/README.md) | - | Associate | Ready | 5 |
+| [Databricks Certified Machine Learning Associate](ml-associate/README.md) | - | Associate | Ready | 4 |
 | [Databricks Certified Machine Learning Professional](ml-professional/README.md) | - | Professional | Ready | 5 |
 
 Other Databricks certifications are covered on the sibling Zero to Hero sites:

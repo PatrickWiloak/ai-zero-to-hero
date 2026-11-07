@@ -1,148 +1,36 @@
 # Databricks ML Associate - Study Plan
 
-## 5-Week Study Schedule
+**Last reviewed:** 2026-11-07
 
-### Week 1: ML Workloads on Databricks (Domain 1)
+A four-week reading and hands-on schedule built on the four official sections, with time in proportion to the weights (38 / 19 / 31 / 12). It assumes about 1 to 2 hours a day. Everything here is reading and trying things out; there are no graded exercises. Local work (scikit-learn, MLflow, PySpark) needs only a Python virtual environment. The Unity Catalog, feature table and serving parts need a Databricks workspace (the exam guide names Databricks Free Edition for hands-on practice).
 
-#### Day 1-2: Databricks ML Runtime and MLflow Tracking
-- [ ] Understand ML Runtime libraries and GPU options
-- [ ] Learn MLflow tracking: log_param, log_metric, log_artifact, log_model
-- [ ] Practice MLflow autologging with sklearn and XGBoost
-- [ ] Understand experiments, runs, and nested runs
-- [ ] Review Notes: `notes/01-ml-workloads.md`
-- [ ] Read: [MLflow Tracking](https://docs.databricks.com/en/mlflow/tracking.html)
+## Week 1: Section 1, Databricks Machine Learning (38%)
 
-#### Day 3-4: Model Registry and Feature Store
-- [ ] Learn Unity Catalog Model Registry vs workspace registry
-- [ ] Practice registering models and managing versions
-- [ ] Understand model aliases (champion, challenger)
-- [ ] Learn Feature Store: create_table, write_table, create_training_set
-- [ ] Read: [Model Registry](https://docs.databricks.com/en/mlflow/model-registry.html)
-- [ ] Read: [Feature Store](https://docs.databricks.com/en/machine-learning/feature-store/index.html)
+- [ ] Read [README.md](README.md) and skim [fact-sheet.md](fact-sheet.md)
+- [ ] Read [notes/01-databricks-machine-learning.md](notes/01-databricks-machine-learning.md) through the AutoML section
+- [ ] Read the Databricks [MLOps workflow](https://docs.databricks.com/aws/en/machine-learning/mlops/mlops-workflow) page and write down in your own words when you would promote a model instead of code
+- [ ] Open the AutoML docs, then run an AutoML experiment on a sample table in a workspace and open the best trial's notebook
+- [ ] Finish note 01: feature tables, MLflow runs, registry and aliases
+- [ ] Reproduce the MLflow OSS script in the note locally (four runs, `search_runs`, two versions, aliases, tags)
 
-#### Day 5-6: AutoML
-- [ ] Run AutoML for classification, regression, and forecasting
-- [ ] Review generated notebooks and model leaderboard
-- [ ] Understand AutoML capabilities and limitations
-- [ ] Learn when to use AutoML vs custom training
-- [ ] Read: [AutoML](https://docs.databricks.com/en/machine-learning/automl/index.html)
+## Week 2: Section 3, Model Development (31%)
 
-#### Day 7: Week 1 Review
-- [ ] Review all MLflow APIs and patterns
-- [ ] Quiz yourself on Feature Store workflow
-- [ ] Practice Model Registry operations
+- [ ] Read [notes/03-model-development.md](notes/03-model-development.md) up to cross-validation
+- [ ] Run the imbalance experiment from the note and compare accuracy, recall and F1 for yourself
+- [ ] Read the Spark ML [Pipelines](https://spark.apache.org/docs/latest/ml-pipeline.html) and [Tuning](https://spark.apache.org/docs/latest/ml-tuning.html) pages
+- [ ] Build the small Spark pipeline from the note in local PySpark and print the fitted stage types
+- [ ] Finish note 03: counting models, metrics, exponentiating log targets, bias and variance
 
-### Week 2: ML Workflow (Domain 2)
+## Week 3: Sections 2 and 4 (19% and 12%)
 
-#### Day 8-9: Data Preparation and Feature Engineering
-- [ ] Practice train/test splits and stratified splitting
-- [ ] Learn feature scaling: StandardScaler, MinMaxScaler
-- [ ] Practice categorical encoding: one-hot, label encoding
-- [ ] Understand missing value strategies
-- [ ] Review Notes: `notes/02-ml-workflow.md`
+- [ ] Read [notes/02-data-processing.md](notes/02-data-processing.md); run the outlier and imputation examples on a skewed column
+- [ ] Read [notes/04-model-deployment.md](notes/04-model-deployment.md)
+- [ ] Score a logged model with `pyfunc.load_model` on pandas, then with `spark_udf`
+- [ ] In a workspace, create a serving endpoint for a registered model and read its traffic settings
 
-#### Day 10-11: Hyperparameter Tuning with Hyperopt
-- [ ] Learn Hyperopt: fmin, search spaces, tpe.suggest
-- [ ] Practice SparkTrials for distributed tuning
-- [ ] Understand search space functions: hp.choice, hp.uniform, hp.loguniform
-- [ ] Integrate Hyperopt with MLflow tracking
-- [ ] Read: [Hyperopt](https://docs.databricks.com/en/machine-learning/automl-hyperparam-tuning/index.html)
+## Week 4: Review
 
-#### Day 12-13: Model Evaluation
-- [ ] Master classification metrics: accuracy, precision, recall, F1, AUC-ROC
-- [ ] Master regression metrics: RMSE, MAE, R-squared
-- [ ] Understand overfitting vs underfitting diagnosis
-- [ ] Practice cross-validation techniques
-- [ ] Read: [Model Evaluation](https://docs.databricks.com/aws/en/mlflow3/genai/eval-monitor/)
-
-#### Day 14: Week 2 Review
-- [ ] Compare Hyperopt search strategies (grid, random, Bayesian)
-- [ ] Review when to use which evaluation metric
-- [ ] Practice identifying overfitting from train/test metrics
-
-### Week 3: Spark ML and Deep Learning (Domains 3-4)
-
-#### Day 15-16: Spark MLlib Pipeline API
-- [ ] Learn Transformers, Estimators, and Pipelines
-- [ ] Practice VectorAssembler, StringIndexer, OneHotEncoder
-- [ ] Build complete ML pipelines with preprocessing and training
-- [ ] Review Notes: `notes/03-spark-ml.md`
-- [ ] Read: [Pipeline API](https://spark.apache.org/docs/latest/ml-pipeline.html)
-
-#### Day 17-18: Model Selection with Spark
-- [ ] Practice CrossValidator with ParamGridBuilder
-- [ ] Compare CrossValidator vs TrainValidationSplit
-- [ ] Learn Spark ML evaluators for different problem types
-- [ ] Save and load pipeline models
-- [ ] Read: [Model Tuning](https://spark.apache.org/docs/latest/ml-tuning.html)
-
-#### Day 19-20: Deep Learning on Databricks
-- [ ] Understand GPU runtime and instance types
-- [ ] Learn transfer learning concepts (freeze, fine-tune)
-- [ ] Understand distributed training: TorchDistributor, Horovod
-- [ ] Practice MLflow integration with TensorFlow and PyTorch
-- [ ] Review Notes: `notes/04-deep-learning.md`
-- [ ] Read: [Deep Learning](https://docs.databricks.com/aws/en/machine-learning/train-model/deep-learning)
-
-#### Day 21: Week 3 Review
-- [ ] Build a complete Spark ML pipeline from scratch
-- [ ] Review distributed training approaches
-- [ ] Quiz yourself on Pipeline API components
-
-### Week 4: Scaling ML and Integration (Domain 5)
-
-#### Day 22-23: Pandas UDFs and Pandas API on Spark
-- [ ] Practice pandas UDF decorator patterns
-- [ ] Understand Series-to-Series vs iterator UDFs
-- [ ] Use Pandas API on Spark for scalable data exploration
-- [ ] Review Notes: `notes/05-scaling-ml.md`
-- [ ] Read: [Pandas UDFs](https://docs.databricks.com/en/udf/pandas.html)
-
-#### Day 24-25: Inference Patterns
-- [ ] Practice batch inference with mlflow.pyfunc.spark_udf
-- [ ] Understand streaming inference with MLflow models
-- [ ] Learn Model Serving endpoint concepts
-- [ ] Compare batch vs streaming vs real-time inference
-- [ ] Read: [Batch Inference](https://docs.databricks.com/en/machine-learning/model-inference/index.html)
-
-#### Day 26-28: Cross-Domain Integration
-- [ ] Design end-to-end ML workflows: data prep to inference
-- [ ] Combine Feature Store with MLflow tracking
-- [ ] Practice full pipeline: features, training, registry, inference
-- [ ] Review all notes files for connections between domains
-
-### Week 5: Exam Preparation
-
-#### Day 29-30: Comprehensive Review
-- [ ] Re-read all five notes files and fact sheet
-- [ ] Focus on highest-weight domains: ML Workloads (29%) and ML Workflow (29%)
-- [ ] Create a summary of key API patterns
-- [ ] Review key differentiators
-
-#### Day 31-32: Practice Scenarios
-- [ ] Work through `scenarios.md` exam-style questions
-- [ ] Take available practice exams
-- [ ] Review incorrect answers and understand reasoning
-- [ ] Focus on weak areas
-
-#### Day 33-35: Final Preparation and Exam
-- [ ] Light review of key concepts
-- [ ] Review exam tactics and time management strategy
-- [ ] Take the exam with confidence
-
-## Study Tips
-
-### Time Allocation by Domain Weight
-| Domain | Weight | Suggested Hours |
-|--------|--------|----------------|
-| ML Workloads on Databricks | 29% | 14-18 hours |
-| ML Workflow | 29% | 14-18 hours |
-| Spark ML | 17% | 8-10 hours |
-| Deep Learning | 13% | 6-8 hours |
-| Scaling ML | 12% | 5-7 hours |
-
-### Recommended Daily Schedule
-- **30 min** reading documentation or notes
-- **30 min** hands-on practice with code examples
-- **15 min** reviewing API patterns and key concepts
-- **Total: ~1.25 hours/day**
+- [ ] Read [scenarios.md](scenarios.md) and the [strategy](strategy.md) page
+- [ ] Take the [practice questions](../../practice-questions/databricks-ml-associate.md) in one sitting of about 45 minutes and read every explanation, right or wrong
+- [ ] Re-read the notes for the sections where explanations surprised you
+- [ ] Two weeks before the exam date, check the exam guide on the Databricks site again (the guide asks you to) for changes
