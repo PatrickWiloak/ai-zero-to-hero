@@ -88,7 +88,8 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] ~~IndexNow first submission~~ ✅ done 2026-09-30: the deploy step's first run was accepted
       (HTTP 202, all 189 URLs). If a later run 403s, check `<site>/<key>.txt` is served
       (key in `.github/site/indexnow-key.txt`) and rerun `python3 scripts/notify_indexnow.py --all`.
-- [ ] **2026-11-01 check** (re-dated 2026-10-15 after the FAIL below; was 2026-10-14): Search Console -> Sitemaps shows `sitemap.xml` as read with ~190 URLs and
+- [ ] 2026-11-21 check: GSC URL Inspection on https://ai.noblerworks.com/ (`sc-domain:noblerworks.com`) reads "Submitted and indexed"; 11-07 it was "Crawled - currently not indexed". If still not, Pat: Request indexing (UI only).
+- [x] ✅ 2026-11-07 PASS (sitemap read 11-06, 712 URLs, 0 errors; 380 pages with impressions, `sc-domain:noblerworks.com`) **2026-11-01 check** (re-dated 2026-10-15 after the FAIL below; was 2026-10-14): Search Console -> Sitemaps shows `sitemap.xml` as read with ~190 URLs and
       Pages -> Indexed above zero (old URL-prefix property for the github.io URL, retired,
       owners pat@noblerworks.com and the `nobler-reporting` service account).
       ✏️ 2026-10-15 judged: 🔴 FAIL - the sitemap (submitted 2026-09-30) is still `isPending: true`, never
