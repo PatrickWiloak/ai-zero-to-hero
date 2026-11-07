@@ -87,3 +87,14 @@ Always split by *source*, not by image. If several photos of the same product la
 - Zeiler and Fergus, "Visualizing and Understanding Convolutional Networks" (2013): https://arxiv.org/abs/1311.2901
 - Stanford CS231n, "Convolutional Neural Networks for Visual Recognition" course notes: https://cs231n.github.io/convolutional-networks/
 - PyTorch tutorial, "Transfer Learning for Computer Vision": https://docs.pytorch.org/tutorials/beginner/transfer_learning_tutorial.html
+
+## Check yourself
+
+1. What does a convolutional filter do, and what is the output called?
+   <details><summary>Answer</summary>A small grid of weights slides across the image, and at each position it multiplies matching numbers and adds them up. The resulting grid is a feature map, bright where the patch looked like the filter ("What a filter does").</details>
+2. Why does a CNN have far fewer weights than a fully connected network on the same image?
+   <details><summary>Answer</summary>The same filter is reused at every position, so the network also spots a pattern wherever it appears ("The short version").</details>
+3. What problem did skip connections solve?
+   <details><summary>Answer</summary>Very deep plain stacks got harder to train, not better. Skip connections let a block pass its input straight through and learn only the correction, which made networks of 100+ layers trainable ("Going deeper: residual connections").</details>
+4. Several photos of the same product end up in both your training and test sets. What happens to your score, and what is the fix?
+   <details><summary>Answer</summary>The score is inflated because of leakage. Split by source, not by image ("Transfer learning in practice" and "Common mistakes").</details>

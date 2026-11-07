@@ -1,7 +1,7 @@
 # Small Language Models
 
 **In one line:** Know when a model of roughly 0.5 to 15 billion parameters is the better choice than a frontier model (cost, latency, privacy, offline use, narrow tasks), how small models are made good, which families to try first as of 2026-10, and how to test whether one is good enough for your job.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -133,3 +133,14 @@ Model tags follow Ollama's library naming at the time of writing; run `ollama li
 - Gunasekar et al., "Textbooks Are All You Need" (2023): https://arxiv.org/abs/2306.11644
 - Hinton, Vinyals and Dean, "Distilling the Knowledge in a Neural Network" (2015): https://arxiv.org/abs/1503.02531
 - The harness above is untested against live models; tags and outputs vary by Ollama version.
+
+## Check yourself
+
+1. Roughly what counts as a small language model on this page?
+   <details><summary>Answer</summary>One that runs on a single consumer GPU, a laptop or a phone: roughly 0.5B to 15B parameters, often quantised to 4 bits. The page says "small" is relative with no official line ("The short version").</details>
+2. Why do labs deliberately train small models far past the compute-optimal point?
+   <details><summary>Answer</summary>A model is trained once and served millions of times, so extra training compute to make a smaller model better makes every future query cheaper. Chinchilla's optimum is about 20 tokens per parameter, while the 3B SmolLM3 was trained on 11.2 trillion tokens ("Why small models got good").</details>
+3. Name three situations where a small model is the better choice.
+   <details><summary>Answer</summary>High-volume narrow tasks, latency-critical uses, data that must not leave the device or network, offline or edge use, tasks you will fine-tune, and first-pass filters or routers. Any three count ("When to choose small").</details>
+4. Why does the page say never to decide from a leaderboard?
+   <details><summary>Answer</summary>A general benchmark score says little about your task. Collect 50 to 200 real examples, score your current large model as the bar, run small models on the same prompts and look at the failures ("A worked test: is a small model good enough?" and "Common mistakes").</details>

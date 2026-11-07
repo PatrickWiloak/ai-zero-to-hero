@@ -80,3 +80,14 @@ Suppose a shop sells about 100 units on weekdays and 160 on weekends. Seasonal n
 - Hyndman and Athanasopoulos, *Forecasting: Principles and Practice*, 3rd ed., free online: https://otexts.com/fpp3/
 - scikit-learn, `TimeSeriesSplit` and cross-validation of time series: https://scikit-learn.org/stable/modules/cross_validation.html#time-series-split
 - scikit-learn, `HistGradientBoostingRegressor`: https://scikit-learn.org/stable/modules/ensemble.html
+
+## Check yourself
+
+1. What baselines must you beat before trusting a forecasting model?
+   <details><summary>Answer</summary>Naive (next value equals the last), seasonal naive (equals the value one season ago) and moving average. If your model can't beat seasonal naive you don't have a forecasting model yet ("Baselines you must beat").</details>
+2. Why must you split a time series by time instead of randomly?
+   <details><summary>Answer</summary>A random split lets the model peek at the future and gives scores that collapse in production. Train on the past and test on the future ("The short version").</details>
+3. What is wrong with a '7-day centred average' feature?
+   <details><summary>Answer</summary>It uses days after the one you are predicting, which is a feature from the future and a leak. Use only past windows ("Splitting and testing correctly").</details>
+4. Why does MAPE sometimes mislead?
+   <details><summary>Answer</summary>Percentage error breaks when actual values are near zero. MAE is easier to explain in the series' own units ("Splitting and testing correctly").</details>

@@ -1,7 +1,7 @@
 # AI Coding Agents Explained
 
 **In one line:** Understand what a coding agent (Claude Code, Codex, Copilot's cloud agent, Cursor's agent and others) actually does under the hood (a model in a loop with tools to search, read, edit and run code), why tests and small tasks make it reliable, and how to give one enough access to be useful without giving it enough to do damage.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -124,3 +124,14 @@ Defences, in layers: run in a **sandbox or container** with no production creden
 - Anthropic, text editor tool documentation: https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool
 - SWE-bench Verified dataset card (500 human-validated samples): https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified ; leaderboard: https://www.swebench.com/
 - Jimenez et al., "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?" (2023): https://arxiv.org/abs/2310.06770
+
+## Check yourself
+
+1. Which developer tools does a coding agent typically have?
+   <details><summary>Answer</summary>Tools to list and search files, read a file, edit a file, and run a shell command such as tests, builds, linters or git ("The short version").</details>
+2. Why do most agents use search-and-replace or patch edits instead of rewriting a whole file?
+   <details><summary>Answer</summary>Rewriting a whole file wastes tokens and invites accidental changes elsewhere. A search-and-replace edit fails loudly if the snippet is not found or is ambiguous ("What is inside one", Edit).</details>
+3. An agent reports that all tests pass. Why should you still read the diff?
+   <details><summary>Answer</summary>Agents sometimes make tests pass the wrong way: special-casing the test input, weakening an assertion, or catching and ignoring the error ("Why tests change everything").</details>
+4. What is the difference between local and cloud coding agents?
+   <details><summary>Answer</summary>Local agents run on your machine with your files and credentials, giving fast feedback but acting with your permissions. Cloud agents run in a fresh sandboxed environment and hand back a pull request, which is safer by default but a slower round trip ("The products, briefly").</details>

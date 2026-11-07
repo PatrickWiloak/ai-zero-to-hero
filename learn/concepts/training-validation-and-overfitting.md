@@ -1,7 +1,7 @@
 # Training, Validation and Overfitting
 
 **In one line:** Split your data so every score you report comes from examples the model never saw, spot overfitting from the gap between training and validation scores, and pick the metric (precision, recall, F1, ROC-AUC) that matches the mistake you can least afford.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -161,3 +161,14 @@ You rarely train an LLM yourself, but every idea here carries over to building o
 - Saito and Rehmsmeier, "The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets", PLOS ONE (2015): https://doi.org/10.1371/journal.pone.0118432
 - Kaufman et al., "Leakage in Data Mining: Formulation, Detection, and Avoidance", ACM TKDD (2012): https://doi.org/10.1145/2382577.2382579
 - Code output above produced with scikit-learn 1.9.1 on 2026-10-21.
+
+## Check yourself
+
+1. What are the training, validation and test sets each used for?
+   <details><summary>Answer</summary>Training fits the model's parameters, validation is for choosing between models, features, settings and thresholds, and the test set gives one final unbiased estimate and is touched once at the end ("Why you hold data back").</details>
+2. Why do you need a test set as well as a validation set?
+   <details><summary>Answer</summary>Every time you look at a validation score and change something you fit to the validation set too, so after fifty experiments the best validation score is optimistic. The untouched test set is the one number you can believe ("Why you hold data back").</details>
+3. A model that always answers "not fraud" is 96.5% accurate. What does that show?
+   <details><summary>Answer</summary>Accuracy is the wrong metric on imbalanced data. Use precision, recall, F1 and ROC-AUC or PR-AUC, and always print the always-majority baseline next to accuracy ("Metrics for classification" and "Common mistakes").</details>
+4. What does moving the decision threshold from 0.5 to 0.1 change, and who should choose it?
+   <details><summary>Answer</summary>The model does not change. It trades precision for recall, catching more frauds at the cost of more false alarms. It is a business choice based on what each mistake costs ("The short version" and "Metrics for classification").</details>

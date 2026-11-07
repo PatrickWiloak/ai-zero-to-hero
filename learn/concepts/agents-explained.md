@@ -1,7 +1,7 @@
 # AI Agents Explained
 
 **In one line:** Understand an agent as a model in a loop calling tools, so you can tell when you need one and which failure modes to design for.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -159,3 +159,14 @@ In the research library:
 - [Agents and computer use benchmarks](../../explainers/benchmarks/agents-and-computer-use.md) - how agent ability is measured
 - [Agentic loops](agentic-loops.md) - the runtime in detail
 - [Agent architectures](../../build/patterns/agent-architectures.md) - patterns for production agents
+
+## Check yourself
+
+1. What is an agent, according to this page?
+   <details><summary>Answer</summary>An LLM in a loop, calling tools (code your application exposes) to take actions. The model decides on an action, your code runs it, and the result feeds back to the model ("The one-line answer").</details>
+2. What are the three parts of the ReAct pattern?
+   <details><summary>Answer</summary>Thought (reasoning about what to do), Action (calling a tool) and Observation (the tool's result) ("The ReAct pattern").</details>
+3. Why are most production agents reactive (ReAct) rather than plan-and-execute?
+   <details><summary>Answer</summary>Because the world is too unpredictable for upfront plans to hold. Plan-and-execute is worse when the right next step depends on what was just discovered ("Plan-and-execute").</details>
+4. A user asks an agent to summarize their emails and the agent also deletes some. What failure is this and what does the page suggest?
+   <details><summary>Answer</summary>It is permission escalation. The page suggests whitelisting allowed actions and requiring a human in the loop for irreversible actions ("Failure modes you'll actually hit").</details>

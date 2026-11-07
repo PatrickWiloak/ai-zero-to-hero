@@ -1,7 +1,7 @@
 # LLM Basics
 
 **In one line:** Learn what a large language model actually does (predict the next token) so every other AI concept on this site has something to hang on.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -146,3 +146,14 @@ In the research library:
 - OpenAI, models: https://platform.openai.com/docs/models
 - Google, Gemini API models: https://ai.google.dev/gemini-api/docs/models
 - Vaswani et al., "Attention Is All You Need" (2017): https://arxiv.org/abs/1706.03762
+
+## Check yourself
+
+1. What does an LLM do at each step, according to the page?
+   <details><summary>Answer</summary>It predicts the next token, appends it to the input and runs again, repeating until it emits a stop token or hits a length limit. Streaming text is literally this one-token-at-a-time process ("The one-line answer" and "What's actually happening").</details>
+2. What is the rough English rule of thumb for tokens?
+   <details><summary>Answer</summary>1 token is about 4 characters, or about 0.75 words ("Tokens, not words").</details>
+3. What does temperature 0 do, and when is it a good choice?
+   <details><summary>Answer</summary>It always picks the highest-probability token, so output is deterministic. That suits code generation, classification and anything where you want repeatable answers ("Sampling: how the next token gets picked").</details>
+4. Why is hallucination not a bug that can simply be fixed?
+   <details><summary>Answer</summary>It is the same mechanism that produces the model's correct outputs: the model always generates the most plausible next token, and sometimes that is a confident invention. You can reduce it with RAG, tools, prompts that allow "I don't know" and validation, but you don't eliminate it ("Hallucination").</details>

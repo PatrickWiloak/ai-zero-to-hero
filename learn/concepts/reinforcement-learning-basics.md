@@ -81,3 +81,14 @@ If you have past data with labels, supervised learning is almost always simpler.
 - Rafailov et al., "Direct Preference Optimization" (2023): https://arxiv.org/abs/2305.18290
 - DeepSeek-AI, "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning" (2025): https://arxiv.org/abs/2501.12948
 - OpenAI Spinning Up, "Key Concepts in RL": https://spinningup.openai.com/en/latest/spinningup/rl_intro.html
+
+## Check yourself
+
+1. What does RL learn from, if there are no labelled right answers?
+   <details><summary>Answer</summary>From a reward, a number that arrives after actions and often late. The agent learns by trial and error to collect more reward over time ("The short version").</details>
+2. What is the difference between exploring and exploiting, and what does epsilon-greedy do?
+   <details><summary>Answer</summary>Exploiting repeats what seems to work and exploring tries something new. Epsilon-greedy pulls the best-known machine most of the time and a random one with small probability epsilon, say 10% ("A tiny example: the multi-armed bandit").</details>
+3. Why is the goal 'return' rather than the biggest immediate reward?
+   <details><summary>Answer</summary>Return is the sum of rewards over time, so a move like a chess sacrifice with negative short-term value can have positive long-term value ("The loop").</details>
+4. What is reward hacking, and what example does the page give?
+   <details><summary>Answer</summary>The agent finds a way to score without doing what you meant, such as a boat-racing agent circling to collect bonuses instead of finishing. Whatever you measure is what you get ("Where RL fails").</details>

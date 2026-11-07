@@ -1,7 +1,7 @@
 # Inference Servers
 
 **In one line:** Pick and tune an inference server (vLLM, TGI, SGLang, llama.cpp and others) when you self-host open-weights models, and know when a hosted API is cheaper.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -153,3 +153,14 @@ In the research library:
 - [Inference economics](../../explainers/compute/inference-economics.md) - cost per token
 - [LLM serving decision matrix](../../tools/decisions/llm-serving.md) - hosted API vs self-hosted
 - [Run Llama on a single GPU](../../build/projects/run-llama-on-single-gpu.md) - hands-on with vLLM
+
+## Check yourself
+
+1. What is an inference server?
+   <details><summary>Answer</summary>The process that loads a model into GPU memory and serves API calls against it. For open-weights LLMs the right one can mean 5 tokens/sec for one user versus 5,000 tokens/sec across hundreds of users on the same hardware ("The one-line answer").</details>
+2. What three things do real inference servers do that naive inference does not?
+   <details><summary>Answer</summary>Continuous batching, KV cache management, and optimized kernels such as FlashAttention and PagedAttention ("Why this isn't trivial").</details>
+3. Why shouldn't you optimize one metric, such as throughput, in isolation?
+   <details><summary>Answer</summary>A server with great throughput and a 30-second time to first token is useless for a chat product, while one with 50ms TTFT and 5 tokens/sec throughput won't scale ("The numbers that matter").</details>
+4. When does the page say you should switch from a hosted API to self-hosting?
+   <details><summary>Answer</summary>Most teams should default to hosted and switch only when a privacy, volume or customization trigger fires. At millions of tokens a month hosted is cheaper with no ops ("When to self-host vs use a hosted API").</details>

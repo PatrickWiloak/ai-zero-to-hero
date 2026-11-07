@@ -1,7 +1,7 @@
 # Classic ML: Supervised vs Unsupervised
 
 **In one line:** Tell classification, regression and clustering apart, know which classic algorithm to reach for first on a table of data, and run all three in scikit-learn in under 40 lines before you consider a language model.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -163,3 +163,14 @@ The hybrid that works well in practice: use an LLM (or an embedding model) to tu
 - Grinsztajn, Oyallon and Varoquaux, "Why do tree-based models still outperform deep learning on tabular data?" (NeurIPS 2022 Datasets and Benchmarks): https://arxiv.org/abs/2207.08815
 - Chen and Guestrin, "XGBoost: A Scalable Tree Boosting System" (KDD 2016): https://arxiv.org/abs/1603.02754
 - Code output above produced with scikit-learn 1.9.1 on 2026-10-21.
+
+## Check yourself
+
+1. What separates classification from regression?
+   <details><summary>Answer</summary>Both are supervised and learn from labelled examples. If the label is a category (spam, fraud, churns) it is classification, and if it is a number (price, demand, minutes) it is regression ("The short version").</details>
+2. What is the order in which the page says to try classification algorithms, and why start where it does?
+   <details><summary>Answer</summary>Logistic regression first, then decision trees and their ensembles (random forest, gradient boosting), then SVMs, k-NN and naive Bayes, then neural networks. Logistic regression is fast, hard to overfit and readable, so it is always fitted first as a baseline ("Classification").</details>
+3. Why must you scale columns before running k-means?
+   <details><summary>Answer</summary>"Nearest" depends on how the columns are scaled, so a column measured in dollars would swamp one measured in years unless you standardise them ("Clustering").</details>
+4. A fraud model says "not fraud" for every transaction and is 99% accurate. What is wrong?
+   <details><summary>Answer</summary>If only 1% of transactions are fraud, always saying "not fraud" scores 99% yet catches nothing. The page says to use precision and recall on imbalanced data instead of accuracy ("Common mistakes").</details>

@@ -1,7 +1,7 @@
 # Recommender Systems Basics
 
 **In one line:** Understand how "you might also like" works (content-based filtering, collaborative filtering, embeddings, and the two-stage retrieve-then-rank design), build a tiny recommender in 30 lines, and know the traps (cold start, popularity bias, feedback loops) before you build one for real.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -166,3 +166,14 @@ Language models are changing recommenders at the edges more than at the core. Th
 - Google for Developers, "Recommendation systems" course (candidate generation, scoring, re-ranking): https://developers.google.com/machine-learning/recommendation
 - Regulation (EU) 2022/2065 (Digital Services Act), Articles 27 and 38 (recommender system transparency and non-profiling option): https://eur-lex.europa.eu/eli/reg/2022/2065/oj
 - Code output above produced with NumPy on 2026-10-21.
+
+## Check yourself
+
+1. What is the difference between content-based and collaborative filtering?
+   <details><summary>Answer</summary>Content-based filtering recommends items similar to ones you liked, using the items' own attributes. Collaborative filtering uses only interaction data, recommending what people with similar behaviour liked ("The short version").</details>
+2. Why do large recommenders use two stages, retrieval then ranking?
+   <details><summary>Answer</summary>You cannot run an expensive model over ten million items for every page view. A cheap candidate retrieval step bounds cost by pulling a few hundred items, and an expensive ranking model buys quality on just those ("Two stages: retrieve, then rank").</details>
+3. What is the cold start problem?
+   <details><summary>Answer</summary>New users and new items have no history. A film nobody has rated has an empty column in the table and cannot be recommended by collaborative filtering, which is why production systems blend collaborative and content signals ("Collaborative filtering" and "The traps").</details>
+4. Why can offline scores and an online A/B test disagree?
+   <details><summary>Answer</summary>Offline data only contains reactions to whatever the old system chose to show. Offline scores only show a model is plausible, and the real test is the A/B test on the outcome you care about ("How you know it works").</details>

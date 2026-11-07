@@ -1,7 +1,7 @@
 # GPUs for AI
 
 **In one line:** Understand why AI runs on GPUs and how memory, not raw compute, usually decides which GPU (if any) you need.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -118,3 +118,14 @@ In the research library:
 - [FlashAttention](../../papers/techniques/16-flash-attention/summary.md) - why memory bandwidth matters
 - [ZeRO and Megatron-LM](../../papers/techniques/76-zero-megatron/summary.md) - how training spreads across many GPUs
 - [Mixed precision training](../../papers/techniques/143-mixed-precision-training/summary.md) - FP16/BF16 and why GPUs love them
+
+## Check yourself
+
+1. Why is a GPU much faster than a CPU for neural networks?
+   <details><summary>Answer</summary>The work is mostly matrix multiplication, the same simple operation repeated over lots of data. A GPU has thousands of simpler cores that apply it in parallel ("The one-line answer" and "Why not a CPU").</details>
+2. Which spec number decides whether you can run a model at all, and which usually decides how fast it responds?
+   <details><summary>Answer</summary>VRAM is the hard limit on model size, and memory bandwidth is usually what decides response speed ("The vocabulary that appears on every spec sheet").</details>
+3. Roughly how much memory does a 7B model need at FP16, and what happens at INT4?
+   <details><summary>Answer</summary>About 14 GB at FP16 (2 bytes per parameter) and about 3.5 GB at INT4 (0.5 bytes per parameter), before overhead for activations and the KV cache ("How much memory a model needs").</details>
+4. Why does multi-GPU work make the interconnect the limiting factor?
+   <details><summary>Answer</summary>Data, tensor and pipeline parallelism all need GPUs to exchange data, so communication speed limits them. This is why "how are they connected" matters more than "how many GPUs" ("Multi-GPU").</details>

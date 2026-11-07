@@ -1,7 +1,7 @@
 # Hallucinations
 
 **In one line:** Language models sometimes state false things fluently and confidently; this page explains why that happens (it is a predictable result of how they are trained and graded, not a random glitch), which tasks are most at risk, and the concrete habits and system designs that reduce the damage.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -111,3 +111,14 @@ For the wider debate about whether language models "understand" anything at all,
 - Mata v. Avianca, Inc., No. 22-cv-1461 (S.D.N.Y. 2023), sanctions over fabricated case citations: https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.
 - Spracklen et al., "We Have a Package for You! A Comprehensive Analysis of Package Hallucinations by Code Generating LLMs" (2024): https://arxiv.org/abs/2406.10279
 - Anthropic, "Reduce hallucinations" (prompting guidance, including allowing the model to say it does not know): https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations
+
+## Check yourself
+
+1. What is a hallucination, according to the page?
+   <details><summary>Answer</summary>A model output that sounds plausible but is false or unsupported, such as an invented citation, a wrong date or a made-up function in a code library ("The short version").</details>
+2. Why do models learn to guess instead of saying "I don't know"?
+   <details><summary>Answer</summary>Most benchmarks give credit for a right answer and nothing for abstaining, so a model that guesses scores at least as well as one that abstains. The paper's proposed fix is changing how evaluations are scored so honest uncertainty is rewarded ("Why models hallucinate").</details>
+3. Summarising a pasted document or asking for a company's revenue: which is riskier and why?
+   <details><summary>Answer</summary>Asking for the revenue. The mental test is whether the model is transforming information you gave it or recalling it from memory, and recall from memory is the higher-risk case ("Which tasks are risky").</details>
+4. Does setting temperature to 0 stop hallucinations?
+   <details><summary>Answer</summary>No. It makes outputs repeatable, not true, and the model still cannot know things it does not know ("Common mistakes" and "Why models hallucinate").</details>

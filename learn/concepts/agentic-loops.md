@@ -1,7 +1,7 @@
 # Agentic Loops
 
 **In one line:** Build the loop that runs an agent (execute tool calls, feed results back, stop safely) with the limits and instrumentation that keep it reliable in production.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -137,3 +137,14 @@ In the research library:
 - [Self-Refine](../../papers/techniques/99-self-refine/summary.md) - iterate on your own output
 - [Build a Claude agent with MCP](../../build/projects/build-claude-agent-with-mcp.md) - hands-on project
 - [Agent frameworks compared](../../tools/comparisons/agent-frameworks.md) - when to use a framework
+
+## Check yourself
+
+1. Name three stop conditions an agentic loop can use.
+   <details><summary>Answer</summary>The "Stop conditions" section lists the model saying it is done (the end_turn stop reason), a maximum step count, no new tools called for N steps, a token budget, an external signal such as a cancel or timeout, and repeated identical actions. Any three count, and production loops want all of them.</details>
+2. In the minimum viable loop, what does your code do when the stop reason is tool_use?
+   <details><summary>Answer</summary>It runs each tool call the model asked for, packs the outputs into tool_result blocks, appends them to the messages as a user turn, and loops again ("The minimum viable loop").</details>
+3. Why can an agentic loop become expensive so quickly?
+   <details><summary>Answer</summary>Each iteration adds tokens because the prior context keeps growing, so 10 iterations of a 50K-token context is expensive fast. The page suggests capping steps, summarizing old turns, or using prompt caching for the static parts ("Where loops fail", cost runaway).</details>
+4. What could go wrong if a tool_result block produced by the model were allowed into the conversation, and how do you prevent it?
+   <details><summary>Answer</summary>The model would be inventing a tool result and the loop would treat it as real. The page says this is rare but has been observed, and the fix is to let tool results enter the messages only from your harness ("Where loops fail", hallucinated tool results).</details>

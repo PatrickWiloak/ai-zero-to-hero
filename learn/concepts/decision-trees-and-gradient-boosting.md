@@ -100,3 +100,14 @@ Grinsztajn, Oyallon and Varoquaux (2022) compared tree-based models against deep
 - Chen and Guestrin, "XGBoost: A Scalable Tree Boosting System" (2016): https://arxiv.org/abs/1603.02754
 - Grinsztajn, Oyallon and Varoquaux, "Why do tree-based models still outperform deep learning on tabular data?" (2022): https://arxiv.org/abs/2207.08815
 - Code in this page run locally with scikit-learn 1.9.1 on 2026-11-07, using the dataset bundled with scikit-learn (`load_breast_cancer`).
+
+## Check yourself
+
+1. How does a decision tree pick the question to ask at each step?
+   <details><summary>Answer</summary>It picks the single question that best separates the examples, meaning the two groups come out as pure as possible, measured by a score such as Gini impurity or entropy ("How one tree decides").</details>
+2. What is the difference between a random forest and gradient boosting?
+   <details><summary>Answer</summary>A random forest trains many trees independently on random resamples and averages their votes. Gradient boosting builds trees in sequence, each one trained to correct the errors left by the ones before it ("Ensembles: many weak trees beat one strong one").</details>
+3. In the page's table, what does a training accuracy of 1.000 next to a lower held-out accuracy tell you?
+   <details><summary>Answer</summary>It is the signature of memorising the training data, which is overfitting. The unlimited single tree scored 1.000 on training rows and 0.912 on held-out rows ("The overfitting problem").</details>
+4. A column called "refund issued" is used to predict cancellation and the scores look wonderful. What is likely wrong?
+   <details><summary>Answer</summary>The column is computed after the outcome, so it leaks the answer. Scores look great in testing and fail in production ("Common mistakes").</details>

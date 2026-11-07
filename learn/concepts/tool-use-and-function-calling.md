@@ -1,7 +1,7 @@
 # Tool Use and Function Calling
 
 **In one line:** Learn how a model asks your code to run a function and uses the result, so you can design tools the model calls correctly and safely.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -167,3 +167,14 @@ In the research library:
 - [Agent protocols explainer](../../explainers/ecosystem/agent-protocols.md) - MCP and the other protocols
 - [Agents explained](agents-explained.md) - tools in a loop
 - [Agent security](../../safety/security/agent-security.md) - limiting what a tool call can do
+
+## Check yourself
+
+1. Who actually runs the function in tool use, the model or your code?
+   <details><summary>Answer</summary>Your code does. The LLM only tells you which function to call and with which arguments ("The one-line answer").</details>
+2. What does each tool definition contain, and which part does the heavy lifting?
+   <details><summary>Answer</summary>A name, a natural-language description and a JSON schema of the input parameters. The description does the heavy lifting because the model uses it to decide whether to call the tool ("What you give the model").</details>
+3. A user doesn't supply a customer ID and the model invents 999. What causes this and what is the fix?
+   <details><summary>Answer</summary>This is hallucinated arguments, because you didn't tell the model what to do when the ID is unknown. Add to the description something like "If the customer_id is unknown, ask the user instead of guessing" ("When tool use fails").</details>
+4. How is a search_docs tool different from RAG?
+   <details><summary>Answer</summary>RAG embeds the query, retrieves chunks deterministically and prepends them to the prompt, so the model never decides whether to retrieve. Tool-based search lets the model decide when and how often to search, which is more flexible but slower and harder to debug ("Tool use is not retrieval").</details>

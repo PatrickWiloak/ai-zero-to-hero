@@ -1,7 +1,7 @@
 # Guardrails and Safety
 
 **In one line:** Layer input checks, output checks, policy and runtime limits around an LLM app, knowing which layers actually stop harm and which only look like they do.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -144,3 +144,14 @@ In the research library:
 - [Frontier safety frameworks](../../explainers/policy/frontier-safety-frameworks.md) - what the labs commit to
 - [Prompt injection defense](../../safety/security/prompt-injection-defense.md) - the hardest guardrail problem
 - [OWASP Top 10 for LLMs](../../safety/security/owasp-llm-top-10.md) - the shared risk list
+
+## Check yourself
+
+1. Which three pinch points does the page say need their own guardrails?
+   <details><summary>Answer</summary>Input guardrails (before the model), output guardrails (after the model) and tool-call guardrails (between the model and side effects) ("Where things go wrong").</details>
+2. Why is prompt injection hard to defend against?
+   <details><summary>Answer</summary>The model does not natively distinguish data from a webpage from instructions from the developer, because both are just tokens. There is no perfect defense, so the answer is defense in depth ("Prompt injection").</details>
+3. An app guards its text output but not its tool calls. What can go wrong?
+   <details><summary>Answer</summary>The model can say "I won't reveal that" out loud while invoking a tool such as send_email_to_attacker(secret). The page says tool calls are output too ("Common pitfalls", forgetting the side channels).</details>
+4. Why does the page say not to put API keys in a system prompt, and what to do instead?
+   <details><summary>Answer</summary>The model can read the system prompt and may leak it. Pass secrets out-of-band, or keep them in tool implementations the model cannot read ("Common pitfalls", confidential data in system prompts).</details>

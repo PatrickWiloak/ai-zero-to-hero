@@ -1,7 +1,7 @@
 # AI Cost Basics
 
 **In one line:** Turn "dollars per million tokens" into a cost per request, per user and per month for your own application, find which of the four prices on a price sheet dominates your bill, and know the five levers (model choice, caching, batching, trimming context, capping output) that cut it.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -157,3 +157,14 @@ Running an open-weight model on your own GPUs swaps a per-token price for a per-
 - Google, "Gemini Developer API pricing", table-checked 2026-10-22 (3.5 Flash-Lite standard and batch; Gemini 4 Argon and 3.8 Flash promo prices and end dates): https://ai.google.dev/gemini-api/docs/pricing
 - Google Cloud, "Generative AI pricing" on Gemini Enterprise Agent Platform (grounding prices), read 2026-10-21: https://cloud.google.com/gemini-enterprise-agent-platform/generative-ai/pricing
 - Calculator output above produced on 2026-10-21 from the Anthropic prices listed.
+
+## Check yourself
+
+1. A price sheet is really four prices. What are they?
+   <details><summary>Answer</summary>Input, output, cached input (a repeated prompt prefix at a tenth of the input price or less) and batch (about half price, results within hours) ("The short version").</details>
+2. Why does input usually dominate the bill for chat and RAG apps, while output dominates for reasoning models?
+   <details><summary>Answer</summary>In chat and RAG apps the system prompt, retrieved documents, tool definitions and conversation history are resent on every call, which makes input large. Reasoning models bill their thinking tokens as output ("The short version" and "What you are billed for").</details>
+3. In the support-assistant worked example, which saves more money: shortening the answer or shortening the retrieved context?
+   <details><summary>Answer</summary>Shortening the retrieved context. Input is about 80% of the bill, so shortening the answer barely matters while shortening the retrieved context matters a lot ("A worked example").</details>
+4. Why does self-hosting an open-weight model only win in some situations?
+   <details><summary>Answer</summary>The GPU costs the same whether it is busy or idle, so self-hosting only wins with steady, high volume or a hard requirement to keep data on your hardware. At low or spiky volume a hosted API is almost always cheaper ("Hosted API or self-hosted?").</details>

@@ -1,7 +1,7 @@
 # Context Windows and Management
 
 **In one line:** Budget what goes into each model call (system prompt, history, retrieved docs, tools, output) so answers stay accurate and cost stays predictable.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -144,3 +144,14 @@ In the research library:
 
 - Liu et al., "Lost in the Middle: How Language Models Use Long Contexts" (2023): https://arxiv.org/abs/2307.03172
 - Anthropic, pricing: https://www.anthropic.com/pricing
+
+## Check yourself
+
+1. Which things count toward the context window in a single call?
+   <details><summary>Answer</summary>Everything in the call: the system prompt, the conversation history, retrieved documents, tool definitions, and also the response the model generates ("The one-line answer" and "What counts as context").</details>
+2. What is the "lost in the middle" effect and how should it change the way you order retrieved chunks?
+   <details><summary>Answer</summary>LLMs attend more strongly to the start and end of a long context than to the middle, so a relevant chunk buried at position 50 of 100 is often missed. For RAG, rank by relevance and put the best chunk first or last ("Lost in the middle").</details>
+3. What is the difference between truncation and summarization as ways to stay inside the budget?
+   <details><summary>Answer</summary>Truncation drops the oldest turns, which is simple but useless when you need long-term memory. Summarization replaces earlier turns with a model-written summary, which loses some fidelity but keeps the budget bounded ("Strategies for staying inside the budget").</details>
+4. In the doc-Q&A example, what would happen if you skipped retrieval and put the full 200K-token document in the prompt?
+   <details><summary>Answer</summary>The same query would cost about $0.60 instead of about $0.03, roughly 20 times more expensive, and the answer often gets worse ("A worked example").</details>

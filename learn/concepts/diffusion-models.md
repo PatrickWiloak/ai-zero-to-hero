@@ -1,7 +1,7 @@
 # Diffusion Models
 
 **In one line:** Diffusion models make images (and video and audio) by starting from pure random noise and removing it a little at a time, guided by your text prompt; this page explains the idea, why it works, how text steers it, and what the main variants are, with a small runnable example of the noising process.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -137,3 +137,14 @@ Diffusion is not the only approach today. Language-model-style systems can gener
 - Lipman et al., "Flow Matching for Generative Modeling" (2022): https://arxiv.org/abs/2210.02747
 - Esser et al., "Scaling Rectified Flow Transformers for High-Resolution Image Synthesis" (Stable Diffusion 3, 2024): https://arxiv.org/abs/2403.03206
 - OpenAI, "Video generation models as world simulators" (Sora technical report, February 2024): https://openai.com/index/video-generation-models-as-world-simulators/
+
+## Check yourself
+
+1. What is a diffusion model trained to predict during the noising game?
+   <details><summary>Answer</summary>It is shown a real image with a known amount of random noise added, plus the noise level t, and is asked to predict the exact noise that was added ("Training: the noising game").</details>
+2. How does a diffusion model generate a new image?
+   <details><summary>Answer</summary>It starts from pure random noise, asks the network to predict the noise at the highest noise level, subtracts part of it, and repeats at lower levels down to zero. Early steps set layout and colours while later steps add fine detail ("Generation: running it backwards").</details>
+3. Why does latent diffusion run so much faster than diffusion on full images?
+   <details><summary>Answer</summary>It denoises a compressed latent made by an autoencoder, which is many times smaller than the image, and decodes to a full-size image only at the end. This is what made generation possible on consumer GPUs ("Latent diffusion: making it affordable").</details>
+4. What happens if you crank classifier-free guidance to the maximum?
+   <details><summary>Answer</summary>The image follows the prompt very literally but looks harsh and over-saturated. The page says moderate values usually look best ("How text steers the image" and "Common mistakes").</details>

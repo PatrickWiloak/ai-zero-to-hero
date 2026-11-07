@@ -1,7 +1,7 @@
 # Structured Outputs
 
 **In one line:** Force model output to match a JSON schema when it feeds code, and know when schema-constrained output hurts quality instead of helping.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -149,3 +149,14 @@ In the research library:
 - [Toolformer](../../papers/techniques/24-toolformer/summary.md) - structured calls as a learned skill
 - [Tool use and function calling](tool-use-and-function-calling.md) - the closest relative
 - [Structured extraction pipeline](../../build/projects/structured-extraction-pipeline.md) - hands-on project
+
+## Check yourself
+
+1. What are the three approaches to getting JSON out of a model, from weakest to strongest?
+   <details><summary>Answer</summary>Prompt-based ("please return JSON"), JSON mode (syntactically valid JSON but no schema enforced) and schema-constrained output, where the decoder can only emit tokens that keep the output valid against your schema ("The mechanism").</details>
+2. Why is tool use described as structured output?
+   <details><summary>Answer</summary>A tool's input is already a JSON schema, so the model's arguments are JSON-conformant. On Anthropic the canonical way to get structured output is to define a tool you don't plan to execute and treat its arguments as the response ("Tool use is structured output").</details>
+3. What happens if you mark a field like phone_number as required when it may be missing?
+   <details><summary>Answer</summary>The model may invent a number to satisfy the constraint. Make optional fields optional so it can omit what it can't confidently fill ("What schemas can do" and "Common pitfalls").</details>
+4. Name two cases where you should not use structured outputs.
+   <details><summary>Answer</summary>Open-ended creative output such as poetry or summaries, when you are unsure what fields you need, or very large outputs with deeply nested schemas ("When NOT to use it").</details>

@@ -36,6 +36,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] 2026-10-21 Split from cloud-data-ai-security-zero-to-hero on 2026-10-21; AI cert guides wired in as `certifications/` (index `certs.json`, generated hub + nav, flashcard pages).
 - [x] 2026-11-07 Flashcard generator ported (`scripts/build_flashcards.py`, runs in `build_manifest.py`); decks added for CCDV-F (35) and Databricks GenAI Associate (20).
 - [ ] 2026-11-15 Flashcards still missing (hub shows "-"): add `- **Term** - definition` Key terms to Databricks ML Professional notes (ML Associate done 2026-11-07) (verify vs docs), NVIDIA ADS + GenAI LLMs Professional after the rewrite; `python3 scripts/build_flashcards.py --report` lists them.
+- [x] 2026-11-07 "Check yourself" quiz (3-4 questions, collapsed answers) added to all 38 `learn/concepts/` pages; strict build verified. When a concepts page changes, re-check its quiz still matches the text.
 - [ ] 2027-04-19: re-review every guide page (180-day stale warning starts).
 
 ## Certifications (moved in from the old cloud repo TODO, 2026-10-21)

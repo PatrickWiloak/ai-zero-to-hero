@@ -1,7 +1,7 @@
 # Prompt Engineering
 
 **In one line:** Write prompts that work reliably: clear instructions, structure, examples and constraints, tested against a small eval set rather than by feel.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -167,3 +167,14 @@ In the research library:
 - [Reasoning models explainer](../../explainers/concepts/reasoning-models.md) - why some models no longer need CoT prompts
 - [Structured outputs](structured-outputs.md) - when the output feeds code
 - [Evals for LLMs](evals-for-llms.md) - how to know a prompt change helped
+
+## Check yourself
+
+1. What are the three roles in a chat model's input, and where should standing instructions go?
+   <details><summary>Answer</summary>System (instructions that govern behavior), user (the actual question or input) and assistant (the model's response). Standing instructions belong in the system message, which the page calls one of the highest-leverage moves ("The roles you should know").</details>
+2. Why does the page say the 'engineering' in prompt engineering is the iteration loop?
+   <details><summary>Answer</summary>Real prompt engineering is a tight loop: write a prompt, run it on 10-20 representative inputs, look at failures, adjust, re-run to check old wins still pass, and add new failures to the test set. Without a test set you are vibing ("The iteration loop").</details>
+3. If every frontier model fails at your task, will more prompt tweaking fix it?
+   <details><summary>Answer</summary>No. If the model is missing knowledge or the math is too hard, reach for retrieval, tools or decomposition instead. A lot of 'the model is dumb' is really 'the model never had access to the answer' ("When NOT to bother iterating on the prompt").</details>
+4. Why should you pin model versions in production?
+   <details><summary>Answer</summary>A prompt that worked on a model in March may behave differently on a model with the same name in October, so treat prompt plus model as a unit and re-eval when either changes ("Models drift").</details>

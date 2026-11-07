@@ -1,7 +1,7 @@
 # Memory for Agents
 
 **In one line:** Give an agent the right kind of memory (the context window for now, summaries for long sessions, a persistent store for facts across sessions, and files or instructions for durable knowledge), decide what gets written and what gets recalled, and avoid the privacy and poisoning problems that come with anything a model remembers.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -152,3 +152,14 @@ Some of the most useful memory is not about the user but about **how to do the j
 - AWS, "What is Amazon Bedrock AgentCore?" (Memory service): https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html
 - OpenAI Help Center, "Memory in ChatGPT" (saved memories, reference chat history, improved memory and summary), read 2026-10-22: https://help.openai.com/en/articles/8590148-memory-faq
 - Code output above produced on 2026-10-21.
+
+## Check yourself
+
+1. What are the four layers of agent memory?
+   <details><summary>Answer</summary>Working memory (the context window), session memory (one long conversation or task), long-term memory (facts and preferences across sessions) and procedural memory (durable instructions and skills such as CLAUDE.md) ("The four layers").</details>
+2. According to the page, what are the hard parts of agent memory, and what is the easy part?
+   <details><summary>Answer</summary>Writing (what is worth remembering and how to update or forget it) and recalling (finding the few relevant memories without flooding the context) are hard. Storage is the easy part ("The short version").</details>
+3. In the page's simple long-term store example, why did the query about deploying miss the Thursday memory?
+   <details><summary>Answer</summary>The query said "deploy" and the memory said "deploys", and plain word overlap does not know they mean the same thing. That is the case for embedding-based recall combined with keyword search ("Long-term memory: write, store, recall").</details>
+4. What is memory poisoning and what would happen if you ignored it?
+   <details><summary>Answer</summary>If an agent reads a malicious page and saves an instruction from it, the attack persists into every future session. The page says to restrict what can be written, record each memory's source, and treat recalled memories as data, not instructions ("Privacy, safety and poisoning").</details>

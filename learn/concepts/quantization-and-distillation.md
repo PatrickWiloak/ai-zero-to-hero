@@ -1,7 +1,7 @@
 # Quantization and Distillation
 
 **In one line:** Shrink a model by storing weights at lower precision (quantization) or training a smaller student (distillation), and measure the quality you lose on your own task.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -125,3 +125,14 @@ In the research library:
 - [Knowledge distillation](../../papers/techniques/134-knowledge-distillation/summary.md) - the original student-teacher paper
 - [Mixed precision training](../../papers/techniques/143-mixed-precision-training/summary.md) - lower precision during training
 - [Run Llama on a single GPU](../../build/projects/run-llama-on-single-gpu.md) - hands-on with an AWQ model
+
+## Check yourself
+
+1. What is the difference between quantization and distillation?
+   <details><summary>Answer</summary>Quantization keeps the same model but stores its weights at lower precision. Distillation trains a smaller student model to mimic a larger teacher model ("The one-line answer").</details>
+2. How big is a 70B model at FP16 versus INT4?
+   <details><summary>Answer</summary>About 140 GB at FP16 (2 bytes per parameter) and about 35 GB at INT4 (0.5 bytes per parameter) ("Quantization").</details>
+3. Name two situations where quantization breaks things.
+   <details><summary>Answer</summary>Tiny models lose more relative quality, long-context performance degrades faster, and math and code can degrade visibly even when chat seems fine ("When quantization breaks things").</details>
+4. Why can a distilled 7B model beat its 70B teacher on a specific task?
+   <details><summary>Answer</summary>The student concentrates its capacity on the narrow task it was distilled for, but it does not generalize beyond the distribution it saw ("Why labs do this" and "When distillation breaks").</details>

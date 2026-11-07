@@ -1,7 +1,7 @@
 # MCP Explained
 
 **In one line:** Learn what the Model Context Protocol standardizes (tools, resources, prompts) so you can write one server and plug it into any MCP client.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -142,3 +142,14 @@ In the research library:
 
 - Anthropic, "Introducing the Model Context Protocol" (November 2024): https://www.anthropic.com/news/model-context-protocol
 - Model Context Protocol specification and docs: https://modelcontextprotocol.io
+
+## Check yourself
+
+1. What problem does MCP solve?
+   <details><summary>Answer</summary>Before MCP every AI app had its own glue code for tools, so a "search Postgres" tool needed a wrapper for each client. MCP standardizes it so you write a server once and plug it into any MCP-compatible client ("The one-line answer" and "Why it exists").</details>
+2. What are the three things an MCP server can expose?
+   <details><summary>Answer</summary>Tools (functions the model can call), resources (read-only data the model can attach to context) and prompts (reusable prompt templates the user can invoke) ("The shape").</details>
+3. When would you choose stdio transport over HTTP?
+   <details><summary>Answer</summary>Stdio suits giving a local client such as Claude Desktop access to something local like your Postgres, since the client spawns the server as a subprocess. HTTP suits a fleet of agents sharing a tool ("Transport").</details>
+4. If MCP standardizes the protocol, why do tool descriptions still matter?
+   <details><summary>Answer</summary>MCP standardizes the protocol but not the prompt engineering, so a poorly described tool is just as useless under MCP as before ("Common pitfalls").</details>

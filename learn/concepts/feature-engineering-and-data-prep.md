@@ -134,3 +134,14 @@ The tell is a score that looks too good. Treat a 0.99 on a hard business problem
 - scikit-learn user guide, "Common pitfalls and recommended practices" (data leakage): https://scikit-learn.org/stable/common_pitfalls.html
 - pandas documentation, "Working with missing data": https://pandas.pydata.org/docs/user_guide/missing_data.html
 - Code in this page run locally on 2026-11-07 (scikit-learn 1.9.1, pandas 3.1.1).
+
+## Check yourself
+
+1. What is data leakage?
+   <details><summary>Answer</summary>The model sees something at training time that it will not have at prediction time, such as information from the future or from the test set ("The short version" and "Data leakage, the silent killer").</details>
+2. Why fit preprocessing inside a pipeline on the training rows only?
+   <details><summary>Answer</summary>Scaling or imputing on the whole dataset before splitting lets test-set statistics leak into training. A pipeline fitted only on training folds prevents this, so you use fit_transform on training data and only transform on everything else ("Data leakage, the silent killer" and "A runnable example").</details>
+3. When do you need to scale numeric columns, and when not?
+   <details><summary>Answer</summary>Scale for models that use distances or weights on raw values, such as logistic regression, k-nearest neighbours, SVMs and neural networks. Tree models do not need it ("Numbers: scaling and shape").</details>
+4. Your model scores 0.99 on a hard business problem. What should you assume?
+   <details><summary>Answer</summary>Treat it as a bug report until proven otherwise, because a score that looks too good is the tell for leakage ("Data leakage, the silent killer").</details>

@@ -1,7 +1,7 @@
 # RAG Explained
 
 **In one line:** Learn how retrieval-augmented generation feeds your own data into a prompt at query time, and the failure modes to test for before you ship it.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -163,3 +163,14 @@ In the research library:
 - [Build a RAG pipeline](../../build/projects/build-rag-pipeline.md) - hands-on project
 - [Advanced RAG patterns](../../build/patterns/advanced-rag-patterns.md) - hybrid search, reranking, query rewriting
 - [Vector database decision matrix](../../tools/decisions/vector-database.md) - choosing a store
+
+## Check yourself
+
+1. What are the two phases of the RAG pipeline?
+   <details><summary>Answer</summary>Indexing (collect, chunk, embed and store documents in a vector DB, once or when docs change) and query (embed the question, retrieve the K nearest chunks, build a prompt, send to the LLM and return the answer, often with citations) ("The pipeline").</details>
+2. Why are 'ONLY' and the 'I don't have that information' escape hatch described as load-bearing in the prompt template?
+   <details><summary>Answer</summary>Without them the model falls back to its training knowledge and gives a confident answer that didn't come from your docs ("A minimal prompt template").</details>
+3. What goes wrong if chunks are too small, and what if they are too big?
+   <details><summary>Answer</summary>Too small and each chunk lacks context, so retrieval finds the right string but the model cannot ground itself. Too big and the vectors get muddied, so retrieval returns chunks that are only kind of relevant ("Chunking is the hard part").</details>
+4. Why can't RAG answer 'How many customers signed up last month?' well?
+   <details><summary>Answer</summary>It requires counting across many records, not retrieval, so the top few chunks won't get you there. You need SQL, function calling or a tool ("When RAG fails").</details>

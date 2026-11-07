@@ -1,7 +1,7 @@
 # Speech AI: ASR and TTS
 
 **In one line:** Understand how speech recognition (ASR, speech-to-text) and speech synthesis (TTS, text-to-speech) work, how to measure them (word error rate, latency, naturalness), which options exist as of 2026-10 from open Whisper to hosted and realtime APIs, and the mistakes that make voice features feel broken.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -130,3 +130,14 @@ How to choose: run 30 to 60 minutes of **your own** audio through two or three c
 - Kokoro-82M model card: https://huggingface.co/hexgrad/Kokoro-82M
 - Word error rate definition: https://en.wikipedia.org/wiki/Word_error_rate
 - WER function above run on 2026-10-21 (outputs shown).
+
+## Check yourself
+
+1. What is word error rate and how is it calculated?
+   <details><summary>Answer</summary>WER is (substitutions + deletions + insertions) divided by the number of words in the reference, which is the number actually spoken ("The short version" and "Measuring ASR: word error rate").</details>
+2. Why should you use voice activity detection before transcribing with a Whisper-style model?
+   <details><summary>Answer</summary>On silence, music or noise these models can hallucinate fluent text nobody said, including repeated phrases. VAD trims silence first ("How speech recognition works").</details>
+3. What is the trade-off between the cascade (ASR, LLM, TTS) and speech-to-speech models?
+   <details><summary>Answer</summary>The cascade is simple, debuggable and lets you swap any part, but each stage adds delay and the text step drops tone of voice. Speech-to-speech handles interruptions and keeps cues like hesitation and emphasis, but gives less control over exactly what is said, harder logging and evaluation, and higher cost per minute ("Speech-to-speech and realtime models").</details>
+4. A vendor quotes a 5% WER. Why shouldn't you trust that for your call-centre audio?
+   <details><summary>Answer</summary>Published WERs come from cleaner data and vendor-reported figures are not comparable across vendors. A 5% WER on read audiobooks can be 20% on a noisy line with accents and jargon, so test on 30 to 60 minutes of your own audio ("Options as of 2026-10-21" and "Common mistakes").</details>

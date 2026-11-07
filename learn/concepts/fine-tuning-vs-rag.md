@@ -1,7 +1,7 @@
 # Fine-Tuning vs RAG
 
 **In one line:** Decide between fine-tuning (change how the model behaves) and RAG (change what it knows), and default to RAG unless you can say why not.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -120,3 +120,14 @@ In the research library:
 - OpenAI, fine-tuning guide: https://platform.openai.com/docs/guides/fine-tuning
 - Anthropic, "Fine-tune Claude 3 Haiku in Amazon Bedrock" (2024): https://www.anthropic.com/news/fine-tune-claude-3-haiku
 - Hu et al., "LoRA" (2021): https://arxiv.org/abs/2106.09685
+
+## Check yourself
+
+1. In one sentence each, what do fine-tuning and RAG change?
+   <details><summary>Answer</summary>Fine-tuning changes how the model behaves by retraining it on your examples. RAG changes what the model knows by giving it your data at query time ("The one-line answer").</details>
+2. Name three reasons the page gives for defaulting to RAG.
+   <details><summary>Answer</summary>RAG is cheaper, updates instantly when data changes, can cite sources, does not lock you to a model version, and works with frontier models. Any three count ("The default answer for most teams: RAG").</details>
+3. A narrow task classifies 10M support tickets a day into 50 categories. Why does fine-tuning win here and RAG does not help?
+   <details><summary>Answer</summary>A fine-tuned 7B open model on your own GPUs is dramatically cheaper than calling a frontier model, and the task is not knowledge-bound, so RAG adds nothing ("When fine-tuning genuinely wins").</details>
+4. Your RAG system is not accurate enough. What does the page say to do before reaching for fine-tuning?
+   <details><summary>Answer</summary>Audit retrieval quality first, because bad retrieval looks like a model problem and isn't. Fix chunking and add reranking ("When to revisit your choice").</details>

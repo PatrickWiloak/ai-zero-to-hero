@@ -1,7 +1,7 @@
 # Evals for LLMs
 
 **In one line:** Build a test suite for your LLM app (representative inputs, a definition of good, automated scoring) so prompt and model changes are measured instead of guessed.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -176,3 +176,14 @@ In the research library:
 - [Human preference arenas](../../explainers/benchmarks/human-preference-arenas.md) - pairwise human ratings at scale
 - [Set up an eval harness](../../build/projects/set-up-eval-harness.md) - hands-on project
 - [LLM observability tools](../../tools/comparisons/llm-observability.md) - tracing and online evals
+
+## Check yourself
+
+1. What three things does a basic eval need?
+   <details><summary>Answer</summary>A dataset of 50-500 input and ideal output pairs, a grader (code or another LLM) that decides if an output is good, and a runner that applies the prompt to the dataset and reports scores ("The shape of a basic eval").</details>
+2. Why should an LLM judge be a different model from the one being evaluated?
+   <details><summary>Answer</summary>Otherwise it is marking its own homework. The judge also has its own biases, so you should calibrate it against human ratings on a sample ("Grading: how to decide if output is good").</details>
+3. Why evaluate retrieval and answer quality separately in a RAG system?
+   <details><summary>Answer</summary>Otherwise you cannot tell which one broke when scores drop ("Specific metrics for specific tasks", Retrieval).</details>
+4. What goes wrong if your eval set is written from your own prompt's correct outputs?
+   <details><summary>Answer</summary>You will never catch a regression, so the page says to source cases from real cases instead and to add every production failure as a permanent case ("Common mistakes").</details>

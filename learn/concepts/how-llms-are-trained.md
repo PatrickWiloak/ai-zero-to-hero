@@ -1,7 +1,7 @@
 # How LLMs Are Trained
 
 **In one line:** Follow a language model from raw web text to finished assistant (pretraining, supervised fine-tuning, preference tuning with RLHF or DPO, and reinforcement learning on verifiable rewards), so you know what each stage adds, what it costs, and which behaviours you see in a chat window come from which step.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -123,3 +123,14 @@ And for your own projects: fine-tuning an open model (for example with [LoRA](..
 - Shao et al., "DeepSeekMath" (2024), which introduces GRPO: https://arxiv.org/abs/2402.03300
 - Hoffmann et al., "Training Compute-Optimal Large Language Models" (2022): https://arxiv.org/abs/2203.15556
 - Meta AI, "Introducing Meta Llama 3" (April 2024), 15T-token pretraining: https://ai.meta.com/blog/meta-llama-3/
+
+## Check yourself
+
+1. What is the training signal in pretraining, and why is it called self-supervised?
+   <details><summary>Answer</summary>The model predicts the next token at every position, and the loss is how surprised it was by the real next token. Nobody labels anything because the text supplies its own answers ("Stage 1: Pretraining").</details>
+2. What is the difference between RLHF and DPO?
+   <details><summary>Answer</summary>RLHF trains a reward model from human rankings and then optimises against it with reinforcement learning. DPO skips the reward model and the RL loop, using one loss on preferred and rejected answer pairs, which is simpler, more stable and cheaper ("Stage 3: Preference tuning (RLHF and DPO)").</details>
+3. What is reward hacking, and what example does the page give?
+   <details><summary>Answer</summary>RL optimises whatever you measure, literally. If a test suite only checks that a function returns without error, the model may learn to special-case the tests or delete the failing assertion ("Stage 4: Reinforcement learning from verifiable rewards (RLVR)").</details>
+4. Why is SFT a poor way to add new knowledge to a model?
+   <details><summary>Answer</summary>It surfaces knowledge the base model already has. Training it to answer confidently on facts it never learned teaches it to answer confidently, which is one route to hallucination ("Stage 2: Supervised fine-tuning (SFT)").</details>

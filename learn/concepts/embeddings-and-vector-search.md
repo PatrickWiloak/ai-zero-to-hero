@@ -1,7 +1,7 @@
 # Embeddings and Vector Search
 
 **In one line:** Learn how text becomes vectors and how nearest-neighbor search over them powers semantic search and RAG, so you can choose models, chunking and indexes deliberately.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -161,3 +161,14 @@ In the research library:
 - [BERT](../../papers/language-models/03-bert/summary.md) - the encoder most embedding models descend from
 - [Vector database decision matrix](../../tools/decisions/vector-database.md) - picking where to store them
 - [Build a RAG pipeline](../../build/projects/build-rag-pipeline.md) - use embeddings end to end
+
+## Check yourself
+
+1. What is an embedding, and what matters about its numbers?
+   <details><summary>Answer</summary>A list of numbers (a vector) that represents the meaning of a piece of text. The numbers are meaningless by themselves, and what matters is the relative distances between vectors ("The one-line answer" and "What an embedding looks like").</details>
+2. What does a cosine similarity of 1.0, 0.0 and -1.0 mean?
+   <details><summary>Answer</summary>1.0 means identical direction (very similar meaning), 0.0 means orthogonal (unrelated), and -1.0 means opposite, which is rare with text embeddings ("How similar gets measured").</details>
+3. Why do vector databases use approximate nearest-neighbor search?
+   <details><summary>Answer</summary>Exact search compares the query to every vector, which is slow at a million vectors. Approximate algorithms such as HNSW trade a tiny amount of accuracy for a huge speed gain ("Approximate nearest neighbor (ANN)").</details>
+4. What would happen if you indexed half your corpus with one embedding model and half with another?
+   <details><summary>Answer</summary>Different models produce different vector spaces, so their vectors are not comparable and searches would give unreliable results. Pick one model and stick with it, re-embedding everything if you change ("Common pitfalls").</details>

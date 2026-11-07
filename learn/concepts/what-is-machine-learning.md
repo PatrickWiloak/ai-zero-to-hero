@@ -1,7 +1,7 @@
 # What Is Machine Learning?
 
 **In one line:** Machine learning is writing programs whose behaviour is learned from examples instead of spelled out in rules; this page explains the idea, the three main kinds of learning, how training and testing work, and how today's chatbots fit into the same picture.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -131,3 +131,14 @@ A model can only learn patterns that are present in its data. If the data is bia
 - scikit-learn, "Cross-validation: evaluating estimator performance" (train/test splits and overfitting): https://scikit-learn.org/stable/modules/cross_validation.html
 - Ouyang et al., "Training language models to follow instructions with human feedback" (2022): https://arxiv.org/abs/2203.02155
 - Kaplan et al., "Scaling Laws for Neural Language Models" (2020): https://arxiv.org/abs/2001.08361
+
+## Check yourself
+
+1. How does machine learning differ from ordinary programming?
+   <details><summary>Answer</summary>In ordinary programming a person writes the rules. In ML a person supplies examples and a learning algorithm finds the rules, stored as numbers called parameters or weights, and the result is a model ("The short version").</details>
+2. What is the difference between training and inference?
+   <details><summary>Answer</summary>Training is the slow, expensive step where parameters are adjusted to fit the examples. Inference is using the finished model on new inputs, which happens every time someone uses it ("The short version").</details>
+3. Why split data into training, validation and test sets?
+   <details><summary>Answer</summary>Checking a model on its training examples tells you nothing because it could just have memorised them. Training is what it learns from, validation compares choices during development, and the test set is locked away to estimate real-world performance once at the end ("Training, validation and testing").</details>
+4. What is self-supervised learning and why does it matter for language models?
+   <details><summary>Answer</summary>The labels come free from the data itself, such as hiding the next word of a sentence and predicting it. Because the internet supplies endless text, it lets you train on far more data than anyone could label by hand ("The three kinds of learning").</details>

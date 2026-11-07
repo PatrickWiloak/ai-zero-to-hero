@@ -1,7 +1,7 @@
 # Transformer Architecture
 
 **In one line:** Understand how attention lets a transformer weigh every token against every other, so you can read model specs and papers without getting lost.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -153,3 +153,14 @@ In the research library:
 
 - Vaswani et al., "Attention Is All You Need" (2017): https://arxiv.org/abs/1706.03762
 - Jay Alammar, "The Illustrated Transformer": https://jalammar.github.io/illustrated-transformer/
+
+## Check yourself
+
+1. What were the two problems with sequence models before transformers?
+   <details><summary>Answer</summary>They forgot, because the signal from token 1 got muddied passing through 100+ layers to influence token 100, and they couldn't parallelize, because you had to compute token 5 before token 6 ("Why it mattered").</details>
+2. What do the query, key and value vectors each represent in attention?
+   <details><summary>Answer</summary>Query is "here's what I'm looking for", key is "here's what I am", and value is "here's what I'll contribute if you attend to me". Dot-product scores of a query against every key are turned into weights for a weighted sum of values ("Attention, in plain English").</details>
+3. Where does most of a transformer's knowledge live, attention or the feed-forward networks?
+   <details><summary>Answer</summary>In the feed-forward networks, where most of the parameters are. Attention is the routing layer and the FFN is the storage layer ("Where the knowledge lives").</details>
+4. Why does doubling the context quadruple the attention compute?
+   <details><summary>Answer</summary>Attention compares every token to every other token, which is an O(n²) operation in sequence length. That is why 1M-token contexts are expensive even when supported ("The quadratic cost problem").</details>

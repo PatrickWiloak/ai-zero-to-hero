@@ -1,7 +1,7 @@
 # Neural Networks in Plain English
 
 **In one line:** A neural network is a big stack of simple adjustable calculations that learns by nudging millions or billions of numbers to reduce its mistakes; this page explains neurons, layers, weights, training and why scale matters, with no calculus and one small network you can run.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -144,3 +144,14 @@ We know exactly what calculations a trained network performs, because we can rea
 - Rich Sutton, "The Bitter Lesson" (2019): http://www.incompleteideas.net/IncIdeas/BitterLesson.html
 - 3Blue1Brown, "Neural networks" video series (visual intuition for layers and backpropagation): https://www.3blue1brown.com/topics/neural-networks
 - Goodfellow, Bengio and Courville, *Deep Learning* (MIT Press, 2016), chapter 6 "Deep Feedforward Networks": https://www.deeplearningbook.org/contents/mlp.html
+
+## Check yourself
+
+1. What does a single neuron compute?
+   <details><summary>Answer</summary>It multiplies each input by a weight, adds them up, adds a bias, then passes the total through an activation function ("The short version").</details>
+2. Why does the activation function matter when stacking neurons?
+   <details><summary>Answer</summary>Without the bend, stacking neurons would add nothing, because a stack of straight lines is still a straight line ("Start with one neuron").</details>
+3. List the steps of the training loop.
+   <details><summary>Answer</summary>Forward pass, measure the loss, backpropagation, update the weights by gradient descent, then repeat with the next batch of examples, millions of times ("How a network learns").</details>
+4. What happens if the learning rate is too big, and what if it is too small?
+   <details><summary>Answer</summary>Too big and training overshoots and becomes unstable. Too small and it takes forever ("How a network learns").</details>

@@ -1,7 +1,7 @@
 # Multimodal Models
 
 **In one line:** Learn how models take images, audio, video and PDFs alongside text, and when a multimodal call beats a dedicated OCR or speech pipeline.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -133,3 +133,14 @@ In the research library:
 - Anthropic, vision docs: https://docs.anthropic.com/en/docs/build-with-claude/vision
 - OpenAI, models: https://platform.openai.com/docs/models
 - Google, Gemini API models: https://ai.google.dev/gemini-api/docs/models
+
+## Check yourself
+
+1. How does a multimodal model treat an image, from the model's point of view?
+   <details><summary>Answer</summary>As another sequence of tokens, encoded by a vision encoder, that gets attended to alongside the text tokens. Paired training data puts all input types into a shared embedding space ("What \"multimodal\" actually means").</details>
+2. When should you use a dedicated OCR service instead of a multimodal LLM?
+   <details><summary>Answer</summary>When you need text out of a high-quality image such as a scanned form, because OCR is usually faster, cheaper and more accurate per character. Use the LLM for interpretation and OCR for extraction, or both in sequence ("When NOT to use multimodal").</details>
+3. You attach an image and ask the model to "draw a similar one". Why does this fail?
+   <details><summary>Answer</summary>Most multimodal LLMs are input-only on the visual side. Image generation is a separate model class, so you need a separate model for it ("Common pitfalls", confusing multimodal input with output).</details>
+4. Why does the page say to downsample a large screenshot before sending it?
+   <details><summary>Answer</summary>Each image consumes a chunk of the context window, typically 1-2K tokens, and a 4K screenshot resized to 1080p gives nearly identical answers at a fraction of the tokens ("Practical considerations").</details>

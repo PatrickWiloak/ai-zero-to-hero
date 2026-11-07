@@ -1,7 +1,7 @@
 # Prompt Caching
 
 **In one line:** Turn on prompt caching for any stable prompt prefix to cut input cost and latency, and structure prompts so the cache actually hits.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-07
 
 ---
 
@@ -153,3 +153,14 @@ In the research library:
 - Anthropic, prompt caching docs: https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching
 - OpenAI, prompt caching guide: https://platform.openai.com/docs/guides/prompt-caching
 - Anthropic, pricing: https://www.anthropic.com/pricing
+
+## Check yourself
+
+1. What is the difference between prefill and decode?
+   <details><summary>Answer</summary>Prefill processes every token of your prompt and computes attention key/value tensors, and it is most of the input cost and time-to-first-token. Decode generates new tokens one at a time. Caching reuses the prefill work for a stable prefix ("Why it works").</details>
+2. Why does putting a timestamp in the system prompt kill your cache?
+   <details><summary>Answer</summary>Caching works at the prefix level, so the prefix must be identical across calls, and any change earlier in the prompt invalidates everything after it. Move the timestamp to the user message ("What \"stable\" means").</details>
+3. When does caching not help?
+   <details><summary>Answer</summary>With highly variable prompts, low-volume apps where the write premium can outweigh savings within the TTL, prompts that change order, and tiny prompts below the provider's minimum ("When caching does NOT help").</details>
+4. In the worked example, why is a cached call so much cheaper?
+   <details><summary>Answer</summary>The 50,000 tokens of fixed docs are read from the cache at about 10% of the base input price instead of full price, giving $0.024 per cached call versus $0.159, about 6.6 times cheaper ("A worked example").</details>
