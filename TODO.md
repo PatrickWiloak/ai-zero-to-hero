@@ -203,3 +203,12 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] ~~Gap analysis pass: 19 summaries added (69-87) covering the modern diffusion pipeline, ResNet/U-Net/GQA, training systems, instruction tuning, retrieval, evaluation, interpretability and safety~~ ✅ done 2026-08-18
 - [x] ~~Publish `docs/GAPS.md` so the collection's boundaries and queue are explicit~~ ✅ done 2026-08-18
 - [x] 2026-10-27 CODE_OF_CONDUCT.md + PR template added (community health was 71%).
+
+## Content gaps (2026-11-07 review)
+
+Plan: [docs/CONTENT-GAPS.md](docs/CONTENT-GAPS.md) (pillars + certs; papers stay in GAPS.md). Wave 1 (run untested code) and the cert items are already listed above.
+
+- [ ] Wave 2: maths-for-ML day-one page; concept pages for trees/boosting, CNNs, RL basics, forecasting, feature engineering; tabular scikit-learn project.
+- [ ] Wave 3: careers - ML engineer, data scientist, AI PM, researcher roles; AI portfolio guide; AI PM interview.
+- [ ] Wave 4: playbooks (HR, legal, finance, product, design); use cases (healthcare, education); comparisons (image/video, speech, embeddings, no-code automation); multi-agent + guardrails patterns.
+- [ ] Wave 4: safety - AI privacy, AI incident response, deepfakes, bias testing, US state AI laws.
