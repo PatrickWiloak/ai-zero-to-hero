@@ -27,7 +27,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] 2026-10-27 (custom preview set) Patrick: upload `assets/brand/social-preview-1280x640.png` at GitHub Settings > General > Social preview (no API). Card is the shared Zero to Hero template (`assets/brand/social-preview.html`, 2026-10-21).
 - [ ] 2026-12-01 verify ChatGPT Business prices in `work/enablement/choosing-enterprise-ai-tools.md`: openai.com 403s curl and a headless browser (11-06). M365 Copilot prices, Cursor and Promptfoo deals verified at primary sources 11-06.
 - [ ] 2026-11-08: run the untested code in `build/projects/{chatbot-in-an-afternoon,structured-extraction-pipeline,voice-agent,prompt-injection-red-team}.md`.
-- [ ] 2026-11-08: run `build/projects/{build-a-coding-agent-loop,evaluate-an-agent-end-to-end}.md` against the live API (tested with a scripted stand-in model only) and replace the illustrative output.
+- [ ] run `build/projects/{build-a-coding-agent-loop,evaluate-an-agent-end-to-end}.md` against the live API (tested with a scripted stand-in model only) and replace the illustrative output.
 - [x] 2026-10-21 Refreshed the gen-AI table, prices and SDK samples in `tools/comparisons/cloud-ai-ml-services.md` from vendor pages.
 - [ ] 2026-12-01: re-check prices in `learn/concepts/ai-cost-basics.md` + `tools/comparisons/cloud-ai-ml-services.md` (Gemini 4 Argon promo ends 11-30, 3.8 Flash 12-31). Also `certifications/gcp/genai/` (states both promo and later rates).
 - [ ] Run `certifications/gcp/genai/` code samples against the live API: migrated by script to google-genai, checked for syntax and SDK shape only (2026-11-06).
