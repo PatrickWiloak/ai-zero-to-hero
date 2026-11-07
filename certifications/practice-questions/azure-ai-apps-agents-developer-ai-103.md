@@ -368,9 +368,9 @@ D. Disable image input and require typed receipts, so the agent only ever reads 
 </details>
 
 ### Question 22
-**Scenario:** An insurer must process 50,000 claim photos per month, returning damage type and severity from fixed lists with confidence scores so low-confidence results go to an adjuster. What should they build?
+**Scenario:** An insurer must process 50,000 claim photos per month, returning damage type and severity from fixed lists in a consistent schema so uncertain results can be routed to an adjuster. What should they build?
 
-A. A prompt to a multimodal model asking for damage type and severity as a short JSON object
+A. A prompt to a multimodal model asking it to describe the damage and severity in a short paragraph
 B. An Azure AI Search index with a vector field for each photo and a similarity query
 C. A custom Content Understanding analyzer with classify fields for damage type and severity
 D. A GPT-image edit workflow that marks the damage on each photo for the adjuster to review
@@ -380,7 +380,7 @@ D. A GPT-image edit workflow that marks the damage on each photo for the adjuste
 
 **Correct: C**
 
-**Why:** Content Understanding analyzers return schema-bound fields with confidence and grounding at scale, and classify fields choose from fixed lists. A free-form prompt gives no consistent schema or confidence. Search indexes retrieve; image editing generates.
+**Why:** Content Understanding analyzers return schema-bound fields at scale, and classify fields choose from fixed lists. A free-text description gives no fixed values to route on. (Learn documents per-field confidence and source for document analyzers; check that your image analyzer returns confidence before relying on it for routing.) Search indexes retrieve; image editing generates.
 </details>
 
 ---
@@ -484,7 +484,7 @@ D. Query vectors and indexed vectors come from different embedding models
 
 **Correct: D**
 
-**Why:** Similarity only works when query and document vectors come from the same embedding model; the vectorizer "must match the embedding model used to encode your content." Re-embed the index or revert the query model.
+**Why:** Similarity only works when query and document vectors come from the same embedding model; Microsoft's best practice is to "always use the same embedding models used to generate embeddings in the source documents." Re-embed the index or revert the query model.
 </details>
 
 ### Question 29

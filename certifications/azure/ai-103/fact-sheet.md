@@ -12,11 +12,11 @@ reading-time: 10 min
 **Certification earned:** Microsoft Certified: Azure AI Apps and Agents Developer Associate (AI-103 is the only exam required)
 **Level:** Associate (Microsoft lists it as Intermediate)
 **Role:** AI Engineer, Developer
-**Status:** Live. Skills measured as of 2026-04-16; study guide page updated 2026-10-15 (checked 2026-10-22)
+**Status:** Live. Skills measured as of 2026-04-16; study guide page last updated 2026-11-05 per Learn metadata (ms.date 2026-03-31); rechecked 2026-11-07
 **Replaces:** AI-102 (Azure AI Engineer Associate), retired 2026-06-30
 **Passing score:** 700
 **Duration:** 120 minutes ("You will have 120 minutes to complete this assessment"). The exam is proctored and "may have interactive components"
-**Number of questions:** Not published. Microsoft says most of its exams have 40-60 questions
+**Number of questions:** Not published on the AI-103 certification or study guide pages (rechecked 2026-11-07). The commonly quoted "40-60 questions" is general Microsoft guidance, not stated for AI-103 (unverified)
 **Cost:** Based on the country or region where the exam is proctored (shown at scheduling)
 **Languages:** English, Chinese (Simplified), Chinese (Traditional), French, German, Japanese, Korean, Italian, Portuguese (Brazil), Spanish. If your language is missing you can request 30 extra minutes
 **Retakes:** 24 hours after a first failed attempt; longer waits after that (Microsoft's retake policy)
@@ -184,4 +184,4 @@ In practice: you should be able to read and fix 30-60 lines of Python that call 
 
 - For a code question, check four things first: the endpoint (project endpoint, not a model URL), the credential (`DefaultAzureCredential` or managed identity), the model argument (the **deployment** name) and the call (`responses.create`, `agents.create_version`, `begin_analyze`, `search`).
 - When two answers both work, pick the one that is keyless, least-privilege, managed (less custom code) and cheaper at the stated scale.
-- Watch for retired names as distractors: LUIS, QnA Maker, Form Recognizer, DALL-E 3 (retired 2026-03-04), Assistants API threads and runs, Content Understanding pro mode.
+- Watch for retired names as distractors: LUIS, QnA Maker, Form Recognizer, DALL-E 3 (retired; exact date unverified, no longer in the model retirement schedule), Assistants API threads and runs, Content Understanding pro mode.

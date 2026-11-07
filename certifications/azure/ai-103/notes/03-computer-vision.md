@@ -104,7 +104,7 @@ edit_response = requests.post(
 
 ## Generating and editing video
 
-Foundry offers OpenAI's **Sora 2** (preview). Capabilities from Microsoft's overview: text to video, image to video, and video (generated) to video; **audio generation** in the output; and **remix**, which "make[s] targeted adjustments instead of regenerating from scratch." Safety is built in: "Sora 2 blocks all IP and photorealistic content," on top of Azure's input and output moderation.
+Foundry offers OpenAI's **Sora 2** (preview; the model retirement schedule lists sora-2 versions with retirement dates of 2026-07-15 and 2026-10-15, so check current availability in your region before building on it). Capabilities from Microsoft's overview: text to video, image to video, and video (generated) to video; **audio generation** in the output; and **remix**, which "make[s] targeted adjustments instead of regenerating from scratch." Safety is built in: "Sora 2 blocks all IP and photorealistic content," on top of Azure's input and output moderation.
 
 Video generation is **asynchronous**. You create a job, poll its status (`queued`, `in_progress`, `completed`, `failed`), then download the result. Sora 2 uses the Azure OpenAI v1 API and the OpenAI SDK's `videos` methods:
 
@@ -235,7 +235,7 @@ The objective lists watermarks, prohibited symbols, brand usage and potentially 
 
 ## Check yourself
 
-1. Which model should a new image-generation app use: DALL-E 3 or a GPT-image model? *(GPT-image; DALL-E 3 retired on 2026-03-04.)*
+1. Which model should a new image-generation app use: DALL-E 3 or a GPT-image model? *(GPT-image; DALL-E 3 is retired; exact date unverified.)*
 2. Only the sky in a photo may change. *(Edit with a mask whose transparent pixels cover the sky.)*
 3. Faces must stay recognisable after an edit. *(High `input_fidelity`; not available on gpt-image-1-mini.)*
 4. Your code waits for `videos.create` to return a finished MP4. What is wrong? *(Video generation is asynchronous: poll the job, then download.)*

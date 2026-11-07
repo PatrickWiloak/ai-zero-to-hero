@@ -35,7 +35,7 @@ Which Agent Framework builder chains agents in order?,SequentialBuilder (agent_f
 How do you require human approval for a tool in Agent Framework?,"@tool(approval_mode=""always_require"")",agents
 Which env var enables Foundry GenAI client tracing in Python?,AZURE_EXPERIMENTAL_ENABLE_GENAI_TRACING=true (before instrumenting),observability
 Are prompts recorded in traces by default?,No; set OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true (dev only),observability
-Which image model was retired on 2026-03-04?,DALL-E 3 (use GPT-image models),vision
+Which image model is retired and replaced by GPT-image models?,DALL-E 3 (use GPT-image models),vision
 In an image edit mask what do transparent pixels mean?,The area to edit,vision
 What does input_fidelity control?,How closely edits preserve the input image's style and features especially faces,vision
 What pattern does Sora 2 video generation use?,Asynchronous job: create; poll status; download,vision

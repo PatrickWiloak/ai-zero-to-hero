@@ -13,7 +13,7 @@ Microsoft's associate-level exam for engineers who build generative AI apps and 
 - **Exam code:** AI-103, "Developing AI Apps and Agents on Azure" (skills measured as of 2026-04-16)
 - **Passing score:** 700
 - **Duration:** 120 minutes (stated on the certification page); the exam is proctored and may include interactive components
-- **Question count:** not published; Microsoft says most exams have 40-60 questions
+- **Question count:** not published on the AI-103 pages (the usual "40-60" figure is general Microsoft guidance, unverified for this exam)
 - **Cost:** based on the country or region where the exam is proctored (shown when you schedule)
 - **Languages:** English, Chinese (Simplified), Chinese (Traditional), French, German, Japanese, Korean, Italian, Portuguese (Brazil), Spanish
 - **Prerequisites:** none required. Microsoft expects experience developing apps in **Python** and familiarity with general AI, generative AI and Azure services
