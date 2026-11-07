@@ -6,7 +6,7 @@ Content aggregation is building large scenes out of reusable parts: model kinds,
 
 ## Model kinds: building blocks of an aggregate
 
-The `kind` metadata "classifies prims in USD into a higher-level categorization than the prim's schema type provides". The core hierarchy: **model** is the root ("everything in the model hierarchy is a kind of model"); a **component** is a terminal model (a leaf that cannot contain other models); a **group** contains other models; an **assembly** is a group important enough to stand on its own, often a published asset; and a **subcomponent** marks articulable sub-trees within a component. A scene aggregates components into groups and assemblies, which lets tools select and traverse "things" rather than every mesh.
+The `kind` metadata classifies prims into a model role, a higher-level categorization than the prim's schema type (the Kind page calls kinds "useful for classifying scenegraph objects"). The core hierarchy: **model** is the root ("everything in the model hierarchy is a kind of model"); a **component** is a terminal model (a leaf that cannot contain other models); a **group** contains other models; an **assembly** is a group important enough to stand on its own, often a published asset; and a **subcomponent** marks articulable sub-trees within a component. A scene aggregates components into groups and assemblies, which lets tools select and traverse "things" rather than every mesh.
 
 **[📖 Kind: extensible categorization](https://openusd.org/release/api/kind_page_front.html)** - The core kind hierarchy and custom kinds
 
@@ -40,7 +40,7 @@ Three instances, one prototype, and the instance has no children of its own. You
 The docs give the rules, and I tested them:
 
 - You can override properties and metadata **on the instance prim itself** (`override on the instance prim itself works: ok`).
-- You cannot override descendants of an instance, including through proxies. The API raises an error and any such overrides already in scene description are silently ignored. Setting a color on the proxy's mesh raised `ErrorException` in my run.
+- You cannot override descendants of an instance, including through proxies. The API raises an error and (per the page) properties and metadata on descendant prims beneath instance prims cannot be overridden. Setting a color on the proxy's mesh raised `ErrorException` in my run.
 - To customize an instance's inside, make it non-instanceable (`after SetInstanceable(False) children: ['Crown']`), or add inherit or specializes arcs to the instance and edit the class they target.
 
 This is objective 2.2: to change the color of an instance-proxy mesh without losing the instancing, you cannot edit the proxy; you use the class-based route (an inherits or specializes arc to a class whose opinion drives the color), or you drive color from a primvar on the instance if the shader reads one (note 8), or accept de-instancing for that one instance. Which of these suits depends on the asset's design; the documentation states the first and the editing limits, and the primvar idea is a design pattern, not a documented procedure.

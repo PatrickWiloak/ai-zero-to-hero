@@ -34,7 +34,7 @@ The sublayer's opinion is "local" to the layer stack, so it beats the reference.
 
 ## 1.1 Change the strength of an opinion
 
-You change which opinion wins by changing where it is authored, not by editing the stronger one. Options: author in a stronger layer (an override in a layer higher in the root layer stack, or the session layer), use a different arc (a local opinion beats a referenced one), or change the **edit target** so that an edit lands in a different layer. The glossary describes edit targets as "a selector for where authored opinions land in a composed stage". Running with the edit target set to the session layer:
+You change which opinion wins by changing where it is authored, not by editing the stronger one. Options: author in a stronger layer (an override in a layer higher in the root layer stack, or the session layer), use a different arc (a local opinion beats a referenced one), or change the **edit target** so that an edit lands in a different layer. The glossary describes an edit target as specifying which contributing site in the stage's network of composition arcs should receive the authored opinions. Running with the edit target set to the session layer:
 
 ```python
 with Usd.EditContext(st, st.GetSessionLayer()):
@@ -132,7 +132,7 @@ The value is baked in (2.0) and the sublayer and reference are gone. Flattening 
 
 ## 1.2 and 1.10 Instancing style, and removing properties from instanced prims
 
-Which instancing style to use at different scales belongs to note 2. For 1.10, the OpenUSD instancing page is explicit: "You cannot override descendants of an instance"; to customize an instance you make it non-instanceable, or add inherit or specializes arcs to the instance and edit the class they target. To make an attribute produce no value you can **block** it: the glossary says "the value that an attribute produces can be blocked by an overriding opinion of None". I ran this:
+Which instancing style to use at different scales belongs to note 2. For 1.10, the OpenUSD instancing page is explicit that "properties and metadata on descendant prims beneath instance prims cannot be overridden"; to customize an instance you make it non-instanceable, or add inherit or specializes arcs to the instance and edit the class they target. To make an attribute produce no value you can **block** it: the glossary says "the value that an attribute produces can be blocked by an overriding opinion of None". I ran this:
 
 ```
 blocked attribute value: None | HasAuthoredValue: False

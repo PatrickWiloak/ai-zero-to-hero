@@ -12,7 +12,7 @@ Covered in note 5: `UsdGeom.PrimvarsAPI(mesh).CreatePrimvar(name, type, interpol
 
 ## 8.2 UsdPreviewSurface materials
 
-`UsdPreviewSurface` is a shading node in the OpenUSD spec (version 2.5) that provides "a basic physically based material for exchanging assets between content creation tools, game engines, and production renderers". It supports specular and metallic workflows and deliberately omits subsurface scattering and anisotropic highlights. Key inputs and defaults from the spec:
+`UsdPreviewSurface` is a shading node in the OpenUSD spec (the page header says version 2.5, while its changelog lists 2.6 as current head) that provides "a basic physically based material for exchanging assets between content creation tools, game engines, and production renderers". It supports specular and metallic workflows and deliberately omits subsurface scattering and anisotropic highlights. Key inputs and defaults from the spec:
 
 | Input | Type | Default | Meaning |
 |---|---|---|---|
