@@ -31,7 +31,7 @@ Autoencoder (software development),a network that compresses its input to a smal
 Conditioning (software development),giving a generative model extra input (such as a text embedding) so its output depends on it.,"notes,software-development"
 "GOVERN, MAP, MEASURE, MANAGE (trustworthy ai)","the four functions of the NIST AI RMF: cross-cutting governance, framing context, assessing risk and acting on it.","notes,trustworthy-ai"
 Trustworthy AI characteristics (NIST) (trustworthy ai),"valid and reliable, safe, secure and resilient, accountable and transparent, explainable and interpretable, privacy-enhanced, and fair with harmful bias managed.","notes,trustworthy-ai"
-NeMo Guardrails (trustworthy ai),"NVIDIA software that helps keep LLM applications accurate, on topic and secure.","notes,trustworthy-ai"
+NeMo Guardrails (trustworthy ai),"NVIDIA software that helps keep LLM applications accurate, appropriate, on topic and secure.","notes,trustworthy-ai"
 Model card (trustworthy ai),"a document that describes a model's intended use, data and limitations, supporting transparency.","notes,trustworthy-ai"
 Watermarking (trustworthy ai),embedding a signal in generated content so it can later be identified as AI-generated.,"notes,trustworthy-ai"
 Demographic parity difference (trustworthy ai),the difference between two groups' rates of receiving a positive outcome; a gap suggests the system treats the groups differently.,"notes,trustworthy-ai"

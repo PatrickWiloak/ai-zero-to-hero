@@ -8,7 +8,7 @@ All code ran on CPU in a scratch virtual environment (PyTorch 2.15.0+cpu, scikit
 
 ## Multimodal loss functions
 
-A multimodal model must learn that an image and its caption belong together. The standard tool is a **contrastive loss**: embed images and texts into the same space, compute all pairwise similarities in a batch, and train the matching pairs to score highest. OpenAI's CLIP paper describes the idea as learning image representations "by predicting which caption matches which image", trained on 400 million web image-text pairs, which lets the model recognize concepts described in plain language, including ones it never saw labeled.
+A multimodal model must learn that an image and its caption belong together. The standard tool is a **contrastive loss**: embed images and texts into the same space, compute all pairwise similarities in a batch, and train the matching pairs to score highest. OpenAI's CLIP paper describes its pre-training task as "predicting which caption goes with which image", run on a dataset of 400 million (image, text) pairs collected from the internet, which lets the model recognize concepts described in plain language, including ones it never saw labeled.
 
 **[📖 CLIP paper (arXiv 2103.00020)](https://arxiv.org/abs/2103.00020)** - Contrastive image-text pretraining and zero-shot transfer
 
