@@ -323,7 +323,6 @@ For detailed information on courses, practice tests, hands-on labs, communities,
 - **Cross-functional collaboration**
 
 ### Professional Growth
-- **30-50% salary increase** potential
 - **Access to cutting-edge AI projects**
 - **Leadership opportunities** in ML initiatives
 - **Consulting and advisory roles**
