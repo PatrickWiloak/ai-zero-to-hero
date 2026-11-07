@@ -63,4 +63,4 @@ hand.
 
 - FINRA Regulatory Notice 24-09: https://www.finra.org/rules-guidance/notices/24-09 (fetched 2026-11-07)
 - FTC, Gramm-Leach-Bliley Act business guidance: https://www.ftc.gov/business-guidance/privacy-security/gramm-leach-bliley-act (fetched 2026-11-07; page summary was short)
-- A CFPB page on AI and credit denials was tried and returned 404, so it is not cited.
+- CFPB, Circular 2022-03 (issued May 26, 2022): https://www.consumerfinance.gov/compliance/circulars/circular-2022-03-adverse-action-notification-requirements-in-connection-with-credit-decisions-based-on-complex-algorithms/ (fetched 2026-11-07). It says ECOA and Regulation B "do not permit creditors to use complex algorithms when doing so means they cannot provide" accurate reasons for adverse action. Secondary summaries say the CFPB withdrew this circular on May 12, 2025 (90 Fed. Reg. 20084, not fetched); the statute and Regulation B still apply, so treat the circular as background and check its current status.

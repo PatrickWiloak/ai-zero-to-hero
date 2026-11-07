@@ -38,7 +38,7 @@
 
 ## Frameworks to lean on
 
-The NIST Privacy Framework is a voluntary tool to identify and manage privacy risk; its page links Version 1.0 and shows a PF 1.1 initial public draft (publication date not stated on the page). NIST also published the AI RMF in January 2023 and a Generative AI Profile (AI 600-1) in July 2024. See [NIST AI RMF](nist-ai-rmf.md). Regulators in the EU and UK have published guidance on AI and data protection (the EDPB and the ICO); their pages could not be fetched for this review (HTTP 404 and 403), so read them directly if the GDPR applies to you.
+The NIST Privacy Framework is a voluntary tool to identify and manage privacy risk; its page links Version 1.0 and shows a PF 1.1 initial public draft (publication date not stated on the page). NIST also published the AI RMF in January 2023 and a Generative AI Profile (AI 600-1) in July 2024. See [NIST AI RMF](nist-ai-rmf.md). The European Data Protection Board adopted Opinion 28/2024 on AI models on 18 December 2024: whether a model is anonymous is judged case by case; legitimate interest as a legal basis for developing or deploying AI needs a three-step test; and unlawfully processed training data can affect whether the model can lawfully be deployed unless it was properly anonymised ([EDPB news item](https://www.edpb.europa.eu/news/news/2024/edpb-opinion-ai-models-gdpr-principles-support-responsible-ai_en), fetched 2026-11-07). The UK ICO's AI guidance pages returned HTTP 403, so read them directly at ico.org.uk if UK GDPR applies to you.
 
 ## Common mistakes
 
@@ -57,5 +57,6 @@ The NIST Privacy Framework is a voluntary tool to identify and manage privacy ri
 
 - Amazon Bedrock Guardrails: https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html (fetched 2026-11-07)
 - OWASP GenAI LLM Top 10: https://genai.owasp.org/llm-top-10/ (fetched 2026-11-07)
+- EDPB, Opinion 28/2024: https://www.edpb.europa.eu/news/news/2024/edpb-opinion-ai-models-gdpr-principles-support-responsible-ai_en (fetched 2026-11-07)
 - NIST Privacy Framework: https://www.nist.gov/privacy-framework (fetched 2026-11-07)
 - NIST AI RMF: https://www.nist.gov/itl/ai-risk-management-framework (fetched 2026-11-07)

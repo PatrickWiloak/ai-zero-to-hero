@@ -53,7 +53,7 @@ fit. Say which comments you could not place.
 
 - The US Equal Employment Opportunity Commission said in an October 28, 2021 announcement that AI tools used in employment decisions may "mask and perpetuate bias or create new discriminatory barriers to jobs," and that anti-discrimination laws still apply to them. It launched an initiative on AI and algorithmic fairness to help ensure compliance with the civil rights laws it enforces. (EEOC press release, read 2026-11-07.)
 - Practical test: if a tool filters candidates out, ask the vendor how it was tested for different outcomes by group, and test it on your own applicant data. See [bias and fairness testing](../../safety/governance/bias-and-fairness-testing.md).
-- Some places add specific duties (bias audits, candidate notice). See [US state AI laws](../../safety/governance/us-state-ai-laws.md). Local rules such as New York City's were not checked for this page.
+- Some places add specific duties (bias audits, candidate notice). See [US state AI laws](../../safety/governance/us-state-ai-laws.md). New York City's Local Law 144 allows an automated employment decision tool only with a bias audit completed within one year before use, public audit information and candidate notice (10 business days before use per the city's June 2023 clarification); the city began enforcing it on July 5, 2023 ([NYC DCWP](https://www.nyc.gov/site/dca/about/automated-employment-decision-tools.page), fetched 2026-11-07).
 
 ## Common mistakes
 

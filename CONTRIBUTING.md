@@ -41,6 +41,10 @@ essays, plus explainers on the things no single paper covers.
    `check_counts.py` is what catches a forgotten BROWSE card or a stale tally; CI runs the
    same three.
 
+   `python3 scripts/check_freshness.py` is advisory: it tables cert guides, explainers and concept
+   pages older than 120 days or undated (`--strict`, `--self-test`); the weekly `freshness.yml`
+   runs it and fails only past 365 days.
+
 ## Adding an explainer
 
 Explainers cover what is not one paper: a model family's lineage, a benchmark family, the
