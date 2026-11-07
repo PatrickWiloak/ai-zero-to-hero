@@ -191,3 +191,14 @@ Checklist before choosing the agent tier: the task is genuinely open-ended, the 
 - Agent SDK = Claude Code harness as a library, with built-in tools
 - Reliability: iteration caps, budgets, circuit breakers, human approval gates
 - Recognizing when a scenario does NOT justify an agent
+
+---
+
+## Key terms
+
+- **Workflow** - code-orchestrated: your program decides the steps and their order, and the model fills in the content of each step.
+- **Agent** - model-driven: Claude decides which tool to call next, observes the result, and keeps going until it judges the task done.
+- **Prompt chaining** - break a task into sequential API calls, each feeding the next, with optional programmatic gates between steps.
+- **Routing** - classify the input first, then dispatch to a specialized prompt and often a specialized model.
+- **Orchestrator-workers** - a central model call decomposes the task dynamically, farms subtasks to worker calls, and synthesizes the results.
+- **Evaluator-optimizer** - one call generates, a second evaluates against criteria, and the generator retries with the feedback until it passes or a retry cap hits.

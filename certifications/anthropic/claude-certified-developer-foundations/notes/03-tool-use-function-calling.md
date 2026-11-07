@@ -235,3 +235,12 @@ In production you would add streaming, observability, retries, and budget enforc
 - Parallel tool use semantics
 - Structured output via forced tool choice
 - Error response shape
+
+---
+
+## Key terms
+
+- **tool_use block** - the content block in an assistant message where Claude asks you to run a tool; it carries an id, a name and an input.
+- **tool_result block** - your answer to a tool_use, sent in a user message with a matching tool_use_id.
+- **tool_choice** - sets whether Claude may call tools: auto (Claude decides), any (must call one), tool (must call a named tool) or none.
+- **Forced tool choice** - the cleanest way to extract structured data: force one tool and read its input field as the output.

@@ -215,3 +215,12 @@ Often a 5-line config change moves you 50%+.
 - Batch API discount (50%) and SLA (24h)
 - Batch result correlation via `custom_id`
 - Per-item batch result statuses
+
+---
+
+## Key terms
+
+- **Prompt caching** - stores a prefix of your request server-side and replays it cheaply on later requests with the same prefix.
+- **cache_control** - the marker placed on a content block that makes it, and everything before it, a cache breakpoint.
+- **Batch API** - runs jobs asynchronously at a 50% discount, with results within 24 hours.
+- **custom_id** - your correlation key on each batch request, used to map results back to your records.

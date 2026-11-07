@@ -253,3 +253,11 @@ for block in resp.content:
 - Enabling citations and reading the response
 - Image input variants (base64, URL, file_id)
 - Combining files + caching + citations for production RAG
+
+---
+
+## Key terms
+
+- **Files API** - lets you upload content once and reference it by ID across many requests.
+- **Citations** - attribute spans of Claude's response to specific spans of source documents; enabled with citations: {enabled: true} on document blocks.
+- **document block** - the content block used to send a PDF, by base64, URL or file_id.

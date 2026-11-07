@@ -195,3 +195,12 @@ The Messages API is not natively idempotent at the API level. If you need at-mos
 - Note 07: SDKs
 
 If you understand this note, you can call Claude. The rest is composition.
+
+---
+
+## Key terms
+
+- **max_tokens** - the required cap on response length, including thinking and text.
+- **Content block** - a typed piece of a message: text, image, document, tool_use, tool_result or thinking.
+- **stop_reason** - the field that says why generation ended: end_turn, max_tokens, stop_sequence, tool_use, pause_turn or refusal.
+- **anthropic-version header** - pins the API contract so old behavior keeps working; new behavior lands behind new versions or opt-in beta headers.

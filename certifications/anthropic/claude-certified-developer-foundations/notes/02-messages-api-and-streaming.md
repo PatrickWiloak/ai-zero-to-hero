@@ -231,3 +231,12 @@ with client.messages.stream(
 - When to stream vs sync
 - How `usage` is reported and updated through streaming
 - The lifecycle of a tool_use response
+
+---
+
+## Key terms
+
+- **Server-Sent Events** - the transport streaming uses; each event is a JSON object on a data: line.
+- **message_start** - the first streaming event, delivering the initial Message object with empty content.
+- **Stateless conversation** - the server keeps no history, so every request must include the full message history you want Claude to see.
+- **stop_sequences** - strings that halt generation when Claude emits one; stop_reason becomes stop_sequence.

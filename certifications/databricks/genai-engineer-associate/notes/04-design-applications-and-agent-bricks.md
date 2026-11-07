@@ -57,3 +57,12 @@ The most reliable way through a design question is to restate the required outpu
 | Information Extraction | [Information Extraction](https://docs.databricks.com/aws/en/agents/agent-bricks/info-extraction) |
 | Supervisor Agent | [Supervisor Agent (legacy)](https://docs.databricks.com/aws/en/generative-ai/agent-bricks/multi-agent-supervisor) |
 | Building agents | [Use agents on Databricks](https://docs.databricks.com/aws/en/agents/custom-agents/build-agents) |
+
+---
+
+## Key terms
+
+- **Knowledge Assistant** - takes a set of documents and produces a question-answering chat agent that cites its sources; it does not fill a table or take actions.
+- **Information Extraction** - takes unstructured documents or text and returns structured fields that follow a schema you define, as JSON.
+- **Multiagent Supervisor** - coordinates several existing agents and tools and routes each part of a request to the right one; the docs call it Supervisor Agent.
+- **Genie space** - a curated natural-language interface over a set of Unity Catalog tables: you ask in plain English, Genie writes and runs the SQL, and returns the answer.

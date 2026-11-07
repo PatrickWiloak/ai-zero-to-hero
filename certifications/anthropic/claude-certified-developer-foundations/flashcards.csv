@@ -1,0 +1,36 @@
+Question,Answer,Tags
+How long is the Claude Certified Developer - Foundations (CCDV-F) exam?,120 minutes,exam-logistics
+How many questions are on the Claude Certified Developer - Foundations (CCDV-F) exam?,53 multiple-choice and multiple-response,exam-logistics
+What is the passing score for Claude Certified Developer - Foundations (CCDV-F)?,720 / 1000,exam-logistics
+What does the Claude Certified Developer - Foundations (CCDV-F) exam cost?,$125 USD,exam-logistics
+How is the Claude Certified Developer - Foundations (CCDV-F) exam delivered?,Pearson VUE - online proctored or test center,exam-logistics
+How long is Claude Certified Developer - Foundations (CCDV-F) valid for?,12 months (free non-proctored renewal via Partner Academy),exam-logistics
+max_tokens (claude api fundamentals),"the required cap on response length, including thinking and text.","notes,claude-api-fundamentals"
+Content block (claude api fundamentals),"a typed piece of a message: text, image, document, tool_use, tool_result or thinking.","notes,claude-api-fundamentals"
+stop_reason (claude api fundamentals),"the field that says why generation ended: end_turn, max_tokens, stop_sequence, tool_use, pause_turn or refusal.","notes,claude-api-fundamentals"
+anthropic-version header (claude api fundamentals),pins the API contract so old behavior keeps working; new behavior lands behind new versions or opt-in beta headers.,"notes,claude-api-fundamentals"
+Server-Sent Events (messages api and streaming),the transport streaming uses; each event is a JSON object on a data: line.,"notes,messages-api-and-streaming"
+message_start (messages api and streaming),"the first streaming event, delivering the initial Message object with empty content.","notes,messages-api-and-streaming"
+Stateless conversation (messages api and streaming),"the server keeps no history, so every request must include the full message history you want Claude to see.","notes,messages-api-and-streaming"
+stop_sequences (messages api and streaming),strings that halt generation when Claude emits one; stop_reason becomes stop_sequence.,"notes,messages-api-and-streaming"
+tool_use block (tool use function calling),"the content block in an assistant message where Claude asks you to run a tool; it carries an id, a name and an input.","notes,tool-use-function-calling"
+tool_result block (tool use function calling),"your answer to a tool_use, sent in a user message with a matching tool_use_id.","notes,tool-use-function-calling"
+tool_choice (tool use function calling),"sets whether Claude may call tools: auto (Claude decides), any (must call one), tool (must call a named tool) or none.","notes,tool-use-function-calling"
+Forced tool choice (tool use function calling),the cleanest way to extract structured data: force one tool and read its input field as the output.,"notes,tool-use-function-calling"
+Prompt caching (prompt caching and batch api),stores a prefix of your request server-side and replays it cheaply on later requests with the same prefix.,"notes,prompt-caching-and-batch-api"
+cache_control (prompt caching and batch api),"the marker placed on a content block that makes it, and everything before it, a cache breakpoint.","notes,prompt-caching-and-batch-api"
+Batch API (prompt caching and batch api),"runs jobs asynchronously at a 50% discount, with results within 24 hours.","notes,prompt-caching-and-batch-api"
+custom_id (prompt caching and batch api),"your correlation key on each batch request, used to map results back to your records.","notes,prompt-caching-and-batch-api"
+Files API (files api citations and pdfs),lets you upload content once and reference it by ID across many requests.,"notes,files-api-citations-and-pdfs"
+Citations (files api citations and pdfs),attribute spans of Claude's response to specific spans of source documents; enabled with citations: {enabled: true} on document blocks.,"notes,files-api-citations-and-pdfs"
+document block (files api citations and pdfs),"the content block used to send a PDF, by base64, URL or file_id.","notes,files-api-citations-and-pdfs"
+429 rate_limit_error (error handling rate limits retries),you hit a requests-per-minute or tokens-per-minute ceiling; retryable with backoff.,"notes,error-handling-rate-limits-retries"
+retry-after header (error handling rate limits retries),sent on 429 and 529 responses; honor it before falling back to your own backoff calculation.,"notes,error-handling-rate-limits-retries"
+Circuit breaker (error handling rate limits retries),"after N consecutive failures, stop sending requests for a cooldown and test occasionally with a single request.","notes,error-handling-rate-limits-retries"
+Exponential backoff with jitter (error handling rate limits retries),"the retry pattern for retryable errors, with capped attempts.","notes,error-handling-rate-limits-retries"
+Workflow (agents and workflows),"code-orchestrated: your program decides the steps and their order, and the model fills in the content of each step.","notes,agents-and-workflows"
+Agent (agents and workflows),"model-driven: Claude decides which tool to call next, observes the result, and keeps going until it judges the task done.","notes,agents-and-workflows"
+Prompt chaining (agents and workflows),"break a task into sequential API calls, each feeding the next, with optional programmatic gates between steps.","notes,agents-and-workflows"
+Routing (agents and workflows),"classify the input first, then dispatch to a specialized prompt and often a specialized model.","notes,agents-and-workflows"
+Orchestrator-workers (agents and workflows),"a central model call decomposes the task dynamically, farms subtasks to worker calls, and synthesizes the results.","notes,agents-and-workflows"
+Evaluator-optimizer (agents and workflows),"one call generates, a second evaluates against criteria, and the generator retries with the feedback until it passes or a retry cap hits.","notes,agents-and-workflows"

@@ -74,3 +74,12 @@ Memorize which judges need ground truth (`Correctness`, `RetrievalSufficiency`, 
 | AI Gateway | [AI Gateway](https://docs.databricks.com/aws/en/ai-gateway/) |
 | Evaluation | [MLflow GenAI evaluation](https://docs.databricks.com/aws/en/mlflow3/genai/eval-monitor/) |
 | Tracing | [MLflow Tracing](https://docs.databricks.com/aws/en/mlflow3/genai/tracing/overview) |
+
+---
+
+## Key terms
+
+- **Inference tables** - log each request and response sent to a serving endpoint into a Unity Catalog Delta table.
+- **Usage tracking** - records requests, tokens and latency per endpoint in system tables, so you can see who is using what and what it costs.
+- **Agent Monitoring** - runs your scorers automatically on a sample of live traces, so quality metrics keep updating after launch.
+- **Ground truth** - an expected answer or expected facts supplied with each evaluation record; Correctness, RetrievalSufficiency and ToolCallCorrectness need it.

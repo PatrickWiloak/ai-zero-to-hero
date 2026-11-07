@@ -239,3 +239,12 @@ def call_with_retry(messages, max_attempts=5):
 - Rate limit headers
 - Circuit breaker basics
 - Idempotency strategy
+
+---
+
+## Key terms
+
+- **429 rate_limit_error** - you hit a requests-per-minute or tokens-per-minute ceiling; retryable with backoff.
+- **retry-after header** - sent on 429 and 529 responses; honor it before falling back to your own backoff calculation.
+- **Circuit breaker** - after N consecutive failures, stop sending requests for a cooldown and test occasionally with a single request.
+- **Exponential backoff with jitter** - the retry pattern for retryable errors, with capped attempts.

@@ -12,7 +12,7 @@ Not sure which one to take? Start with the [AI certifications guide](../careers/
 |------|------|-------|--------|------:|-----------:|--------------------|
 | [Claude Certified Architect - Foundations (CCAR-F)](anthropic/claude-certified-architect-foundations/README.md) | CCAR-F | Foundational | Ready | 6 | [64](anthropic/claude-certified-architect-foundations/flashcards.csv) | [Questions](practice-questions/anthropic-claude-architect-foundations.md) |
 | [Claude Certified Associate - Foundations (CCAO-F)](anthropic/claude-certified-associate-foundations/README.md) | CCAO-F | Foundational | Ready | 7 | [72](anthropic/claude-certified-associate-foundations/flashcards.csv) | [Questions](practice-questions/anthropic-claude-associate-foundations.md) |
-| [Claude Certified Developer - Foundations (CCDV-F)](anthropic/claude-certified-developer-foundations/README.md) | CCDV-F | Foundational | Ready | 10 | - | [Questions](practice-questions/anthropic-claude-developer-foundations.md) |
+| [Claude Certified Developer - Foundations (CCDV-F)](anthropic/claude-certified-developer-foundations/README.md) | CCDV-F | Foundational | Ready | 10 | [35](anthropic/claude-certified-developer-foundations/flashcards.csv) | [Questions](practice-questions/anthropic-claude-developer-foundations.md) |
 | [Claude Certified Architect - Professional (CCAR-P)](anthropic/claude-certified-architect-professional/README.md) | CCAR-P | Professional | Ready | 9 | [43](anthropic/claude-certified-architect-professional/flashcards.csv) | [Questions](practice-questions/anthropic-claude-architect-professional.md) |
 | [Claude Prompt Engineering Specialist - Self-Directed Study Track](anthropic/claude-prompt-engineering-specialist/README.md) | - | - | Study track | 7 | - | [Questions](practice-questions/anthropic-claude-prompt-engineering-specialist.md) |
 
@@ -73,7 +73,7 @@ Not sure which one to take? Start with the [AI certifications guide](../careers/
 
 | Cert | Code | Level | Status | Notes | Flashcards | Practice questions |
 |------|------|-------|--------|------:|-----------:|--------------------|
-| [Databricks Certified Generative AI Engineer Associate](databricks/genai-engineer-associate/README.md) | - | Associate | Ready | 6 | - | [Questions](practice-questions/databricks-genai-engineer-associate.md) |
+| [Databricks Certified Generative AI Engineer Associate](databricks/genai-engineer-associate/README.md) | - | Associate | Ready | 6 | [20](databricks/genai-engineer-associate/flashcards.csv) | [Questions](practice-questions/databricks-genai-engineer-associate.md) |
 | [Databricks Certified Machine Learning Associate](databricks/ml-associate/README.md) | - | Associate | Ready | 5 | - | [Questions](practice-questions/databricks-ml-associate.md) |
 | [Databricks Certified Machine Learning Professional](databricks/ml-professional/README.md) | - | Professional | Ready | 5 | - | [Questions](practice-questions/databricks-ml-professional.md) |
 
