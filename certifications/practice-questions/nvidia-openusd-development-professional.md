@@ -1,589 +1,558 @@
 ---
-last-updated: 2026-10-22
+last-updated: 2026-11-07
 difficulty: advanced
 ---
 
 # NVIDIA-Certified Professional - OpenUSD Development (NCP-OUSD) - Practice Questions
 
-30 questions for NCP-OUSD prep, weighted toward composition (23%), then data exchange (15%), pipeline development (14%), data modeling (13%), debugging and troubleshooting (11%), content aggregation (10%), visualization (8%), and customizing USD (6%).
+30 original questions in the weights of NVIDIA's blueprint: Composition (23%, 8 questions), Content Aggregation (10%, 3), Customizing USD (6%, 2), Data Exchange (15%, 4), Data Modeling (13%, 4), Debugging and Troubleshooting (11%, 3), Pipeline Development (14%, 4) and Visualization (8%, 2). They are written for this guide, not taken from the exam or from NVIDIA's sample questions, and the explanations cite the code run in the notes or the OpenUSD documentation.
 
 > **Cert page:** [exams/nvidia/openusd-development-professional/](../nvidia/openusd-development-professional/README.md)
 
 ---
 
 ### Question 1
-**Scenario:** What is a prim in USD?
+**Section: Composition. Scenario:** A prim has size=1 from a reference and size=2 from a sublayer of the root layer, and nothing is authored on the prim itself. What does the composed stage report?
 
-A. The primary container object in a scene hierarchy, carrying a type, properties, and metadata
-B. A file format, either .usda or .usdc, that stores layers of scene description on disk in text or binary form
-C. A material shader node that computes how light reflects off the surface of a mesh when it is rendered
-D. A rendering pass
+A. 1, because references are always stronger than sublayers
+B. The stage reports an error because two opinions conflict
+C. 2, because local layer-stack opinions (including sublayers) are stronger than references
+D. 3, the average of both values
 
 <details>
 <summary>Answer</summary>
 
-**Correct: A**
+**Correct: C**
 
-**Why:** Prims are the nodes of the scene graph, identified by a path such as `/World/Vehicle/Wheel`. They have a type (Mesh, Xform, Camera, and so on), attributes, and relationships. Everything in a USD stage is addressed as a prim path.
+**Why:** LIVERPS puts Local first and References after VariantSets, and sublayers are part of the local layer stack. I ran exactly this: the property stack was [sub 2.0, ref 1.0] and the value 2.0.
 </details>
 
 ---
 
 ### Question 2
-**Scenario:** What does LIVRPS describe?
+**Section: Composition. Scenario:** Which is the correct order of composition arc strength, strongest first?
 
-A. The composition arc strength order: Local, Inherits, VariantSets, References, Payloads, Specializes
-B. A file naming convention
-C. A rendering pipeline order in which the engine processes lights, shadows, indirect bounces, and post effects
-D. A physically based material model that describes how surfaces reflect, absorb and transmit light in a renderer
+A. References, Payload, Local, Inherits, VariantSets, Specializes
+B. Local, Inherits, VariantSets, Relocates, References, Payload, Specializes
+C. Specializes, Payload, References, Local, Inherits, VariantSets
+D. Local, References, Payload, Inherits, VariantSets, Specializes
 
 <details>
 <summary>Answer</summary>
 
-**Correct: A**
+**Correct: B**
 
-**Why:** LIVRPS is the order in which USD resolves conflicting opinions about a prim's properties, strongest first. Understanding it is what lets you predict which layer's value wins, which is the single most important concept in USD composition.
+**Why:** The OpenUSD glossary: LIVERPS is an acronym for Local, Inherits, VariantSets, Relocates, References, Payload, Specializes.
 </details>
 
 ---
 
 ### Question 3
-**Scenario:** A large asset should not be loaded until it is needed.
+**Section: Composition. Scenario:** A team needs to reuse one animated clip on many characters, each starting at a different frame. Which mechanism applies the shift?
 
-A. A reference
-B. A payload, which can be loaded and unloaded on demand
-C. An inherit
-D. A variant
+A. A variant set with one variant per start frame
+B. A native instance with a different prototype for each character
+C. A change to the stage's up axis
+D. A layer offset on the reference or sublayer
 
 <details>
 <summary>Answer</summary>
 
-**Correct: B**
+**Correct: D**
 
-**Why:** Payloads are references that are not composed by default, so a stage can be opened with heavy geometry deferred. This is the primary mechanism for working with scenes far larger than memory, and the choice between reference and payload is a scalability decision.
+**Why:** Composition arcs such as references and sublayers can carry an offset and scale of time. In my run an offset of 5 made the value at time 10 equal the original's value at time 5.
 </details>
 
 ---
 
 ### Question 4
-**Scenario:** One asset must be available in three configurations, switchable at runtime.
+**Section: Composition. Scenario:** A very large environment should only be loaded when the artist asks for it. Which arc supports that?
 
-A. Three sibling prims referencing different files, switched by hand-editing the visibility attribute
-B. Three separate stages opened in three viewports and switched by hand
-C. A variant set with three variants on the prim
-D. Three separate files with no relationship between them, one for each configuration
+A. A payload, which is a reference that can be loaded and unloaded
+B. A sublayer, which is always loaded with the layer stack
+C. An inherits arc
+D. A specializes arc
 
 <details>
 <summary>Answer</summary>
 
-**Correct: C**
+**Correct: A**
 
-**Why:** Variant sets encode alternatives inside a single asset and let a consumer select one by name, which keeps configuration a property of the asset rather than a file-management problem. Nested variant sets handle combinations such as model and trim level.
+**Why:** The glossary calls a payload a special kind of reference, and after Unload() the prim still has a payload but its content is not composed.
 </details>
 
 ---
 
 ### Question 5
-**Scenario:** Several artists must work on the same scene simultaneously without overwriting each other.
+**Section: Composition. Scenario:** Two departments edit the same asset in the same namespace and should not conflict in files. According to the USD FAQ, which arc should be preferred when it meets the need?
 
-A. Take turns
-B. One shared file that everyone opens and edits at the same time, with the last person to save winning
-C. Layer-based workflow: each artist authors in their own layer, composed by the layer stack
-D. Duplicate the scene per artist and have a supervisor merge the changed prims back into a master file each evening
+A. References, because they always rename the prims
+B. Sublayers, one layer per department in the same namespace
+C. Variants, one per department
+D. A single monolithic layer with comments
 
 <details>
 <summary>Answer</summary>
 
-**Correct: C**
+**Correct: B**
 
-**Why:** Non-destructive layering is the collaboration model USD was designed for: lighting, animation, and modeling opinions live in separate layers with defined strength, so nobody edits the same bytes. This is also why USD suits pipelines with many departments touching one asset.
+**Why:** The FAQ says that if sublayering satisfies your requirements, prefer it over referencing; references are better when layers have different namespaces.
 </details>
 
 ---
 
 ### Question 6
-**Scenario:** What is a stage in USD?
+**Section: Composition. Scenario:** An override authored in a layer does not show on the composed stage. Which is a likely cause?
 
-A. The composed scene graph produced by evaluating the root layer and its composition arcs
-B. A single .usd file on disk that holds every prim, read directly with no composition step involved
-C. A rendering device
-D. A material library
+A. The stage's meters-per-unit is not 1
+B. The mesh uses the usdc format
+C. The layer is muted, or a stronger opinion exists elsewhere in the prim stack
+D. The prim's kind is component
 
 <details>
 <summary>Answer</summary>
 
-**Correct: A**
+**Correct: C**
 
-**Why:** The stage is the runtime view, not a file: it is what you get after composition has resolved references, payloads, variants, and layer strength. Distinguishing the authored layer from the composed stage explains most confusion about "why is my edit not showing."
+**Why:** Muting removes a layer's opinions from the stage (after MuteLayer in my test the value fell back to the reference's), and a stronger opinion wins regardless. The prim stack shows every contributing spec.
 </details>
 
 ---
 
 ### Question 7
-**Scenario:** An edit must be made without modifying the referenced source asset.
+**Section: Composition. Scenario:** A pipeline lead wants a deliverable that has no composition arcs and no dependencies on internal layers. What do they produce?
 
-A. Author an override in a stronger local layer; the source stays unchanged
-B. Copy the asset and edit the copy, then point the scene at the new copy instead of the source
-C. Edit the source file directly and republish it, since every other reference will pick up the change automatically
-D. Delete the reference and re-author the whole asset from scratch directly in the shot layer
+A. A stage with all payloads unloaded
+B. A flattened copy of the stage (UsdStage::Flatten or usdcat --flatten)
+C. A set of variants named external
+D. A copy with kind set to assembly
 
 <details>
 <summary>Answer</summary>
 
-**Correct: A**
+**Correct: B**
 
-**Why:** Non-destructive override is the core USD workflow: your opinion in a stronger layer wins during composition while the upstream asset keeps updating independently. Copying breaks the link and guarantees divergence when the source changes.
+**Why:** Flattening collapses the stage into one layer with no arcs left. In my test the flattened layer had no sublayers or references and kept the composed value.
 </details>
 
 ---
 
 ### Question 8
-**Scenario:** Which describes Omniverse Nucleus?
+**Section: Composition. Scenario:** Which statement about a variant set is correct?
 
-A. A renderer that ray traces USD stages on RTX GPUs and writes final frames to disk for review
-B. A physics engine
-C. The server that stores USD content and syncs live changes between connected clients
-D. A file format
+A. It holds named alternatives on a prim, with one variant selected at a time
+B. It composes all of its variants at once
+C. It can only select among payloads
+D. It is weaker than specializes
 
 <details>
 <summary>Answer</summary>
 
-**Correct: C**
+**Correct: A**
 
-**Why:** Nucleus is the server component providing versioned storage and the live-sync channel that makes multi-user editing possible. RTX Renderer and Hydra handle rendering, PhysX handles simulation, and Kit is the application framework.
+**Why:** A variant set is a set of mutually exclusive alternatives with a selection; VariantSets rank above References and Payload in LIVERPS.
 </details>
 
 ---
 
 ### Question 9
-**Scenario:** Materials must be portable across renderers.
+**Section: Content aggregation. Scenario:** Which instancing style suits 500 copies of a building asset that has internal structure and materials?
 
-A. Hard-coded colors
-B. Renderer-specific shaders only, since each renderer then reads its own native material network at full quality
-C. Textures with no material
-D. MaterialX or UsdPreviewSurface, with renderer-specific shaders only where needed
+A. Native (scenegraph) instancing with instanceable references
+B. A PointInstancer with one prototype
+C. Flattening each copy
+D. Variants, one per copy
 
 <details>
 <summary>Answer</summary>
 
-**Correct: D**
+**Correct: A**
 
-**Why:** UsdPreviewSurface gives a baseline PBR material every USD-aware renderer understands, and MaterialX expresses richer node graphs portably. Authoring only in a renderer-specific language locks the asset to one pipeline, which defeats the interchange purpose of USD.
+**Why:** Native instancing shares one composed subtree among instances, ideal for structured assets used many times; point instancing is for huge numbers of simple elements.
 </details>
 
 ---
 
 ### Question 10
-**Scenario:** Which layer wins when two sublayers in the same layer stack both set a prim's attribute?
+**Section: Content aggregation. Scenario:** A PointInstancer should show a second kind of object. What is the correct change?
 
-A. It is undefined
-B. They are averaged
-C. The stronger one, meaning the one earlier in the sublayer list
-D. The last one listed
+A. Add a second PointInstancer prim and delete the first
+B. Add a target to its prototypes relationship and point entries of protoIndices at the new index
+C. Change the instancer's kind to assembly
+D. Set instanceable on every instance
 
 <details>
 <summary>Answer</summary>
 
-**Correct: C**
+**Correct: B**
 
-**Why:** Sublayer order is strength order, strongest first, and the strongest opinion wins with no blending. This is deterministic by design, which is what makes a pipeline reproducible. `usdview`'s composition inspector shows exactly which layer supplied a value.
+**Why:** Prototype indices follow the order of the prototypes relationship. In my run the added prototype became index 1 and protoIndices [0, 1, 0, 1, 0] used it.
 </details>
 
 ---
 
 ### Question 11
-**Scenario:** Hydra is used in the rendering path. What is its role?
+**Section: Content aggregation. Scenario:** A user tries to set a different display color on a mesh beneath an instanceable prim and the API raises an error. What is the documented way to customize an instance's contents?
 
-A. It stores the assets in a versioned database that clients read from and write to over the network
-B. It authors USD files from DCC applications by exporting each tool's native scene data into layers
-C. It handles physics, solving rigid body dynamics and collisions for every prim on the stage each frame
-D. The scene delegate architecture that lets many render delegates draw the same stage
+A. Switch the stage to usdc
+B. Raise the payload's load rule
+C. Make it non-instanceable, or add an inherits or specializes arc and edit the class
+D. Delete the prototype
 
 <details>
 <summary>Answer</summary>
 
-**Correct: D**
+**Correct: C**
 
-**Why:** Hydra sits between the scene and the renderer so the same USD stage can be drawn by Storm, RTX, or a third-party delegate without changing the data. That separation is what lets a studio switch renderers without reauthoring content.
+**Why:** The instancing page says you cannot override descendants of an instance, including through proxies; overrides on the instance prim itself are allowed.
 </details>
 
 ---
 
 ### Question 12
-**Scenario:** A schema must add domain-specific properties to prims consistently.
+**Section: Customizing USD. Scenario:** Which statement about custom asset resolvers is correct?
 
-A. External spreadsheets that list each prim's expected properties, checked by a script before export
-B. Comments in the file
-C. Ad-hoc attributes on each prim
-D. A typed or applied API schema defining the properties, so tooling can rely on them
+A. They are written as USD layers
+B. They are Python classes registered with the stage
+C. They are configured with usdGenSchema
+D. They are C++ ArResolver plug-ins registered through plugInfo.json; Python resolvers are not supported
 
 <details>
 <summary>Answer</summary>
 
 **Correct: D**
 
-**Why:** Schemas make properties discoverable and validated rather than conventional, which is what allows tools to interoperate. Applied API schemas add capabilities to existing prim types without changing their type, which is the usual choice for domain metadata.
+**Why:** The Ar documentation says custom resolvers are ArResolver subclasses registered with AR_DEFINE_RESOLVER and plugInfo.json, and that Ar does not support Python implementations to avoid performance issues.
 </details>
 
 ---
 
 ### Question 13
-**Scenario:** A scene opens very slowly with high memory use.
+**Section: Customizing USD. Scenario:** What is a codeless schema?
 
-A. Reduce the screen resolution and viewport sampling so fewer pixels and textures are held in GPU memory
-B. Convert heavy references to payloads, instance repeated geometry, and check for deep composition
-C. Disable materials
-D. Buy more RAM and a faster GPU, so that the entire scene fits in memory without changing how it is built
+A. A schema generated with skipCodeGeneration that produces only generatedSchema.usda and plugInfo.json
+B. A schema with no properties
+C. A schema written directly in a USD layer with no schema.usda
+D. A schema that cannot be applied to prims
 
 <details>
 <summary>Answer</summary>
 
-**Correct: B**
+**Correct: A**
 
-**Why:** Composition cost and geometry duplication are the two usual causes. Point instancers and scenegraph instancing collapse thousands of identical prims into shared data, and payloads defer what is not needed yet. Hardware only postpones the ceiling.
+**Why:** Codeless schemas can be used without recompiling USD, but clients query them only through the basic USD APIs.
 </details>
 
 ---
 
 ### Question 14
-**Scenario:** Assets from several tools must combine into one scene.
+**Section: Data exchange. Scenario:** A team wants a compact, fast-loading binary encoding for a large production asset and a readable one for review. Which pair?
 
-A. Convert every asset to one proprietary format and require each tool in the pipeline to import it directly
-B. Use USD as the interchange format, with connectors per tool, and run the USD validator
-C. Screenshot each asset from every tool and paste the images into a single scene as flat planes
-D. Rebuild everything in one tool so that a single native format is used, then re-export the combined result
+A. usdc for production, usda for review
+B. usda for production, usdz for review
+C. usdz for production, usdc for review
+D. usdc for both because usda cannot be diffed
 
 <details>
 <summary>Answer</summary>
 
-**Correct: B**
+**Correct: A**
 
-**Why:** Interchange is USD's original purpose and the reason it spread beyond film into simulation and industrial digital twins. Validation matters because a syntactically valid file can still violate pipeline conventions, and catching that at export is far cheaper than downstream.
+**Why:** usda is human-readable text and usdc is the random-access binary Crate format. In my test a 20,000-point mesh was 307,815 bytes as usda and 240,664 as usdc.
 </details>
 
 ---
 
 ### Question 15
-**Scenario:** Time-varying data such as animation is stored how in USD?
+**Section: Data exchange. Scenario:** An OBJ importer produces geometry that matches the source exactly but the scene is rotated and the wrong size in another tool. What is the likely reason?
 
-A. Only as a single static value
-B. As time samples on attributes, evaluated at a given time code against the stage's frame rate
-C. As a material property
-D. In a separate video file
+A. The mesh must use faceVarying primvars
+B. OBJ carries no up axis or units, so the importer had to choose them and the stage metadata must be set deliberately
+C. The importer must write a payload
+D. usdz files cannot hold meshes
 
 <details>
 <summary>Answer</summary>
 
 **Correct: B**
 
-**Why:** Attributes hold either a default value or a set of time samples, and the stage's timeCodesPerSecond relates time codes to seconds. Layer offsets and scales let a referenced animation be retimed without editing the source, which is the composition system applied to time.
+**Why:** In my round trip the points and indices were identical, but the importer chose Y up and centimeters because OBJ has no fields for them. USD stores both as stage metadata.
 </details>
 
 ---
 
 ### Question 16
-**Scenario:** A forest scene contains 400 tree prims that reference different tree assets. The art director wants one change, such as a wind-strength attribute, to reach all of them at once while letting individual trees still override it.
+**Section: Data exchange. Scenario:** Why is USD described as more than another file format?
 
-A. Write a script that sets the attribute on all 400 prims and rerun it after every new change
-B. Have each tree inherit from a class prim such as `/_class_Tree` and edit the class
-C. Put the attribute in every tree asset's source file, so that each reference carries the change
-D. Add the attribute to the stage's root layer metadata, which every prim on the stage reads first
+A. It stores only flat cached geometry
+B. It is a binary-only format
+C. Its main function is composing scene description from many files into a single scenegraph
+D. It is a rendering engine
 
 <details>
 <summary>Answer</summary>
 
-**Correct: B**
+**Correct: C**
 
-**Why:** An inherits arc lets many prims receive opinions from one class prim, so an edit on the class broadcasts to every inheriting prim, while stronger local opinions on a single tree still win. A script creates 400 separate opinions to maintain. Editing every source asset is invasive, and layer metadata is not inherited by prims as attribute values.
-
-**Key Concept:** [USD glossary: inherits](https://openusd.org/release/glossary.html)
+**Why:** The USD FAQ contrasts formats like OBJ, FBX and Alembic, which mainly interchange flat or cached geometry, with USD's composition engine and scenegraph.
 </details>
 
 ---
 
 ### Question 17
-**Scenario:** A shot references an animated character clip, and the clip must start 48 frames later and play at half speed in this shot only.
+**Section: Data exchange. Scenario:** Which check belongs in an exporter's validation step?
 
-A. Re-export the animation with shifted and stretched time samples and save it as a new asset file
-B. Change the stage's `timeCodesPerSecond` so that every animation in the shot plays at half speed
-C. Author a layer offset (offset and scale) on the reference to retime the referenced data
-D. Add a variant set for each possible timing and select the variant that matches this shot's timing
+A. Only the file size
+B. Only the number of materials
+C. Nothing, because USD always validates itself
+D. Unresolvable references, required metadata such as default prim and units, and non-portable asset paths
 
 <details>
 <summary>Answer</summary>
 
-**Correct: C**
+**Correct: D**
 
-**Why:** References and sublayers can carry a layer offset (an offset and a scale) that maps the referenced layer's time codes into the referencing context, so the clip is retimed non-destructively for this shot. Re-exporting duplicates data. Changing `timeCodesPerSecond` affects the whole stage, and variants for every possible timing do not scale.
-
-**Key Concept:** [SdfLayerOffset](https://openusd.org/release/api/class_sdf_layer_offset.html)
+**Why:** USD ships validators such as MissingReferenceValidator, which flagged a broken reference in my test; the other checks are pipeline rules enforced the same way.
 </details>
 
 ---
 
 ### Question 18
-**Scenario:** A city scene references the same streetlight asset 10,000 times, and every copy is composed separately, using a lot of memory and load time.
+**Section: Data modeling. Scenario:** After a script moves a mesh's points, the model is clipped in the viewport. What should be recomputed?
 
-A. Mark the referencing prims `instanceable` so that identical composed subtrees share one prototype
-B. Merge all 10,000 streetlights into a single mesh, so the stage holds one prim instead of many
-C. Convert each reference into a sublayer, which composes the streetlight asset only once per stage
-D. Move the streetlights into a variant set, which loads only the variant that is selected on the stage
+A. The extent attribute, with UsdGeom.Boundable.ComputeExtentFromPlugins
+B. The prim's kind
+C. The variant selection
+D. The payload's load rule
 
 <details>
 <summary>Answer</summary>
 
 **Correct: A**
 
-**Why:** With scenegraph instancing, prims marked `instanceable` that share the same composition arcs share a single prototype, so USD composes the subtree once instead of 10,000 times, while each instance keeps its own transform. Merging into one mesh loses per-light control. Sublayers combine layers at the root rather than placing assets, and a variant does not deduplicate repeated assets.
-
-**Key Concept:** [Scenegraph instancing](https://openusd.org/release/api/_usd__page__scenegraph_instancing.html)
+**Why:** Changing points does not update the extent. I recomputed it and got [(0,0,0), (5,5,0)].
 </details>
 
 ---
 
 ### Question 19
-**Scenario:** Tools need to traverse a large set down to whole assets only, such as a building or a car, without walking every mesh and material inside them.
+**Section: Data modeling. Scenario:** A mesh has 4 vertices and a primvar must give each vertex its own color. Which interpolation mode?
 
-A. Put every asset in a separate sublayer, so traversals stop at each layer boundary
-B. Name every asset's root prim with the prefix `asset_` and filter on that string
-C. Give every mesh a custom attribute called `isAsset` and test it during traversal
-D. Set `kind` metadata to build a model hierarchy of assemblies, groups and components
+A. vertex
+B. constant
+C. uniform
+D. faceVarying with one value total
 
 <details>
 <summary>Answer</summary>
 
-**Correct: D**
+**Correct: A**
 
-**Why:** The `kind` metadata defines USD's model hierarchy, with assemblies and groups above component models, so tools can traverse just the models and treat each component as an asset boundary, using standard APIs and predicates. Sublayers do not partition namespace this way. Naming conventions and custom attributes are fragile and invisible to standard tools.
-
-**Key Concept:** [USD glossary: kind and model hierarchy](https://openusd.org/release/glossary.html)
+**Why:** Vertex primvars are interpolated between vertices; constant is one value for the whole primitive and uniform is one per face.
 </details>
 
 ---
 
 ### Question 20
-**Scenario:** A set dresser is assembling 300 separately published prop assets into one environment, each at its own location in the scene namespace.
+**Section: Data modeling. Scenario:** What does GetAuthoredPropertyNames return compared with GetPropertyNames?
 
-A. Sublayer all 300 asset files into the environment layer, so each prop lands at its own path
-B. Reference each prop's asset into its own prim under the environment, with a transform per prim
-C. Copy every prop's geometry into the environment file, so the environment needs no other files
-D. Use one variant set with 300 variants, one per prop, and select all of them on the stage at once
+A. The reverse
+B. Only relationships
+C. The properties of the parent prim
+D. Only the properties some layer actually wrote, whereas GetPropertyNames also includes unauthored schema properties
 
 <details>
 <summary>Answer</summary>
 
-**Correct: B**
+**Correct: D**
 
-**Why:** References bring an asset's root prim into a chosen namespace location, so each prop can sit under its own prim with its own transform while staying linked to the published asset; payloads can be used where deferred loading helps. Sublayering merges every asset's namespace at the root and would collide. Copying breaks the link to updates, and only one variant per set can be selected.
-
-**Key Concept:** [USD glossary: references](https://openusd.org/release/glossary.html)
+**Why:** In my run purpose, visibility and proxyPrim appeared in the full list but not in the authored list.
 </details>
 
 ---
 
 ### Question 21
-**Scenario:** A studio needs a new applied API schema with a few properties for its pipeline. It wants the schema available in Python and in tools without compiling any C++ code.
+**Section: Data modeling. Scenario:** Where should a pipeline put a free-form owner annotation that does not need to animate?
 
-A. Add the properties as custom attributes on each prim and document their names on the team wiki
-B. Write a full typed schema in C++ and compile it into every USD build the studio uses
-C. Generate a codeless schema with `usdGenSchema` and register it through a plugin's `plugInfo.json`
-D. Store the properties as metadata in each layer's comment field so that tools can parse them later
+A. In a time-sampled relationship
+B. In the extent attribute
+C. In customData metadata, namespaced by the pipeline
+D. In the prim's kind
 
 <details>
 <summary>Answer</summary>
 
 **Correct: C**
 
-**Why:** Codeless schemas are generated by `usdGenSchema` with code generation skipped; the schema is defined by its generated schema file and plugin registration, so it is available at runtime without a compiled library. Custom attributes on a wiki are not discoverable by tools. A compiled C++ schema works but adds the build step the studio wanted to avoid, and comments are not structured data.
-
-**Key Concept:** [Generating schemas with usdGenSchema](https://openusd.org/release/api/_usd__page__generating_schemas.html)
+**Why:** customData is the free-form metadata dictionary; metadata cannot vary over time, so use an attribute when the value must animate.
 </details>
 
 ---
 
 ### Question 22
-**Scenario:** A simulation team stores results in a proprietary file format and wants USD stages to reference those files directly, without a nightly conversion step.
+**Section: Debugging. Scenario:** Which API shows every spec that contributes to a composed prim, strongest first?
 
-A. Rename the files with a `.usda` extension so that the USD runtime parses them as text layers
-B. Convert each file to USDZ every night, since USD can only read files that were converted first
-C. Load the data in Python each time a scene opens and copy it into the session layer by hand
-D. Write an `SdfFileFormat` plugin that reads the proprietary format as a USD layer
+A. stage.Flatten()
+B. prim.GetKind()
+C. UsdGeom.PrimvarsAPI
+D. prim.GetPrimStack()
 
 <details>
 <summary>Answer</summary>
 
 **Correct: D**
 
-**Why:** USD's file format plugins let any format be read, and optionally written, as an `SdfLayer`, so stages can reference those files directly; formats such as Alembic are supported this way. Renaming does not change the contents. Nightly conversion is the step the team wants to remove, and manual copying into the session layer is fragile and not shareable.
-
-**Key Concept:** [SdfFileFormat](https://openusd.org/release/api/class_sdf_file_format.html)
+**Why:** The prim stack lists contributing specs in order; in my run it was root, sub and ref.
 </details>
 
 ---
 
 ### Question 23
-**Scenario:** Props from one tool appear 100 times too large and lying on their side when added to a stage authored in another tool.
+**Section: Debugging. Scenario:** A script creates thousands of prim specs and is slow because each edit triggers change processing. What helps, and what is the rule?
 
-A. Compare the `metersPerUnit` and `upAxis` stage metadata and correct the difference
-B. Scale every prop by 0.01 by hand in the viewport and rotate it upright before saving the layer
-C. Convert the props to USDZ, which normalizes their units and axes when the package is created
-D. Delete the props' transforms, which makes USD use a single default unit and axis for all of them
+A. Group the edits in an SdfChangeBlock and use no Usd API while it is open
+B. Wrap them in a payload
+C. Switch the layer to usdz
+D. Use TfMallocTag to disable notifications
 
 <details>
 <summary>Answer</summary>
 
 **Correct: A**
 
-**Why:** USD records linear units in `metersPerUnit` and the up direction in `upAxis` as stage metadata, and a centimeters, Z-up layer brought into a meters, Y-up stage shows exactly this symptom. Tools should read the metadata and apply a corrective transform at the boundary. Hand-fixing each prop does not scale, USDZ packaging does not convert units, and removing transforms loses placement.
-
-**Key Concept:** [UsdGeom overview](https://openusd.org/release/api/usd_geom_page_front.html)
+**Why:** A change block delays notifications until the outermost block exits; the docs warn it is not safe to use Usd or other downstream API while one is open. In my run 3,000 specs took 1.061 s without and 0.025 s with a block.
 </details>
 
 ---
 
 ### Question 24
-**Scenario:** An asset must be delivered as a single file for AR viewing on mobile devices, including its geometry and textures.
+**Section: Debugging. Scenario:** How can a tool collect USD warnings and errors instead of printing them?
 
-A. Save it as a `.usda` text layer, which embeds the texture images inside the text as strings
-B. Package it as USDZ, an uncompressed zip archive of USD and texture files, using `usdzip`
-C. Flatten the stage and send the layer alone, since flattening also copies every texture into it
-D. Compress the asset folder as a standard `.zip` with maximum compression and rename it `.usd`
+A. With usdzip
+B. With a diagnostic delegate such as UsdUtils.CoalescingDiagnosticDelegate
+C. By changing the layer's format
+D. With a variant set
 
 <details>
 <summary>Answer</summary>
 
 **Correct: B**
 
-**Why:** USDZ is a zip archive with specific constraints, uncompressed with aligned files so it can be read in place, holding a USD layer and its textures; `usdzip` creates it. Text layers reference textures rather than embedding them. Flattening composes layers but does not pack textures, and a compressed zip renamed to `.usd` is not a valid USD file.
-
-**Key Concept:** [USDZ file format specification](https://openusd.org/release/wp_usdz.html)
+**Why:** A diagnostic delegate receives Tf diagnostics; in my broken-stage run it returned two warnings with their source locations.
 </details>
 
 ---
 
 ### Question 25
-**Scenario:** A mesh needs a color value per vertex that renderers should interpolate smoothly across each face.
+**Section: Pipeline development. Scenario:** Which asset path is a portability problem in a layer that will be shipped to another studio?
 
-A. Add a custom string attribute listing all colors, which renderers parse on load
-B. Add a child prim per vertex, each holding one color in its own attribute value
-C. Set the color in the prim's `customData` dictionary, which renderers read per vertex
-D. Author a primvar such as `displayColor` with `vertex` interpolation on the mesh
+A. ./chair.usd
+B. ./textures/wood.png
+C. ../shared/chair.usd
+D. /mnt/studio/assets/chair.usd
 
 <details>
 <summary>Answer</summary>
 
 **Correct: D**
 
-**Why:** Primvars are geometric attributes with an interpolation mode (constant, uniform, varying, vertex or faceVarying) that tells renderers how to map values over the surface, and `vertex` gives smooth per-vertex interpolation. A custom string is not understood by renderers. Child prims per vertex would be enormous, and `customData` is for metadata, not renderable data.
-
-**Key Concept:** [UsdGeomPrimvar](https://openusd.org/release/api/class_usd_geom_primvar.html)
+**Why:** Absolute paths depend on one machine's layout; anchored relative paths resolve wherever the files are delivered. A path check flagged the absolute and drive-letter entries in my test.
 </details>
 
 ---
 
 ### Question 26
-**Scenario:** An attribute on a composed prim has an unexpected value, and a developer needs to see every layer that holds an opinion on it, from strongest to weakest.
+**Section: Pipeline development. Scenario:** What is the purpose of the layer metadata defaultPrim?
 
-A. Call `GetPropertyStack()` on the attribute, or inspect it in usdview, to list the contributing specs
-B. Flatten the stage and search the flattened file, which shows every layer's opinion in strength order
-C. Read each layer file in a text editor in the order it was saved to disk, newest file first
-D. Call `Get()` on the attribute several times, which returns one opinion from each layer in turn
-
-<details>
-<summary>Answer</summary>
-
-**Correct: A**
-
-**Why:** `UsdProperty.GetPropertyStack()` returns the property specs that contribute opinions, ordered strongest to weakest, and usdview shows the same layer stack, so the winning layer is found directly. Flattening keeps only the resolved result and discards the losing opinions. File save order is not composition strength, and `Get()` always returns the single resolved value.
-
-**Key Concept:** [UsdProperty](https://openusd.org/release/api/class_usd_property.html)
-</details>
-
----
-
-### Question 27
-**Scenario:** Before publishing an asset, the pipeline must catch problems such as missing references, invalid schema usage and USDZ packaging rule violations.
-
-A. Open the asset in a viewer and approve it if nothing looks wrong on screen
-B. Run `usdchecker` on the asset as a publish gate and fail the publish on errors
-C. Run `usdcat` on the asset, since a file that prints without errors is valid
-D. Check that the file size is under 1 GB, since large files are the main risk
-
-<details>
-<summary>Answer</summary>
-
-**Correct: B**
-
-**Why:** `usdchecker` runs a suite of compliance checks, including unresolvable dependencies, schema and stage metadata rules and USDZ package constraints, and its exit status makes it easy to use as an automated gate. A visual check misses many structural problems. `usdcat` only prints or converts a layer, and file size says nothing about validity.
-
-**Key Concept:** [USD toolset: usdchecker](https://openusd.org/release/toolset.html)
-</details>
-
----
-
-### Question 28
-**Scenario:** A stage opens with errors saying that an asset path cannot be found, and the studio uses a custom asset resolver with logical asset identifiers.
-
-A. Replace every logical identifier with an absolute file path, since resolvers cannot be debugged
-B. Delete the failing references from the layer so that the stage opens without any errors
-C. Rename the asset files to match the identifier text exactly, which bypasses the asset resolver
-D. Run `usdresolve` on the identifier and enable `TF_DEBUG` output to trace the resolver
-
-<details>
-<summary>Answer</summary>
-
-**Correct: D**
-
-**Why:** `usdresolve` asks the configured resolver to resolve an asset path exactly as USD would, which shows whether the resolver, its configuration or the context is at fault, and `TF_DEBUG` flags give detailed diagnostic output from the libraries. Hard-coding paths throws away the pipeline's resolver. Deleting references hides the problem, and file naming does not bypass a custom resolver.
-
-**Key Concept:** [USD toolset: usdresolve](https://openusd.org/release/toolset.html)
-</details>
-
----
-
-### Question 29
-**Scenario:** A pipeline script authors attributes on 50,000 prims, and it runs slowly because each edit triggers change processing and notifications.
-
-A. Write the layer as text by hand and reload it, since the USD API is slow for any number of edits
-B. Open the stage once for each prim, author its single attribute, and close the stage again
-C. Wrap the edits in an `Sdf.ChangeBlock`, so change processing runs once when the block ends
-D. Turn off composition entirely while editing, then turn it back on once the script has finished
+A. It sets the stage's up axis
+B. It selects the first variant
+C. It names the prim used when the layer is referenced without an explicit prim path
+D. It marks the layer as flattened
 
 <details>
 <summary>Answer</summary>
 
 **Correct: C**
 
-**Why:** An `Sdf.ChangeBlock` batches layer edits so notification and recomposition happen once at the end of the block instead of after each edit, which greatly speeds bulk authoring; it is commonly used with the lower-level `Sdf` API. Hand-writing text is error-prone, reopening the stage per prim is far slower, and composition cannot simply be switched off.
+**Why:** The default prim is what a reference without a prim path targets; I set and read it with SetDefaultPrim and GetDefaultPrim.
+</details>
 
-**Key Concept:** [SdfChangeBlock](https://openusd.org/release/api/class_sdf_change_block.html)
+---
+
+### Question 27
+**Section: Pipeline development. Scenario:** How is a DCC-to-USD round trip best verified in a pipeline?
+
+A. By opening the file once and looking at it
+B. By checking only the file extension
+C. By flattening and deleting the original
+D. Export, import and compare the results automatically, such as with usddiff or a script
+
+<details>
+<summary>Answer</summary>
+
+**Correct: D**
+
+**Why:** A round trip is proven by comparing; usddiff diffs usdcat output of two files, though it does no fuzzy numerical comparison.
+</details>
+
+---
+
+### Question 28
+**Section: Pipeline development. Scenario:** What is lost when you flatten an asset for delivery?
+
+A. The composed values
+B. The mesh points
+C. Composition structure such as variants, references and layered overrides
+D. The material bindings' targets
+
+<details>
+<summary>Answer</summary>
+
+**Correct: C**
+
+**Why:** Flattening bakes the composed result into one layer with no arcs left, so the structure is gone; deliver a flattened copy and keep the layered original.
+</details>
+
+---
+
+### Question 29
+**Section: Visualization. Scenario:** A parent prim's material binding is set strongerThanDescendants and a child mesh has its own binding. Which material does the child resolve to?
+
+A. The child's, because lower bindings always win
+B. The parent's, because strongerThanDescendants wins over the child's binding
+C. Neither; the binding is an error
+D. The material with the higher roughness
+
+<details>
+<summary>Answer</summary>
+
+**Correct: B**
+
+**Why:** Bindings lower in the namespace are stronger than ancestor bindings unless the ancestor is strongerThanDescendants. My test resolved the child to the parent's Red.
 </details>
 
 ---
 
 ### Question 30
-**Scenario:** A lighting tool opens a shot stage with several department layers, and its edits must go only into the lighting layer, not the root layer.
+**Section: Visualization. Scenario:** How should diffuseColor in a UsdPreviewSurface read per-vertex colors from a mesh's displayColor primvar?
 
-A. Set the stage's edit target to the lighting layer before authoring, so new opinions go there
-B. Make the lighting layer the weakest sublayer, so edits on the stage fall through to it by default
-C. Save the whole stage to a new file after editing, which moves the edits into the lighting layer
-D. Author the edits in the session layer, which writes them into the lighting layer when it is saved
+A. Set diffuseColor to the primvar's path as a string
+B. Use a UsdUVTexture with the file set to displayColor
+C. Bind the mesh to a collection named displayColor
+D. Connect a UsdPrimvarReader_float3 shader (varname displayColor) result output to diffuseColor
 
 <details>
 <summary>Answer</summary>
 
-**Correct: A**
+**Correct: D**
 
-**Why:** A `UsdEditTarget` controls which layer receives opinions authored through the stage API, so setting it to the lighting layer keeps each department's work in its own file. The edit target is the root layer by default, whatever the sublayer order. Saving a stage does not move opinions between layers, and the session layer is never saved into other layers.
-
-**Key Concept:** [UsdEditTarget](https://openusd.org/release/api/class_usd_edit_target.html)
+**Why:** The spec says to choose the reader by the primvar's type, set varname and connect result to the color input; color from a mesh needs no premultiplication.
 </details>
 
 ---
 
 ## Where to go deeper
 
-- [NCP-OUSD cert page](../nvidia/openusd-development-professional/README.md) - notes, practice plan, strategy
-- [NCA-GENM practice questions](nvidia-generative-ai-multimodal-associate.md) - generative content for 3D pipelines
-- **[📖 OpenUSD documentation](https://openusd.org/release/index.html)** - primary source
-- **[📖 NVIDIA training and certification](https://www.nvidia.com/en-us/training/)** - official exam pages
+- [NCP-OUSD cert page](../nvidia/openusd-development-professional/README.md) - notes, plan, strategy
+- **[📖 NVIDIA OpenUSD Development exam page](https://www.nvidia.com/en-us/learn/certification/openusd-development-professional/)** - official blueprint and study guide
+- **[📖 OpenUSD documentation](https://openusd.org/release/index.html)** - API and glossary

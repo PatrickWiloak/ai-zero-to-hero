@@ -1,45 +1,17 @@
-# NCP-OUSD OpenUSD Development Professional Study Strategy
+# NCP-OUSD - Exam Strategy
 
-## Study Approach
+**Last reviewed:** 2026-11-07
 
-### Phase 1: Foundation (1-2 weeks)
-1. **USD Data Model** - Prims, properties, schemas, file formats
-2. **Composition** - LIVRPS, references, payloads, variants, sublayers
-- **[📖 OpenUSD Documentation](https://openusd.org/release/index.html)**
+## What the exam looks like
 
-### Phase 2: Platform (2-3 weeks)
-1. **Omniverse** - Nucleus, connectors, Kit SDK
-2. **Rendering** - Materials, lighting, Hydra, RTX
-3. **Collaboration** - Multi-user workflows, pipelines
-- **[📖 Omniverse Documentation](https://docs.omniverse.nvidia.com/)**
+Two hours, 60 to 70 questions, online and remotely proctored. NVIDIA's own study guide includes sample questions across composition, data modeling, pipeline development, customizing, visualization, content aggregation and data exchange, so expect scenario-style questions that name specific USD concepts and API calls.
 
-### Phase 3: Exam Prep (1-2 weeks)
-1. Practice composition and API questions
-2. Review LIVRPS thoroughly
-3. Focus on weak areas
+## Tactics
 
-## Recommended Resources
-- **[OpenUSD Documentation](https://openusd.org/release/index.html)** - Core reference
-- **[Omniverse Documentation](https://docs.omniverse.nvidia.com/)** - Platform
-- **[USD Python API](https://openusd.org/release/api/index.html)** - Programming
-- **[NVIDIA DLI - USD Courses](https://www.nvidia.com/en-us/training/)** - Training
-- **[NVIDIA Developer USD](https://developer.nvidia.com/usd)** - Resources
-
-## Exam Tactics
-
-### Keywords
-- "Composition" or "override" - LIVRPS ordering
-- "Heavy asset" or "loading" - Payloads
-- "Reuse" or "include" - References
-- "Switch" or "option" - Variant sets
-- "Collaboration" - Nucleus and live layers
-- "Material" - UsdPreviewSurface or MDL
-- "Render" - Hydra delegates
-
-### Common Pitfalls
-- LIVRPS: Local is strongest, Sublayers is weakest
-- References are always loaded; payloads can be deferred
-- Inherits are stronger than variants and references
-- .usdz is read-only (ZIP archive)
-- UsdPreviewSurface is for interchange; MDL is for NVIDIA rendering
-- Nucleus provides collaboration; connectors provide DCC tool integration
+1. **Resolve composition questions by LIVERPS.** Write the opinions down in strength order and take the first one. Remember the layer stack inside "Local": the session layer, then the root layer, then sublayers in list order (first listed is strongest).
+2. **Know what you cannot do.** You cannot override descendants of a native instance; payloads are weaker than references; a typeless `over` does not create a prim; an Ar resolver cannot be written in Python.
+3. **Match the tool to the scale.** Few unique copies: references. Many copies of a structured asset: native instancing. Huge numbers of simple elements: PointInstancer.
+4. **Match the format to the use.** usda to read and review, usdc to ship large data, usdz to deliver a self-contained package, flattened copy to remove dependencies.
+5. **When a result looks wrong, think data first:** extent, primvar length and interpolation, units and up axis, purpose and visibility, binding strength, and composition errors.
+6. **Read answer options for the word "efficiently".** For hiding point instances, the answer works by id (`invisibleIds`/`inactiveIds`), not by rewriting arrays.
+7. **Look for what is unsupported or deprecated in the option text** and eliminate it before choosing.

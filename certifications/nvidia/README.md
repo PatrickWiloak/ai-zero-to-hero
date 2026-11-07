@@ -17,6 +17,6 @@ Study guides for the NVIDIA AI and machine learning certifications. Every provid
 | [NVIDIA Certified Professional - AI Operations (NCP-AIO)](ai-operations-professional/README.md) | NCP-AIO | Professional | Ready | 5 |
 | [NVIDIA Certified Professional - Generative AI & LLMs (NCP-GENL)](genai-llms-professional/README.md) | NCP-GENL | Professional | Ready | 6 |
 | [NVIDIA-Certified Professional - AI Networking (NCP-AIN)](ai-networking-professional/README.md) | NCP-AIN | Professional | Ready | 6 |
-| [NVIDIA-Certified Professional - OpenUSD Development (NCP-OUSD)](openusd-development-professional/README.md) | NCP-OUSD | Professional | Ready | 5 |
+| [NVIDIA-Certified Professional - OpenUSD Development (NCP-OUSD)](openusd-development-professional/README.md) | NCP-OUSD | Professional | Ready | 8 |
 
 <!-- END GENERATED: provider-certs -->

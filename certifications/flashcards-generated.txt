@@ -4,3 +4,4 @@ anthropic/claude-certified-developer-foundations
 databricks/genai-engineer-associate
 databricks/ml-associate
 nvidia/ai-networking-professional
+nvidia/openusd-development-professional

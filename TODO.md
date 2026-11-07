@@ -47,7 +47,9 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] 2026-10-22 AI-901 duration added (45 min, Microsoft's Fundamentals figure); question count is not published by Microsoft.
 - [x] 2026-10-22 NVIDIA codes confirmed on nvidia.com: NCP-NET -> NCP-AIN, NCP-USD -> NCP-OUSD, NCA-MMGA -> NCA-GENM; names, logistics, blueprints and dirs fixed.
 - [x] 2026-11-07 NCP-AIN rewritten to the 6-section blueprint (notes 01-06, bank 30, generated flashcards).
-- [ ] 2026-11-15: rewrite notes + banks for NCP-OUSD and NCA-GENM to NVIDIA's blueprints (see each README table).
+- [x] 2026-11-07 NCP-OUSD rewritten to the 8-section blueprint and NVIDIA's study guide v1.1.0 (notes 01-08 with real `usd-core` 0.26.11 output, bank 30, generated flashcards).
+- [ ] 2026-11-15: rewrite notes + bank for NCA-GENM to NVIDIA's blueprint (see its README table).
+- [ ] 2026-12-01: NCP-OUSD gaps: fetch the Conceptual Data Mapping, ASWF asset structure and Scalable Asset Structure references, the file format plug-in page, SceneIndex plug-ins, build configuration; run `usdchecker`/`usdcat` from a full USD build.
 - [ ] 2026-12-01: NCP-AIN gaps to fill from NVIDIA docs: DSX Air user guide, ibdiagnet manual, SuperNIC congestion control, OpenSM SM priority, PFC watchdog, cl-resource-query sample output (`certifications/nvidia/ai-networking-professional/README.md` lists them); recheck exam page for price and lab detail.
 - [x] 2026-11-07 NCP-AIN price ($500) and lab ("Hands-on lab: Yes") confirmed on the nvidia.com exam page (https://www.nvidia.com/en-us/learn/certification/ai-networking-professional/); README, fact sheet, flashcards, careers guide updated.
 - [x] 2026-10-22 MLA-C01 guide: real logistics (130 min, 65 q) and verified MLA-C02 beta facts (ME1-C02, $75, 170 min, 85 q, GA TBD).
