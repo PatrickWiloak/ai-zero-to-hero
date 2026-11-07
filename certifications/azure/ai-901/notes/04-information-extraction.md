@@ -15,7 +15,7 @@ Microsoft describes Content Understanding as a Foundry Tool that "uses generativ
 Key ideas from the official overview:
 
 - **Analyzers** do the work. **Prebuilt analyzers** cover common and industry scenarios (for example tax preparation, procurement documents, contract analysis, call-centre analytics, media analysis). **Custom analyzers** are defined by you.
-- **Field schema**: you define the fields you want (name, type, description), and the analyzer **extracts** values that appear in the content, **classifies** content into categories you list, or **generates** values (for example a summary or a reason-for-call) without you writing prompts.
+- **Field schema**: you define the fields you want (name, type, description), and the analyzer **extracts** values that appear in the content (extract is supported for documents only), **classifies** content into categories you list, or **generates** values (for example a summary or a reason-for-call) without you writing prompts.
 - **Confidence scores and grounding**: each extracted value comes with a confidence score and a pointer to where in the content it came from, so you can send low-confidence results to human review and audit the rest.
 - **Classification** can sort incoming files by type first and route each to the right analyzer.
 - **Markdown output**: a clean text representation of the content, useful for search indexes and RAG.
@@ -24,7 +24,7 @@ Key ideas from the official overview:
 
 | Content | Example fields | Notes |
 |---|---|---|
-| **Documents and forms** (PDFs, scans) | Invoice number, vendor, line items, totals, due date; form checkboxes; contract parties and renewal date | Includes layout, tables and handwriting; the successor workflow to Document Intelligence-style extraction |
+| **Documents and forms** (PDFs, scans) | Invoice number, vendor, line items, totals, due date; form checkboxes; contract parties and renewal date | Includes layout, tables and handwriting; Content Understanding Studio offers a transition path for teams coming from Document Intelligence |
 | **Images** | Product attributes from a photo, damage type and severity from an insurance photo, text and values from a screenshot | Generative fields can describe what is shown |
 | **Audio** | Transcript plus fields: caller intent, product mentioned, sentiment, whether the issue was resolved | Built on speech recognition |
 | **Video** | Scene and shot descriptions, key moments, on-screen text, topics, chapter markers | Useful for media search and compliance review |

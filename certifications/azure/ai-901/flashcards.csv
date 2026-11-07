@@ -10,7 +10,7 @@ A named owner and review board for AI systems supports which principle?,Accounta
 Designing a voice app to work for people with speech impairments supports which principle?,Inclusiveness,responsible-ai
 Which parameter do you lower for more consistent answers?,Temperature,models
 What does max tokens control?,The maximum length of the model's response,models
-Which deployment type keeps processing within a geography such as the EU?,Data Zone,models
+Which deployment type keeps processing within a data zone such as the EU?,Data Zone,models
 What was Microsoft Foundry called before?,Azure AI Studio then Azure AI Foundry,foundry
 What are Foundry Tools?,The prebuilt AI capabilities formerly called Azure AI Services (Speech; Language; Vision; Content Understanding),foundry
 In Foundry SDK code what value goes in the model parameter?,The deployment name,foundry

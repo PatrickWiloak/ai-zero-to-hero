@@ -12,7 +12,7 @@ Part of Domain 2, **Implement AI solutions by using Microsoft Foundry (55-60%)**
 
 - A **Foundry resource** in your Azure subscription holds one or more **projects**.
 - A **project** is where you work: deploy models, open playgrounds, build agents, run evaluations, connect data. It has a **project endpoint** of the form `https://<resource>.services.ai.azure.com/api/projects/<project>`.
-- The **model catalog** lists models: those **sold directly by Azure** (Azure OpenAI models, and others such as DeepSeek, Llama, Mistral and Microsoft's own) and partner models (for example Claude via Azure Marketplace).
+- The **model catalog** lists models: those **sold directly by Azure** (Azure OpenAI models, and others such as DeepSeek, Llama, Mistral and Microsoft's own) and partner and community models (the catalog includes models from Anthropic, Meta and others).
 - A **deployment** makes a model callable from the project under a deployment name.
 - **Foundry Tools** (formerly Azure AI Services) provide prebuilt speech, language, vision and Content Understanding capabilities.
 

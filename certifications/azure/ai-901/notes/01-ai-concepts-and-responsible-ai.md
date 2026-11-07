@@ -27,7 +27,7 @@ Commonly confused pairs:
 - **Fairness vs inclusiveness.** Fairness is about *outcomes* not differing unjustly between groups. Inclusiveness is about *access*: designing so everyone can use it.
 - **Reliability and safety vs privacy and security.** Harmful or wrong outputs are reliability and safety; data exposure and attacks are privacy and security.
 
-In Foundry, these principles show up as concrete features: **content filters** (Azure AI Content Safety) on model deployments, **evaluations** for quality and safety, **transparency notes** published for each service, and access controls on projects. See [Responsible AI basics](../../../../safety/governance/responsible-ai-basics.md) on this site.
+In Foundry, these principles show up as concrete features: **content filters** (called guardrails in current Foundry docs) on model deployments, **evaluations** for quality and safety, **transparency notes** published for each service, and access controls on projects. See [Responsible AI basics](../../../../safety/governance/responsible-ai-basics.md) on this site.
 
 ## How generative AI models work
 
@@ -60,7 +60,7 @@ The [model catalog in Foundry](https://learn.microsoft.com/en-us/azure/foundry/f
 
 **Deployment** makes a model callable from your project with an endpoint. Things to know:
 
-- **Deployment types** affect where data is processed and how you pay: **Global** deployments route to Microsoft's capacity worldwide; **Data Zone** deployments keep processing within a geography (for example the EU or US); regional deployments stay in one region. Standard (pay per token) versus provisioned throughput (reserved capacity, predictable latency) is the other axis.
+- **Deployment types** affect where data is processed and how you pay: **Global** deployments route to Microsoft's capacity worldwide; **Data Zone** deployments keep processing within a Microsoft-defined data zone (US, EU or APAC); regional deployments (Standard, Regional Provisioned) keep processing within the Azure geography you choose. Standard (pay per token) versus provisioned throughput (reserved capacity, predictable latency) is the other axis.
 - You call a deployment by its **deployment name**, which you choose and which can differ from the model name.
 
 **Configuration parameters** you should be able to explain:
@@ -109,7 +109,7 @@ See [Speech AI: ASR and TTS](../../../../learn/concepts/speech-ai-asr-and-tts.md
 
 - **Image analysis:** captions, tags, object detection (with bounding boxes), people detection, **OCR** (reading printed and handwritten text).
 - **Image classification vs object detection:** classification labels the whole image; detection finds and locates each object.
-- **Face** capabilities are restricted under Microsoft's responsible AI policy (limited access for identification).
+- The **Face** service is access-limited under Microsoft's responsible AI principles (apply through an intake form; Microsoft-managed customers and partners only).
 - **Image generation** creates images from text prompts; content filters apply to prompts and outputs.
 
 ### Information extraction

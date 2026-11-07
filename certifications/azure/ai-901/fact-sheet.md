@@ -15,7 +15,7 @@ reading-time: 8 min
 **Replaces:** AI-900, retired 2026-06-30
 **Passing score:** 700
 **Cost:** Based on the country or region where the exam is proctored (shown at scheduling)
-**Duration:** 45 minutes of exam time, 65 minutes of seat time (Microsoft's figures for all Fundamentals exams; the AI-901 page itself gives none, checked 2026-10-22)
+**Duration:** 45 minutes of exam time, 65 minutes of seat time (Microsoft's figures for all Fundamentals exams; the AI-901 page itself gives none, rechecked 2026-11-07)
 **Number of questions:** Not published. Microsoft says most of its exams have 40-60 questions and the count varies by exam
 **Languages:** 13
 **Renewal:** None needed; Microsoft states that Fundamentals certifications do not expire
@@ -88,13 +88,13 @@ Microsoft describes the candidate as someone at the start of a career building A
 |---|---|---|
 | **Microsoft Foundry** | Azure AI Studio, then Azure AI Foundry | The platform: projects, model catalog, deployments, playgrounds, agents, evaluation |
 | **Foundry Tools** | Azure AI Services (Cognitive Services) | The prebuilt capabilities: Azure Speech, Azure Language, Azure Vision, Content Understanding and others |
-| **Azure OpenAI in Foundry** | Azure OpenAI Service | OpenAI models sold directly by Azure |
-| **Foundry Agent Service** | Azure AI Agent Service | Building and running agents |
-| **Azure Content Understanding** | (new; overlaps Document Intelligence) | Extracts structured fields from documents, images, audio and video |
-| **Foundry IQ** | - | Managed knowledge layer, built on Azure AI Search |
+| **Azure OpenAI in Foundry** | Azure OpenAI Service (rename not on the Evolution table; unverified) | OpenAI models sold directly by Azure |
+| **Foundry Agent Service** | Azure AI Agent Service (rename not on the Evolution table; unverified) | Building and running agents |
+| **Azure Content Understanding** | (newer; Content Understanding Studio is a transition path from Document Intelligence) | Extracts structured fields from documents, images, audio and video |
+| **Foundry IQ** | - | Managed knowledge layer for enterprise data; Azure AI Search provides the underlying indexing and retrieval |
 | **Responses API** | Assistants API | The API agents and chat clients use |
 
-Source: [What is Microsoft Foundry?](https://learn.microsoft.com/en-us/azure/foundry/what-is-foundry) ("Evolution of Foundry" table).
+Source: [What is Microsoft Foundry?](https://learn.microsoft.com/en-us/azure/foundry/what-is-foundry) ("Evolution of Foundry" table: brand, Foundry Tools, Responses API); [What is Foundry IQ?](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/what-is-foundry-iq).
 
 ## Official training
 

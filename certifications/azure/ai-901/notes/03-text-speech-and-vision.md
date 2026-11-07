@@ -39,7 +39,7 @@ Know the difference between **extractive** summarisation (selects sentences from
 | Speech translation | Recognise and translate speech | Multilingual meetings |
 | Custom speech / custom voice | Adapt recognition to your vocabulary; build a brand voice (with consent requirements) | Domain jargon, brand assistant |
 
-Concepts: **diarisation** (who spoke when), **custom vocabulary / phrase lists** for names and jargon, **word error rate** as the quality measure. See [Speech AI: ASR and TTS](../../../../learn/concepts/speech-ai-asr-and-tts.md).
+Concepts: **diarisation** (who spoke when), **custom vocabulary / phrase lists** for names and jargon (phrase lists work with real-time and fast transcription, not batch transcription), **word error rate** as the quality measure. See [Speech AI: ASR and TTS](../../../../learn/concepts/speech-ai-asr-and-tts.md).
 
 **Responding to spoken prompts with a deployed multimodal model**: an audio-capable model takes the spoken question directly as audio input and returns text (or audio). This skips a separate transcription step and keeps tone of voice; choose it for conversational assistants. Choose Azure Speech when you need the specific speech features above.
 
@@ -66,7 +66,7 @@ Terminology:
 - **Object detection** finds each object and its location (bounding box).
 - **Semantic segmentation** labels every pixel.
 - **OCR** turns text in an image into machine-readable text.
-- **Face** detection is available, but identification and verification are **limited access** under Microsoft's responsible AI policy.
+- The **Face** service is **limited access**: use is gated by eligibility criteria under Microsoft's responsible AI principles.
 
 ## Check yourself
 

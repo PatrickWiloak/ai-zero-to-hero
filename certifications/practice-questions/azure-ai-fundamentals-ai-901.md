@@ -147,15 +147,15 @@ D. A reasoning model, which plans multi-step answers to complex questions
 
 A. Data Zone deployment, which processes requests within the EU using capacity across several EU regions
 B. Global deployment, which routes requests to any Azure region that has spare capacity
-C. A single-region Standard deployment, which keeps processing in one region and has no pooled capacity
-D. Provisioned throughput in any region, which reserves capacity but does not restrict where processing happens
+C. A regional Standard deployment, which keeps processing within one customer-specified Azure geography rather than an EU-wide pool of capacity
+D. Global Provisioned deployment, which reserves capacity but may process requests in any Azure region
 
 <details>
 <summary>Answer</summary>
 
 **Correct: A**
 
-**Why:** Data Zone deployments keep processing within a geography such as the EU while drawing on capacity across its regions. Global may process anywhere.
+**Why:** Data Zone deployments keep processing within a geography such as the EU while drawing on capacity across its regions. Global deployments may process in any Azure region, and a regional Standard deployment stays within one Azure geography instead of the EU-wide pool.
 </details>
 
 ---
