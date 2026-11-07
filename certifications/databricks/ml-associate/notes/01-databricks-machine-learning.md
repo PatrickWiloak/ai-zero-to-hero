@@ -59,7 +59,7 @@ A feature table is a Delta table with a primary key that holds precomputed featu
 
 ### Create and write
 
-You use the `FeatureEngineeringClient` from `databricks.feature_engineering`. `create_table` takes a name, primary keys, a schema (or a DataFrame) and a description; `write_table` writes data and with `mode='merge'` upserts by primary key. This is the exact pattern of the guide's sample question: there is no `AS FEATURE STORE` SQL clause and no `register_table`; you use `create_table`, then write data.
+You use the `FeatureEngineeringClient` from `databricks.feature_engineering`. `create_table` takes a name, primary keys, a schema (or a DataFrame) and a description; `write_table` writes data and with `mode='merge'` upserts by primary key. This is the exact pattern of the guide's sample question: there is no `AS FEATURE STORE` SQL clause and no `register_table`; you use `create_table`, then write data. (The docs also show that in Unity Catalog any Delta table with a primary key constraint, for example from a plain SQL `CREATE TABLE`, can serve as a feature table, but there is no `CREATE FEATURE TABLE` statement.)
 
 ```python
 # Not run here: needs a Databricks workspace with Unity Catalog (from the Databricks docs)
@@ -103,7 +103,7 @@ fe.log_model(model=model, artifact_path="recommendation_model",
 predictions = fe.score_batch(model_uri=model_uri, df=batch_df)   # keys only
 ```
 
-Two details the exam can lean on. First, you must train on the DataFrame returned by `load_df`, and log with `fe.log_model` from the feature client, because that is what attaches the lookup information. Second, scoring with `fe.score_batch` needs only the primary keys: the model fetches its features itself, and columns you do supply override the stored values. A missing lookup returns `NaN` in batch scoring.
+Two details the exam can lean on. First, you must train on the DataFrame returned by `load_df`, and log with `fe.log_model` from the feature client, because that is what attaches the lookup information. Second, scoring with `fe.score_batch` needs the primary keys of the looked-up features (plus any non-feature columns the model was trained with): the model fetches its features itself, and columns you do supply override the stored values. A missing lookup returns `NaN` in batch scoring.
 
 ### Online versus offline feature tables
 

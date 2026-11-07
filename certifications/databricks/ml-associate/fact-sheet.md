@@ -39,7 +39,7 @@ Full teaching: [notes/01-databricks-machine-learning.md](notes/01-databricks-mac
 - Promote code, not models, "in most situations" (MLOps docs); aliases let pipelines reference Champion without edits
 - AutoML covers classification, regression and forecasting and generates a notebook per trial
 - Feature tables need a primary key and Databricks Runtime 13.2+; create with `FeatureEngineeringClient.create_table`, write with `write_table` (`mode='merge'` upserts)
-- Train on the DataFrame from `TrainingSet.load_df` and log with `fe.log_model`; `fe.score_batch` needs only the keys
+- Train on the DataFrame from `TrainingSet.load_df` and log with `fe.log_model`; `fe.score_batch` needs the primary keys (plus any external columns the model was trained with); supplied columns override stored values
 - Best run: `search_runs` with `order_by=["metrics.<name> ASC"]`
 - Unity Catalog models: three-level names, aliases, tags; stages are not supported
 - Promote a challenger with `set_registered_model_alias(name, "champion", version)`

@@ -114,7 +114,7 @@ D. Save a CSV in the workspace files and register it with register_table
 
 **Correct: C**
 
-**Why:** Feature tables are Delta tables with a primary key created through the FeatureEngineeringClient. There is no CREATE FEATURE TABLE statement, and a table without a primary key is not a valid feature table.
+**Why:** Feature tables are Delta tables with a primary key, created through the FeatureEngineeringClient (a plain SQL CREATE TABLE with a primary key constraint also works). There is no CREATE FEATURE TABLE statement, and a table without a primary key is not a valid feature table.
 </details>
 
 ---

@@ -20,7 +20,7 @@ Eight original scenarios, one or two per section, written for this guide (not ta
 
 **Situation.** A data scientist stores customer features in a Unity Catalog feature table and trains a model using them. Later a batch job has only `customer_id` values and must score them.
 
-**What do they do?** Build the training set with `create_training_set` and `FeatureLookup`, train on the DataFrame from `load_df`, log the model with `fe.log_model`, then call `fe.score_batch(model_uri=..., df=batch_df)` with only the keys.
+**What do they do?** Build the training set with `create_training_set` and `FeatureLookup`, train on the DataFrame from `load_df`, log the model with `fe.log_model`, then call `fe.score_batch(model_uri=..., df=batch_df)` with the keys (any columns the model was trained on outside the feature tables must be included too).
 
 **Why.** Logging with the feature client stores the feature references, so scoring fetches the features itself. Logging with a plain `mlflow.sklearn.log_model` would lose that link and force the job to join features by hand.
 
