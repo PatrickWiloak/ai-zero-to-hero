@@ -77,7 +77,8 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 
 ## Open
 
-- [ ] 2026-11-09 Freshness workflow built, not pushed: after the train pushes, run Actions > Freshness once (workflow_dispatch) and skim the step summary; advisory, fails only past 365 days. Script: `scripts/check_freshness.py`.
+- [x] 2026-11-10 Freshness workflow on main; dispatched run 42795046085 green: 137 pages, 7 over 120 days (all `last-updated: 2026-05-03`, 191 d), 21 undated READMEs, none near the 365-day fail.
+- [ ] 2026-12-15 Re-verify the 7 fact-sheets (AIF-C01, MLS-C01, AIP-C01, Azure GenAI, Databricks ML Pro, NVIDIA x2) (2026-05-03) on vendor pages, bump `last-updated` (365-d fail: 2027-05-03); date or exempt the 21 undated READMEs. `python3 scripts/check_freshness.py --days 120`.
 
 ### 🟠 Discoverability (added 2026-08-31)
 
