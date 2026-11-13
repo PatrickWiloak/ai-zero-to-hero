@@ -4,6 +4,9 @@ Working task list for **ai-zero-to-hero**. Read this at the start of a work sess
 
 ---
 
+## ✍️ Content refill (loop content-refill; nobler-os docs/LOOPS.md)
+- [ ] 2026-11-15 Pat: first `content-z2h-ai` run (Sundays, pilot since 2026-11-13) drafts into `drafts/`, never built; publish or delete each per [drafts/README.md](drafts/README.md).
+
 ## Refactor audit (2026-10-01) - found, not started
 
 Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half day) / M (1-3 days) / L, and the risk of making the fix. 🔴 = a live bug or safety hole.

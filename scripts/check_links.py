@@ -17,8 +17,10 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+# drafts/: nobler-os content-refill loop drafts (2026-11-13), never built; their links are written for where they
+# will live once published, so they resolve only after the move (drafts/README.md).
 SKIP_DIRS = {"site-build", "site", "_site", "node_modules",
-             ".git", ".github", "venv", "__pycache__"}
+             ".git", ".github", "venv", "__pycache__", "drafts"}
 
 FENCE_RE = re.compile(r"```.*?```", re.DOTALL)
 INLINE_CODE_RE = re.compile(r"`[^`]*`")
