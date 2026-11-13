@@ -6,6 +6,10 @@ reading-time: 30 min
 
 # 02 Generative AI Apps and Agents
 
+!!! note "About the code samples"
+    The code on this page is adapted from Microsoft's documentation and has not been run against a live Azure AI Foundry project here. Check the SDK version and the current docs before you rely on it.
+
+
 Domain 2 of AI-103: **Implement generative AI and agentic solutions (30-35%)**, the largest domain. Three skill groups: building generative apps with Foundry, building agents, and optimising and operationalising them. Expect code here: reading a snippet and spotting the missing line, choosing the right tool definition, or picking the step that makes a multi-turn conversation work.
 
 All code in this page uses the **Foundry SDK for Python**, `azure-ai-projects` 2.x (`pip install "azure-ai-projects>=2.3.0"`), which talks to the **Foundry projects (new) API**. Microsoft warns that 2.x code "is incompatible with Azure AI Projects 1.x", so if you meet older samples with `threads` and `runs`, they belong to the classic Assistants-style API, not to what AI-103 tests.

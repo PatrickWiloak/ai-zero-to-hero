@@ -6,6 +6,10 @@ reading-time: 20 min
 
 # 04 Text Analysis, Translation and Speech
 
+!!! note "About the code samples"
+    The code on this page is adapted from Microsoft's documentation and has not been run against a live Azure AI Foundry project here. Check the SDK version and the current docs before you rely on it.
+
+
 Domain 4 of AI-103: **Implement text analysis solutions (10-15%)**. Two skill groups: language-model text analysis (extraction, sentiment and safety, translation, domain customisation) and speech (speech to text and back, speech as an agent modality, audio reasoning, speech translation).
 
 The recurring question in this domain is **"a model prompt or a Foundry Tool?"** Both can extract entities, detect sentiment and translate. The exam rewards knowing when each is the better answer, so this page keeps coming back to the trade-off.

@@ -6,6 +6,10 @@ reading-time: 22 min
 
 # 05 Retrieval, Grounding and Content Understanding
 
+!!! note "About the code samples"
+    The code on this page is adapted from Microsoft's documentation and has not been run against a live Azure AI Foundry project here. Check the SDK version and the current docs before you rely on it.
+
+
 Domain 5 of AI-103: **Implement information extraction solutions (10-15%)**. Two skill groups: building retrieval and grounding pipelines (mostly Azure AI Search), and extracting content from documents (mostly Content Understanding). Together they are the data side of every RAG app and agent in Domain 2: if retrieval returns the wrong chunk, no prompt can save the answer.
 
 ## The shape of a grounding pipeline

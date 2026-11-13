@@ -6,6 +6,10 @@ reading-time: 25 min
 
 # 01 Plan, Secure and Govern an Azure AI Solution
 
+!!! note "About the code samples"
+    The code on this page is adapted from Microsoft's documentation and has not been run against a live Azure AI Foundry project here. Check the SDK version and the current docs before you rely on it.
+
+
 Domain 1 of AI-103: **Plan and manage an Azure AI solution (25-30%)**. Four skill groups: choosing the right Foundry services, setting solutions up, managing and securing them, and implementing responsible AI. This is the "architect" domain: most questions give you a scenario with constraints (cost, residency, latency, security, compliance) and ask which option meets them. The constraints are the whole question, so read for them.
 
 ## How Foundry is put together

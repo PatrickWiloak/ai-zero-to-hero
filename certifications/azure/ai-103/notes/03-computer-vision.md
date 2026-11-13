@@ -6,6 +6,10 @@ reading-time: 20 min
 
 # 03 Image, Video and Visual Understanding
 
+!!! note "About the code samples"
+    The code on this page is adapted from Microsoft's documentation and has not been run against a live Azure AI Foundry project here. Check the SDK version and the current docs before you rely on it.
+
+
 Domain 3 of AI-103: **Implement computer vision solutions (10-15%)**. Three skill groups: generating and editing images and video, understanding visual input with multimodal models and Content Understanding, and responsible AI for visual content.
 
 The big shift from AI-102: there is no "train a custom vision model" domain any more. Vision on AI-103 means **generative** image and video models, **multimodal** models that read images, and **Content Understanding** for structured visual extraction.
