@@ -27,7 +27,7 @@ the **careers** pillar.
 
 ### Wave 1 - finish what is written (already in TODO)
 
-Run the untested project code (chatbot, extraction, voice agent, red-team, coding-agent loop, agent eval),
+Run the untested project code (coding-agent loop, agent eval; chatbot, extraction, voice agent and red-team ran 2026-11-15),
 the AI-103 notes and the GCP GenAI samples against the live APIs. A guide that fails when someone runs it
 costs more than a missing guide.
 

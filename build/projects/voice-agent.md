@@ -223,3 +223,4 @@ These are rough expectations, not benchmarks: your hardware and network dominate
 - Anthropic, Pricing (Haiku 5.5; as of 2026-10): https://platform.claude.com/docs/en/about-claude/pricing
 - OpenAI, Models (realtime, voice and transcription models listed; as of 2026-10): https://developers.openai.com/api/docs/models
 - Pipecat: https://github.com/pipecat-ai/pipecat
+- Tested on 2026-11-15: `voice_agent.py` was run as written (faster-whisper `small` on CPU, Claude Haiku 5.5 through Amazon Bedrock) on a recorded English clip. The test machine had no microphone or speech engine, so `sounddevice` fed the clip in and `pyttsx3` printed what it would say; transcription, sentence-by-sentence streaming and the timing line all worked. The simple sentence splitter breaks after abbreviations such as "p.m.".

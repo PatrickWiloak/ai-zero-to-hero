@@ -258,3 +258,4 @@ Write those six checks down as a tiny test list. When you change the prompt late
 - Anthropic, Prompt caching docs: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
 - Anthropic Python SDK: https://github.com/anthropics/anthropic-sdk-python
 - Streamlit, chat elements (`st.chat_input`, `st.chat_message`, `st.write_stream`): https://docs.streamlit.io/develop/api-reference/chat
+- Tested on 2026-11-15: `cli_chat.py` and the finished `app.py` (steps 2-6, driven headless with Streamlit's AppTest) were run as written against Claude Sonnet 5.5 through Amazon Bedrock (the same Messages API; only the client constructor and model ID prefix differ). Memory across turns, document grounding, the cache read on the second turn and the cost meter all worked.

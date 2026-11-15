@@ -279,3 +279,4 @@ Results come back **in any order**. Always key them by `custom_id`, never by pos
 - Anthropic, Batch processing: https://platform.claude.com/docs/en/build-with-claude/batch-processing
 - Anthropic, PDF support: https://platform.claude.com/docs/en/build-with-claude/pdf-support
 - Pydantic, model config `extra="forbid"`: https://docs.pydantic.dev/latest/api/config/
+- Tested on 2026-11-15: `schema.py`, `extract.py`, `validate.py` and `score.py` were run as written against Claude Haiku 5.5 through Amazon Bedrock on three sample invoices (GBP, USD with no due date, a German EUR invoice). `batch.py` was not run (Bedrock has no Message Batches API); its exact request parameters, including the raw Pydantic JSON schema, were sent as a single call and returned a valid `Invoice`.

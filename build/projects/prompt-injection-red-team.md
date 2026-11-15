@@ -256,3 +256,4 @@ Then answer three questions in a paragraph each: Which family was hardest to sto
 - Promptfoo agreed to be acquired by OpenAI, announced March 2026, and says it will remain open source: https://www.promptfoo.dev/blog/promptfoo-joining-openai/
 - Anthropic, Pricing (Sonnet 5.5, Haiku 5.5 rates as of 2026-10): https://platform.claude.com/docs/en/about-claude/pricing
 - Anthropic, Tool use docs: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
+- Tested on 2026-11-15: `assistant.py`, `redteam.py` with the seven sample attacks, Defense A, B and D were run as written against Claude Sonnet 5.5 and Claude Haiku 5.5 through Amazon Bedrock. The sample attacks scored 0% at baseline (3 repeats), the case step 3 describes: write harder variants before trusting the numbers. The classifier flagged five of six attacks (not the base64 one) and passed the benign email.
