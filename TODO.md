@@ -36,7 +36,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [x] 2026-10-21 Refreshed the gen-AI table, prices and SDK samples in `tools/comparisons/cloud-ai-ml-services.md` from vendor pages.
 - [ ] 2026-12-01: re-check prices in `learn/concepts/ai-cost-basics.md` + `tools/comparisons/cloud-ai-ml-services.md` (Gemini 4 Argon promo ends 11-30, 3.8 Flash 12-31). Also `certifications/gcp/genai/` (states both promo and later rates).
 - [ ] Run `certifications/gcp/genai/` code samples against the live API: migrated by script to google-genai, checked for syntax and SDK shape only (2026-11-06).
-- [ ] Add PMLE flashcards for monitoring, Model Garden and Model Armor (`certifications/gcp/machine-learning-engineer/flashcards.csv`).
+- [x] 2026-11-16 done: Add PMLE flashcards for monitoring, Model Garden and Model Armor (`certifications/gcp/machine-learning-engineer/flashcards.csv`). ✏️ card-fix: added 16 PMLE flashcards (monitoring, Model Garden, Model Armor) to flashcards.csv and updated the deck count in certifications/README.md (26→42); not run, Bash was refus
 - [x] 2026-10-22 OSWorld-Verified top scores confirmed on the official leaderboard; `computer-use-agents.md` now cites them.
 - [x] 2026-10-21 Ten new concept pages in `learn/concepts/` (classic ML, overfitting/metrics, LLM training, coding/computer-use agents, agent memory, speech, SLMs, recommenders, cost) and two agent projects in `build/projects/`.
 - [ ] Next pillar page: AI news digest + RSS. (Paper lineage graph skipped 2026-10-21: `papers.json` has no builds-on/citation field, so it could only be hand-typed; add that field first.)
