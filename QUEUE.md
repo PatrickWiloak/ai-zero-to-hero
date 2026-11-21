@@ -27,8 +27,9 @@ ship ai-zero-to-hero --no-deploy        # the push deploys the site
 
 ## Q-001: PMLE flashcards for Model Garden, Model Armor and Model Monitoring
 
-- status: approved
+- status: done
 - added: 2026-11-16
+- result: 2026-11-21 already built by card-fix in 40bdf76 (17 cards); all done-when checks pass, so the queue retry was redundant
 - source: TODO.md line "Add PMLE flashcards for monitoring, Model Garden and Model Armor"
 - allow: `certifications/gcp/machine-learning-engineer/flashcards.csv`
 
