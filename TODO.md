@@ -120,6 +120,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
       ✏️ 2026-10-30 (todo-sweep): re-dated 2026-11-06 - `gh api` (GitHub referrers) is blocked by this
       loop's Bash permissions, and Search Console Performance needs the GSC WIF script (node), which
       this loop can't run; needs a session with `gh`/node access, or Patrick.
+      ✏️ 2026-11-22: needs Patrick - pull Google + Bing referrals (GitHub traffic referrers, GSC Performance queries, Bing Webmaster) and compare to the 2026-09-30 baseline; the sweep loop has no gh/node/console access.
 - [ ] **Patrick: Bing Webmaster Tools** -> Import from Google Search Console (IndexNow already pings Bing;
       Webmaster Tools shows what it did with them).
 - [x] 2026-10-21 Custom domain decided: `ai.noblerworks.com`; zero-to-hero moved to `cloud.noblerworks.com` the same day.
