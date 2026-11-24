@@ -17,7 +17,7 @@ Working task list for **ai-zero-to-hero**. Read this at the start of a work sess
 Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half day) / M (1-3 days) / L, and the risk of making the fix. 🔴 = a live bug or safety hole.
 
 - [x] 🟡 Delete the AI-session leftovers `FINAL_SUMMARY.md` + `ORGANIZATION_SUMMARY.md` from the public root. S, low. ✅ 2026-10-01 73ad0db
-- [ ] 🟡 `scripts/check-ci-local.mjs` is a 321-line fork of the 975-line fleet gate - restamp, or mark it an intentional MkDocs variant; `scripts/site_hooks.py` drift with zero-to-hero (see its TODO). S, low.
+- [ ] 🟡 `scripts/check-ci-local.mjs` is a 321-line fork of the 975-line fleet gate - restamp, or mark it an intentional MkDocs variant; `scripts/site_hooks.py` drift with zero-to-hero (see its TODO). S, low. ✏️ 2026-11-24 (docs audit): `check-ci-local.mjs` is now stamped from engineering-standards (`1f1ba49`, 1,671 lines); only the `site_hooks.py` drift (zero-to-hero is now cloud-zero-to-hero) remains.
 
 ## Audit findings (2026-10-02)
 
@@ -27,7 +27,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 
 ## AI Zero to Hero (2026-10-21)
 
-- [x] 2026-11-07 Cross-site learning paths (7 routes, `learn/start-here/learning-paths.md`, byte-identical in all four repos, linked from which-site, learn hub and home). Not pushed or deployed: ships with the train.
+- [x] 2026-11-07 Cross-site learning paths (7 routes, `learn/start-here/learning-paths.md`, byte-identical in all four repos, linked from which-site, learn hub and home). Pushed and live (`3129d96` on origin/main, checked 2026-11-24).
 - [ ] 2026-12-07 re-verify every link in `learn/start-here/learning-paths.md` against each repo's `git ls-files` (script: loop the URLs through the four trees) and the matching certs against current exam codes.
 - [x] 2026-10-21 Six guide pillars shipped (98 pages: learn, work, build, tools, safety, careers); site renamed "AI Zero to Hero". Plan: `~/.cache/ai-z2h/PLAN.md`.
 - [x] 2026-10-21 Repo renamed `ai-zero-to-hero`; site on `ai.noblerworks.com` (Route 53 CNAME, NW) + robots.txt; no redirects from older names.
