@@ -165,6 +165,9 @@ validation:
   anchors: warn
 
 extra:
+  # Exam-change alerts box (.github/site-overrides/partials/z2h-alerts.html).
+  # Empty = off. Set to the noblerworks API base once POST /z2h-subscribe is live.
+  z2h_alerts_api: ""
   # Search Console ownership for the URL-prefix property of this site. Rendered
   # as <meta name="google-site-verification"> by the head override.
   google_site_verification: "IiZNJDxVVPECZMC0xTbmls7EdKJm0Bs5wgq7k3HEwPc"

@@ -63,7 +63,7 @@ def _cert_for(src: str) -> dict | None:
     global _CERTS
     if _CERTS is None:
         try:
-            _CERTS = {c["path"]: {"name": c["name"], "code": c["code"]} for c in build_certs.load()["certs"]}
+            _CERTS = {c["path"]: {"name": c["name"], "code": c["code"], "path": c["path"]} for c in build_certs.load()["certs"]}
         except Exception:  # noqa: BLE001 - metadata is best effort, never fail the build
             _CERTS = {}
     rel = src[len(CERT_PREFIX):]
@@ -230,6 +230,9 @@ def on_page_markdown(markdown, page, config, files, **kwargs):
             short = ALIASES[slug][0].rstrip(":. ")
     year = meta.get("year")
     cert = _cert_for(src) if kind == "cert" else None
+    if cert and src == f"{CERT_PREFIX}{cert['path']}/README.md":
+        # The exam-alerts box (partials/z2h-alerts.html) follows this exam.
+        meta["z2h_cert"] = {"path": f"{CERT_PREFIX}{cert['path']}", "name": cert["name"]}
     fname = src.rsplit("/", 1)[-1]
     in_notes = "/notes/" in src
 

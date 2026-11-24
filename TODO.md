@@ -4,6 +4,9 @@ Working task list for **ai-zero-to-hero**. Read this at the start of a work sess
 
 ---
 
+## Exam-change alerts (2026-11-24) - noblerworks CHANGELOG 2026-11-24
+- [ ] 2026-11-24 Exam-alerts box built, OFF: once noblerworks' z2h deploy is live (`curl -s -o /dev/null -w '%{http_code}' -X OPTIONS https://wfzdn3z8ed.execute-api.us-east-1.amazonaws.com/prod/z2h-subscribe` = 204), set `extra.z2h_alerts_api: "https://wfzdn3z8ed.execute-api.us-east-1.amazonaws.com/prod"` in mkdocs.yml in all four Zero to Hero repos and ship.
+
 ## ✍️ Content refill (loop content-refill; nobler-os docs/LOOPS.md)
 - [ ] 2026-11-15 Pat: review 1 loop-drafted guide page(s) ("AI copyright, training data and model licenses: what a builder needs to know"), then `publish per drafts/README.md: drafts/safety/governance/ai-copyright-training-data-and-licenses.md`
 - [ ] 2026-11-15 Pat: from 11-15 the `queue-z2h-ai` loop builds content items (gaps, deepening, new certs) from [QUEUE.md](QUEUE.md) on local `loop/queue-q-NNN` branches; read and land each per QUEUE.md "Landing a built item" (expires 14 days).
