@@ -166,8 +166,8 @@ validation:
 
 extra:
   # Exam-change alerts box (.github/site-overrides/partials/z2h-alerts.html).
-  # Empty = off. Set to the noblerworks API base once POST /z2h-subscribe is live.
-  z2h_alerts_api: ""
+  # Empty = off. On since 2026-11-24 (noblerworks POST /z2h-subscribe).
+  z2h_alerts_api: "https://wfzdn3z8ed.execute-api.us-east-1.amazonaws.com/prod"
   # Search Console ownership for the URL-prefix property of this site. Rendered
   # as <meta name="google-site-verification"> by the head override.
   google_site_verification: "IiZNJDxVVPECZMC0xTbmls7EdKJm0Bs5wgq7k3HEwPc"

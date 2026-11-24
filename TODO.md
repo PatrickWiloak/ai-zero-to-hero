@@ -5,7 +5,7 @@ Working task list for **ai-zero-to-hero**. Read this at the start of a work sess
 ---
 
 ## Exam-change alerts (2026-11-24) - noblerworks CHANGELOG 2026-11-24
-- [ ] 2026-11-24 Exam-alerts box built, OFF: once noblerworks' z2h deploy is live (`curl -s -o /dev/null -w '%{http_code}' -X OPTIONS https://wfzdn3z8ed.execute-api.us-east-1.amazonaws.com/prod/z2h-subscribe` = 204), set `extra.z2h_alerts_api: "https://wfzdn3z8ed.execute-api.us-east-1.amazonaws.com/prod"` in mkdocs.yml in all four Zero to Hero repos and ship.
+- [x] 2026-11-24 Exam-alerts box ON in all four sites (backend live, OPTIONS 204, test signup 200). Check 2026-11-25 that the first daily run logged `z2h.alerts_run` with a baseline.
 
 ## ✍️ Content refill (loop content-refill; nobler-os docs/LOOPS.md)
 - [ ] 2026-11-15 Pat: review 1 loop-drafted guide page(s) ("AI copyright, training data and model licenses: what a builder needs to know"), then `publish per drafts/README.md: drafts/safety/governance/ai-copyright-training-data-and-licenses.md`
