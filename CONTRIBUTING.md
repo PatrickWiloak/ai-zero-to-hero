@@ -42,8 +42,9 @@ essays, plus explainers on the things no single paper covers.
    same three.
 
    `python3 scripts/check_freshness.py` is advisory: it tables cert guides, explainers and concept
-   pages older than 120 days or undated (`--strict`, `--self-test`); the weekly `freshness.yml`
-   runs it and fails only past 365 days.
+   pages older than 120 days or undated (`--strict`, `--self-test`); `freshness.yml` runs it on
+   demand and fails only past 365 days (its weekly cron moved to the nobler-os loop
+   `exam-watch-z2h-ai` on 2026-11-24, which runs the report daily).
 
 ## Adding an explainer
 
