@@ -236,4 +236,5 @@ Plan: [docs/CONTENT-GAPS.md](docs/CONTENT-GAPS.md) (pillars + certs; papers stay
 - [x] 2026-11-07 Wave 4: playbooks, use cases, comparisons, patterns. Still unverified (pages 403): HHS HIPAA, ED AI pages, ABA Op. 512 text, ICO, Midjourney, CA SB 53/243 statute. See page Sources.
 - [x] 2026-11-07 Wave 4: safety - AI privacy, AI incident response, deepfakes, bias testing, US state AI laws.
 - [x] 2026-11-07 Wave 4 fact pass done: see docs/VERIFICATION-2026-11-07.md (Colorado repealed and replaced by SB26-189; unverifiable list there).
+- [ ] 2026-11-25 Gap review [docs/content-gaps-2026-11-25.md](docs/content-gaps-2026-11-25.md): 5 waves (Wave 1: 8 NVIDIA/Databricks guides on wrong blueprints); loop reads it once nobler-os content.json lists it.
 - [ ] 2026-12-07 Recheck Wave 4 dated facts (docs/VERIFICATION-2026-11-07.md): Colorado SB26-189 AG rules (due 2027-01-01), California AI bills and SB 53 effective date, vendor model names in image/speech/embeddings pages.
