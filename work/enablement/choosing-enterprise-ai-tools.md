@@ -1,7 +1,7 @@
 # Choosing Enterprise AI Tools
 
 **In one line:** Pick a company-wide AI assistant (ChatGPT, Claude, Gemini or Microsoft Copilot) by checking data terms, admin controls, where your work already lives, and real cost per active user - in that order - rather than by which model topped a leaderboard this month.
-**Last reviewed:** 2026-10-21
+**Last reviewed:** 2026-11-25
 
 ---
 
@@ -67,7 +67,7 @@ List prices as of 2026-10 (US dollars, per user per month; confirm on the vendor
 
 | Product | Published price | Notes |
 |---|---|---|
-| ChatGPT Business | $20 annual / $25 monthly (Standard seat); $100 annual / $125 monthly (Premium seat) | Minimum two seats; Premium has more usage |
+| ChatGPT Business | $20 annual / $25 monthly (Standard seat); $100 annual / $125 monthly (Premium seat) | Pricing page says plans start at two users, the help centre says a workspace can start with one paid seat (both checked 2026-11-25); Premium has more usage |
 | ChatGPT Enterprise | Not published; contact sales | |
 | Claude Team | $20 annual / $25 monthly (Standard seat); $100 annual / $125 monthly (Premium seat) | |
 | Claude Enterprise | $20 per seat billed annually, 20-seat minimum, plus usage that scales with model and task | |
@@ -124,7 +124,7 @@ Two to four weeks, before you sign anything annual.
 ## Sources
 
 - OpenAI, *Enterprise privacy at OpenAI*: <https://openai.com/enterprise-privacy/>
-- OpenAI, *ChatGPT Business pricing* and *ChatGPT Business overview* (seat prices, two-seat minimum), as of 2026-10: <https://openai.com/business/pricing/>, <https://help.openai.com/en/articles/8792828-chatgpt-business-overview>
+- OpenAI, *ChatGPT Business pricing* and *ChatGPT Business overview* (seat prices and seat minimums), checked 2026-11-25: <https://openai.com/business/pricing/>, <https://help.openai.com/en/articles/8792828-chatgpt-business-overview>
 - OpenAI, *Premium seats are coming to ChatGPT Business*: <https://openai.com/index/premium-seats-chatgpt-business/>
 - OpenAI, *How your data is used to improve model performance*: <https://openai.com/policies/how-your-data-is-used-to-improve-model-performance/>
 - Anthropic, Claude plans and pricing, as of 2026-10: <https://claude.com/pricing>
