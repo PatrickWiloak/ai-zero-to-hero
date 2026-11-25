@@ -42,7 +42,7 @@ Most of OpenUSD can be run locally. The code in the notes was run in a throwaway
 
 ## Gaps the sources could not fill
 
-The notes say so where they occur: the "Conceptual Data Mapping" reference, ASWF asset structure guidelines, "Principles of Scalable Asset Structure", the file format plug-in page, SceneIndex plug-ins, in-memory resolvers, and build configuration. They are listed in `TODO.md` for follow-up.
+The Conceptual Data Mapping reference, both asset structure references, the file format plug-in page, SceneIndex plug-ins and build configuration were read on 2026-11-25 and are in the notes. Still open, and marked where they occur: an in-memory resolver example (no documented sample), and running `usdchecker` / `usdcat` or any C++ plug-in, which needs a full USD build.
 
 ## NVIDIA's recommended training (from the exam page)
 

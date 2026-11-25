@@ -1,6 +1,6 @@
 # Section 4: Data Exchange (15%)
 
-**Last reviewed:** 2026-11-07
+**Last reviewed:** 2026-11-25
 
 Data exchange is moving content between USD and everything else: converting to formats like glTF, writing and extending importers and exporters, round-tripping through a DCC (digital content creation tool such as Maya or Blender), documenting how one data model maps to another, and validating what comes out. The eight objectives are in NVIDIA's [study guide](https://dam-cdn.nvd.orangelogic.com/AssetLink/sjrg2vjhic7285sph487x53f5e54erf7.pdf). Code ran on `usd-core` 0.26.11. glTF conversion and DCC plug-ins need tools not available here and are marked not run.
 
@@ -51,7 +51,7 @@ This is objective 4.4 in miniature. The round trip reproduced the points and fac
 
 ## 4.2 Conceptual data mapping documents
 
-A conceptual mapping document says, for each concept in the source model, what it becomes in the target and what is lost. For USD to MaterialX, for example, the rows would be shader node types, parameter names, units and color spaces. The study guide lists "Conceptual Data Mapping" as a technical reference but I did not retrieve it, so a template is not quoted here. A usable document has: source concept, target concept, transform rule, loss or approximation, and a test asset that proves it.
+A conceptual mapping document says, for each concept in the source model, what it becomes in the target and what is lost. For USD to MaterialX, for example, the rows would be shader node types, parameter names, units and color spaces. NVIDIA's [Conceptual Data Mapping](https://docs.omniverse.nvidia.com/usd/latest/technical_reference/conceptual_data_mapping/index.html) reference defines the document as a data specification for reasoning about translation choices between OpenUSD and another format: it quantifies which features can be supported, surfaces mapping problems early, and doubles as a software design document agreed before any code is written. It is a living document, updated when the source format, OpenUSD or an official implementation changes, and implementations that deviate should record the deviation. NVIDIA's [template](https://docs.omniverse.nvidia.com/usd/latest/technical_reference/conceptual_data_mapping/document_template.html) has an Introduction (overview, references for both formats, general assumptions and constraints, definitions), a Concepts section with one entry per source or USD concept covering its properties, metadata and composition, and appendices. Published examples include MaterialX, MTConnect, URDF and OBJ mappings and a short glTF example. In practice each concept row should still name the transform rule, what is lost or approximated, and a test asset that proves it.
 
 ## 4.5 and 4.8 Nonstandard data, writing or extending an importer
 
