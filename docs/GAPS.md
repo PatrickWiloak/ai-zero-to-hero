@@ -133,11 +133,11 @@ further from generative AI, so they stay optional rather than assumed.
   Moonshot Kimi.
 - **Concepts:** mixture-of-experts routing in practice, multimodal tokenization (how images and
   audio become tokens), embeddings beyond retrieval.
-- **Applications:** AI for code (the coding-assistant landscape), AI in science, AI search.
+- **Applications:** AI in science, AI search. (AI for code is covered: [coding assistants](../tools/comparisons/coding-assistants.md).)
 - **Safety:** jailbreaks and prompt injection as a threat class (linking
   [AI threat modelling](../safety/security/ai-threat-modeling.md)).
-- **Concepts:** hallucination (pairs with [149](../papers/techniques/149-why-language-models-hallucinate/summary.md)) and multilingual / non-English models.
-- **Society:** AI and jobs, copyright and training data litigation, energy use.
+- **Concepts:** multilingual / non-English models. (Hallucination is covered: [hallucinations](../learn/concepts/hallucinations.md).)
+- **Society:** AI and jobs, energy use. Copyright and training data is drafted (`drafts/safety/governance/ai-copyright-training-data-and-licenses.md`, waiting on review).
 
 ---
 

@@ -38,7 +38,7 @@ Read-only fleet audit (9 agents, nothing changed). Each line: effort S (<half da
 - [ ] run `build/projects/{build-a-coding-agent-loop,evaluate-an-agent-end-to-end}.md` against the live API (tested with a scripted stand-in model only) and replace the illustrative output.
 - [x] 2026-10-21 Refreshed the gen-AI table, prices and SDK samples in `tools/comparisons/cloud-ai-ml-services.md` from vendor pages.
 - [ ] 2026-12-01: re-check prices in `learn/concepts/ai-cost-basics.md` + `tools/comparisons/cloud-ai-ml-services.md` (Gemini 4 Argon promo ends 11-30, 3.8 Flash 12-31). Also `certifications/gcp/genai/` (states both promo and later rates).
-- [ ] Run `certifications/gcp/genai/` code samples against the live API: migrated by script to google-genai, checked for syntax and SDK shape only (2026-11-06).
+- [ ] Run `certifications/gcp/genai/` code samples against the live API: migrated by script to google-genai, checked for syntax and SDK shape only (2026-11-06). ✏️ 2026-11-25 the three notes now say the code was not run here.
 - [x] 2026-11-16 done: Add PMLE flashcards for monitoring, Model Garden and Model Armor (`certifications/gcp/machine-learning-engineer/flashcards.csv`). ✏️ card-fix: added 16 PMLE flashcards (monitoring, Model Garden, Model Armor) to flashcards.csv and updated the deck count in certifications/README.md (26→42); not run, Bash was refus
 - [x] 2026-10-22 OSWorld-Verified top scores confirmed on the official leaderboard; `computer-use-agents.md` now cites them.
 - [x] 2026-10-21 Ten new concept pages in `learn/concepts/` (classic ML, overfitting/metrics, LLM training, coding/computer-use agents, agent memory, speech, SLMs, recommenders, cost) and two agent projects in `build/projects/`.
@@ -236,5 +236,5 @@ Plan: [docs/CONTENT-GAPS.md](docs/CONTENT-GAPS.md) (pillars + certs; papers stay
 - [x] 2026-11-07 Wave 4: playbooks, use cases, comparisons, patterns. Still unverified (pages 403): HHS HIPAA, ED AI pages, ABA Op. 512 text, ICO, Midjourney, CA SB 53/243 statute. See page Sources.
 - [x] 2026-11-07 Wave 4: safety - AI privacy, AI incident response, deepfakes, bias testing, US state AI laws.
 - [x] 2026-11-07 Wave 4 fact pass done: see docs/VERIFICATION-2026-11-07.md (Colorado repealed and replaced by SB26-189; unverifiable list there).
-- [ ] 2026-11-25 Gap review [docs/content-gaps-2026-11-25.md](docs/content-gaps-2026-11-25.md): 5 waves (Wave 1: 8 NVIDIA/Databricks guides on wrong blueprints); loop reads it once nobler-os content.json lists it.
+- [x] 2026-11-25 Gap review [docs/content-gaps-2026-11-25.md](docs/content-gaps-2026-11-25.md): 5 waves (Wave 1: 8 NVIDIA/Databricks guides on wrong blueprints) ✅ 2026-11-25 listed in nobler-os content.json (`14b3b2568`), loop builds the waves; Wave 3 GCP "not run" notes + GAPS.md queue done by hand.
 - [ ] 2026-12-07 Recheck Wave 4 dated facts (docs/VERIFICATION-2026-11-07.md): Colorado SB26-189 AG rules (due 2027-01-01), California AI bills and SB 53 effective date, vendor model names in image/speech/embeddings pages.

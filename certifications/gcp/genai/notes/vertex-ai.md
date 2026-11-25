@@ -1,5 +1,8 @@
 # Agent Platform Fundamentals
 
+!!! note "About the code samples"
+    The code on this page is adapted from Google Cloud's documentation and has not been run against a live Google Cloud project here. Check the SDK version and the current docs before you rely on it.
+
 ## What is Agent Platform?
 
 Agent Platform (formerly Vertex AI) is Google Cloud's unified machine learning platform that combines AutoML and AI Platform into a unified API, client library, and user interface, providing tools for every step of the ML workflow.

@@ -1,5 +1,8 @@
 # Generative AI Fundamentals on Google Cloud
 
+!!! note "About the code samples"
+    The code on this page is adapted from Google Cloud's documentation and has not been run against a live Google Cloud project here. Check the SDK version and the current docs before you rely on it.
+
 Code samples in these notes use the Google Gen AI SDK (`pip install --upgrade google-genai`) and assume `GOOGLE_CLOUD_PROJECT`, `GOOGLE_CLOUD_LOCATION=global` and `GOOGLE_GENAI_USE_ENTERPRISE=True` are set, so `genai.Client()` needs no arguments; see [the SDK setup](vertex-ai.md#the-sdk-these-notes-use). A sample that starts without imports continues from an earlier one, with `client` and `model` already defined. Model IDs were checked on 2026-11-06.
 
 ## Introduction to Generative AI

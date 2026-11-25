@@ -1,5 +1,8 @@
 # MLOps and Production Generative AI on Google Cloud
 
+!!! note "About the code samples"
+    The code on this page is adapted from Google Cloud's documentation and has not been run against a live Google Cloud project here. Check the SDK version and the current docs before you rely on it.
+
 Code samples here use the Google Gen AI SDK (`google-genai`) for Gemini calls and `google-cloud-aiplatform` for endpoints and pipelines. They assume `GOOGLE_CLOUD_PROJECT`, `GOOGLE_CLOUD_LOCATION=global` and `GOOGLE_GENAI_USE_ENTERPRISE=True` are set; see [the SDK setup](vertex-ai.md#the-sdk-these-notes-use). Model IDs and prices were checked on 2026-11-06. Google retires Gemini versions on a published schedule, so keep IDs in configuration as these samples do.
 
 ## Generative AI MLOps Overview
